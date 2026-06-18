@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>G7 SBOM for AI - Minimum Elements</title>
+  <style>body{font-family:system-ui,sans-serif;max-width:900px;margin:2rem auto;padding:0 1.5rem;color:#222;line-height:1.6}
+h1{font-size:1.4rem;border-bottom:2px solid #ddd;padding-bottom:.3rem}
+p.meta{color:#555;font-size:.9rem;margin-top:-.4rem}
+h2{font-size:1rem;margin-top:1.8rem;color:#444}
+a{color:#0969da}
+table{border-collapse:collapse;width:100%;font-size:.88rem}
+th,td{text-align:left;padding:.35rem .6rem;border:1px solid #ddd;vertical-align:top}
+th{background:#f6f8fa}
+code{background:#f6f8fa;padding:.1rem .3rem;border-radius:3px;font-size:.85em}
+.tag{display:inline-block;background:#e8f0fe;color:#1a56db;border-radius:3px;
+     padding:.05rem .4rem;font-size:.8em;white-space:nowrap}
+footer{margin-top:2.5rem;font-size:.82rem;color:#666;border-top:1px solid #ddd;padding-top:.8rem}</style>
+</head>
+<body>
+
+<p class="meta"><a href="../../">SBOM Bridging Ontology for Mapping</a></p>
+<h1>G7 SBOM for AI - Minimum Elements</h1>
+<p class="meta">Namespace: <code><a href="https://w3id.org/sbom/req/g7ai/">https://w3id.org/sbom/req/g7ai/</a></code>
+  &nbsp;|&nbsp; <a href="g7ai.ttl">g7ai.ttl</a>&nbsp;|&nbsp; v0.1.0</p>
+
+<p>Concepts derived from &#x27;Software Bill of Materials (SBOM) for Artificial
+Intelligence - Minimum Elements&#x27;, written by the G7 Cybersecurity Working Group and
+published by BSI (Federal Office for Information Security, Germany) on 2026-05-12.
+Categories: Metadata (MD), System Level Properties (SLP), Models (MDL),
+Dataset Properties (DP), Infrastructure (INF), Security Properties (SP),
+Key Performance Indicators (KPI).</p>
+
+<h2>Concepts (57)</h2>
+<table>
+<tr><th>ID</th><th>Label</th><th>Notation</th><th>Type</th><th>Definition</th></tr>
+<tr><td><code>dataset-properties</code></td><td>Dataset Properties</td><td><code>G7AI-DP</code></td><td></td><td>Elements describing datasets used to train, validate or test AI models.</td></tr>
+<tr><td><code>dataset-name</code></td><td>Dataset name</td><td><code>G7AI-DP-01</code></td><td><span class=tag>Requirement</span></td><td>The human-readable name of a dataset used to train, validate or test the AI model.</td></tr>
+<tr><td><code>dataset-description</code></td><td>Dataset description</td><td><code>G7AI-DP-02</code></td><td><span class=tag>Requirement</span></td><td>A free-text description of the dataset&#x27;s contents, scope and purpose.</td></tr>
+<tr><td><code>dataset-content</code></td><td>Dataset content</td><td><code>G7AI-DP-03</code></td><td></td><td>The type(s) of data in the dataset (e.g. image, text, audio, tabular) and its size.</td></tr>
+<tr><td><code>dataset-identifier</code></td><td>Dataset identifier</td><td><code>G7AI-DP-04</code></td><td><span class=tag>Requirement</span></td><td>A stable, unique identifier for the dataset (e.g. DOI, SPDX ID, dataset registry URL).</td></tr>
+<tr><td><code>dataset-hash</code></td><td>Dataset hash</td><td><code>G7AI-DP-05</code></td><td></td><td>A cryptographic hash of the dataset archive or snapshot for integrity verification.</td></tr>
+<tr><td><code>dataset-provenance</code></td><td>Dataset provenance</td><td><code>G7AI-DP-06</code></td><td></td><td>Information about how, when and where the dataset was collected, updated and pre-processed.</td></tr>
+<tr><td><code>dataset-statistical-properties</code></td><td>Dataset statistical properties</td><td><code>G7AI-DP-07</code></td><td></td><td>Statistical characteristics of the dataset including size, noise levels, known biases and class distributions.</td></tr>
+<tr><td><code>dataset-sensitivity</code></td><td>Dataset sensitivity</td><td><code>G7AI-DP-08</code></td><td><span class=tag>Requirement</span></td><td>The sensitivity classification of the dataset, including whether it contains personal or sensitive data and its confidentiality level.</td></tr>
+<tr><td><code>dataset-dependency-relationship</code></td><td>Dataset dependency relationship</td><td><code>G7AI-DP-09</code></td><td><span class=tag>Requirement</span></td><td>Relationships linking a model to the datasets it was trained on, tested on, or depends on.</td></tr>
+<tr><td><code>dataset-license</code></td><td>Dataset license</td><td><code>G7AI-DP-10</code></td><td><span class=tag>Requirement</span></td><td>The declared or concluded license under which the dataset is distributed, including access and usage restrictions.</td></tr>
+<tr><td><code>infrastructure</code></td><td>Infrastructure</td><td><code>G7AI-INF</code></td><td></td><td>Elements describing the software and hardware environment on which the AI system runs.</td></tr>
+<tr><td><code>infrastructure-software</code></td><td>Infrastructure software</td><td><code>G7AI-INF-01</code></td><td><span class=tag>Requirement</span></td><td>The software environment required to run the AI system, including container images, OS, ML frameworks and runtime libraries.</td></tr>
+<tr><td><code>infrastructure-hardware</code></td><td>Infrastructure hardware</td><td><code>G7AI-INF-02</code></td><td><span class=tag>Requirement</span></td><td>The hardware required to operate the AI system, including specialised accelerators (GPUs, TPUs, NPUs).</td></tr>
+<tr><td><code>key-performance-indicators</code></td><td>Key Performance Indicators</td><td><code>G7AI-KPI</code></td><td></td><td>Elements describing measurable security and operational performance metrics for the AI system.</td></tr>
+<tr><td><code>security-metrics</code></td><td>Security metrics</td><td><code>G7AI-KPI-01</code></td><td><span class=tag>Requirement</span></td><td>Quantitative security-related performance metrics and their decision thresholds (e.g. adversarial robustness scores, CVSS scores).</td></tr>
+<tr><td><code>operational-performance-kpis</code></td><td>Operational performance KPIs</td><td><code>G7AI-KPI-02</code></td><td><span class=tag>Requirement</span></td><td>Operational performance indicators for the AI system such as accuracy, F1, latency, throughput and energy consumption.</td></tr>
+<tr><td><code>metadata</code></td><td>Metadata</td><td><code>G7AI-MD</code></td><td></td><td>Elements describing the SBOM document itself: authorship, format, versioning, tooling and relationships.</td></tr>
+<tr><td><code>sbom-author</code></td><td>SBOM author</td><td><code>G7AI-MD-01</code></td><td><span class=tag>Requirement</span></td><td>The agent (person, organisation or tool) that produced the SBOM document.</td></tr>
+<tr><td><code>sbom-version</code></td><td>SBOM version</td><td><code>G7AI-MD-02</code></td><td><span class=tag>Requirement</span></td><td>A version identifier for this specific instance of the SBOM document.</td></tr>
+<tr><td><code>sbom-data-format-name</code></td><td>SBOM data format name</td><td><code>G7AI-MD-03</code></td><td><span class=tag>Requirement</span></td><td>The name of the standard or schema used to serialise the SBOM (e.g. SPDX, CycloneDX).</td></tr>
+<tr><td><code>sbom-data-format-version</code></td><td>SBOM data format version</td><td><code>G7AI-MD-04</code></td><td><span class=tag>Requirement</span></td><td>The version of the SBOM data format specification used (e.g. 3.1, 1.6).</td></tr>
+<tr><td><code>sbom-author-signature</code></td><td>SBOM author signature</td><td><code>G7AI-MD-05</code></td><td></td><td>A cryptographic signature or integrity method that allows verification of SBOM authorship.</td></tr>
+<tr><td><code>sbom-tool-name</code></td><td>SBOM tool name</td><td><code>G7AI-MD-06</code></td><td><span class=tag>Requirement</span></td><td>The name of the software tool used to generate the SBOM.</td></tr>
+<tr><td><code>sbom-tool-version</code></td><td>SBOM tool version</td><td><code>G7AI-MD-07</code></td><td><span class=tag>Requirement</span></td><td>The version of the software tool used to generate the SBOM.</td></tr>
+<tr><td><code>sbom-generation-context</code></td><td>SBOM generation context</td><td><code>G7AI-MD-08</code></td><td><span class=tag>Requirement</span></td><td>The lifecycle stage or context in which the SBOM was generated (e.g. build, release, deploy, runtime).</td></tr>
+<tr><td><code>sbom-timestamp</code></td><td>SBOM timestamp</td><td><code>G7AI-MD-09</code></td><td><span class=tag>Requirement</span></td><td>The date and time at which the SBOM was created.</td></tr>
+<tr><td><code>sbom-dependency-relationship</code></td><td>SBOM dependency relationship</td><td><code>G7AI-MD-10</code></td><td></td><td>Explicit dependency relationships between components recorded in the SBOM.</td></tr>
+<tr><td><code>models</code></td><td>Models</td><td><code>G7AI-MDL</code></td><td></td><td>Elements describing individual AI model artifacts: identity, provenance, hashes, licensing and training characteristics.</td></tr>
+<tr><td><code>model-name</code></td><td>Model name</td><td><code>G7AI-MDL-01</code></td><td><span class=tag>Requirement</span></td><td>The human-readable name of an individual AI model component.</td></tr>
+<tr><td><code>model-identifier</code></td><td>Model identifier</td><td><code>G7AI-MDL-02</code></td><td><span class=tag>Requirement</span></td><td>A stable, unique identifier for the model (e.g. PURL, SPDX ID, Hugging Face model ID, DOI).</td></tr>
+<tr><td><code>model-version</code></td><td>Model version</td><td><code>G7AI-MDL-03</code></td><td><span class=tag>Requirement</span></td><td>A version or checkpoint identifier for the specific weight snapshot of the model.</td></tr>
+<tr><td><code>model-timestamp</code></td><td>Model timestamp</td><td><code>G7AI-MDL-04</code></td><td><span class=tag>Requirement</span></td><td>The date and time the model was trained, built, or released.</td></tr>
+<tr><td><code>model-producer</code></td><td>Model producer</td><td><code>G7AI-MDL-05</code></td><td></td><td>The organisation or person that trained or supplied the model.</td></tr>
+<tr><td><code>model-description</code></td><td>Model description</td><td><code>G7AI-MDL-06</code></td><td><span class=tag>Requirement</span></td><td>A free-text description of the model&#x27;s purpose, architecture and key characteristics.</td></tr>
+<tr><td><code>model-hash-value</code></td><td>Model hash value</td><td><code>G7AI-MDL-07</code></td><td></td><td>The cryptographic digest of the model weight file(s) for integrity verification.</td></tr>
+<tr><td><code>model-hash-algorithm</code></td><td>Model hash algorithm</td><td><code>G7AI-MDL-08</code></td><td></td><td>The algorithm used to compute the model hash (e.g. SHA-256, SHA-512, BLAKE3).</td></tr>
+<tr><td><code>model-properties</code></td><td>Model properties</td><td><code>G7AI-MDL-09</code></td><td></td><td>AI-specific technical properties of the model such as type, explainability, autonomy level and energy profile.</td></tr>
+<tr><td><code>model-input-output-properties</code></td><td>Model input/output properties</td><td><code>G7AI-MDL-10</code></td><td></td><td>The types, modalities and constraints on the model&#x27;s input and output (e.g. image, text, structured data).</td></tr>
+<tr><td><code>model-training-properties</code></td><td>Model training properties</td><td><code>G7AI-MDL-11</code></td><td></td><td>Characteristics of the model&#x27;s training process, including hyperparameters, data pre-processing and fine-tuning steps.</td></tr>
+<tr><td><code>model-license</code></td><td>Model license</td><td><code>G7AI-MDL-12</code></td><td><span class=tag>Requirement</span></td><td>The declared or concluded license under which the model is distributed (e.g. SPDX expression, AI-specific RAIL license).</td></tr>
+<tr><td><code>model-external-references</code></td><td>Model external references</td><td><code>G7AI-MDL-13</code></td><td></td><td>Links to supplementary resources such as model cards, research papers, repositories and model registries.</td></tr>
+<tr><td><code>system-level-properties</code></td><td>System Level Properties</td><td><code>G7AI-SLP</code></td><td></td><td>Elements describing the AI system as a whole: name, components, producer, version, timestamps, data flows and intended use.</td></tr>
+<tr><td><code>system-name</code></td><td>System name</td><td><code>G7AI-SLP-01</code></td><td><span class=tag>Requirement</span></td><td>The name of the AI system as a whole.</td></tr>
+<tr><td><code>system-components</code></td><td>System components</td><td><code>G7AI-SLP-02</code></td><td></td><td>The constituent sub-components (models, datasets, libraries) that make up the AI system.</td></tr>
+<tr><td><code>system-producer</code></td><td>System producer</td><td><code>G7AI-SLP-03</code></td><td></td><td>The organisation or person that developed or supplied the AI system.</td></tr>
+<tr><td><code>system-version</code></td><td>System version</td><td><code>G7AI-SLP-04</code></td><td><span class=tag>Requirement</span></td><td>The release or version identifier of the AI system.</td></tr>
+<tr><td><code>system-timestamp</code></td><td>System timestamp</td><td><code>G7AI-SLP-05</code></td><td><span class=tag>Requirement</span></td><td>The date and time the AI system was built or released.</td></tr>
+<tr><td><code>system-data-flow</code></td><td>System data flow</td><td><code>G7AI-SLP-06</code></td><td><span class=tag>Requirement</span></td><td>A description of how data flows into, through and out of the AI system.</td></tr>
+<tr><td><code>system-data-usage</code></td><td>System data usage</td><td><code>G7AI-SLP-07</code></td><td></td><td>A description of how data (including personal or sensitive data) is used by the AI system.</td></tr>
+<tr><td><code>system-input-output-properties</code></td><td>System input/output properties</td><td><code>G7AI-SLP-08</code></td><td><span class=tag>Requirement</span></td><td>The types, modalities and constraints of data accepted as input and produced as output by the AI system.</td></tr>
+<tr><td><code>system-intended-application-area</code></td><td>Intended application area</td><td><code>G7AI-SLP-09</code></td><td></td><td>The domain(s) or application area(s) for which the AI system is intended (e.g. healthcare, finance, autonomous driving).</td></tr>
+<tr><td><code>security-properties</code></td><td>Security Properties</td><td><code>G7AI-SP</code></td><td></td><td>Elements describing security controls, compliance, policies and known vulnerabilities.</td></tr>
+<tr><td><code>security-controls</code></td><td>Security controls</td><td><code>G7AI-SP-01</code></td><td><span class=tag>Requirement</span></td><td>The security controls implemented on the AI system (e.g. access controls, encryption, audit logging).</td></tr>
+<tr><td><code>security-compliance</code></td><td>Security compliance</td><td><code>G7AI-SP-02</code></td><td><span class=tag>Requirement</span></td><td>The security standards, regulations or frameworks the AI system has been assessed against or conforms to.</td></tr>
+<tr><td><code>cybersecurity-policy</code></td><td>Cybersecurity policy information</td><td><code>G7AI-SP-03</code></td><td><span class=tag>Requirement</span></td><td>References to the supplier&#x27;s vulnerability-disclosure policy, security.txt or coordinated-disclosure process.</td></tr>
+<tr><td><code>vulnerability-referencing</code></td><td>Vulnerability referencing</td><td><code>G7AI-SP-04</code></td><td><span class=tag>Requirement</span></td><td>References to known vulnerabilities (CVEs) and their assessment status (VEX) for the AI system and its components.</td></tr>
+</table>
+
+<footer>
+  <a href="https://orcid.org/0000-0002-9698-1899">Arthit Suriyawongkul</a> &nbsp;|&nbsp;
+  <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0-1.0</a> &nbsp;|&nbsp;
+  <a href="https://github.com/openregtech/sbom">github.com/openregtech/sbom</a> &nbsp;|&nbsp;
+  <a href="../../">SBOM Bridging Ontology for Mapping</a>
+</footer>
+
+</body>
+</html>

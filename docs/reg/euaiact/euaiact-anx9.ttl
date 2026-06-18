@@ -1,0 +1,159 @@
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix dpv:     <https://w3id.org/dpv#> .
+@prefix cv:      <http://data.europa.eu/m8g/> .
+
+@prefix sbom:    <https://w3id.org/sbom/> .
+@prefix euaiact: <https://w3id.org/sbom/reg/euaiact/> .
+@prefix eli:     <http://data.europa.eu/eli/ontology#> .
+
+# EU AI Act -- Annex IX
+# Real-world testing registration (Art. 60)
+# 5 items. Entry into force: 2 August 2026.
+
+<https://w3id.org/sbom/reg/euaiact/anx9/>
+    a owl:Ontology ;
+    owl:imports <https://w3id.org/sbom/> ;
+    owl:imports <https://w3id.org/sbom/reg/euaiact/art49/> ;
+    dcterms:title "EU AI Act -- Annex IX: Real-World Testing Registration (Art. 60)"@en ;
+    dcterms:description """SKOS concept scheme for the 5 information items required
+by EU AI Act Annex IX for testing of Annex III high-risk AI systems in real-world
+conditions outside AI regulatory sandboxes (Art. 60).
+
+Registration paths (Art.60(4)(c)):
+  - Annex III pts 1/6/7 (law enforcement/migration/asylum/border):
+      non-public EU database -- items IX.1, 2, 3, 5 only
+  - Annex III pt.2 (safety components of harmonised products):
+      national registration (Art.49(5)), not full EU database
+  - All other Annex III systems:
+      public EU database, full Annex IX (items IX.1-5)
+
+Entry into force: 2 August 2026 (Art. 113)."""@en ;
+    dcterms:source <https://eur-lex.europa.eu/eli/reg/2024/1689/oj/eng> ;
+    dcterms:creator <https://orcid.org/0000-0002-9698-1899> ;
+    dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+    dcterms:created "2026-06-17"^^xsd:date ;
+    owl:versionInfo "0.1.0" ;
+    rdfs:seeAlso <https://artificialintelligenceact.eu/annex/9/> ;
+    rdfs:seeAlso <https://artificialintelligenceact.eu/article/60/> ;
+    rdfs:seeAlso <http://data.europa.eu/eli/reg/2024/1689/anx_9/oj> .
+
+euaiact:scheme-anx9
+    a skos:ConceptScheme, sbom:RegulatorySpec ;
+    skos:prefLabel "EU AI Act -- Annex IX: Real-World Testing Registration (Art. 60)"@en ;
+    dcterms:description """5 registration items for real-world testing of Annex III
+high-risk AI systems. Source: Annex IX, Regulation (EU) 2024/1689.
+Entry into force: 2 August 2026."""@en ;
+    skos:hasTopConcept euaiact:anx9 .
+
+euaiact:anx9
+    a skos:Concept ;
+    skos:topConceptOf euaiact:scheme-anx9 ;
+    skos:inScheme euaiact:scheme-anx9 ;
+    skos:prefLabel "Annex IX -- Real-world testing registration (Art. 60)"@en ;
+    skos:definition """Information to be submitted and kept up to date with regard to
+testing in real world conditions, registered in accordance with Article 60.
+Applies to providers or prospective providers of Annex III high-risk AI systems
+conducting testing outside AI regulatory sandboxes."""@en ;
+    skos:scopeNote """Registration under Art.60 is required before testing begins (Art.60(4)(c)).
+Entry into force: 2 August 2026 (Art. 113)."""@en ;
+    rdfs:seeAlso <https://artificialintelligenceact.eu/article/60/> ;
+    skos:narrower
+        euaiact:anx9-1-test-uid ,
+        euaiact:anx9-2-parties ,
+        euaiact:anx9-3-system-description ,
+        euaiact:anx9-4-testing-plan-summary ,
+        euaiact:anx9-5-suspension-termination .
+
+euaiact:anx9-1-test-uid
+    a skos:Concept ;
+    skos:inScheme euaiact:scheme-anx9 ;
+    skos:broader euaiact:anx9 ;
+    skos:notation "IX.1" ;
+    skos:notation "SBOM-EUAIACT-ANX9-001"^^sbom:SarifRuleId ;
+    rdfs:seeAlso <http://data.europa.eu/eli/reg/2024/1689/anx_9/oj> ;
+    rdfs:seeAlso <https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401689#anx_IX> ;
+    skos:prefLabel "Union-wide unique single identification number of the testing (IX.1)"@en ;
+    skos:definition """A Union-wide unique single identification number of the testing
+in real world conditions. (Annex IX item 1)
+Generated at registration via Art.71(4)."""@en ;
+    skos:closeMatch sbom:component-identifier .
+
+euaiact:anx9-1-test-uid sbom:provisionType sbom:ExternalConstraint .
+
+euaiact:anx9-2-parties
+    a skos:Concept ;
+    skos:inScheme euaiact:scheme-anx9 ;
+    skos:broader euaiact:anx9 ;
+    skos:notation "IX.2" ;
+    skos:notation "SBOM-EUAIACT-ANX9-002"^^sbom:SarifRuleId ;
+    rdfs:seeAlso <http://data.europa.eu/eli/reg/2024/1689/anx_9/oj> ;
+    rdfs:seeAlso <https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401689#anx_IX> ;
+    skos:prefLabel "Provider/prospective provider and deployers contact details (IX.2)"@en ;
+    skos:definition """The name and contact details of the provider or prospective provider
+and of the deployers involved in the testing in real world conditions.
+(Annex IX item 2)"""@en ;
+    skos:closeMatch sbom:component-supplier .
+
+euaiact:anx9-2-parties sbom:provisionType sbom:ExternalConstraint .
+
+euaiact:anx9-3-system-description
+    a skos:Concept ;
+    skos:inScheme euaiact:scheme-anx9 ;
+    skos:broader euaiact:anx9 ;
+    skos:notation "IX.3" ;
+    skos:notation "SBOM-EUAIACT-ANX9-003"^^sbom:SarifRuleId ;
+    rdfs:seeAlso <http://data.europa.eu/eli/reg/2024/1689/anx_9/oj> ;
+    rdfs:seeAlso <https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401689#anx_IX> ;
+    skos:prefLabel "AI system description for testing identification (IX.3)"@en ;
+    skos:definition """A brief description of the AI system, its intended purpose, and
+other information necessary for the identification of the system.
+(Annex IX item 3)"""@en ;
+    skos:closeMatch sbom:component-name ;
+    skos:closeMatch sbom:component-description ;
+    skos:closeMatch sbom:ai-application-domain .
+
+euaiact:anx9-3-system-description sbom:provisionType sbom:ExternalConstraint .
+
+euaiact:anx9-4-testing-plan-summary
+    a skos:Concept ;
+    skos:inScheme euaiact:scheme-anx9 ;
+    skos:broader euaiact:anx9 ;
+    skos:notation "IX.4" ;
+    skos:notation "SBOM-EUAIACT-ANX9-004"^^sbom:SarifRuleId ;
+    rdfs:seeAlso <http://data.europa.eu/eli/reg/2024/1689/anx_9/oj> ;
+    rdfs:seeAlso <https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401689#anx_IX> ;
+    skos:prefLabel "Summary of the real-world testing plan (IX.4)"@en ;
+    skos:definition """A summary of the main characteristics of the plan for testing
+in real world conditions. (Annex IX item 4)
+EXCLUDED from the non-public section (law enforcement/migration/asylum/border)."""@en .
+
+euaiact:anx9-4-testing-plan-summary sbom:provisionType sbom:ExternalConstraint .
+
+euaiact:anx9-5-suspension-termination
+    a skos:Concept ;
+    skos:inScheme euaiact:scheme-anx9 ;
+    skos:broader euaiact:anx9 ;
+    skos:notation "IX.5" ;
+    skos:notation "SBOM-EUAIACT-ANX9-005"^^sbom:SarifRuleId ;
+    rdfs:seeAlso <http://data.europa.eu/eli/reg/2024/1689/anx_9/oj> ;
+    rdfs:seeAlso <https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401689#anx_IX> ;
+    skos:prefLabel "Information on suspension or termination of testing (IX.5)"@en ;
+    skos:definition """Information on the suspension or termination of the testing
+in real world conditions. (Annex IX item 5)"""@en .
+
+euaiact:anx9-5-suspension-termination sbom:provisionType sbom:ExternalConstraint .
+
+euaiact:non-public-anx9
+    a skos:Collection ;
+    skos:prefLabel "Non-public testing registration: Annex IX subset (pts 1, 2, 3, 5)"@en ;
+    skos:scopeNote """Items required in the non-public EU database section under Art.60(4)(c)
+for Annex III pts 1, 6, 7 systems.
+Excludes: IX.4 (testing plan summary)."""@en ;
+    skos:member euaiact:anx9-1-test-uid ;
+    skos:member euaiact:anx9-2-parties ;
+    skos:member euaiact:anx9-3-system-description ;
+    skos:member euaiact:anx9-5-suspension-termination .

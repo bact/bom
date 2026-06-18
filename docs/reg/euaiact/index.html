@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EU AI Act - Registration Database Obligations (Art. 49 and Art. 60)</title>
+  <style>body{font-family:system-ui,sans-serif;max-width:900px;margin:2rem auto;padding:0 1.5rem;color:#222;line-height:1.6}
+h1{font-size:1.4rem;border-bottom:2px solid #ddd;padding-bottom:.3rem}
+p.meta{color:#555;font-size:.9rem;margin-top:-.4rem}
+h2{font-size:1rem;margin-top:1.8rem;color:#444}
+a{color:#0969da}
+table{border-collapse:collapse;width:100%;font-size:.88rem}
+th,td{text-align:left;padding:.35rem .6rem;border:1px solid #ddd;vertical-align:top}
+th{background:#f6f8fa}
+code{background:#f6f8fa;padding:.1rem .3rem;border-radius:3px;font-size:.85em}
+.tag{display:inline-block;background:#e8f0fe;color:#1a56db;border-radius:3px;
+     padding:.05rem .4rem;font-size:.8em;white-space:nowrap}
+footer{margin-top:2.5rem;font-size:.82rem;color:#666;border-top:1px solid #ddd;padding-top:.8rem}</style>
+</head>
+<body>
+
+<p class="meta"><a href="../../">SBOM Bridging Ontology for Mapping</a></p>
+<h1>EU AI Act - Registration Database Obligations (Art. 49 and Art. 60)</h1>
+<p class="meta">Namespace: <code><a href="https://w3id.org/sbom/reg/euaiact/">https://w3id.org/sbom/reg/euaiact/</a></code>
+  &nbsp;|&nbsp; <a href="euaiact.ttl">euaiact.ttl</a>&nbsp;|&nbsp; v0.1.0</p>
+
+<p>SKOS concept scheme modelling the minimum information elements
+required by EU Regulation 2024/1689 (EU AI Act) for:
+  - Article 49 / Annex VIII: Market registration of high-risk AI systems
+  - Article 60 / Annex IX:  Real-world testing registration
+
+Source: Official Journal version, 13 June 2024 (Regulation (EU) 2024/1689).
+Text verified at https://artificialintelligenceact.eu/annex/8/
+                https://artificialintelligenceact.eu/annex/9/
+                https://artificialintelligenceact.eu/article/60/
+
+Annex VIII structure (final regulation):
+  Section A  Provider, high-risk AI systems (Art. 49(1))      - 13 items
+  Section B  Provider, NOT-high-risk AI systems (Art. 49(2))  -  9 items
+  Section C  Deployer (Art. 49(3))                            -  5 items
+
+Annex IX structure (final regulation):
+  Real-world testing registration (Art. 60)                   -  5 items
+
+Two-layer structure
+-------------------
+Layer 1 - Classification elements (euaiact:classification):
+  Information needed to answer the decision questions determining WHETHER
+  registration is required and WHICH path applies.
+  Source: flowchart eu-ai-db-reg-flowchart (Art.49(1)-(5)) and Art.60(4)(c).
+
+Layer 2 - Registration form elements:
+  euaiact:section-a   Annex VIII Sec.A  Provider, high-risk (Art.49(1))
+  euaiact:section-b   Annex VIII Sec.B  Provider, not-high-risk (Art.49(2))
+  euaiact:section-c   Annex VIII Sec.C  Deployer (Art.49(3))
+  euaiact:annex-ix    Annex IX          Real-world testing (Art.60)
+
+Art.49 registration paths (from flowchart):
+  Q1: In Annex III? No         =&gt; no registration
+  Q1: Yes
+    Q2: Annex III Point 2? Yes =&gt; national registration (not EU database)
+    Q2: No
+      Q3: Not-high-risk per Art.6(3)? Yes
+                               =&gt; EU database, Section B (lighter set)
+      Q3: No (still high-risk)
+        Q4: Annex III Pts 1/6/7 law enforcement/migration/asylum/border?
+          Yes                  =&gt; EU database NON-PUBLIC, Section A (partial)
+                                  [Sec.A item 12 instructions-for-use excluded]
+          No
+            Q5: Deployer is public authority / EU agency?
+              No               =&gt; EU database PUBLIC, Section A only
+              Yes              =&gt; EU database PUBLIC, Section A + Section C
+
+Art.60 testing registration paths (Art.60(4)(c)):
+  Annex III pts 1/6/7 law enforcement/migration/asylum/border
+                               =&gt; non-public section, Annex IX pts 1,2,3,5 only
+  Annex III pt.2 (safety components of harmonised products)
+                               =&gt; Art.49(5) national registration process
+  All other Annex III systems  =&gt; public EU database, full Annex IX (pts 1-5)</p>
+
+<h2>Concepts (45)</h2>
+<table>
+<tr><th>ID</th><th>Label</th><th>Notation</th><th>Type</th><th>Definition</th></tr>
+<tr><td><code>a1-provider-info</code></td><td>Provider name, address and contact details</td><td><code>A.1</code></td><td><span class=tag>ExternalConstraint</span></td><td>The name, address and contact details of the provider.
+(Annex VIII Sec.A item 1)</td></tr>
+<tr><td><code>a10-member-states</code></td><td>Member states of market availability</td><td><code>A.10</code></td><td><span class=tag>ExternalConstraint</span></td><td>Any Member States in which the AI system has been placed on
+the market, put into service or made available in the Union.
+(Annex VIII Sec.A item 10) <span style="color:#555">(Geographic deployment scope. No equivalent in SBOM formats.
+Could be modelled as dpv:hasJurisdiction on the AI system record.)</span></td></tr>
+<tr><td><code>a11-declaration-of-conformity</code></td><td>EU declaration of conformity (copy)</td><td><code>A.11</code></td><td><span class=tag>ExternalConstraint</span></td><td>A copy of the EU declaration of conformity referred to in
+Article 47.
+(Annex VIII Sec.A item 11)</td></tr>
+<tr><td><code>a12-instructions-for-use</code></td><td>Electronic instructions for use [exception for law enforcement/migration/asylum/border]</td><td><code>A.12</code></td><td><span class=tag>ExternalConstraint</span></td><td>Electronic instructions for use as required by Article 13.
+(Annex VIII Sec.A item 12)
+
+EXCEPTION: This information shall NOT be provided for high-risk AI systems in
+the areas of law enforcement or migration, asylum and border control management
+referred to in Annex III points 1, 6 and 7. (See Q4 classification element.)</td></tr>
+<tr><td><code>a13-additional-url</code></td><td>URL for additional information (optional)</td><td><code>A.13</code></td><td><span class=tag>Permission</span></td><td>A URL for additional information (optional).
+(Annex VIII Sec.A item 13)</td></tr>
+<tr><td><code>a2-submitter</code></td><td>Submitter acting on behalf of provider</td><td><code>A.2</code></td><td><span class=tag>ExternalConstraint</span></td><td>Where submission is carried out by another person on behalf
+of the provider, that person&#x27;s name, address and contact details.
+(Annex VIII Sec.A item 2)</td></tr>
+<tr><td><code>a3-authorised-rep</code></td><td>Authorised representative (where applicable)</td><td><code>A.3</code></td><td><span class=tag>ExternalConstraint</span></td><td>The name, address and contact details of the authorised
+representative, where applicable (Art. 22).
+(Annex VIII Sec.A item 3)</td></tr>
+<tr><td><code>a4-system-identity</code></td><td>AI system trade name and traceability reference</td><td><code>A.4</code></td><td><span class=tag>ExternalConstraint</span></td><td>The AI system trade name and any additional unambiguous
+reference allowing the identification and traceability of the AI system.
+(Annex VIII Sec.A item 4)
+SPDX: AIPackage.name (trade name); traceable ID = packageUrl / spdxId.</td></tr>
+<tr><td><code>a5-purpose-and-functions</code></td><td>Intended purpose and components/functions</td><td><code>A.5</code></td><td><span class=tag>ExternalConstraint</span></td><td>A description of the intended purpose of the AI system and
+of the components and functions supported through this AI system.
+(Annex VIII Sec.A item 5)
+SPDX: spdx-ai:intendedUse (intended purpose).</td></tr>
+<tr><td><code>a6-data-and-logic</code></td><td>Data, inputs and operating logic description</td><td><code>A.6</code></td><td><span class=tag>ExternalConstraint</span></td><td>A basic and concise description of the information used by
+the system (data, inputs) and its operating logic.
+(Annex VIII Sec.A item 6) <span style="color:#555">(No direct equivalent in current SBOM exchange formats.
+Closest bridge: sbom:ai-data-usage or sbom:dataset-type.
+May partially map to spdx-ai:informationAboutApplication.)</span></td></tr>
+<tr><td><code>a7-market-status</code></td><td>Market availability status</td><td><code>A.7</code></td><td><span class=tag>ExternalConstraint</span></td><td>The status of the AI system: on the market or in service;
+no longer placed on the market / in service; recalled.
+(Annex VIII Sec.A item 7)
+SPDX tag hint: spdx-ai:supportLevel (closest existing field, approximate). <span style="color:#555">(No exact SBOM equivalent. spdx-ai:supportLevel values
+(development, support, limited, noLongerSupported, needsMaintainer, etc.)
+approximate but do not precisely match EU market status categories.)</span></td></tr>
+<tr><td><code>a8-certificate</code></td><td>Notified body certificate (type, number, expiry) [where applicable]</td><td><code>A.8</code></td><td><span class=tag>ConditionalRequirement</span></td><td>The type, number and expiry date of the certificate issued
+by the notified body and the name or identification number of that notified body,
+where applicable.
+(Annex VIII Sec.A item 8)
+Required only for systems that underwent third-party conformity assessment. <span style="color:#555">(No SBOM equivalent. Regulatory compliance metadata.)</span></td></tr>
+<tr><td><code>a9-certificate-copy</code></td><td>Scanned copy of notified body certificate [where applicable]</td><td><code>A.9</code></td><td><span class=tag>ConditionalRequirement</span></td><td>A scanned copy of the certificate referred to in item 8,
+where applicable.
+(Annex VIII Sec.A item 9) <span style="color:#555">(Binary document attachment; no SBOM equivalent.)</span></td></tr>
+<tr><td><code>b1-provider-info</code></td><td>Provider name, address and contact details (B.1)</td><td><code>B.1</code></td><td><span class=tag>ExternalConstraint</span></td><td>The name, address and contact details of the provider.
+(Annex VIII Sec.B item 1)</td></tr>
+<tr><td><code>b2-submitter</code></td><td>Submitter acting on behalf of provider (B.2)</td><td><code>B.2</code></td><td><span class=tag>ExternalConstraint</span></td><td>Where submission is carried out by another person on behalf
+of the provider, that person&#x27;s name, address and contact details.
+(Annex VIII Sec.B item 2)</td></tr>
+<tr><td><code>b3-authorised-rep</code></td><td>Authorised representative (where applicable) (B.3)</td><td><code>B.3</code></td><td><span class=tag>ExternalConstraint</span></td><td>The name, address and contact details of the authorised
+representative, where applicable.
+(Annex VIII Sec.B item 3)</td></tr>
+<tr><td><code>b4-system-identity</code></td><td>AI system trade name and traceability reference (B.4)</td><td><code>B.4</code></td><td><span class=tag>ExternalConstraint</span></td><td>The AI system trade name and any additional unambiguous
+reference allowing identification and traceability.
+(Annex VIII Sec.B item 4)</td></tr>
+<tr><td><code>b5-intended-purpose</code></td><td>Intended purpose (B.5)</td><td><code>B.5</code></td><td><span class=tag>ExternalConstraint</span></td><td>A description of the intended purpose of the AI system.
+(Annex VIII Sec.B item 5)
+Note: Section B does NOT require the components/functions description
+or the data/logic description that Section A requires (items 5-6).</td></tr>
+<tr><td><code>b6-art6-3-condition</code></td><td>Art.6(3) condition for not-high-risk determination (B.6)</td><td><code>B.6</code></td><td><span class=tag>ExternalConstraint</span></td><td>The condition or conditions under Article 6(3) based on
+which the AI system is considered to be not-high-risk.
+(Annex VIII Sec.B item 6)
+This is the key B-section-specific element linking to the legal basis
+for the not-high-risk self-assessment.</td></tr>
+<tr><td><code>b7-not-high-risk-grounds</code></td><td>Summary of grounds for not-high-risk determination (B.7)</td><td><code>B.7</code></td><td><span class=tag>ExternalConstraint</span></td><td>A short summary of the grounds on which the AI system is
+considered to be not-high-risk in application of the procedure under Article 6(3).
+(Annex VIII Sec.B item 7)</td></tr>
+<tr><td><code>b8-market-status</code></td><td>Market availability status (B.8)</td><td><code>B.8</code></td><td><span class=tag>ExternalConstraint</span></td><td>The status of the AI system: on the market or in service;
+no longer placed on the market / in service; recalled.
+(Annex VIII Sec.B item 8)</td></tr>
+<tr><td><code>b9-member-states</code></td><td>Member states of market availability (B.9)</td><td><code>B.9</code></td><td><span class=tag>ExternalConstraint</span></td><td>Any Member States in which the AI system has been placed on
+the market, put into service or made available in the Union.
+(Annex VIII Sec.B item 9)</td></tr>
+<tr><td><code>c1-deployer-info</code></td><td>Deployer name, address and contact details (C.1)</td><td><code>C.1</code></td><td><span class=tag>ExternalConstraint</span></td><td>The name, address and contact details of the deployer.
+(Annex VIII Sec.C item 1)
+SPDX: Agent.name.</td></tr>
+<tr><td><code>c2-deployer-submitter</code></td><td>Submitter acting on behalf of deployer (C.2)</td><td><code>C.2</code></td><td><span class=tag>ExternalConstraint</span></td><td>The name, address and contact details of the person
+submitting information on behalf of the deployer.
+(Annex VIII Sec.C item 2)</td></tr>
+<tr><td><code>c3-provider-db-url</code></td><td>URL of provider&#x27;s EU database entry (C.3)</td><td><code>C.3</code></td><td><span class=tag>ExternalConstraint</span></td><td>The URL of the entry of the AI system in the EU database
+as registered by its provider.
+(Annex VIII Sec.C item 3)
+SPDX tag hint: packageUrl? (PURL-style identifier for the registration record).</td></tr>
+<tr><td><code>c4-fria-summary</code></td><td>Fundamental rights impact assessment summary (C.4)</td><td><code>C.4</code></td><td><span class=tag>ExternalConstraint</span></td><td>A summary of the findings of the fundamental rights impact
+assessment (FRIA) conducted in accordance with Article 27.
+(Annex VIII Sec.C item 4)
+SPDX tag hint: standardCompliance.</td></tr>
+<tr><td><code>c5-dpia-summary</code></td><td>Data protection impact assessment summary [where applicable] (C.5)</td><td><code>C.5</code></td><td><span class=tag>ConditionalRequirement</span></td><td>A summary of the data protection impact assessment (DPIA)
+carried out in accordance with Article 35 of Regulation (EU) 2016/679 or
+Article 27 of Directive (EU) 2016/680 as specified in Article 26(8) of this
+Regulation, where applicable.
+(Annex VIII Sec.C item 5)
+SPDX tag hint: standardCompliance.</td></tr>
+<tr><td><code>ix1-test-uid</code></td><td>Union-wide unique single identification number of the testing</td><td><code>IX.1</code></td><td><span class=tag>ExternalConstraint</span></td><td>A Union-wide unique single identification number of the testing
+in real world conditions.
+(Annex IX item 1)
+Generated at registration via Art.71(4).</td></tr>
+<tr><td><code>ix2-parties</code></td><td>Provider/prospective provider and deployers contact details</td><td><code>IX.2</code></td><td><span class=tag>ExternalConstraint</span></td><td>The name and contact details of the provider or prospective provider
+and of the deployers involved in the testing in real world conditions.
+(Annex IX item 2)
+Note: includes prospective deployers, unlike Annex VIII Section A.</td></tr>
+<tr><td><code>ix3-system-description</code></td><td>AI system description for testing identification</td><td><code>IX.3</code></td><td><span class=tag>ExternalConstraint</span></td><td>A brief description of the AI system, its intended purpose, and
+other information necessary for the identification of the system.
+(Annex IX item 3)
+Corresponds to market registration items A.4 (identity) + A.5 (purpose) but in
+brief form, since the system may not yet have final trade names or release IDs.</td></tr>
+<tr><td><code>ix4-testing-plan-summary</code></td><td>Summary of the real-world testing plan</td><td><code>IX.4</code></td><td><span class=tag>ExternalConstraint</span></td><td>A summary of the main characteristics of the plan for testing
+in real world conditions.
+(Annex IX item 4)
+The full testing plan is submitted to the national market surveillance authority
+under Art.60(4)(a); this item is the summary registered in the EU database.
+EXCLUDED from the non-public section (law enforcement/migration/asylum/border). <span style="color:#555">(Art.60(1) requires the Commission to specify detailed elements of
+the real-world testing plan via implementing acts. The plan summary here refers
+to the version registered in the public EU database.)</span></td></tr>
+<tr><td><code>ix5-suspension-termination</code></td><td>Information on suspension or termination of testing</td><td><code>IX.5</code></td><td><span class=tag>ExternalConstraint</span></td><td>Information on the suspension or termination of the testing
+in real world conditions.
+(Annex IX item 5)
+Mirrors the notification obligation in Art.60(8): providers must notify the
+national market surveillance authority of suspension/termination and final outcomes.
+This item keeps the EU database entry current.</td></tr>
+<tr><td><code>annex-ix</code></td><td>Annex IX - Real-world testing registration (Art. 60)</td><td></td><td></td><td>Information to be submitted and kept up to date with regard to
+testing in real world conditions, registered in accordance with Article 60.
+Applies to providers or prospective providers of Annex III high-risk AI systems
+conducting testing outside AI regulatory sandboxes.
+Source: Annex IX, Regulation (EU) 2024/1689. <span style="color:#555">(Registration under Art.60 is required before testing begins (Art.60(4)(c)).
+The system need not yet be placed on the market -- providers and prospective providers
+may register at any time before market placement (Art.60(2)).
+Entry into force: 2 August 2026.)</span></td></tr>
+<tr><td><code>classification</code></td><td>Registration eligibility classification</td><td></td><td></td><td>The set of information elements needed to determine whether
+a system must register in the EU database and which Annex VIII section applies.
+Corresponds to the five decision questions in the Art. 49 flowchart
+(see eu-ai-db-reg-flowchart diagram).</td></tr>
+<tr><td><code>q1-annex-iii-listing</code></td><td>Q1: Annex III listing</td><td></td><td><span class=tag>ExternalConstraint</span></td><td>Whether the AI system is listed in Annex III (Art. 49(1))
+and, if so, which of the 8 points it falls under.
+If NO: no registration required.
+If YES: proceed to Q2.
+
+Annex III points:
+(1) Biometric identification and categorisation of natural persons
+(2) Safety components of products covered by Annex I harmonisation legislation
+(3) Education and vocational training
+(4) Employment, workers management and access to self-employment
+(5) Access to and enjoyment of essential private/public services and benefits
+(6) Law enforcement
+(7) Migration, asylum and border control management
+(8) Administration of justice and democratic processes</td></tr>
+<tr><td><code>q2-annex-iii-point2</code></td><td>Q2: Annex III Point 2 flag (safety component of harmonised product)</td><td></td><td><span class=tag>ExternalConstraint</span></td><td>Whether the AI system is specifically in Annex III Point 2:
+a safety component of a product covered by EU harmonisation legislation listed
+in Annex I (Art. 49(5)).
+If YES: national-level registration only -- EU database not required.
+If NO: proceed to Q3. <span style="color:#555">(Annex I products include: machinery, medical devices, in-vitro
+diagnostics, civil aviation safety, rail systems, motor vehicles, agricultural
+tractors, marine equipment, lifts, pressure equipment, radio equipment.)</span></td></tr>
+<tr><td><code>q3-art6-3-assessment</code></td><td>Q3: Not-high-risk determination under Art.6(3)</td><td></td><td><span class=tag>ExternalConstraint</span></td><td>Whether the provider has determined the AI system is NOT
+high-risk based on the conditions in Article 6(3).
+If YES (not high-risk): register in EU database under Annex VIII Section B.
+If NO (high-risk): proceed to Q4.
+
+Providers who use Art.6(3) must document their assessment before placing the
+system on the market and register under Art. 49(2). Section B item 6 requires
+identifying the specific Art.6(3) condition applied.</td></tr>
+<tr><td><code>q4-law-enforcement-category</code></td><td>Q4: Law enforcement / migration / asylum / border category flag</td><td></td><td><span class=tag>ExternalConstraint</span></td><td>Whether the AI system falls under Annex III points 1, 6,
+or 7 specifically in the areas of law enforcement, migration, asylum and border
+control management (Art. 49(4)).
+If YES: EU database registration is in the NON-PUBLIC section; additionally,
+Annex VIII Section A item 12 (electronic instructions for use) is NOT required
+per the explicit exception in Sec.A item 12.</td></tr>
+<tr><td><code>q5-deployer-type</code></td><td>Q5: Deployer is public authority or EU institution/agency</td><td></td><td><span class=tag>ExternalConstraint</span></td><td>Whether the deploying entity is a public authority or an
+EU institution, agency or body (Art. 49(3)).
+If YES: the deployer must register under Annex VIII Section C in addition to
+the provider&#x27;s Section A registration.
+If NO: only the provider&#x27;s Section A registration is required.</td></tr>
+<tr><td><code>section-a</code></td><td>Annex VIII Section A - Provider, high-risk AI systems</td><td></td><td></td><td>Information to be submitted and kept up to date by providers
+of high-risk AI systems registered in accordance with Article 49(1).
+Source: Annex VIII Section A, Regulation (EU) 2024/1689.</td></tr>
+<tr><td><code>section-b</code></td><td>Annex VIII Section B - Provider, not-high-risk AI systems</td><td></td><td></td><td>Information to be submitted and kept up to date for AI systems
+registered in accordance with Article 49(2) -- i.e., providers who have determined
+their Annex III system is NOT high-risk per Article 6(3).
+Source: Annex VIII Section B, Regulation (EU) 2024/1689.</td></tr>
+<tr><td><code>section-c</code></td><td>Annex VIII Section C - Deployer registration</td><td></td><td></td><td>Information to be submitted and kept up to date by deployers
+of high-risk AI systems in accordance with Article 49(3).
+Required when the deployer is a public authority or EU institution/agency/body.
+Source: Annex VIII Section C, Regulation (EU) 2024/1689.</td></tr>
+<tr><td><code>status-available</code></td><td>On the market or in service</td><td></td><td></td><td></td></tr>
+<tr><td><code>status-recalled</code></td><td>Recalled</td><td></td><td></td><td></td></tr>
+<tr><td><code>status-withdrawn</code></td><td>No longer placed on the market or in service</td><td></td><td></td><td></td></tr>
+</table>
+
+<footer>
+  <a href="https://orcid.org/0000-0002-9698-1899">Arthit Suriyawongkul</a> &nbsp;|&nbsp;
+  <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0-1.0</a> &nbsp;|&nbsp;
+  <a href="https://github.com/openregtech/sbom">github.com/openregtech/sbom</a> &nbsp;|&nbsp;
+  <a href="../../">SBOM Bridging Ontology for Mapping</a>
+</footer>
+
+</body>
+</html>

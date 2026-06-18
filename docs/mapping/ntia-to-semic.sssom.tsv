@@ -1,0 +1,36 @@
+# curie_map:
+#   ntia: "https://w3id.org/sbom/req/ntia/"
+#   sbom: "https://w3id.org/sbom/"
+#   dcat: "http://www.w3.org/ns/dcat#"
+#   dcterms: "http://purl.org/dc/terms/"
+#   schema: "https://schema.org/"
+#   skos: "http://www.w3.org/2004/02/skos/core#"
+#   semapv: "https://w3id.org/semapv/vocab/"
+# mapping_set_id: "https://w3id.org/sbom/mapping/ntia-to-semic"
+# mapping_set_version: "0.1.0"
+# mapping_set_title: "NTIA SBOM Minimum Elements <-> SEMIC vocabularies"
+# mapping_set_description: "Maps the 7 minimum-element concepts defined in 'The Minimum Elements For a Software Bill of Materials' (NTIA, November 2021) to DCAT-AP, Schema.org, and related SEMIC vocabularies widely used for cataloguing datasets and software. The sbom: bridge concept in see_also is the shared abstraction that also connects NTIA to SPDX 3.1 and other target formats."
+# license: "https://creativecommons.org/publicdomain/zero/1.0/"
+# creator_id:
+#   - "orcid:0000-0002-9698-1899"
+# mapping_date: "2026-06-17"
+# subject_source: "https://w3id.org/sbom/req/ntia/"
+# object_source: "https://www.w3.org/TR/vocab-dcat-3/"
+# see_also:
+#   - "https://ntia.gov/sites/default/files/publications/sbom_minimum_elements_for_a_software_bill_of_materials.pdf"
+#   - "https://w3id.org/sbom/"
+subject_id	subject_label	predicate_id	object_id	object_label	mapping_justification	see_also	comment
+ntia:author	Author of SBOM Data	skos:closeMatch	dcterms:creator	creator	semapv:ManualMappingCuration	sbom:doc-author	The agent(s) that produced the SBOM document; dcterms:creator is "an entity primarily responsible for making the resource" — close semantic match
+ntia:author	Author of SBOM Data	skos:closeMatch	schema:author	author	semapv:ManualMappingCuration	sbom:doc-author	schema:author on a schema:DigitalDocument corresponds directly to the SBOM author
+ntia:timestamp	Timestamp	skos:closeMatch	dcterms:created	created	semapv:ManualMappingCuration	sbom:doc-timestamp	dcterms:created is "date of creation of the resource"; SBOM timestamp is when the SBOM was made — close match; dcterms:issued (formal publication) is less precise here
+ntia:timestamp	Timestamp	skos:exactMatch	schema:dateCreated	dateCreated	semapv:ManualMappingCuration	sbom:doc-timestamp	schema:dateCreated is the date of creation of the item — exact semantic match for SBOM creation timestamp
+ntia:name	Component Name	skos:exactMatch	schema:name	name	semapv:ManualMappingCuration	sbom:component-name	schema:name on a schema:SoftwareApplication or schema:Product provides the human-readable component name
+ntia:name	Component Name	skos:relatedMatch	dcterms:title	title	semapv:ManualMappingCuration	sbom:component-name	dcterms:title is commonly used for the name of a catalogued resource; relatedMatch because title implies a formal heading rather than a product name
+ntia:version	Version of the Component	skos:closeMatch	schema:softwareVersion	softwareVersion	semapv:ManualMappingCuration	sbom:component-version	schema:softwareVersion on schema:SoftwareApplication carries the version string
+ntia:version	Version of the Component	skos:relatedMatch	dcat:version	version	semapv:ManualMappingCuration	sbom:component-version	dcat:version is "the version indicator (name or identifier) of a resource"; relatedMatch because it applies to datasets/distributions rather than software specifically
+ntia:supplier	Supplier Name	skos:relatedMatch	dcterms:publisher	publisher	semapv:ManualMappingCuration	sbom:component-supplier	dcterms:publisher is "an entity responsible for making the resource available" — overlaps with distributor role of supplier but misses the manufacturer role
+ntia:supplier	Supplier Name	skos:relatedMatch	schema:manufacturer	manufacturer	semapv:ManualMappingCuration	sbom:component-supplier	schema:manufacturer is the organization that produced the component — better match for the original-vendor aspect of supplier; neither dcterms:publisher nor schema:manufacturer alone covers both roles
+ntia:unique-identifier	Unique Identifier	skos:closeMatch	dcterms:identifier	identifier	semapv:ManualMappingCuration	sbom:component-identifier	dcterms:identifier is "an unambiguous reference to the resource"; covers PURL, CPE, SWID and other stable IDs
+ntia:unique-identifier	Unique Identifier	skos:closeMatch	schema:identifier	identifier	semapv:ManualMappingCuration	sbom:component-identifier	schema:identifier is a structured identifier property applicable to any schema:Thing including software packages
+ntia:dependency-relationship	Dependency Relationship	skos:relatedMatch	dcterms:hasPart	hasPart	semapv:ManualMappingCuration	sbom:doc-dependency-relationship	dcterms:hasPart ("a related resource that is included physically or logically in the described resource") approximates the CONTAINS relationship; dependency relationships in general require a typed predicate (CONTAINS, DEPENDS_ON, etc.) that dcterms does not provide
+ntia:dependency-relationship	Dependency Relationship	skos:relatedMatch	schema:hasPart	hasPart	semapv:ManualMappingCuration	sbom:doc-dependency-relationship	schema:hasPart similarly approximates part-of/component relationships; same limitation as dcterms:hasPart regarding typed dependency semantics

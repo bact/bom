@@ -1,0 +1,135 @@
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix dpv:     <https://w3id.org/dpv#> .
+@prefix cv:      <http://data.europa.eu/m8g/> .
+
+@prefix sbom:    <https://w3id.org/sbom/> .
+@prefix euaiact: <https://w3id.org/sbom/reg/euaiact/> .
+@prefix eli:     <http://data.europa.eu/eli/ontology#> .
+
+# EU AI Act -- Art. 49 / Art. 60 Registration Eligibility Classification
+# Five decision questions from the Art.49 registration flowchart.
+
+<https://w3id.org/sbom/reg/euaiact/art49/>
+    a owl:Ontology ;
+    owl:imports <https://w3id.org/sbom/> ;
+    dcterms:title "EU AI Act -- Registration Eligibility Classification (Art. 49 flowchart)"@en ;
+    dcterms:description """Five decision questions (Q1-Q5) from the Art.49 registration flowchart
+determining WHETHER a system must register in the EU database and WHICH Annex VIII
+section applies (A, B, or C), plus the Art.60(4)(c) testing path."""@en ;
+    dcterms:source <https://eur-lex.europa.eu/eli/reg/2024/1689/oj/eng> ;
+    dcterms:creator <https://orcid.org/0000-0002-9698-1899> ;
+    dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+    dcterms:created "2026-06-17"^^xsd:date ;
+    owl:versionInfo "0.1.0" ;
+    rdfs:seeAlso <https://artificialintelligenceact.eu/article/49/> ;
+    rdfs:seeAlso <http://data.europa.eu/eli/reg/2024/1689/art_49/oj> .
+
+euaiact:scheme-art49
+    a skos:ConceptScheme, sbom:RegulatorySpec ;
+    skos:prefLabel "EU AI Act -- Registration Eligibility Classification"@en ;
+    dcterms:description "Decision questions for Art.49 registration path determination."@en ;
+    skos:hasTopConcept euaiact:art49-flowchart .
+
+euaiact:art49-flowchart
+    a skos:Concept ;
+    skos:topConceptOf euaiact:scheme-art49 ;
+    skos:inScheme euaiact:scheme-art49 ;
+    skos:prefLabel "Registration eligibility classification"@en ;
+    skos:definition """The set of information elements needed to determine whether
+a system must register in the EU database and which Annex VIII section applies.
+Corresponds to the five decision questions in the Art. 49 flowchart."""@en ;
+    skos:narrower
+        euaiact:q1-annex-iii-listing ,
+        euaiact:q2-annex-iii-point2 ,
+        euaiact:q3-art6-3-assessment ,
+        euaiact:q4-law-enforcement-category ,
+        euaiact:q5-deployer-type .
+
+euaiact:q1-annex-iii-listing
+    a skos:Concept ;
+    skos:inScheme euaiact:scheme-art49 ;
+    skos:broader euaiact:art49-flowchart ;
+    skos:prefLabel "Q1: Annex III listing"@en ;
+    skos:definition """Whether the AI system is listed in Annex III (Art. 49(1))
+and, if so, which of the 8 points it falls under.
+If NO: no registration required.  If YES: proceed to Q2.
+
+Annex III points:
+(1) Biometric identification and categorisation of natural persons
+(2) Safety components of products covered by Annex I harmonisation legislation
+(3) Education and vocational training
+(4) Employment, workers management and access to self-employment
+(5) Access to and enjoyment of essential private/public services and benefits
+(6) Law enforcement
+(7) Migration, asylum and border control management
+(8) Administration of justice and democratic processes"""@en ;
+    skos:closeMatch sbom:ai-application-domain .
+
+euaiact:q1-annex-iii-listing sbom:provisionType sbom:ExternalConstraint .
+
+euaiact:q2-annex-iii-point2
+    a skos:Concept ;
+    skos:inScheme euaiact:scheme-art49 ;
+    skos:broader euaiact:art49-flowchart ;
+    skos:prefLabel "Q2: Annex III Point 2 flag (safety component of harmonised product)"@en ;
+    skos:definition """Whether the AI system is specifically in Annex III Point 2:
+a safety component of a product covered by EU harmonisation legislation listed in
+Annex I (Art. 49(5)).
+If YES: national-level registration only -- EU database not required.
+If NO: proceed to Q3.
+
+Annex I products include: machinery, medical devices, in-vitro diagnostics, civil
+aviation safety, rail systems, motor vehicles, agricultural tractors, marine
+equipment, lifts, pressure equipment, radio equipment."""@en ;
+    skos:closeMatch sbom:ai-application-domain .
+
+euaiact:q2-annex-iii-point2 sbom:provisionType sbom:ExternalConstraint .
+
+euaiact:q3-art6-3-assessment
+    a skos:Concept ;
+    skos:inScheme euaiact:scheme-art49 ;
+    skos:broader euaiact:art49-flowchart ;
+    skos:prefLabel "Q3: Not-high-risk determination under Art.6(3)"@en ;
+    skos:altLabel "Art.6(3) self-assessment"@en ;
+    skos:definition """Whether the provider has determined the AI system is NOT
+high-risk based on the conditions in Article 6(3).
+If YES: register under Annex VIII Section B (not-high-risk path).
+If NO: proceed to Q4.
+
+Providers invoking Art.6(3) must document their assessment before market placement
+and register under Art. 49(2). Section B item 6 requires citing the specific
+Art.6(3) condition applied."""@en ;
+    skos:relatedMatch dpv:Justification .
+
+euaiact:q3-art6-3-assessment sbom:provisionType sbom:ExternalConstraint .
+
+euaiact:q4-law-enforcement-category
+    a skos:Concept ;
+    skos:inScheme euaiact:scheme-art49 ;
+    skos:broader euaiact:art49-flowchart ;
+    skos:prefLabel "Q4: Law enforcement / migration / asylum / border category flag"@en ;
+    skos:definition """Whether the AI system falls under Annex III points 1, 6, or 7
+specifically in the areas of law enforcement, migration, asylum and border control
+management (Art. 49(4)).
+If YES: EU database registration is in the NON-PUBLIC section; additionally,
+Annex VIII Section A item 12 (electronic instructions for use) is NOT required."""@en ;
+    skos:closeMatch sbom:ai-application-domain .
+
+euaiact:q4-law-enforcement-category sbom:provisionType sbom:ExternalConstraint .
+
+euaiact:q5-deployer-type
+    a skos:Concept ;
+    skos:inScheme euaiact:scheme-art49 ;
+    skos:broader euaiact:art49-flowchart ;
+    skos:prefLabel "Q5: Deployer is public authority or EU institution/agency"@en ;
+    skos:definition """Whether the deploying entity is a public authority or an
+EU institution, agency or body (Art. 49(3)).
+If YES: the deployer must also register under Annex VIII Section C.
+If NO: only the provider's Section A registration is required."""@en ;
+    skos:relatedMatch dpv:Authority .
+
+euaiact:q5-deployer-type sbom:provisionType sbom:ExternalConstraint .

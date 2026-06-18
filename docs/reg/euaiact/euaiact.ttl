@@ -1,0 +1,55 @@
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix dpv:     <https://w3id.org/dpv#> .
+@prefix cv:      <http://data.europa.eu/m8g/> .
+
+@prefix sbom:    <https://w3id.org/sbom/> .
+@prefix euaiact: <https://w3id.org/sbom/reg/euaiact/> .
+@prefix eli:     <http://data.europa.eu/eli/ontology#> .
+
+# EU AI Act -- Aggregate index
+# This file imports all per-provision files.
+# For most purposes, use the individual section files:
+#   euaiact-art49.ttl   -- Art.49 eligibility flowchart (Q1-Q5)
+#   euaiact-anx8-a.ttl  -- Annex VIII Sec.A, Art.49(1) (high-risk provider)
+#   euaiact-anx8-b.ttl  -- Annex VIII Sec.B, Art.49(2) (not-high-risk provider)
+#   euaiact-anx8-c.ttl  -- Annex VIII Sec.C, Art.49(3) (deployer)
+#   euaiact-anx9.ttl    -- Annex IX, Art.60 (real-world testing)
+
+<https://w3id.org/sbom/reg/euaiact/>
+    a owl:Ontology ;
+    owl:imports <https://w3id.org/sbom/> ;
+    owl:imports <https://w3id.org/sbom/reg/euaiact/art49/> ;
+    owl:imports <https://w3id.org/sbom/reg/euaiact/anx8-a/> ;
+    owl:imports <https://w3id.org/sbom/reg/euaiact/anx8-b/> ;
+    owl:imports <https://w3id.org/sbom/reg/euaiact/anx8-c/> ;
+    owl:imports <https://w3id.org/sbom/reg/euaiact/anx9/> ;
+    dcterms:title "EU AI Act -- Registration Database Obligations (Art. 49 and Art. 60)"@en ;
+    dcterms:description "Aggregate ontology importing all EU AI Act registration provision files."@en ;
+    dcterms:source <https://eur-lex.europa.eu/eli/reg/2024/1689/oj/eng> ;
+    dcterms:creator <https://orcid.org/0000-0002-9698-1899> ;
+    dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+    dcterms:created "2026-06-15"^^xsd:date ;
+    dcterms:modified "2026-06-17"^^xsd:date ;
+    owl:versionInfo "0.1.0" ;
+    rdfs:seeAlso <https://artificialintelligenceact.eu/annex/8/> ;
+    rdfs:seeAlso <https://artificialintelligenceact.eu/annex/9/> ;
+    rdfs:seeAlso <https://artificialintelligenceact.eu/article/49/> ;
+    rdfs:seeAlso <https://artificialintelligenceact.eu/article/60/> ;
+    rdfs:seeAlso <http://data.europa.eu/eli/reg/2024/1689/oj> ;
+    rdfs:seeAlso <http://data.europa.eu/eli/reg/2024/1689/anx_8/oj> ;
+    rdfs:seeAlso <http://data.europa.eu/eli/reg/2024/1689/anx_9/oj> .
+
+euaiact:scheme
+    a skos:ConceptScheme, sbom:RegulatorySpec ;
+    skos:prefLabel "EU AI Act -- Registration Database Obligations (Art. 49 and Art. 60)"@en ;
+    dcterms:description "Combined scheme. Prefer per-section schemes (euaiact:scheme-anx8-a etc.) for SSSOM mapping."@en ;
+    skos:hasTopConcept
+        euaiact:art49-flowchart ,
+        euaiact:anx8-a ,
+        euaiact:anx8-b ,
+        euaiact:anx8-c ,
+        euaiact:anx9 .

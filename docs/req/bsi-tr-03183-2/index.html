@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BSI TR-03183-2 SBOM Information Requirements</title>
+  <style>body{font-family:system-ui,sans-serif;max-width:900px;margin:2rem auto;padding:0 1.5rem;color:#222;line-height:1.6}
+h1{font-size:1.4rem;border-bottom:2px solid #ddd;padding-bottom:.3rem}
+p.meta{color:#555;font-size:.9rem;margin-top:-.4rem}
+h2{font-size:1rem;margin-top:1.8rem;color:#444}
+a{color:#0969da}
+table{border-collapse:collapse;width:100%;font-size:.88rem}
+th,td{text-align:left;padding:.35rem .6rem;border:1px solid #ddd;vertical-align:top}
+th{background:#f6f8fa}
+code{background:#f6f8fa;padding:.1rem .3rem;border-radius:3px;font-size:.85em}
+.tag{display:inline-block;background:#e8f0fe;color:#1a56db;border-radius:3px;
+     padding:.05rem .4rem;font-size:.8em;white-space:nowrap}
+footer{margin-top:2.5rem;font-size:.82rem;color:#666;border-top:1px solid #ddd;padding-top:.8rem}</style>
+</head>
+<body>
+
+<p class="meta"><a href="../../">SBOM Bridging Ontology for Mapping</a></p>
+<h1>BSI TR-03183-2 SBOM Information Requirements</h1>
+<p class="meta">Namespace: <code><a href="https://w3id.org/sbom/req/bsi-tr-03183-2/">https://w3id.org/sbom/req/bsi-tr-03183-2/</a></code>
+  &nbsp;|&nbsp; <a href="bsi-tr-03183-2.ttl">bsi-tr-03183-2.ttl</a>&nbsp;|&nbsp; v0.1.0</p>
+
+
+<h2>Concepts (20)</h2>
+<table>
+<tr><th>ID</th><th>Label</th><th>Notation</th><th>Type</th><th>Definition</th></tr>
+<tr><td><code>component-archive-property</code></td><td>Archive property</td><td></td><td><span class=tag>Requirement</span></td><td>Whether the component is an archive; possible values: &#x27;archive&#x27; / &#x27;no archive&#x27;.</td></tr>
+<tr><td><code>component-creator</code></td><td>Component creator</td><td></td><td><span class=tag>Requirement</span></td><td>Email address (or URL if no email available) of the entity that created and maintains the component. <span style="color:#555">(BSI TR-03183-2 uses &#x27;creator&#x27; (the entity that authored the component) rather than &#x27;supplier&#x27; (the entity that provides it). Distinct from NTIA&#x27;s &#x27;Supplier Name&#x27;.)</span></td></tr>
+<tr><td><code>component-dependencies</code></td><td>Dependencies on other components</td><td></td><td><span class=tag>Requirement</span></td><td>Enumeration of all components on which this component directly depends or which it contains, with an explicit completeness indication.</td></tr>
+<tr><td><code>component-distribution-license</code></td><td>Distribution licences</td><td></td><td><span class=tag>Requirement</span></td><td>The licence(s) under which the component can be used by a licensee (i.e. the concluded/distribution licence expressed as an SPDX licence expression). <span style="color:#555">(BSI TR-03183-2 distinguishes &#x27;distribution licences&#x27; (concluded, what a downstream recipient may do) from &#x27;original licences&#x27; (declared, what the upstream creator states). This concept covers the former.)</span></td></tr>
+<tr><td><code>component-distribution-uri</code></td><td>URI of the deployable form of the component</td><td></td><td><span class=tag>ConditionalRequirement</span></td><td>URI pointing directly to the deployable (e.g. downloadable) form of the component, required if it exists.</td></tr>
+<tr><td><code>component-executable-property</code></td><td>Executable property</td><td></td><td><span class=tag>Requirement</span></td><td>Whether the component is executable; possible values: &#x27;executable&#x27; / &#x27;non-executable&#x27;.</td></tr>
+<tr><td><code>component-filename</code></td><td>Filename of the component</td><td></td><td><span class=tag>Requirement</span></td><td>The actual filename of the component (i.e. not its file system path) as deployed.</td></tr>
+<tr><td><code>component-hash-deployable</code></td><td>Hash value of the deployable component</td><td></td><td><span class=tag>Requirement</span></td><td>SHA-512 cryptographic checksum of the deployed or deployable form of the component (as a file on a mass storage device). <span style="color:#555">(BSI TR-03183-2 mandates SHA-512 specifically. The bridge concept sbom:component-hash is algorithm-agnostic.)</span></td></tr>
+<tr><td><code>component-hash-source</code></td><td>Hash value of the source code of the component</td><td></td><td><span class=tag>Permission</span></td><td>Cryptographic checksum of the component source code (algorithm not yet standardised in TR-03183-2; optional).</td></tr>
+<tr><td><code>component-identifiers</code></td><td>Other unique identifiers</td><td></td><td><span class=tag>ConditionalRequirement</span></td><td>Other identifiers usable to identify the component or look it up in relevant databases (CPE, SWID, Package URL / PURL), required if they exist.</td></tr>
+<tr><td><code>component-license-effective</code></td><td>Effective licence</td><td></td><td><span class=tag>Permission</span></td><td>The licence under which the component is actually used by the licensee that is the creator of the current SBOM (optional).</td></tr>
+<tr><td><code>component-name</code></td><td>Component name</td><td></td><td><span class=tag>Requirement</span></td><td>Name assigned to the component by its creator; if no name is assigned, the actual filename MUST be used.</td></tr>
+<tr><td><code>component-original-license</code></td><td>Original licences</td><td></td><td><span class=tag>ConditionalRequirement</span></td><td>The licence(s) assigned by the creator of the component (i.e. the declared/upstream licence), required if it exists. <span style="color:#555">(Corresponds to the &#x27;declared&#x27; licence perspective. Contrast with bsi:component-distribution-license (concluded). Both map to the general bridge concept sbom:component-license.)</span></td></tr>
+<tr><td><code>component-security-txt</code></td><td>URL of the security.txt</td><td></td><td><span class=tag>Permission</span></td><td>URL of the component creator&#x27;s security.txt file (RFC 9116) providing coordinated vulnerability disclosure contact information (optional).</td></tr>
+<tr><td><code>component-source-uri</code></td><td>Source code URI</td><td></td><td><span class=tag>ConditionalRequirement</span></td><td>URI of the source code of the component (e.g. a versioned repository URL), required if it exists.</td></tr>
+<tr><td><code>component-structured-property</code></td><td>Structured property</td><td></td><td><span class=tag>Requirement</span></td><td>Whether the component is a structured file whose internal metadata is still present; possible values: &#x27;structured&#x27; / &#x27;unstructured&#x27;.</td></tr>
+<tr><td><code>component-version</code></td><td>Component version</td><td></td><td><span class=tag>Requirement</span></td><td>Identifier used by the creator to specify changes relative to a previously created version; preferably Semantic Versioning or Calendar Versioning.</td></tr>
+<tr><td><code>sbom-creator</code></td><td>Creator of the SBOM</td><td></td><td><span class=tag>Requirement</span></td><td>Email address (or URL if no email available) of the entity that created the SBOM.</td></tr>
+<tr><td><code>sbom-timestamp</code></td><td>Timestamp</td><td></td><td><span class=tag>Requirement</span></td><td>Date and time of the SBOM data compilation, preferably in UTC.</td></tr>
+<tr><td><code>sbom-uri</code></td><td>SBOM-URI</td><td></td><td><span class=tag>ConditionalRequirement</span></td><td>A URI uniquely identifying this SBOM (required if it exists).</td></tr>
+</table>
+
+<footer>
+  <a href="https://orcid.org/0000-0002-9698-1899">Arthit Suriyawongkul</a> &nbsp;|&nbsp;
+  <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0-1.0</a> &nbsp;|&nbsp;
+  <a href="https://github.com/openregtech/sbom">github.com/openregtech/sbom</a> &nbsp;|&nbsp;
+  <a href="../../">SBOM Bridging Ontology for Mapping</a>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SBOM Bridging Ontology for Mapping</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 860px; margin: 2rem auto; padding: 0 1.5rem; color: #222; line-height: 1.6; }
+    h1 { font-size: 1.6rem; border-bottom: 2px solid #ddd; padding-bottom: .4rem; }
+    h2 { font-size: 1.1rem; margin-top: 2rem; color: #444; }
+    a { color: #0969da; }
+    table { border-collapse: collapse; width: 100%; font-size: .9rem; }
+    th, td { text-align: left; padding: .4rem .7rem; border: 1px solid #ddd; }
+    th { background: #f6f8fa; }
+    code { background: #f6f8fa; padding: .1rem .35rem; border-radius: 3px; font-size: .9em; }
+    .subtitle { color: #555; margin-top: -.5rem; }
+    footer { margin-top: 3rem; font-size: .85rem; color: #666; border-top: 1px solid #ddd; padding-top: 1rem; }
+  </style>
+</head>
+<body>
+
+<h1>SBOM Bridging Ontology for Mapping</h1>
+<p class="subtitle">Namespace: <code><a href="https://w3id.org/sbom/">https://w3id.org/sbom/</a></code></p>
+
+<p>
+  A SKOS vocabulary of stable, persistent identifiers for the minimum elements
+  (baseline attributes) required in a Software Bill of Materials (SBOM),
+  together with <a href="https://mapping-commons.github.io/sssom/">SSSOM</a> crosswalk files
+  mapping those elements to exchange formats.
+</p>
+
+<p>Concepts from the SBOM ontology are used in the <code>see_also</code> column
+  of SSSOM mappings to provide additional mapping justification.</p>
+
+<h2>Core vocabulary</h2>
+<table>
+  <tr><th>File</th><th>Description</th></tr>
+  <tr><td><a href="sbom.ttl"><code>sbom.ttl</code></a></td><td>Bridge concept scheme, type classes, and provision-type vocabulary</td></tr>
+</table>
+
+<h2>Information requirement specifications</h2>
+<table>
+  <tr><th>File</th><th>Specification</th><th>Namespace</th></tr>
+  <tr>
+    <td><a href="req/bsi-tr-03183-2/bsi-tr-03183-2.ttl">req/bsi-tr-03183-2/bsi-tr-03183-2.ttl</a></td>
+    <td><a href="https://bsi.bund.de/dok/TR-03183-en">BSI TR-03183-2 v2.1.0 (2025)</a></td>
+    <td><code>bsi:</code></td>
+  </tr>
+  <tr>
+    <td><a href="req/cisa/cisa.ttl">req/cisa/cisa.ttl</a></td>
+    <td>CISA SBOM Minimum Elements (2025)</td>
+    <td><code>cisa:</code></td>
+  </tr>
+  <tr>
+    <td><a href="req/fsct/fsct.ttl">req/fsct/fsct.ttl</a></td>
+    <td><a href="https://www.cisa.gov/resources-tools/resources/framing-software-component-transparency-2024">CISA FSCT 3rd Ed. (2024)</a></td>
+    <td><code>fsct:</code></td>
+  </tr>
+  <tr>
+    <td><a href="req/g7ai/g7ai.ttl">req/g7ai/g7ai.ttl</a></td>
+    <td><a href="https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/KI/SBOM-for-AI_minimum-elements.html">G7 SBOM for AI — Minimum Elements (2026)</a></td>
+    <td><code>g7ai:</code></td>
+  </tr>
+  <tr>
+    <td><a href="req/mof/mof.ttl">req/mof/mof.ttl</a></td>
+    <td><a href="https://lfaidata.foundation/blog/2024/12/17/mof-specification-v1/">Model Openness Framework v1.0 (2024)</a></td>
+    <td><code>mof:</code></td>
+  </tr>
+  <tr>
+    <td><a href="req/ntia/ntia.ttl">req/ntia/ntia.ttl</a></td>
+    <td><a href="https://ntia.gov/sites/default/files/publications/sbom_minimum_elements_for_a_software_bill_of_materials.pdf">NTIA SBOM Minimum Elements (2021)</a></td>
+    <td><code>ntia:</code></td>
+  </tr>
+</table>
+
+<h2>Regulatory specifications</h2>
+<table>
+  <tr><th>Namespace</th><th>Instrument</th><th>File</th></tr>
+  <tr>
+    <td><code>euaiact:</code></td>
+    <td><a href="https://artificialintelligenceact.eu/">EU AI Act — Registration obligations (Art. 49, Art. 60)</a></td>
+    <td><a href="reg/euaiact/euaiact.ttl">reg/euaiact/euaiact.ttl</a></td>
+  </tr>
+</table>
+
+<h2>Mappings</h2>
+<table>
+  <tr><th>File</th><th>Source</th><th>Target</th></tr>
+  <tr>
+    <td><a href="mapping/sbom-to-spdx31.sssom.tsv">sbom-to-spdx31.sssom.tsv</a></td>
+    <td>Bridge ontology</td>
+    <td><a href="https://spdx.github.io/spdx-spec/v3.1/">SPDX 3.1-dev</a></td>
+  </tr>
+  <tr>
+    <td><a href="mapping/g7ai-to-spdx31.sssom.tsv">g7ai-to-spdx31.sssom.tsv</a></td>
+    <td>G7 SBOM for AI — Minimum Elements</td>
+    <td><a href="https://spdx.github.io/spdx-spec/v3.1/">SPDX 3.1-dev</a></td>
+  </tr>
+  <tr>
+    <td><a href="mapping/ntia-to-spdx31.sssom.tsv">ntia-to-spdx31.sssom.tsv</a></td>
+    <td>NTIA SBOM Minimum Elements</td>
+    <td><a href="https://spdx.github.io/spdx-spec/v3.1/">SPDX 3.1-dev</a></td>
+  </tr>
+  <tr>
+    <td><a href="mapping/bsi-tr-03183-2-to-spdx31.sssom.tsv">bsi-tr-03183-2-to-spdx31.sssom.tsv</a></td>
+    <td>BSI TR-03183-2</td>
+    <td><a href="https://spdx.github.io/spdx-spec/v3.1/">SPDX 3.1-dev</a></td>
+  </tr>
+  <tr>
+    <td><a href="mapping/euaiact-anx8-a-to-semic.sssom.tsv">euaiact-anx8-a-to-semic.sssom.tsv</a></td>
+    <td>EU AI Act Annex VIII Sec.A</td>
+    <td>SEMIC vocabularies</td>
+  </tr>
+  <tr>
+    <td><a href="mapping/euaiact-anx8-b-to-semic.sssom.tsv">euaiact-anx8-b-to-semic.sssom.tsv</a></td>
+    <td>EU AI Act Annex VIII Sec.B</td>
+    <td>SEMIC vocabularies</td>
+  </tr>
+  <tr>
+    <td><a href="mapping/euaiact-anx8-c-to-semic.sssom.tsv">euaiact-anx8-c-to-semic.sssom.tsv</a></td>
+    <td>EU AI Act Annex VIII Sec.C</td>
+    <td>SEMIC vocabularies</td>
+  </tr>
+  <tr>
+    <td><a href="mapping/euaiact-anx9-to-semic.sssom.tsv">euaiact-anx9-to-semic.sssom.tsv</a></td>
+    <td>EU AI Act Annex IX</td>
+    <td>SEMIC vocabularies</td>
+  </tr>
+  <tr>
+    <td><a href="mapping/ntia-to-semic.sssom.tsv">ntia-to-semic.sssom.tsv</a></td>
+    <td>NTIA SBOM Minimum Elements</td>
+    <td>SEMIC vocabularies</td>
+  </tr>
+  <tr>
+    <td><a href="mapping/g7ai-to-semic.sssom.tsv">g7ai-to-semic.sssom.tsv</a></td>
+    <td>G7 SBOM for AI — Minimum Elements</td>
+    <td>SEMIC vocabularies</td>
+  </tr>
+</table>
+
+<h2>License and source</h2>
+<p>
+  Content: <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0-1.0</a> &nbsp;|&nbsp;
+  Source: <a href="https://github.com/openregtech/sbom">github.com/openregtech/sbom</a>
+</p>
+
+<footer>
+  Maintained by <a href="https://orcid.org/0000-0002-9698-1899">Arthit Suriyawongkul</a>.
+  Persistent URIs via <a href="https://w3id.org/sbom/">w3id.org/sbom</a>.
+</footer>
+
+</body>
+</html>

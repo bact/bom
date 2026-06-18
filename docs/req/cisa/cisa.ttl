@@ -1,0 +1,111 @@
+# CISA SBOM Minimum Elements, 2025 edition
+# Cybersecurity and Infrastructure Security Agency (CISA)
+
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix cisa:  <https://w3id.org/sbom/req/cisa/> .
+@prefix sbom:    <https://w3id.org/sbom/> .
+
+# CISA sub-vocabulary; imports the SBOM bridge ontology
+<https://w3id.org/sbom/req/cisa/>
+    a owl:Ontology ;
+    owl:imports <https://w3id.org/sbom/> ;
+    owl:versionInfo "0.1.0" ;
+    dcterms:creator <https://orcid.org/0000-0002-9698-1899> .
+
+
+# ============================================================================
+# CONCEPT SCHEME AND DEFINITIONS
+# ============================================================================
+
+cisa:scheme
+    a skos:ConceptScheme, sbom:InfoRequirementSpec ;
+    skos:prefLabel "CISA SBOM Minimum Elements (2025)"@en ;
+    dcterms:title "CISA SBOM Minimum Elements, 2025 edition" ;
+    dcterms:creator "Cybersecurity and Infrastructure Security Agency (CISA)" ;
+    dcterms:issued "2025"^^xsd:gYear ;
+    skos:hasTopConcept
+        cisa:author , cisa:timestamp , cisa:dependency-relationships ,
+        cisa:name , cisa:version , cisa:identifier ,
+        cisa:supplier , cisa:concluded-license , cisa:copyright-text .
+
+cisa:author
+    a skos:Concept ;
+    skos:topConceptOf cisa:scheme ;
+    skos:inScheme cisa:scheme ;
+    skos:prefLabel "SBOM Author"@en ;
+    skos:exactMatch sbom:doc-author .
+
+cisa:timestamp
+    a skos:Concept ;
+    skos:topConceptOf cisa:scheme ;
+    skos:inScheme cisa:scheme ;
+    skos:prefLabel "SBOM Timestamp"@en ;
+    skos:exactMatch sbom:doc-timestamp .
+
+cisa:dependency-relationships
+    a skos:Concept ;
+    skos:topConceptOf cisa:scheme ;
+    skos:inScheme cisa:scheme ;
+    skos:prefLabel "Dependency Relationships"@en ;
+    skos:exactMatch sbom:doc-dependency-relationship .
+
+cisa:name
+    a skos:Concept ;
+    skos:topConceptOf cisa:scheme ;
+    skos:inScheme cisa:scheme ;
+    skos:prefLabel "Component Name"@en ;
+    skos:exactMatch sbom:component-name .
+
+cisa:version
+    a skos:Concept ;
+    skos:topConceptOf cisa:scheme ;
+    skos:inScheme cisa:scheme ;
+    skos:prefLabel "Component Version"@en ;
+    skos:exactMatch sbom:component-version .
+
+cisa:identifier
+    a skos:Concept ;
+    skos:topConceptOf cisa:scheme ;
+    skos:inScheme cisa:scheme ;
+    skos:prefLabel "Component Identifier"@en ;
+    skos:exactMatch sbom:component-identifier .
+
+cisa:supplier
+    a skos:Concept ;
+    skos:topConceptOf cisa:scheme ;
+    skos:inScheme cisa:scheme ;
+    skos:prefLabel "Component Supplier"@en ;
+    skos:exactMatch sbom:component-supplier .
+
+cisa:concluded-license
+    a skos:Concept ;
+    skos:topConceptOf cisa:scheme ;
+    skos:inScheme cisa:scheme ;
+    skos:prefLabel "Concluded License"@en ;
+    skos:exactMatch sbom:component-license .
+
+cisa:copyright-text
+    a skos:Concept ;
+    skos:topConceptOf cisa:scheme ;
+    skos:inScheme cisa:scheme ;
+    skos:prefLabel "Copyright Text"@en ;
+    skos:exactMatch sbom:component-copyright .
+
+
+# ============================================================================
+# OBLIGATION ASSERTIONS
+# ============================================================================
+
+cisa:doc-author            sbom:provisionType sbom:Requirement .
+cisa:doc-timestamp         sbom:provisionType sbom:Requirement .
+cisa:dependency-relationships sbom:provisionType sbom:Requirement .
+cisa:name                  sbom:provisionType sbom:Requirement .
+cisa:version               sbom:provisionType sbom:Requirement .
+cisa:identifier            sbom:provisionType sbom:Requirement .
+cisa:supplier              sbom:provisionType sbom:Requirement .
+cisa:concluded-license     sbom:provisionType sbom:Requirement .
+cisa:copyright-text        sbom:provisionType sbom:Requirement .

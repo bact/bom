@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Model Openness Framework (MOF) 1.0 - SBOM Mapping</title>
+  <style>body{font-family:system-ui,sans-serif;max-width:900px;margin:2rem auto;padding:0 1.5rem;color:#222;line-height:1.6}
+h1{font-size:1.4rem;border-bottom:2px solid #ddd;padding-bottom:.3rem}
+p.meta{color:#555;font-size:.9rem;margin-top:-.4rem}
+h2{font-size:1rem;margin-top:1.8rem;color:#444}
+a{color:#0969da}
+table{border-collapse:collapse;width:100%;font-size:.88rem}
+th,td{text-align:left;padding:.35rem .6rem;border:1px solid #ddd;vertical-align:top}
+th{background:#f6f8fa}
+code{background:#f6f8fa;padding:.1rem .3rem;border-radius:3px;font-size:.85em}
+.tag{display:inline-block;background:#e8f0fe;color:#1a56db;border-radius:3px;
+     padding:.05rem .4rem;font-size:.8em;white-space:nowrap}
+footer{margin-top:2.5rem;font-size:.82rem;color:#666;border-top:1px solid #ddd;padding-top:.8rem}</style>
+</head>
+<body>
+
+<p class="meta"><a href="../../">SBOM Bridging Ontology for Mapping</a></p>
+<h1>Model Openness Framework (MOF) 1.0 - SBOM Mapping</h1>
+<p class="meta">Namespace: <code><a href="https://w3id.org/sbom/req/mof/">https://w3id.org/sbom/req/mof/</a></code>
+  &nbsp;|&nbsp; <a href="mof.ttl">mof.ttl</a>&nbsp;|&nbsp; v0.1.0</p>
+
+<p>SKOS concept scheme for the Model Openness Framework
+(MOF) Specification v1.0 (LF AI &amp; Data Generative AI Commons, December 2024).
+
+MOF is a tiered assessment framework: if a model provides a required set of
+information elements under appropriate open licenses, it qualifies for a given
+tier (Class III: Open Model, Class II: Open Tooling Model, Class I: Open Science
+Model). Each tier specifies which of 17 components must be present and under
+which license category.</p>
+
+<h2>Concepts (21)</h2>
+<table>
+<tr><th>ID</th><th>Label</th><th>Notation</th><th>Type</th><th>Definition</th></tr>
+<tr><td><code>class-i</code></td><td>Class I - Open Science Model</td><td><code>I</code></td><td></td><td>The highest class of openness. Adds 4 components (plus
+optional model metadata) enabling end-to-end analysis, reproduction of a
+similar model, and data exploration. All Class I + II + III components required.</td></tr>
+<tr><td><code>research-paper</code></td><td>Research paper</td><td><code>I.2</code></td><td><span class=tag>Requirement</span></td><td>A peer-reviewed or preprint research paper detailing
+model methodology, results and analysis. MUST be available in the distribution
+or on a permanent open access platform. MUST be released under CC-BY-4.0 or
+equivalent open content license. MAY replace the technical report (III.3).</td></tr>
+<tr><td><code>datasets</code></td><td>Datasets (training, validation and testing)</td><td><code>I.3</code></td><td><span class=tag>Requirement</span></td><td>All data used for training, validation, fine-tuning,
+alignment (RLHF) and testing. Any media format. Includes tokenized datasets
+and any metadata (annotations, labels, bounding boxes, etc.). MUST be released
+under an appropriate open data or content license.</td></tr>
+<tr><td><code>data-preprocessing-code</code></td><td>Data preprocessing code</td><td><code>I.4</code></td><td><span class=tag>Requirement</span></td><td>All code for preprocessing, cleaning and formatting
+training/validation/test data, fine-tuning data transformations, data ingestion,
+feature engineering, data augmentation and tokenization. MUST be released under
+an OSI-approved open source software license.</td></tr>
+<tr><td><code>intermediate-parameters</code></td><td>Intermediate model parameters (checkpoints)</td><td><code>I.5</code></td><td><span class=tag>Recommendation</span></td><td>Model parameter checkpoints from key intermediate stages
+of training, in addition to the final parameters required by III.2.
+SHOULD be included to enable reproduction and analysis of training dynamics.</td></tr>
+<tr><td><code>model-metadata</code></td><td>Model metadata</td><td><code>I.6</code></td><td><span class=tag>Permission</span></td><td>Structured metadata about the model distribution (optional
+component for Class I). Provides machine-readable information about model
+components, their locations and relationships.</td></tr>
+<tr><td><code>class-ii</code></td><td>Class II - Open Tooling Model</td><td><code>II</code></td><td></td><td>Builds on Class III. Adds 6 components enabling users
+to understand the training process, validate benchmarks and perform inference
+optimizations. All Class III + Class II components required.</td></tr>
+<tr><td><code>training-code</code></td><td>Training, validation and testing code</td><td><code>II.2</code></td><td><span class=tag>Requirement</span></td><td>Full code for training, validating and testing the model:
+model construction, training loop, hyperparameter selection, checkpointing,
+fine-tuning, RLHF and adapter code. MUST be released under an OSI-approved
+open source software license.</td></tr>
+<tr><td><code>inference-code</code></td><td>Inference code</td><td><code>II.3</code></td><td><span class=tag>Requirement</span></td><td>Code for performing inference including preprocessing,
+postprocessing, model optimizations and dependencies. MUST include code
+required to fully replicate benchmark results. MUST be released under an
+OSI-approved open source software license.</td></tr>
+<tr><td><code>evaluation-code</code></td><td>Evaluation code</td><td><code>II.4</code></td><td><span class=tag>Requirement</span></td><td>Code for model evaluation and benchmarking.
+MUST be released under an OSI-approved open source software license.</td></tr>
+<tr><td><code>evaluation-data</code></td><td>Evaluation data</td><td><code>II.5</code></td><td><span class=tag>Requirement</span></td><td>Data used for model evaluation and benchmarking. MUST be
+included (standard benchmark datasets MAY be omitted if described in the report).
+MUST be released under a data or content appropriate open license
+(e.g. CDLA-Permissive-2.0 or CC-BY-4.0).</td></tr>
+<tr><td><code>supporting-libraries</code></td><td>Supporting libraries and tools</td><td><code>II.6</code></td><td><span class=tag>Recommendation</span></td><td>Code libraries, utilities and tools developed in the course
+of the model. SHOULD be released under an OSI-approved open source software
+license. Includes tokenizers, data loaders, visualisation code, container
+definitions, hyperparameter search code, monitoring code, frontend code.</td></tr>
+<tr><td><code>class-iii</code></td><td>Class III - Open Model</td><td><code>III</code></td><td></td><td>The base class of openness. Requires 6 components (plus
+optional sample outputs) to be present and released under type-appropriate
+open licenses. Enables unrestricted usage, study, modification and redistribution.</td></tr>
+<tr><td><code>model-architecture</code></td><td>Model architecture</td><td><code>III.1</code></td><td><span class=tag>Requirement</span></td><td>The ML algorithms, neural network layout, connectivity
+patterns, activation functions and other architectural elements. MUST be
+distributed as open source code under an OSI-approved open source software
+license.</td></tr>
+<tr><td><code>model-parameters</code></td><td>Final model parameters (checkpoints and optimizer state)</td><td><code>III.2</code></td><td><span class=tag>Requirement</span></td><td>Trained model weights and biases. At minimum the final
+model parameters and optimizer state MUST be distributed, compressed or
+uncompressed, in a format compatible with popular deep learning frameworks.
+MUST be released under an open license; SHOULD use an open data license
+(e.g. CDLA-Permissive-2.0) rather than a code license.</td></tr>
+<tr><td><code>technical-report</code></td><td>Technical report</td><td><code>III.3</code></td><td><span class=tag>Requirement</span></td><td>Documentation providing performance, usage and implication
+information. MUST be included in the distribution or made available on a
+permanent open access platform (e.g. arXiv). MUST be distributed under an
+open license (SHOULD be CC-BY-4.0). MAY be omitted if a research paper is provided.</td></tr>
+<tr><td><code>evaluation-results</code></td><td>Evaluation results</td><td><code>III.4</code></td><td><span class=tag>Requirement</span></td><td>Detailed quantitative metrics and qualitative results from
+evaluating the model. MUST include benchmark test results (standard or custom).
+Raw outputs MUST be distributed under an open license (SHOULD be CC-BY-4.0).</td></tr>
+<tr><td><code>model-card</code></td><td>Model card</td><td><code>III.5</code></td><td><span class=tag>Requirement</span></td><td>A document covering model details, intended uses, evaluation
+factors, risks and mitigations. MUST be distributed under an open license
+(SHOULD be CC-BY-4.0).</td></tr>
+<tr><td><code>data-card</code></td><td>Data card</td><td><code>III.6</code></td><td><span class=tag>Requirement</span></td><td>Summary statistics and details about training datasets:
+features, instances, intended uses, motivation and collection process.
+MAY be combined with the model card. MUST be distributed under an open license
+(SHOULD be CC-BY-4.0).</td></tr>
+<tr><td><code>sample-outputs</code></td><td>Sample model outputs</td><td><code>III.7</code></td><td><span class=tag>Recommendation</span></td><td>Text, image, audio, code or other outputs generated by the
+model. RECOMMENDED but not required. If included MUST be shared publicly without
+copyright or restrictions where legally permitted.</td></tr>
+<tr><td><code>mof-config-file</code></td><td>MOF configuration file</td><td></td><td><span class=tag>Recommendation</span></td><td>A machine-readable configuration file declaring which MOF
+components are included in the distribution and their locations.
+SHOULD be included in every MOF-conformant distribution. <span style="color:#555">(No direct bridge concept; closest is doc-identifier or component-external-reference.)</span></td></tr>
+</table>
+
+<footer>
+  <a href="https://orcid.org/0000-0002-9698-1899">Arthit Suriyawongkul</a> &nbsp;|&nbsp;
+  <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0-1.0</a> &nbsp;|&nbsp;
+  <a href="https://github.com/openregtech/sbom">github.com/openregtech/sbom</a> &nbsp;|&nbsp;
+  <a href="../../">SBOM Bridging Ontology for Mapping</a>
+</footer>
+
+</body>
+</html>
