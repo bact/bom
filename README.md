@@ -46,7 +46,7 @@ SSSOM files follow the `{source}-to-{target}.sssom.tsv` naming convention. `semi
 | `docs/mapping/sbom-to-spdx31.sssom.tsv` | Bridge ontology | SPDX 3.1-dev | 51 |
 | `docs/mapping/g7ai-to-spdx31.sssom.tsv` | G7 SBOM for AI | SPDX 3.1-dev | 52 |
 | `docs/mapping/ntia-to-spdx31.sssom.tsv` | NTIA | SPDX 3.1-dev | 8 |
-| `docs/mapping/bsi-tr-03183-2-to-spdx31.sssom.tsv` | BSI TR-03183-2 | SPDX 3.1-dev | 25 |
+| `docs/mapping/bsi-to-spdx31.sssom.tsv` | BSI TR-03183-2 | SPDX 3.1-dev | 25 |
 | `docs/mapping/euaiact-anx8-a-to-semic.sssom.tsv` | EU AI Act Anx.VIII Sec.A | SEMIC vocabularies | 35 |
 | `docs/mapping/euaiact-anx8-b-to-semic.sssom.tsv` | EU AI Act Anx.VIII Sec.B | SEMIC vocabularies | 21 |
 | `docs/mapping/euaiact-anx8-c-to-semic.sssom.tsv` | EU AI Act Anx.VIII Sec.C | SEMIC vocabularies | 8 |

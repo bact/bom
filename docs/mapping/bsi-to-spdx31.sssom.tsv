@@ -1,21 +1,21 @@
 # curie_map:
-#   bsi: "https://w3id.org/sbom/req/bsi-tr-03183-2/"
+#   bsi: "https://w3id.org/sbom/req/bsi/"
 #   sbom: "https://w3id.org/sbom/"
 #   spdx3-core: "https://spdx.org/rdf/3/terms/Core/"
 #   spdx3-sw: "https://spdx.org/rdf/3/terms/Software/"
 #   skos: "http://www.w3.org/2004/02/skos/core#"
 #   semapv: "https://w3id.org/semapv/vocab/"
-# mapping_set_id: "https://w3id.org/sbom/mapping/bsi-tr-03183-2-to-spdx31"
+# mapping_set_id: "https://w3id.org/sbom/mapping/bsi-to-spdx31"
 # mapping_set_version: "0.1.0"
 # mapping_set_title: "BSI TR-03183-2 SBOM Information Requirements <-> SPDX 3.1-dev"
-# mapping_set_description: "Maps the 20 data-field concepts defined in BSI Technical Guideline TR-03183-2 v2.1.0 (2025-08-20) to classes and properties in the SPDX 3.1-dev specification. Provision types (REQUIRED, CONDITIONAL, OPTIONAL) are recorded in bsi-tr-03183-2.ttl via sbom:provisionType; this file focuses on semantic alignment and gap analysis. The see_also column cites the neutral bridge concept from sbom.ttl. GAP comments mark BSI fields with no equivalent in SPDX 3.1-dev."
+# mapping_set_description: "Maps the 20 data-field concepts defined in BSI Technical Guideline TR-03183-2 v2.1.0 (2025-08-20) to classes and properties in the SPDX 3.1-dev specification. Provision types (REQUIRED, CONDITIONAL, OPTIONAL) are recorded in bsi.ttl via sbom:provisionType; this file focuses on semantic alignment and gap analysis. The see_also column cites the neutral bridge concept from sbom.ttl. GAP comments mark BSI fields with no equivalent in SPDX 3.1-dev."
 # license: "https://creativecommons.org/publicdomain/zero/1.0/"
 # extension_slot: object_qualifier
 # extension_slot_uri: https://w3id.org/sbom/vocab/object_qualifier
 # creator_id:
 #   - "orcid:0000-0002-9698-1899"
 # mapping_date: "2026-06-17"
-# subject_source: "https://w3id.org/sbom/req/bsi-tr-03183-2/"
+# subject_source: "https://w3id.org/sbom/req/bsi/"
 # object_source: "https://spdx.github.io/spdx-spec/v3.1-dev/"
 # see_also:
 #   - "https://bsi.bund.de/dok/TR-03183-en"

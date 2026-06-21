@@ -210,7 +210,7 @@ Assessment frameworks (MOF) do not fit neatly into Layer A or C — MOF defines 
 | `fsct:` | CISA Framing Software Component Transparency 3rd Ed. (2024) | A | `docs/req/fsct/fsct.ttl` |
 | `cisa:` | CISA SBOM Minimum Elements (2025) | A | `docs/req/cisa/cisa.ttl` |
 | `g7ai:` | G7 SBOM for AI — Minimum Elements (2026-05-12) | A | `docs/req/g7ai/g7ai.ttl` |
-| `bsi:` | BSI TR-03183-2 v2.1.0 (2025-08-20) | A | `docs/req/bsi-tr-03183-2/bsi-tr-03183-2.ttl` |
+| `bsi:` | BSI TR-03183-2 v2.1.0 (2025-08-20) | A | `docs/req/bsi/bsi.ttl` |
 | `mof:` | Model Openness Framework (LF AI & Data, 2024) | A* | `docs/req/mof/mof.ttl` |
 | `euaiact:` | EU AI Act Annex VIII/IX registration items | C (itemised) | `docs/reg/euaiact/euaiact.ttl` (aggregate imports 5 sub-files) |
 
@@ -232,7 +232,7 @@ Reference PDFs are in `refs/`.
 | `sbom-to-spdx30.sssom.tsv` | Bridge | SPDX 3.0.1 | ~50 | Planned — differs in: `infra-hardware` gap (no Hardware profile in 3.0.1), `doc-version` gap |
 | `g7ai-to-spdx31.sssom.tsv` | G7 AI | SPDX 3.1-dev | 52 | Done |
 | `ntia-to-spdx31.sssom.tsv` | NTIA | SPDX 3.1-dev | 8 | Done |
-| `bsi-tr-03183-2-to-spdx31.sssom.tsv` | BSI TR-03183-2 | SPDX 3.1-dev | 25 | Done |
+| `bsi-to-spdx31.sssom.tsv` | BSI TR-03183-2 | SPDX 3.1-dev | 25 | Done |
 | `euaiact-anx8-a-to-semic.sssom.tsv` | EU AI Act Anx.VIII Sec.A — Art.49(1) provider, high-risk | SEMIC vocabularies | 35 | Done |
 | `euaiact-anx8-b-to-semic.sssom.tsv` | EU AI Act Anx.VIII Sec.B — Art.49(2) provider, not-high-risk | SEMIC vocabularies | 21 | Done |
 | `euaiact-anx8-c-to-semic.sssom.tsv` | EU AI Act Anx.VIII Sec.C — Art.49(3) deployer | SEMIC vocabularies | 8 | Done |
@@ -255,7 +255,7 @@ Base namespace: `https://w3id.org/sbom/`
 | `https://w3id.org/sbom/req/fsct/` | FSCT (3rd Ed.) source scheme |
 | `https://w3id.org/sbom/req/cisa/` | CISA 2025 source scheme |
 | `https://w3id.org/sbom/req/g7ai/` | G7 AI source scheme |
-| `https://w3id.org/sbom/req/bsi-tr-03183-2/` | BSI TR-03183-2 source scheme |
+| `https://w3id.org/sbom/req/bsi/` | BSI TR-03183-2 source scheme |
 | `https://w3id.org/sbom/req/mof/` | MOF source scheme |
 | `https://w3id.org/sbom/reg/euaiact/` | EU AI Act itemised registration concepts |
 | `https://w3id.org/sbom/mapping/` | SSSOM mapping set files |
@@ -289,7 +289,7 @@ sbom-mapping/
     │   ├── fsct/fsct.ttl
     │   ├── cisa/cisa.ttl
     │   ├── g7ai/g7ai.ttl
-    │   ├── bsi-tr-03183-2/bsi-tr-03183-2.ttl
+    │   ├── bsi/bsi.ttl
     │   └── mof/mof.ttl
     ├── reg/                           ← Layer C: regulatory documents (itemised)
     │   └── euaiact/
@@ -302,7 +302,7 @@ sbom-mapping/
     └── mapping/                       ← SSSOM crosswalk files
         ├── g7ai-to-spdx31.sssom.tsv
         ├── ntia-to-spdx31.sssom.tsv
-        ├── bsi-tr-03183-2-to-spdx31.sssom.tsv
+        ├── bsi-to-spdx31.sssom.tsv
         ├── sbom-to-spdx31.sssom.tsv
         ├── euaiact-anx8-a-to-semic.sssom.tsv
         ├── euaiact-anx8-b-to-semic.sssom.tsv
@@ -454,7 +454,7 @@ euaiact:a3-authorised-rep
 | `req/fsct/fsct.ttl` | A | 13 | 5 doc + 8 component |
 | `req/cisa/cisa.ttl` | A | ~12 | Similar to FSCT |
 | `req/g7ai/g7ai.ttl` | A | 50 | Full G7 AI element set |
-| `req/bsi-tr-03183-2/bsi-tr-03183-2.ttl` | A | 20 | 3 doc + 17 component; distinguishes distribution/original/effective licence |
+| `req/bsi/bsi.ttl` | A | 20 | 3 doc + 17 component; distinguishes distribution/original/effective licence |
 | `req/mof/mof.ttl` | A* | ~20 | MOF Level 1–4 criteria |
 | `reg/euaiact/euaiact.ttl` | C | — | Aggregate index only; owl:imports all 5 sub-files |
 | `reg/euaiact/euaiact-classification.ttl` | C | 5 | Q1-Q5 eligibility flowchart (Art.49 path determination) |
@@ -591,7 +591,7 @@ Rare. Only if a new family of concepts doesn't fit any of the 7 existing categor
 | `sbom-to-spdx31.sssom.tsv` — bridge ↔ SPDX 3.1-dev | Done |
 | `g7ai-to-spdx31.sssom.tsv` — G7 AI ↔ SPDX 3.1-dev | Done |
 | `ntia-to-spdx31.sssom.tsv` — NTIA ↔ SPDX 3.1-dev | Done |
-| `bsi-tr-03183-2-to-spdx31.sssom.tsv` — BSI TR-03183-2 ↔ SPDX 3.1-dev | Done |
+| `bsi-to-spdx31.sssom.tsv` — BSI TR-03183-2 ↔ SPDX 3.1-dev | Done |
 | `euaiact-anx8-a-to-semic.sssom.tsv` — EU AI Act Anx.VIII Sec.A ↔ SEMIC vocabularies | Done |
 | `euaiact-anx8-b-to-semic.sssom.tsv` — EU AI Act Anx.VIII Sec.B ↔ SEMIC vocabularies | Done |
 | `euaiact-anx8-c-to-semic.sssom.tsv` — EU AI Act Anx.VIII Sec.C ↔ SEMIC vocabularies | Done |
@@ -727,7 +727,7 @@ Fields with no entry in the registry (AI-specific, dataset-specific, gap rows) g
 |---|---|---|
 | NTIA 2021 | DF | `SBOM-NTIA-DF-001..007` |
 | FSCT | META, COMP | `SBOM-FSCT-META-001..005`, `SBOM-FSCT-COMP-001..008` |
-| BSI TR-03183-2 | DOC, COMP | `SBOM-BSI-TR-03183-2-DOC-001..003`, `SBOM-BSI-TR-03183-2-COMP-001..017` |
+| BSI TR-03183-2 | DOC, COMP | `SBOM-BSI-DOC-001..003`, `SBOM-BSI-COMP-001..017` |
 | G7 AI | MD, SLP, MDL, DP, INF, SP, KPI | `SBOM-G7AI-{CAT}-001..NNN` (50 total) |
 | EU AI Act | ANX8-A, ANX8-B, ANX8-C, ANX9 | `SBOM-EUAIACT-ANX8-A-001..013`, `SBOM-EUAIACT-ANX8-B-001..009`, `SBOM-EUAIACT-ANX8-C-001..005`, `SBOM-EUAIACT-ANX9-001..005` |
 

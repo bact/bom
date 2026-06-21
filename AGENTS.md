@@ -31,7 +31,7 @@ sbom-mapping/
 │   │   ├── fsct/fsct.ttl
 │   │   ├── cisa/cisa.ttl
 │   │   ├── g7ai/g7ai.ttl
-│   │   └── bsi-tr-03183-2/bsi-tr-03183-2.ttl
+│   │   └── bsi/bsi.ttl
 │   ├── reg/                                  <- sbom:RegulatorySpec files
 │   │   └── euaiact/
 │   │       ├── euaiact.ttl                   <- aggregate (owl:imports all sub-files)
@@ -44,7 +44,7 @@ sbom-mapping/
 │       ├── sbom-to-spdx31.sssom.tsv
 │       ├── g7ai-to-spdx31.sssom.tsv
 │       ├── ntia-to-spdx31.sssom.tsv
-│       ├── bsi-tr-03183-2-to-spdx31.sssom.tsv
+│       ├── bsi-to-spdx31.sssom.tsv
 │       ├── euaiact-anx8-a-to-semic.sssom.tsv
 │       ├── euaiact-anx8-b-to-semic.sssom.tsv
 │       ├── euaiact-anx8-c-to-semic.sssom.tsv
@@ -176,7 +176,7 @@ for path in sorted(glob.glob('docs/mapping/*.sssom.tsv')):
 "
 
 # Check no old flat-namespace IRIs remain
-grep -rn 'w3id.org/sbom/ntia\|w3id.org/sbom/g7ai\|w3id.org/sbom/bsi-tr-03183-2\|w3id.org/sbom/fsct\|w3id.org/sbom/cisa' \
+grep -rn 'w3id.org/sbom/ntia\|w3id.org/sbom/g7ai\|w3id.org/sbom/bsi\|w3id.org/sbom/fsct\|w3id.org/sbom/cisa' \
   docs/ --include='*.ttl' --include='*.tsv'
 # (should return nothing)
 ```

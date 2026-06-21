@@ -7,11 +7,11 @@
 @prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
-@prefix bsi:  <https://w3id.org/sbom/req/bsi-tr-03183-2/> .
+@prefix bsi:  <https://w3id.org/sbom/req/bsi/> .
 @prefix sbom:    <https://w3id.org/sbom/> .
 
 # BSI TR-03183-2 sub-vocabulary; imports the SBOM bridge ontology
-<https://w3id.org/sbom/req/bsi-tr-03183-2/>
+<https://w3id.org/sbom/req/bsi/>
     a owl:Ontology ;
     owl:imports <https://w3id.org/sbom/> ;
     owl:versionInfo "0.1.0" ;
@@ -49,7 +49,7 @@ bsi:sbom-creator
     skos:inScheme bsi:scheme ;
     skos:prefLabel "Creator of the SBOM"@en ;
     skos:definition "Email address (or URL if no email available) of the entity that created the SBOM."@en ;
-    skos:notation "SBOM-BSI-TR-03183-2-DOC-001"^^sbom:SarifRuleId ;
+    skos:notation "SBOM-BSI-DOC-001"^^sbom:SarifRuleId ;
     skos:exactMatch sbom:doc-author .
 
 bsi:sbom-timestamp
@@ -58,7 +58,7 @@ bsi:sbom-timestamp
     skos:inScheme bsi:scheme ;
     skos:prefLabel "Timestamp"@en ;
     skos:definition "Date and time of the SBOM data compilation, preferably in UTC."@en ;
-    skos:notation "SBOM-BSI-TR-03183-2-DOC-002"^^sbom:SarifRuleId ;
+    skos:notation "SBOM-BSI-DOC-002"^^sbom:SarifRuleId ;
     skos:exactMatch sbom:doc-timestamp .
 
 # -- BSI TR-03183-2: Additional data fields for the SBOM itself (Table 4) -----
@@ -69,7 +69,7 @@ bsi:sbom-uri
     skos:inScheme bsi:scheme ;
     skos:prefLabel "SBOM-URI"@en ;
     skos:definition "A URI uniquely identifying this SBOM (required if it exists)."@en ;
-    skos:notation "SBOM-BSI-TR-03183-2-DOC-003"^^sbom:SarifRuleId ;
+    skos:notation "SBOM-BSI-DOC-003"^^sbom:SarifRuleId ;
     skos:exactMatch sbom:doc-identifier .
 
 # -- BSI TR-03183-2: Required data fields for each component (Tables 3-4) -----
@@ -81,7 +81,7 @@ bsi:component-creator
     skos:prefLabel "Component creator"@en ;
     skos:definition "Email address (or URL if no email available) of the entity that created and maintains the component."@en ;
     skos:scopeNote "BSI TR-03183-2 uses 'creator' (the entity that authored the component) rather than 'supplier' (the entity that provides it). Distinct from NTIA's 'Supplier Name'."@en ;
-    skos:notation "SBOM-BSI-TR-03183-2-COMP-001"^^sbom:SarifRuleId ;
+    skos:notation "SBOM-BSI-COMP-001"^^sbom:SarifRuleId ;
     skos:closeMatch sbom:component-supplier .
 
 bsi:component-name
@@ -90,7 +90,7 @@ bsi:component-name
     skos:inScheme bsi:scheme ;
     skos:prefLabel "Component name"@en ;
     skos:definition "Name assigned to the component by its creator; if no name is assigned, the actual filename MUST be used."@en ;
-    skos:notation "SBOM-BSI-TR-03183-2-COMP-002"^^sbom:SarifRuleId ;
+    skos:notation "SBOM-BSI-COMP-002"^^sbom:SarifRuleId ;
     skos:exactMatch sbom:component-name .
 
 bsi:component-version
@@ -99,7 +99,7 @@ bsi:component-version
     skos:inScheme bsi:scheme ;
     skos:prefLabel "Component version"@en ;
     skos:definition "Identifier used by the creator to specify changes relative to a previously created version; preferably Semantic Versioning or Calendar Versioning."@en ;
-    skos:notation "SBOM-BSI-TR-03183-2-COMP-003"^^sbom:SarifRuleId ;
+    skos:notation "SBOM-BSI-COMP-003"^^sbom:SarifRuleId ;
     skos:exactMatch sbom:component-version .
 
 bsi:component-filename
@@ -108,7 +108,7 @@ bsi:component-filename
     skos:inScheme bsi:scheme ;
     skos:prefLabel "Filename of the component"@en ;
     skos:definition "The actual filename of the component (i.e. not its file system path) as deployed."@en ;
-    skos:notation "SBOM-BSI-TR-03183-2-COMP-004"^^sbom:SarifRuleId ;
+    skos:notation "SBOM-BSI-COMP-004"^^sbom:SarifRuleId ;
     skos:exactMatch sbom:component-filename .
 
 bsi:component-dependencies
@@ -117,7 +117,7 @@ bsi:component-dependencies
     skos:inScheme bsi:scheme ;
     skos:prefLabel "Dependencies on other components"@en ;
     skos:definition "Enumeration of all components on which this component directly depends or which it contains, with an explicit completeness indication."@en ;
-    skos:notation "SBOM-BSI-TR-03183-2-COMP-005"^^sbom:SarifRuleId ;
+    skos:notation "SBOM-BSI-COMP-005"^^sbom:SarifRuleId ;
     skos:exactMatch sbom:component-relationship .
 
 bsi:component-distribution-license
@@ -128,7 +128,7 @@ bsi:component-distribution-license
     skos:altLabel "Concluded licence"@en ;
     skos:definition "The licence(s) under which the component can be used by a licensee (i.e. the concluded/distribution licence expressed as an SPDX licence expression)."@en ;
     skos:scopeNote "BSI TR-03183-2 distinguishes 'distribution licences' (concluded, what a downstream recipient may do) from 'original licences' (declared, what the upstream creator states). This concept covers the former."@en ;
-    skos:notation "SBOM-BSI-TR-03183-2-COMP-006"^^sbom:SarifRuleId ;
+    skos:notation "SBOM-BSI-COMP-006"^^sbom:SarifRuleId ;
     skos:closeMatch sbom:component-license .
 
 bsi:component-hash-deployable
@@ -138,7 +138,7 @@ bsi:component-hash-deployable
     skos:prefLabel "Hash value of the deployable component"@en ;
     skos:definition "SHA-512 cryptographic checksum of the deployed or deployable form of the component (as a file on a mass storage device)."@en ;
     skos:scopeNote "BSI TR-03183-2 mandates SHA-512 specifically. The bridge concept sbom:component-hash is algorithm-agnostic."@en ;
-    skos:notation "SBOM-BSI-TR-03183-2-COMP-007"^^sbom:SarifRuleId ;
+    skos:notation "SBOM-BSI-COMP-007"^^sbom:SarifRuleId ;
     skos:closeMatch sbom:component-hash .
 
 bsi:component-executable-property
@@ -147,7 +147,7 @@ bsi:component-executable-property
     skos:inScheme bsi:scheme ;
     skos:prefLabel "Executable property"@en ;
     skos:definition "Whether the component is executable; possible values: 'executable' / 'non-executable'."@en ;
-    skos:notation "SBOM-BSI-TR-03183-2-COMP-008"^^sbom:SarifRuleId ;
+    skos:notation "SBOM-BSI-COMP-008"^^sbom:SarifRuleId ;
     skos:exactMatch sbom:component-executable-property .
 
 bsi:component-archive-property
@@ -156,7 +156,7 @@ bsi:component-archive-property
     skos:inScheme bsi:scheme ;
     skos:prefLabel "Archive property"@en ;
     skos:definition "Whether the component is an archive; possible values: 'archive' / 'no archive'."@en ;
-    skos:notation "SBOM-BSI-TR-03183-2-COMP-009"^^sbom:SarifRuleId ;
+    skos:notation "SBOM-BSI-COMP-009"^^sbom:SarifRuleId ;
     skos:exactMatch sbom:component-archive-property .
 
 bsi:component-structured-property
@@ -165,7 +165,7 @@ bsi:component-structured-property
     skos:inScheme bsi:scheme ;
     skos:prefLabel "Structured property"@en ;
     skos:definition "Whether the component is a structured file whose internal metadata is still present; possible values: 'structured' / 'unstructured'."@en ;
-    skos:notation "SBOM-BSI-TR-03183-2-COMP-010"^^sbom:SarifRuleId ;
+    skos:notation "SBOM-BSI-COMP-010"^^sbom:SarifRuleId ;
     skos:exactMatch sbom:component-structured-property .
 
 # -- BSI TR-03183-2: Additional data fields for each component (Table 5) ------
@@ -176,7 +176,7 @@ bsi:component-source-uri
     skos:inScheme bsi:scheme ;
     skos:prefLabel "Source code URI"@en ;
     skos:definition "URI of the source code of the component (e.g. a versioned repository URL), required if it exists."@en ;
-    skos:notation "SBOM-BSI-TR-03183-2-COMP-011"^^sbom:SarifRuleId ;
+    skos:notation "SBOM-BSI-COMP-011"^^sbom:SarifRuleId ;
     skos:closeMatch sbom:component-external-reference .
 
 bsi:component-distribution-uri
@@ -185,7 +185,7 @@ bsi:component-distribution-uri
     skos:inScheme bsi:scheme ;
     skos:prefLabel "URI of the deployable form of the component"@en ;
     skos:definition "URI pointing directly to the deployable (e.g. downloadable) form of the component, required if it exists."@en ;
-    skos:notation "SBOM-BSI-TR-03183-2-COMP-012"^^sbom:SarifRuleId ;
+    skos:notation "SBOM-BSI-COMP-012"^^sbom:SarifRuleId ;
     skos:closeMatch sbom:component-external-reference .
 
 bsi:component-identifiers
@@ -194,7 +194,7 @@ bsi:component-identifiers
     skos:inScheme bsi:scheme ;
     skos:prefLabel "Other unique identifiers"@en ;
     skos:definition "Other identifiers usable to identify the component or look it up in relevant databases (CPE, SWID, Package URL / PURL), required if they exist."@en ;
-    skos:notation "SBOM-BSI-TR-03183-2-COMP-013"^^sbom:SarifRuleId ;
+    skos:notation "SBOM-BSI-COMP-013"^^sbom:SarifRuleId ;
     skos:exactMatch sbom:component-identifier .
 
 bsi:component-original-license
@@ -205,7 +205,7 @@ bsi:component-original-license
     skos:altLabel "Declared licence"@en ;
     skos:definition "The licence(s) assigned by the creator of the component (i.e. the declared/upstream licence), required if it exists."@en ;
     skos:scopeNote "Corresponds to the 'declared' licence perspective. Contrast with bsi:component-distribution-license (concluded). Both map to the general bridge concept sbom:component-license."@en ;
-    skos:notation "SBOM-BSI-TR-03183-2-COMP-014"^^sbom:SarifRuleId ;
+    skos:notation "SBOM-BSI-COMP-014"^^sbom:SarifRuleId ;
     skos:closeMatch sbom:component-license .
 
 # -- BSI TR-03183-2: Optional data fields for each component (Table 6) --------
@@ -216,7 +216,7 @@ bsi:component-license-effective
     skos:inScheme bsi:scheme ;
     skos:prefLabel "Effective licence"@en ;
     skos:definition "The licence under which the component is actually used by the licensee that is the creator of the current SBOM (optional)."@en ;
-    skos:notation "SBOM-BSI-TR-03183-2-COMP-015"^^sbom:SarifRuleId ;
+    skos:notation "SBOM-BSI-COMP-015"^^sbom:SarifRuleId ;
     skos:closeMatch sbom:component-license .
 
 bsi:component-hash-source
@@ -225,7 +225,7 @@ bsi:component-hash-source
     skos:inScheme bsi:scheme ;
     skos:prefLabel "Hash value of the source code of the component"@en ;
     skos:definition "Cryptographic checksum of the component source code (algorithm not yet standardised in TR-03183-2; optional)."@en ;
-    skos:notation "SBOM-BSI-TR-03183-2-COMP-016"^^sbom:SarifRuleId ;
+    skos:notation "SBOM-BSI-COMP-016"^^sbom:SarifRuleId ;
     skos:closeMatch sbom:component-hash .
 
 bsi:component-security-txt
@@ -234,7 +234,7 @@ bsi:component-security-txt
     skos:inScheme bsi:scheme ;
     skos:prefLabel "URL of the security.txt"@en ;
     skos:definition "URL of the component creator's security.txt file (RFC 9116) providing coordinated vulnerability disclosure contact information (optional)."@en ;
-    skos:notation "SBOM-BSI-TR-03183-2-COMP-017"^^sbom:SarifRuleId ;
+    skos:notation "SBOM-BSI-COMP-017"^^sbom:SarifRuleId ;
     skos:closeMatch sbom:security-policy .
 
 
