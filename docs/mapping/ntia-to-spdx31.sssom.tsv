@@ -1,31 +1,31 @@
 # curie_map:
-#   ntia: "https://w3id.org/sbom/req/ntia/"
-#   sbom: "https://w3id.org/sbom/"
+#   ntia: "https://w3id.org/bom/req/ntia/"
+#   bom: "https://w3id.org/bom/"
 #   spdx3-core: "https://spdx.org/rdf/3/terms/Core/"
 #   spdx3-sw: "https://spdx.org/rdf/3/terms/Software/"
 #   skos: "http://www.w3.org/2004/02/skos/core#"
 #   semapv: "https://w3id.org/semapv/vocab/"
-# mapping_set_id: "https://w3id.org/sbom/mapping/ntia-to-spdx31"
+# mapping_set_id: "https://w3id.org/bom/mapping/ntia-to-spdx31"
 # mapping_set_version: "0.1.0"
 # mapping_set_title: "NTIA SBOM Minimum Elements <-> SPDX 3.1-dev"
-# mapping_set_description: "Maps the 7 minimum-element concepts defined in 'The Minimum Elements For a Software Bill of Materials (SBOM)' (NTIA, November 2021) to classes and properties in the SPDX 3.1-dev specification. The see_also column cites the neutral bridge concept from sbom.ttl."
+# mapping_set_description: "Maps the 7 minimum-element concepts defined in 'The Minimum Elements For a Software Bill of Materials (SBOM)' (NTIA, November 2021) to classes and properties in the SPDX 3.1-dev specification. The see_also column cites the neutral bridge concept from bom.ttl."
 # license: "https://creativecommons.org/publicdomain/zero/1.0/"
 # extension_slot: object_qualifier
-# extension_slot_uri: https://w3id.org/sbom/vocab/object_qualifier
+# extension_slot_uri: https://w3id.org/bom/vocab/object_qualifier
 # creator_id:
 #   - "orcid:0000-0000-0000-0000"
 # mapping_date: "2026-06-15"
-# subject_source: "https://w3id.org/sbom/req/ntia/"
+# subject_source: "https://w3id.org/bom/req/ntia/"
 # object_source: "https://spdx.github.io/spdx-spec/v3.1-dev/"
 # see_also:
 #   - "https://ntia.gov/sites/default/files/publications/sbom_minimum_elements_for_a_software_bill_of_materials.pdf"
-#   - "https://w3id.org/sbom/"
+#   - "https://w3id.org/bom/"
 subject_id	subject_label	predicate_id	object_id	object_label	mapping_justification	see_also	comment	object_qualifier
-ntia:supplier	Supplier Name	skos:closeMatch	spdx3-core:suppliedBy	suppliedBy	semapv:ManualMappingCuration	sbom:component-supplier	NTIA "Supplier Name" is the entity that creates, defines, and identifies a component -- which may be a distributor rather than the original author. SPDX Artifact.suppliedBy (-> Agent) captures the supplying party; Artifact.originatedBy covers the original author separately. closeMatch because NTIA supplier conflates both roles into one field.	spdx3-core:Artifact
-ntia:name	Component Name	skos:exactMatch	spdx3-core:name	name	semapv:ManualMappingCuration	sbom:component-name	Element.name on a Package (or other Artifact) element carries the component name. Exact semantic match.	spdx3-core:Element
-ntia:version	Version of the Component	skos:exactMatch	spdx3-sw:packageVersion	packageVersion	semapv:ManualMappingCuration	sbom:component-version	Software.Package.packageVersion carries the component version string. Exact match.	spdx3-sw:Package
-ntia:unique-identifier	Unique Identifier	skos:exactMatch	spdx3-sw:packageUrl	packageUrl	semapv:ManualMappingCuration	sbom:component-identifier	PURL (Package URL) in Software.Package.packageUrl is the recommended globally-unique identifier for components in SPDX 3.1. exactMatch for the primary external-identifier use case described by NTIA.	spdx3-sw:Package
-ntia:unique-identifier	Unique Identifier	skos:closeMatch	spdx3-core:externalIdentifier	externalIdentifier	semapv:ManualMappingCuration	sbom:component-identifier	Element.externalIdentifier (-> ExternalIdentifier) covers the full range of external IDs: CPE, PURL, SWID, Gitoid, etc. closeMatch for the general unique-identifier concept when PURL is not available.	spdx3-core:Element
-ntia:dependency-relationship	Dependency Relationship	skos:closeMatch	spdx3-core:Relationship	Relationship	semapv:ManualMappingCuration	sbom:doc-dependency-relationship	Dependency relationships between components are expressed via Relationship elements (DEPENDS_ON, CONTAINS, DESCRIBED_BY, etc.). closeMatch at class level; the specific relationship type encodes the dependency kind. NTIA requires relationships be "present for each component," which maps to the set of Relationship elements in the SBOM document.	
-ntia:author	Author of SBOM Data	skos:exactMatch	spdx3-core:createdBy	createdBy	semapv:ManualMappingCuration	sbom:doc-author	CreationInfo.createdBy captures the agent(s) -- Person, Organization, or Tool -- that authored the SBOM. Exact semantic match.	spdx3-core:CreationInfo
-ntia:timestamp	Timestamp	skos:exactMatch	spdx3-core:created	created	semapv:ManualMappingCuration	sbom:doc-timestamp	CreationInfo.created is a mandatory xsd:dateTime recording when the SBOM was created. Exact semantic match.	spdx3-core:CreationInfo
+ntia:supplier	Supplier Name	skos:closeMatch	spdx3-core:suppliedBy	suppliedBy	semapv:ManualMappingCuration	bom:component-supplier	NTIA "Supplier Name" is the entity that creates, defines, and identifies a component -- which may be a distributor rather than the original author. SPDX Artifact.suppliedBy (-> Agent) captures the supplying party; Artifact.originatedBy covers the original author separately. closeMatch because NTIA supplier conflates both roles into one field.	spdx3-core:Artifact
+ntia:name	Component Name	skos:exactMatch	spdx3-core:name	name	semapv:ManualMappingCuration	bom:component-name	Element.name on a Package (or other Artifact) element carries the component name. Exact semantic match.	spdx3-core:Element
+ntia:version	Version of the Component	skos:exactMatch	spdx3-sw:packageVersion	packageVersion	semapv:ManualMappingCuration	bom:component-version	Software.Package.packageVersion carries the component version string. Exact match.	spdx3-sw:Package
+ntia:unique-identifier	Unique Identifier	skos:exactMatch	spdx3-sw:packageUrl	packageUrl	semapv:ManualMappingCuration	bom:component-identifier	PURL (Package URL) in Software.Package.packageUrl is the recommended globally-unique identifier for components in SPDX 3.1. exactMatch for the primary external-identifier use case described by NTIA.	spdx3-sw:Package
+ntia:unique-identifier	Unique Identifier	skos:closeMatch	spdx3-core:externalIdentifier	externalIdentifier	semapv:ManualMappingCuration	bom:component-identifier	Element.externalIdentifier (-> ExternalIdentifier) covers the full range of external IDs: CPE, PURL, SWID, Gitoid, etc. closeMatch for the general unique-identifier concept when PURL is not available.	spdx3-core:Element
+ntia:dependency-relationship	Dependency Relationship	skos:closeMatch	spdx3-core:Relationship	Relationship	semapv:ManualMappingCuration	bom:doc-dependency-relationship	Dependency relationships between components are expressed via Relationship elements (DEPENDS_ON, CONTAINS, DESCRIBED_BY, etc.). closeMatch at class level; the specific relationship type encodes the dependency kind. NTIA requires relationships be "present for each component," which maps to the set of Relationship elements in the document document.	
+ntia:author	Author of SBOM Data	skos:exactMatch	spdx3-core:createdBy	createdBy	semapv:ManualMappingCuration	bom:doc-author	CreationInfo.createdBy captures the agent(s) -- Person, Organization, or Tool -- that authored the document. Exact semantic match.	spdx3-core:CreationInfo
+ntia:timestamp	Timestamp	skos:exactMatch	spdx3-core:created	created	semapv:ManualMappingCuration	bom:doc-timestamp	CreationInfo.created is a mandatory xsd:dateTime recording when the document was created. Exact semantic match.	spdx3-core:CreationInfo

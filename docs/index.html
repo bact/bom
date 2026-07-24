@@ -3,151 +3,498 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SBOM Bridging Ontology for Mapping</title>
+  <title>Baseline-information Obligations Mapping ontology</title>
   <style>
-    body { font-family: system-ui, sans-serif; max-width: 860px; margin: 2rem auto; padding: 0 1.5rem; color: #222; line-height: 1.6; }
-    h1 { font-size: 1.6rem; border-bottom: 2px solid #ddd; padding-bottom: .4rem; }
-    h2 { font-size: 1.1rem; margin-top: 2rem; color: #444; }
-    a { color: #0969da; }
-    table { border-collapse: collapse; width: 100%; font-size: .9rem; }
-    th, td { text-align: left; padding: .4rem .7rem; border: 1px solid #ddd; }
-    th { background: #f6f8fa; }
-    code { background: #f6f8fa; padding: .1rem .35rem; border-radius: 3px; font-size: .9em; }
-    .subtitle { color: #555; margin-top: -.5rem; }
-    footer { margin-top: 3rem; font-size: .85rem; color: #666; border-top: 1px solid #ddd; padding-top: 1rem; }
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+    
+    :root {
+      --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --accent-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+      --card-bg: rgba(30, 41, 59, 0.7);
+      --card-border: rgba(255, 255, 255, 0.06);
+      --accent-color: #818cf8;
+      --glow-shadow: 0 8px 32px 0 rgba(99, 102, 241, 0.12);
+    }
+    
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: #0f172a;
+      background-image: var(--bg-gradient);
+      color: var(--text-primary);
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    
+    .logo-container {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 72px;
+      height: 72px;
+      border-radius: 20px;
+      background: var(--accent-gradient);
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+    }
+    
+    .logo-icon {
+      font-size: 2rem;
+      color: white;
+      font-weight: 700;
+    }
+    
+    h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin: 0 0 0.5rem 0;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.02em;
+    }
+    
+    .namespace-badge {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      padding: 0.4rem 1rem;
+      border-radius: 12px;
+      font-family: monospace;
+      font-size: 0.95rem;
+      color: #a5b4fc;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      margin-bottom: 1.5rem;
+    }
+    
+    .namespace-badge:hover {
+      background: rgba(99, 102, 241, 0.25);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+    }
+    
+    .description {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin: 3rem 0 1.5rem 0;
+      border-left: 4px solid #818cf8;
+      padding-left: 0.85rem;
+      letter-spacing: -0.01em;
+    }
+    
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: var(--glow-shadow);
+      transition: all 0.3s ease;
+    }
+    
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(99, 102, 241, 0.25);
+      box-shadow: 0 12px 40px 0 rgba(99, 102, 241, 0.2);
+    }
+    
+    .release-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
+    }
+    
+    .release-tag {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    
+    .release-date {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+    
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.75rem 1.5rem;
+      border-radius: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary {
+      background: var(--accent-gradient);
+      color: white;
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+    }
+    
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-primary);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+    
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .item-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.3s ease;
+    }
+    
+    .item-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(99, 102, 241, 0.2);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+    
+    .item-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin: 0 0 0.5rem 0;
+    }
+    
+    .item-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+    
+    .item-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 0.75rem;
+    }
+    
+    .badge-ns {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 0.15rem 0.4rem;
+      border-radius: 6px;
+      font-family: monospace;
+      color: #cbd5e1;
+    }
+    
+    .link-item {
+      color: #818cf8;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    .link-item:hover {
+      text-decoration: underline;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.9rem;
+      background: var(--card-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+    }
+    
+    th, td {
+      padding: 0.85rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    th {
+      background: rgba(255, 255, 255, 0.04);
+      font-weight: 600;
+      color: #cbd5e1;
+    }
+    
+    tr:last-child td {
+      border-bottom: none;
+    }
+    
+    footer {
+      margin-top: 5rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
   </style>
 </head>
 <body>
 
-<h1>SBOM Bridging Ontology for Mapping</h1>
-<p class="subtitle">Namespace: <code><a href="https://w3id.org/sbom/">https://w3id.org/sbom/</a></code></p>
+  <div class="container">
+    
+    <div class="header">
+      <div class="logo-container">
+        <span class="logo-icon">&harr;</span>
+      </div>
+      <h1>Baseline Obligations Mapping (BOM)</h1>
+      <a href="https://w3id.org/bom/" class="namespace-badge">https://w3id.org/bom/</a>
+      <p class="description">
+        A SKOS bridging vocabulary of stable, persistent identifiers mapping information obligations 
+        and requirements in software regulations to metadata fields in SBOM exchange formats.
+      </p>
+    </div>
 
-<p>
-  A SKOS vocabulary of stable, persistent identifiers for the minimum elements
-  (baseline attributes) required in a Software Bill of Materials (SBOM),
-  together with <a href="https://mapping-commons.github.io/sssom/">SSSOM</a> crosswalk files
-  mapping those elements to exchange formats.
-</p>
+    <h2 class="section-title">Ontology Specification</h2>
+    <div class="card">
+      <div class="release-meta">
+        <span class="release-tag">Latest stable</span>
+        <span class="release-date">Released: June 21, 2026</span>
+      </div>
+      <h3>Baseline-information Obligations Mapping ontology v0.1.0</h3>
+      <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+        The primary ontology specification defines types, provision vocabularies, and categories 
+        harmonizing NTIA, CISA, G7, and BSI SBOM minimum requirements.
+      </p>
+      <div class="btn-group">
+        <a href="releases/0.1.0/index.html" class="btn btn-primary">Open ReSpec Spec</a>
+        <a href="releases/0.1.0/bom.ttl" class="btn btn-secondary">Turtle Source (bom.ttl)</a>
+      </div>
+    </div>
 
-<p>Concepts from the SBOM ontology are used in the <code>see_also</code> column
-  of SSSOM mappings to provide additional mapping justification.</p>
+    <h2 class="section-title">Information Requirement Specs (Layer A)</h2>
+    <div class="grid">
+      <div class="item-card">
+        <div>
+          <h4 class="item-title">BSI TR-03183-2</h4>
+          <p class="item-desc">SBOM requirements defined in BSI Technical Guideline TR-03183-2 v2.1.0 (2025).</p>
+        </div>
+        <div class="item-meta">
+          <a href="req/bsi/bsi.ttl" class="link-item">bsi.ttl</a>
+          <span class="badge-ns">bsi:</span>
+        </div>
+      </div>
 
-<h2>Core vocabulary</h2>
-<table>
-  <tr><th>File</th><th>Description</th></tr>
-  <tr><td><a href="sbom.ttl"><code>sbom.ttl</code></a></td><td>Bridge concept scheme, type classes, and provision-type vocabulary</td></tr>
-</table>
+      <div class="item-card">
+        <div>
+          <h4 class="item-title">CISA SBOM Elements</h4>
+          <p class="item-desc">CISA SBOM Minimum Elements specification (2025).</p>
+        </div>
+        <div class="item-meta">
+          <a href="req/cisa/cisa.ttl" class="link-item">cisa.ttl</a>
+          <span class="badge-ns">cisa:</span>
+        </div>
+      </div>
 
-<h2>Information requirement specifications</h2>
-<table>
-  <tr><th>File</th><th>Specification</th><th>Namespace</th></tr>
-  <tr>
-    <td><a href="req/bsi/bsi.ttl">req/bsi/bsi.ttl</a></td>
-    <td><a href="https://bsi.bund.de/dok/TR-03183-en">BSI TR-03183-2 v2.1.0 (2025)</a></td>
-    <td><code>bsi:</code></td>
-  </tr>
-  <tr>
-    <td><a href="req/cisa/cisa.ttl">req/cisa/cisa.ttl</a></td>
-    <td>CISA SBOM Minimum Elements (2025)</td>
-    <td><code>cisa:</code></td>
-  </tr>
-  <tr>
-    <td><a href="req/fsct/fsct.ttl">req/fsct/fsct.ttl</a></td>
-    <td><a href="https://www.cisa.gov/resources-tools/resources/framing-software-component-transparency-2024">CISA FSCT 3rd Ed. (2024)</a></td>
-    <td><code>fsct:</code></td>
-  </tr>
-  <tr>
-    <td><a href="req/g7ai/g7ai.ttl">req/g7ai/g7ai.ttl</a></td>
-    <td><a href="https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/KI/SBOM-for-AI_minimum-elements.html">G7 SBOM for AI — Minimum Elements (2026)</a></td>
-    <td><code>g7ai:</code></td>
-  </tr>
-  <tr>
-    <td><a href="req/mof/mof.ttl">req/mof/mof.ttl</a></td>
-    <td><a href="https://lfaidata.foundation/blog/2024/12/17/mof-specification-v1/">Model Openness Framework v1.0 (2024)</a></td>
-    <td><code>mof:</code></td>
-  </tr>
-  <tr>
-    <td><a href="req/ntia/ntia.ttl">req/ntia/ntia.ttl</a></td>
-    <td><a href="https://ntia.gov/sites/default/files/publications/sbom_minimum_elements_for_a_software_bill_of_materials.pdf">NTIA SBOM Minimum Elements (2021)</a></td>
-    <td><code>ntia:</code></td>
-  </tr>
-</table>
+      <div class="item-card">
+        <div>
+          <h4 class="item-title">CISA FSCT 3rd Ed.</h4>
+          <p class="item-desc">Framing Software Component Transparency 3rd Edition (2024).</p>
+        </div>
+        <div class="item-meta">
+          <a href="req/fsct/fsct.ttl" class="link-item">fsct.ttl</a>
+          <span class="badge-ns">fsct:</span>
+        </div>
+      </div>
 
-<h2>Regulatory specifications</h2>
-<table>
-  <tr><th>Namespace</th><th>Instrument</th><th>File</th></tr>
-  <tr>
-    <td><code>euaiact:</code></td>
-    <td><a href="https://artificialintelligenceact.eu/">EU AI Act — Registration obligations (Art. 49, Art. 60)</a></td>
-    <td><a href="reg/euaiact/euaiact.ttl">reg/euaiact/euaiact.ttl</a></td>
-  </tr>
-</table>
+      <div class="item-card">
+        <div>
+          <h4 class="item-title">G7 AI SBOM</h4>
+          <p class="item-desc">G7 SBOM for AI Minimum Elements specification (2026).</p>
+        </div>
+        <div class="item-meta">
+          <a href="req/g7ai/g7ai.ttl" class="link-item">g7ai.ttl</a>
+          <span class="badge-ns">g7ai:</span>
+        </div>
+      </div>
 
-<h2>Mappings</h2>
-<table>
-  <tr><th>File</th><th>Source</th><th>Target</th></tr>
-  <tr>
-    <td><a href="mapping/sbom-to-spdx31.sssom.tsv">sbom-to-spdx31.sssom.tsv</a></td>
-    <td>Bridge ontology</td>
-    <td><a href="https://spdx.github.io/spdx-spec/v3.1/">SPDX 3.1-dev</a></td>
-  </tr>
-  <tr>
-    <td><a href="mapping/g7ai-to-spdx31.sssom.tsv">g7ai-to-spdx31.sssom.tsv</a></td>
-    <td>G7 SBOM for AI — Minimum Elements</td>
-    <td><a href="https://spdx.github.io/spdx-spec/v3.1/">SPDX 3.1-dev</a></td>
-  </tr>
-  <tr>
-    <td><a href="mapping/ntia-to-spdx31.sssom.tsv">ntia-to-spdx31.sssom.tsv</a></td>
-    <td>NTIA SBOM Minimum Elements</td>
-    <td><a href="https://spdx.github.io/spdx-spec/v3.1/">SPDX 3.1-dev</a></td>
-  </tr>
-  <tr>
-    <td><a href="mapping/bsi-to-spdx31.sssom.tsv">bsi-to-spdx31.sssom.tsv</a></td>
-    <td>BSI TR-03183-2</td>
-    <td><a href="https://spdx.github.io/spdx-spec/v3.1/">SPDX 3.1-dev</a></td>
-  </tr>
-  <tr>
-    <td><a href="mapping/euaiact-anx8-a-to-semic.sssom.tsv">euaiact-anx8-a-to-semic.sssom.tsv</a></td>
-    <td>EU AI Act Annex VIII Sec.A</td>
-    <td>SEMIC vocabularies</td>
-  </tr>
-  <tr>
-    <td><a href="mapping/euaiact-anx8-b-to-semic.sssom.tsv">euaiact-anx8-b-to-semic.sssom.tsv</a></td>
-    <td>EU AI Act Annex VIII Sec.B</td>
-    <td>SEMIC vocabularies</td>
-  </tr>
-  <tr>
-    <td><a href="mapping/euaiact-anx8-c-to-semic.sssom.tsv">euaiact-anx8-c-to-semic.sssom.tsv</a></td>
-    <td>EU AI Act Annex VIII Sec.C</td>
-    <td>SEMIC vocabularies</td>
-  </tr>
-  <tr>
-    <td><a href="mapping/euaiact-anx9-to-semic.sssom.tsv">euaiact-anx9-to-semic.sssom.tsv</a></td>
-    <td>EU AI Act Annex IX</td>
-    <td>SEMIC vocabularies</td>
-  </tr>
-  <tr>
-    <td><a href="mapping/ntia-to-semic.sssom.tsv">ntia-to-semic.sssom.tsv</a></td>
-    <td>NTIA SBOM Minimum Elements</td>
-    <td>SEMIC vocabularies</td>
-  </tr>
-  <tr>
-    <td><a href="mapping/g7ai-to-semic.sssom.tsv">g7ai-to-semic.sssom.tsv</a></td>
-    <td>G7 SBOM for AI — Minimum Elements</td>
-    <td>SEMIC vocabularies</td>
-  </tr>
-</table>
+      <div class="item-card">
+        <div>
+          <h4 class="item-title">Model Openness Framework</h4>
+          <p class="item-desc">Model Openness Framework (MOF) v1.0 by LF AI & Data (2024).</p>
+        </div>
+        <div class="item-meta">
+          <a href="req/mof/mof.ttl" class="link-item">mof.ttl</a>
+          <span class="badge-ns">mof:</span>
+        </div>
+      </div>
 
-<h2>License and source</h2>
-<p>
-  Content: <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0-1.0</a> &nbsp;|&nbsp;
-  Source: <a href="https://github.com/openregtech/sbom">github.com/openregtech/sbom</a>
-</p>
+      <div class="item-card">
+        <div>
+          <h4 class="item-title">NTIA Minimum Elements</h4>
+          <p class="item-desc">NTIA SBOM Minimum Elements baseline specification (2021).</p>
+        </div>
+        <div class="item-meta">
+          <a href="req/ntia/ntia.ttl" class="link-item">ntia.ttl</a>
+          <span class="badge-ns">ntia:</span>
+        </div>
+      </div>
+    </div>
 
-<footer>
-  Maintained by <a href="https://orcid.org/0000-0002-9698-1899">Arthit Suriyawongkul</a>.
-  Persistent URIs via <a href="https://w3id.org/sbom/">w3id.org/sbom</a>.
-</footer>
+    <h2 class="section-title">Regulatory Specifications (Layer C)</h2>
+    <div class="grid" style="grid-template-columns: 1fr;">
+      <div class="item-card" style="flex-direction: row; align-items: center; justify-content: space-between;">
+        <div style="max-width: 70%;">
+          <h4 class="item-title" style="margin: 0 0 0.25rem 0;">EU Artificial Intelligence Act</h4>
+          <p class="item-desc" style="margin: 0;">Harmonized obligational concept mapping for Provider & Deployer items (Art. 49, Art. 60).</p>
+        </div>
+        <div style="display: flex; gap: 1.5rem; align-items: center;">
+          <a href="reg/euaiact/euaiact.ttl" class="link-item">euaiact.ttl</a>
+          <span class="badge-ns">euaiact:</span>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title">SSSOM Crosswalk Mappings</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Mapping File</th>
+          <th>Source Specification</th>
+          <th>Target Format</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="mapping/bom-to-spdx31.sssom.tsv" class="link-item">bom-to-spdx31.sssom.tsv</a></td>
+          <td>BOM Bridge Ontology</td>
+          <td>SPDX 3.1-dev</td>
+        </tr>
+        <tr>
+          <td><a href="mapping/g7ai-to-spdx31.sssom.tsv" class="link-item">g7ai-to-spdx31.sssom.tsv</a></td>
+          <td>G7 AI Minimum Elements</td>
+          <td>SPDX 3.1-dev</td>
+        </tr>
+        <tr>
+          <td><a href="mapping/ntia-to-spdx31.sssom.tsv" class="link-item">ntia-to-spdx31.sssom.tsv</a></td>
+          <td>NTIA Minimum Elements</td>
+          <td>SPDX 3.1-dev</td>
+        </tr>
+        <tr>
+          <td><a href="mapping/bsi-to-spdx31.sssom.tsv" class="link-item">bsi-to-spdx31.sssom.tsv</a></td>
+          <td>BSI TR-03183-2</td>
+          <td>SPDX 3.1-dev</td>
+        </tr>
+        <tr>
+          <td><a href="mapping/euaiact-anx8-a-to-semic.sssom.tsv" class="link-item">euaiact-anx8-a-to-semic.sssom.tsv</a></td>
+          <td>EU AI Act Annex VIII Sec.A</td>
+          <td>SEMIC Vocabularies</td>
+        </tr>
+        <tr>
+          <td><a href="mapping/euaiact-anx8-b-to-semic.sssom.tsv" class="link-item">euaiact-anx8-b-to-semic.sssom.tsv</a></td>
+          <td>EU AI Act Annex VIII Sec.B</td>
+          <td>SEMIC Vocabularies</td>
+        </tr>
+        <tr>
+          <td><a href="mapping/euaiact-anx8-c-to-semic.sssom.tsv" class="link-item">euaiact-anx8-c-to-semic.sssom.tsv</a></td>
+          <td>EU AI Act Annex VIII Sec.C</td>
+          <td>SEMIC Vocabularies</td>
+        </tr>
+        <tr>
+          <td><a href="mapping/euaiact-anx9-to-semic.sssom.tsv" class="link-item">euaiact-anx9-to-semic.sssom.tsv</a></td>
+          <td>EU AI Act Annex IX</td>
+          <td>SEMIC Vocabularies</td>
+        </tr>
+        <tr>
+          <td><a href="mapping/ntia-to-semic.sssom.tsv" class="link-item">ntia-to-semic.sssom.tsv</a></td>
+          <td>NTIA Minimum Elements</td>
+          <td>SEMIC Vocabularies</td>
+        </tr>
+        <tr>
+          <td><a href="mapping/g7ai-to-semic.sssom.tsv" class="link-item">g7ai-to-semic.sssom.tsv</a></td>
+          <td>G7 AI Minimum Elements</td>
+          <td>SEMIC Vocabularies</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="section-title">Developer Resources</h2>
+    <div class="grid" style="grid-template-columns: repeat(2, 1fr);">
+      <div class="item-card">
+        <div>
+          <h4 class="item-title">Design Decisions</h4>
+          <p class="item-desc">Read DESIGN.md for details about namespace layout, IRI scheme, and ontology design decisions.</p>
+        </div>
+        <div class="item-meta">
+          <a href="https://github.com/bact/bom/blob/main/DESIGN.md" class="link-item">View on GitHub</a>
+        </div>
+      </div>
+      <div class="item-card">
+        <div>
+          <h4 class="item-title">Agent Guidelines</h4>
+          <p class="item-desc">Read AGENTS.md for coding guidelines, verification commands, and validation checklists.</p>
+        </div>
+        <div class="item-meta">
+          <a href="https://github.com/bact/bom/blob/main/AGENTS.md" class="link-item">View on GitHub</a>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>
+        Licensed under <a href="https://creativecommons.org/publicdomain/zero/1.0/" class="link-item">CC0-1.0</a>. 
+        Maintained by <a href="https://orcid.org/0000-0002-9698-1899" class="link-item">Arthit Suriyawongkul</a>.
+      </p>
+      <p style="font-size: 0.8rem; margin-top: 0.5rem; color: #64748b;">
+        Persistent URIs hosted via <a href="https://w3id.org/bom/" class="link-item">w3id.org/bom/</a>.
+      </p>
+    </footer>
+
+  </div>
 
 </body>
 </html>

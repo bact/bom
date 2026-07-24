@@ -1,6 +1,6 @@
 # curie_map:
-#   euaiact: "https://w3id.org/sbom/reg/euaiact/"
-#   sbom: "https://w3id.org/sbom/"
+#   euaiact: "https://w3id.org/bom/reg/euaiact/"
+#   bom: "https://w3id.org/bom/"
 #   mldcatap: "http://data.europa.eu/it6/"
 #   dcat: "http://www.w3.org/ns/dcat#"
 #   dcterms: "http://purl.org/dc/terms/"
@@ -13,25 +13,25 @@
 #   schema: "https://schema.org/"
 #   skos: "http://www.w3.org/2004/02/skos/core#"
 #   semapv: "https://w3id.org/semapv/vocab/"
-# mapping_set_id: "https://w3id.org/sbom/mapping/euaiact-anx8-c-to-semic"
+# mapping_set_id: "https://w3id.org/bom/mapping/euaiact-anx8-c-to-semic"
 # mapping_set_version: "0.1.0"
 # mapping_set_title: "EU AI Act Annex VIII Section C (Art.49(3)) <-> SEMIC vocabularies"
-# mapping_set_description: "Maps the 5 information items of Annex VIII Section C (deployer of high-risk AI systems, public authorities, Art.49(3)) to MLDCAT-AP 3.1.0, Schema.org and DPV EU AI Act. The sbom: bridge concept in see_also provides the shared abstraction."
+# mapping_set_description: "Maps the 5 information items of Annex VIII Section C (deployer of high-risk AI systems, public authorities, Art.49(3)) to MLDCAT-AP 3.1.0, Schema.org and DPV EU AI Act. The bom: bridge concept in see_also provides the shared abstraction."
 # license: "https://creativecommons.org/publicdomain/zero/1.0/"
 # creator_id:
 #   - "orcid:0000-0002-9698-1899"
 # mapping_date: "2026-06-17"
-# subject_source: "https://w3id.org/sbom/reg/euaiact/anx8-c/"
+# subject_source: "https://w3id.org/bom/reg/euaiact/anx8-c/"
 # object_source: "https://semiceu.github.io/MLDCAT-AP/releases/3.1.0/"
 # see_also:
-#   - "https://w3id.org/sbom/"
+#   - "https://w3id.org/bom/"
 #   - "https://digital-strategy.ec.europa.eu/en/library/eu-artificial-intelligence-act"
 subject_id	subject_label	predicate_id	object_id	object_label	mapping_justification	see_also	comment
-euaiact:anx8-c1-deployer-info	Deployer information (C.1)	skos:relatedMatch	prov:wasAssociatedWith	wasAssociatedWith	semapv:ManualMappingCuration	sbom:component-supplier	Deployer identity maps to prov:wasAssociatedWith on the deployment activity; MLDCAT-AP does not have a dedicated deployer concept
-euaiact:anx8-c2-deployer-submitter	Submitter acting on behalf of deployer (C.2)	skos:relatedMatch	prov:actedOnBehalfOf	actedOnBehalfOf	semapv:ManualMappingCuration	sbom:component-supplier	Submitter acting on behalf of the deployer; PROV-O delegation relationship; analogous to A.2/B.2 submitter on behalf of provider
-euaiact:anx8-c3-provider-db-url	Provider registration URL (C.3)	skos:closeMatch	dcterms:identifier	Identifier	semapv:ManualMappingCuration	sbom:component-identifier	URL of the provider's entry in the EU AI Act database; a persistent identifier for the system registration
-euaiact:anx8-c4-fria-summary	Fundamental rights impact assessment summary (C.4)	skos:relatedMatch	mldcatap:HarmRisk	HarmRisk	semapv:ManualMappingCuration	sbom:security-compliance	FRIA summary (fundamental rights impact) is conceptually related to MLDCAT-AP HarmRisk; no exact MLDCAT-AP property for a formal FRIA document
-euaiact:anx8-c5-dpia-summary	Data protection impact assessment summary (C.5)	skos:relatedMatch	dpv:hasLegalBasis	hasLegalBasis	semapv:ManualMappingCuration	sbom:security-compliance	DPIA summary relates to data protection legal basis and risk; dpv:hasLegalBasis is the nearest DPV/MLDCAT-AP adjacent concept; no direct MLDCAT-AP DPIA field
-euaiact:anx8-c2-deployer-submitter	Submitter acting on behalf of deployer (C.2)	skos:relatedMatch	eu-aiact:AIDeployer	AIDeployer	semapv:ManualMappingCuration	sbom:component-supplier	The deployer on whose behalf the submitter acts; eu-aiact:AIDeployer (Art.3(4)) is the deploying entity; relatedMatch because C.2 refers to the submitter, not the deployer directly
-euaiact:anx8-c1-deployer-info	Deployer information (C.1)	skos:exactMatch	eu-aiact:AIDeployer	AIDeployer	semapv:ManualMappingCuration	sbom:component-supplier	eu-aiact:AIDeployer (Art.3(4) EU AI Act) is the entity deploying the AI system in a specific context — exact semantic match for the C.1 deployer registration field
-euaiact:anx8-c4-fria-summary	Fundamental rights impact assessment summary (C.4)	skos:exactMatch	eu-aiact:FRIA	FRIA	semapv:ManualMappingCuration	sbom:security-compliance	eu-aiact:FRIA (Fundamental Rights Impact Assessment) is explicitly defined in Art.27 EU AI Act — exact semantic match for the C.4 FRIA summary field; replaces the prior relatedMatch to mldcatap:HarmRisk
+euaiact:anx8-c1-deployer-info	Deployer information (C.1)	skos:relatedMatch	prov:wasAssociatedWith	wasAssociatedWith	semapv:ManualMappingCuration	bom:component-supplier	Deployer identity maps to prov:wasAssociatedWith on the deployment activity; MLDCAT-AP does not have a dedicated deployer concept
+euaiact:anx8-c2-deployer-submitter	Submitter acting on behalf of deployer (C.2)	skos:relatedMatch	prov:actedOnBehalfOf	actedOnBehalfOf	semapv:ManualMappingCuration	bom:component-supplier	Submitter acting on behalf of the deployer; PROV-O delegation relationship; analogous to A.2/B.2 submitter on behalf of provider
+euaiact:anx8-c3-provider-db-url	Provider registration URL (C.3)	skos:closeMatch	dcterms:identifier	Identifier	semapv:ManualMappingCuration	bom:component-identifier	URL of the provider's entry in the EU AI Act database; a persistent identifier for the system registration
+euaiact:anx8-c4-fria-summary	Fundamental rights impact assessment summary (C.4)	skos:relatedMatch	mldcatap:HarmRisk	HarmRisk	semapv:ManualMappingCuration	bom:security-compliance	FRIA summary (fundamental rights impact) is conceptually related to MLDCAT-AP HarmRisk; no exact MLDCAT-AP property for a formal FRIA document
+euaiact:anx8-c5-dpia-summary	Data protection impact assessment summary (C.5)	skos:relatedMatch	dpv:hasLegalBasis	hasLegalBasis	semapv:ManualMappingCuration	bom:security-compliance	DPIA summary relates to data protection legal basis and risk; dpv:hasLegalBasis is the nearest DPV/MLDCAT-AP adjacent concept; no direct MLDCAT-AP DPIA field
+euaiact:anx8-c2-deployer-submitter	Submitter acting on behalf of deployer (C.2)	skos:relatedMatch	eu-aiact:AIDeployer	AIDeployer	semapv:ManualMappingCuration	bom:component-supplier	The deployer on whose behalf the submitter acts; eu-aiact:AIDeployer (Art.3(4)) is the deploying entity; relatedMatch because C.2 refers to the submitter, not the deployer directly
+euaiact:anx8-c1-deployer-info	Deployer information (C.1)	skos:exactMatch	eu-aiact:AIDeployer	AIDeployer	semapv:ManualMappingCuration	bom:component-supplier	eu-aiact:AIDeployer (Art.3(4) EU AI Act) is the entity deploying the AI system in a specific context — exact semantic match for the C.1 deployer registration field
+euaiact:anx8-c4-fria-summary	Fundamental rights impact assessment summary (C.4)	skos:exactMatch	eu-aiact:FRIA	FRIA	semapv:ManualMappingCuration	bom:security-compliance	eu-aiact:FRIA (Fundamental Rights Impact Assessment) is explicitly defined in Art.27 EU AI Act — exact semantic match for the C.4 FRIA summary field; replaces the prior relatedMatch to mldcatap:HarmRisk

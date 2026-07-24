@@ -1,0 +1,706 @@
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# External vocabulary alignments
+@prefix dpv:     <https://w3id.org/dpv#> .           # W3C Data Privacy Vocabulary
+@prefix cv:      <http://data.europa.eu/m8g/> .      # CCCEV / SEMIC Core Criterion and Evidence Vocabulary
+@prefix dcat:    <http://www.w3.org/ns/dcat#> .      # DCAT / DCAT-AP
+@prefix mls:     <http://www.w3.org/ns/mls#> .       # W3C Machine Learning Schema (ML-Schema)
+@prefix schema:  <https://schema.org/> .             # Schema.org
+@prefix eu-aiact: <https://w3id.org/dpv/legal/eu/aiact#> . # DPV EU AI Act Extension
+@prefix ai:      <https://w3id.org/dpv/ai#> .        # DPV AI Technology Concepts
+
+
+# Bridge ontology base prefix (also hosts the bridge concept scheme)
+@prefix bom: <https://w3id.org/bom/> .
+
+# ============================================================================
+# Ontology declaration
+# ============================================================================
+
+bom:
+    a owl:Ontology ;
+    dcterms:title "Baseline-information Obligations Mapping ontology"@en ;
+    dcterms:description """A SKOS vocabulary of stable identifiers for the baseline information (minimum elements)."""@en ;
+    dcterms:creator <https://orcid.org/0000-0002-9698-1899> ;
+    dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+    dcterms:created "2026-06-13"^^xsd:date ;
+    dcterms:modified "2026-06-17"^^xsd:date ;
+    owl:versionInfo "0.1.0" ;
+    rdfs:seeAlso <https://spdx.github.io/spdx-spec/v3.1-dev/> ;
+    rdfs:seeAlso <https://ntia.gov/sites/default/files/publications/sbom_minimum_elements_for_a_software_bill_of_materials.pdf> ;
+    rdfs:seeAlso <https://www.cisa.gov/sites/default/files/2023-04/sbom-types-document-508c.pdf> ;
+    rdfs:seeAlso <https://www.cisa.gov/resources-tools/resources/framing-software-component-transparency-2024> ;
+    rdfs:seeAlso <https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/KI/SBOM-for-AI_minimum-elements.pdf?__blob=publicationFile&v=4> ;
+    rdfs:seeAlso <https://bsi.bund.de/dok/TR-03183-en> ;
+    rdfs:seeAlso <https://github.com/bact/ntia-conformance-checker/tree/sarif-output> .
+
+# ----------------------------------------------------------------------------
+# Custom datatype: SARIF Rule ID / OSCAL control-id
+# Notation: BOM-[SPEC]-[CAT]-[NNN]  (SARIF)
+#            bom-[spec]-[cat]-[nnn] (OSCAL = lowercase of SARIF)
+# See: bact/ntia-conformance-checker (sarif-output branch)
+# ----------------------------------------------------------------------------
+
+bom:SarifRuleId
+    a rdfs:Datatype ;
+    rdfs:label "SARIF Rule ID"@en ;
+    rdfs:comment "A SARIF 2.1.0 rule identifier in the form BOM-[SPEC]-[CAT]-[NNN]."@en .
+
+
+# ============================================================================
+# TYPE CLASSES
+# ============================================================================
+
+bom:InfoRequirementSpec
+    a owl:Class ;
+    rdfs:label "Information Requirement Specification"@en ;
+    rdfs:comment "A standard or guidance document specifying which SBOM elements MUST/SHOULD be present (e.g. NTIA, CISA, G7 AI, BSI TR-03183-2, MOF)."@en .
+
+bom:RegulatorySpec
+    a owl:Class ;
+    rdfs:subClassOf dpv:Regulation ;
+    rdfs:label "Regulatory Specification"@en ;
+    rdfs:comment "A legally binding instrument that mandates compliance obligations (e.g. EU AI Act, EU CRA). Subclass of dpv:Regulation."@en .
+
+bom:ExchangeFormatSpec
+    a owl:Class ;
+    rdfs:label "Exchange Format Specification"@en ;
+    rdfs:comment "A technical specification defining a serialization format for compliance document content (e.g. SPDX, CycloneDX)."@en .
+
+bom:valueConstraint
+    a owl:ObjectProperty ;
+    rdfs:subPropertyOf cv:constraint ;
+    rdfs:label "value constraint"@en ;
+    rdfs:domain skos:Concept ;
+    rdfs:comment "Links a concept to a SKOS Collection of allowed values for the mapped field. Sub-property of cv:constraint (CCCEV)."@en .
+
+
+
+
+# ============================================================================
+# PROVISION TYPE VOCABULARY
+# ============================================================================
+# Six provision types aligned with ISO/IEC Directives Part 2 §7 (verbal forms
+# for expressions of provisions) and RFC 2119/BCP 14 keywords.
+# Usage: <source-concept> bom:provisionType <provision-type> .
+# Assertions live in per-standard files (docs/<prefix>/<prefix>.ttl).
+# ============================================================================
+
+bom:provisionType
+    a owl:ObjectProperty ;
+    rdfs:label "provision type"@en ;
+    rdfs:comment "The normative strength of a requirement element (SHALL, SHOULD, MAY, etc.) as one of the bom:provision-types concepts."@en ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept .
+
+bom:provision-types
+    a skos:ConceptScheme ;
+    skos:prefLabel "BOM Provision Types"@en ;
+    dcterms:description "Six provision types aligned with ISO/IEC Directives Part 2 §7 verbal forms and RFC 2119/BCP 14 keywords."@en ;
+    rdfs:seeAlso <https://www.iso.org/sites/directives/current/part2/index.xhtml#_idParaDest-29> ;
+    rdfs:seeAlso <https://www.rfc-editor.org/rfc/rfc2119> ;
+    skos:hasTopConcept
+        bom:Requirement , bom:ConditionalRequirement ,
+        bom:Recommendation , bom:Permission ,
+        bom:PossibilityAndCapability , bom:ExternalConstraint .
+
+bom:Requirement
+    a skos:Concept ;
+    skos:topConceptOf bom:provision-types ;
+    skos:inScheme bom:provision-types ;
+    skos:prefLabel "Requirement"@en ;
+    skos:altLabel "SHALL"@en ;
+    skos:altLabel "MUST"@en ;
+    skos:altLabel "REQUIRED"@en ;
+    skos:definition """The element SHALL be present in every conformant document.
+Absence makes the document non-conformant with the source standard.
+Corresponds to ISO/IEC Directives Part 2 'requirement' (verbal form: shall)
+and RFC 2119 MUST / SHALL / REQUIRED."""@en ;
+    rdfs:seeAlso <https://www.iso.org/sites/directives/current/part2/index.xhtml#_idParaDest-29> ;
+    rdfs:seeAlso <https://www.rfc-editor.org/rfc/rfc2119#section-1> ;
+    skos:relatedMatch dpv:Obligation ;
+    rdfs:seeAlso <https://www.w3.org/TR/odrl-vocab/#term-Duty> .
+
+bom:ConditionalRequirement
+    a skos:Concept ;
+    skos:topConceptOf bom:provision-types ;
+    skos:inScheme bom:provision-types ;
+    skos:prefLabel "Conditional Requirement"@en ;
+    skos:altLabel "SHALL IF"@en ;
+    skos:altLabel "MUST IF"@en ;
+    skos:definition """The element SHALL be present when a stated condition holds
+(e.g. the information exists and the SBOM format can represent the data field).
+An extension of the ISO/IEC 'requirement' provision type scoped to a specific
+condition. RFC 2119 has no dedicated keyword; expressed as MUST with an explicit
+condition."""@en ;
+    skos:scopeNote """BSI TR-03183-2 (2025) uses this tier explicitly:
+'MUST additionally include ... if it exists and fulfils the requirements of an
+SBOM format specification for the specific data field'."""@en ;
+    rdfs:seeAlso <https://www.iso.org/sites/directives/current/part2/index.xhtml#_idParaDest-29> ;
+    rdfs:seeAlso <https://www.rfc-editor.org/rfc/rfc2119#section-1> .
+
+bom:Recommendation
+    a skos:Concept ;
+    skos:topConceptOf bom:provision-types ;
+    skos:inScheme bom:provision-types ;
+    skos:prefLabel "Recommendation"@en ;
+    skos:altLabel "SHOULD"@en ;
+    skos:altLabel "RECOMMENDED"@en ;
+    skos:definition """The element SHOULD be present. There may be valid reasons to omit it
+in particular circumstances, but the full implications must be understood and weighed.
+Corresponds to ISO/IEC Directives Part 2 'recommendation' (verbal form: should)
+and RFC 2119 SHOULD / RECOMMENDED."""@en ;
+    rdfs:seeAlso <https://www.iso.org/sites/directives/current/part2/index.xhtml#_idParaDest-29> ;
+    rdfs:seeAlso <https://www.rfc-editor.org/rfc/rfc2119#section-3> ;
+    skos:relatedMatch dpv:Recommendation .
+
+bom:Permission
+    a skos:Concept ;
+    skos:topConceptOf bom:provision-types ;
+    skos:inScheme bom:provision-types ;
+    skos:prefLabel "Permission"@en ;
+    skos:altLabel "MAY"@en ;
+    skos:altLabel "OPTIONAL"@en ;
+    skos:definition """The element MAY be present. Absence has no conformance implication.
+Corresponds to ISO/IEC Directives Part 2 'permission' (verbal form: may)
+and RFC 2119 MAY / OPTIONAL."""@en ;
+    rdfs:seeAlso <https://www.iso.org/sites/directives/current/part2/index.xhtml#_idParaDest-29> ;
+    rdfs:seeAlso <https://www.rfc-editor.org/rfc/rfc2119#section-5> ;
+    skos:relatedMatch dpv:Permission ;
+    rdfs:seeAlso <https://www.w3.org/TR/odrl-vocab/#term-Permission> .
+
+bom:PossibilityAndCapability
+    a skos:Concept ;
+    skos:topConceptOf bom:provision-types ;
+    skos:inScheme bom:provision-types ;
+    skos:prefLabel "Possibility and Capability"@en ;
+    skos:altLabel "CAN"@en ;
+    skos:definition """Expresses that an SBOM element or feature can be represented
+(a statement of technical capability or possibility), not a normative obligation.
+Corresponds to ISO/IEC Directives Part 2 'possibility and capability'
+(verbal form: can). Has no RFC 2119 equivalent."""@en ;
+    skos:scopeNote "Included for ISO completeness; relevant when annotating exchange format specifications."@en ;
+    rdfs:seeAlso <https://www.iso.org/sites/directives/current/part2/index.xhtml#_idParaDest-29> .
+
+bom:ExternalConstraint
+    a skos:Concept ;
+    skos:topConceptOf bom:provision-types ;
+    skos:inScheme bom:provision-types ;
+    skos:prefLabel "External Constraint"@en ;
+    skos:altLabel "MUST"@en ;
+    skos:definition """The element must be present due to an obligation imposed by an
+external law, regulation, or normative document outside the scope of the SBOM
+information requirement specification itself. Corresponds to ISO/IEC Directives
+Part 2 'external constraint' (verbal form: must, distinct from shall).
+Has no RFC 2119 equivalent (RFC 2119 treats MUST and SHALL as synonyms;
+ISO does not)."""@en ;
+    skos:scopeNote "Relevant when an element is mandated by legislation (e.g. EU CRA) rather than by the standard itself."@en ;
+    rdfs:seeAlso <https://www.iso.org/sites/directives/current/part2/index.xhtml#_idParaDest-29> .
+
+
+# ============================================================================
+# BRIDGE CONCEPT SCHEME
+# ============================================================================
+# Neutral concepts abstracted from all supported minimum-element standards.
+# Intended use: mapping_justification in SSSOM crosswalks.
+# ============================================================================
+
+bom:bridge
+    a skos:ConceptScheme ;
+    skos:prefLabel "Baseline Obligations Mapping - Bridge Concepts"@en ;
+    dcterms:title "Baseline-information Obligations Mapping ontology -- Bridge Concept Scheme" ;
+    dcterms:description "Neutral bridge concepts covering the union of minimum elements defined in: NTIA (2021), CISA FSCT (3rd Ed.) (2024), CISA (2025), G7 SBOM for AI (2026), and BSI TR-03183-2 (2025)."@en ;
+    owl:versionInfo "0.1.0" ;
+    skos:hasTopConcept
+        bom:bom-document ,
+        bom:bom-component ,
+        bom:bom-sw ,
+        bom:bom-ai ,
+        bom:bom-dataset ,
+        bom:bom-infra ,
+        bom:bom-security .
+
+# -- Bridge category concepts (top concepts) ----------------------------------
+
+bom:bom-document
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:topConceptOf bom:bridge ;
+    skos:prefLabel "Bill of Materials Document"@en ;
+    skos:definition "Concepts describing the document itself: authorship, format, lifecycle stage, tooling and document-level relationships."@en ;
+    skos:closeMatch dcat:Distribution ;
+    skos:closeMatch schema:DigitalDocument .
+
+bom:bom-component
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:topConceptOf bom:bridge ;
+    skos:prefLabel "Component"@en ;
+    skos:definition "Concepts applicable to any type of software, hardware, AI or data component: name, version, identity, supplier, integrity and licensing."@en ;
+    skos:scopeNote "Intentionally generic — covers any BOM component type (software package, hardware part, AI model, dataset). No category-level external alignment is asserted here; more specific alignments are carried by specialised category concepts: bom:bom-sw (software packages), bom:bom-ai (AI/ML systems and models), bom:bom-dataset (datasets). Generic leaf concepts that apply to all component types (name, version, identifier, supplier, license, etc.) are placed directly under this concept."@en .
+
+bom:bom-sw
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:topConceptOf bom:bridge ;
+    skos:prefLabel "Software Component"@en ;
+    skos:definition "Concepts specific to software package components: executable characteristics, archive structure, filename and other properties that apply to software but not to hardware or data components."@en ;
+    skos:closeMatch schema:SoftwareApplication ;
+    skos:scopeNote "Software-generic attributes (name, version, identifier, supplier, license, etc.) are under bom:bom-component. bom:bom-sw carries only software-specific attributes. NTIA (2021) minimum elements are software-specific; BSI TR-03183-2 (2025) executable/archive/structured properties are the primary leaf concepts here."@en .
+
+bom:bom-ai
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:topConceptOf bom:bridge ;
+    skos:prefLabel "AI System and Model"@en ;
+    skos:definition "Concepts specific to AI systems and models not captured by generic component attributes: application domain, data flows, model properties and training."@en ;
+    skos:closeMatch dcat:Dataset ;
+    skos:closeMatch mls:Model ;
+    skos:closeMatch schema:SoftwareApplication ;
+    skos:closeMatch ai:AISystem ;
+    skos:closeMatch ai:Model ;
+    skos:scopeNote "In DCAT-AP, AI models are catalogued as dcat:Dataset instances; in W3C MLS, a trained model is mls:Model; in MLDCAT-AP 3.1.0 a more specific MachineLearningModel class is introduced. See https://semiceu.github.io/MLDCAT-AP/releases/3.1.0/. schema:SoftwareApplication covers AI systems deployed as software. DPV AI (v2.3) provides ai:AISystem for deployed AI systems and ai:Model as the base class for all AI models; see https://w3c-cg.github.io/dpv/2.3/ai/."@en .
+
+bom:bom-dataset
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:topConceptOf bom:bridge ;
+    skos:prefLabel "Dataset"@en ;
+    skos:definition "Concepts specific to datasets: content type, provenance, statistical characteristics and sensitivity."@en ;
+    skos:exactMatch dcat:Dataset ;
+    skos:closeMatch schema:Dataset .
+
+bom:bom-infra
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:topConceptOf bom:bridge ;
+    skos:prefLabel "Infrastructure"@en ;
+    skos:definition "Concepts describing the software and hardware environment required to run the system."@en .
+
+bom:bom-security
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:topConceptOf bom:bridge ;
+    skos:prefLabel "Security"@en ;
+    skos:definition "Concepts describing security controls, compliance, disclosure policies, vulnerability references and performance metrics."@en .
+
+
+# -- SBOM Document leaf concepts -----------------------------------------------
+
+bom:doc-author
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-document ;
+    skos:prefLabel "Document author"@en ;
+    skos:altLabel "Author of SBOM Data"@en ;            # NTIA label
+    skos:altLabel "Author Name"@en ;                    # FSCT (3rd Ed.) label
+    skos:definition "The agent (person, organisation or tool) that produced the document."@en ;
+    skos:closeMatch dcterms:creator ;
+    skos:closeMatch schema:author .
+
+bom:doc-timestamp
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-document ;
+    skos:prefLabel "Document timestamp"@en ;
+    skos:altLabel "Timestamp"@en ;
+    skos:definition "The date and time at which the document was created."@en ;
+    skos:relatedMatch dcterms:created ;
+    skos:closeMatch schema:dateCreated .
+
+bom:doc-lifecycle-stage
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-document ;
+    skos:prefLabel "Document lifecycle stage"@en ;
+    skos:altLabel "Document type"@en ;                      # FSCT (3rd Ed.), SPDX 3 label
+    skos:altLabel "SBOM generation context"@en ;        # G7 AI, CISA 2025 label
+    skos:definition "The lifecycle stage or context in which the SBOM was generated (e.g. build, analysed, deployed, runtime)."@en ;
+    skos:scopeNote "Terminology variant: 'SBOM type' is used in CISA FSCT (3rd Ed.) (2024) and SPDX 3; 'SBOM generation context' is used in G7 SBOM for AI (2026) and CISA (2025). Both refer to the same concept."@en ;
+    skos:closeMatch ai:LifecycleStage .
+
+bom:doc-primary-component
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-document ;
+    skos:prefLabel "Document primary component"@en ;
+    skos:altLabel "Primary Component"@en ;
+    skos:definition "The top-level component or system that the SBOM describes (the SBOM's root subject)."@en .
+
+bom:doc-dependency-relationship
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-document ;
+    skos:prefLabel "Document dependency relationship"@en ;
+    skos:altLabel "Dependency Relationship"@en ;
+    skos:definition "Explicit dependency relationships between components recorded in the SBOM."@en .
+
+bom:doc-version
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-document ;
+    skos:prefLabel "Document version"@en ;
+    skos:definition "A version identifier for this specific instance of the document."@en ;
+    skos:scopeNote "Required by G7 SBOM for AI (2026). Not explicitly required by NTIA or FSCT (3rd Ed.), though SPDX supports it via Element.version."@en ;
+    skos:relatedMatch dcat:version .
+
+bom:doc-spec-version
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-document ;
+    skos:prefLabel "Document spec version"@en ;
+    skos:altLabel "Data format name"@en ;          # G7AI MD-03 label
+    skos:altLabel "Data format version"@en ;       # G7AI MD-04 label
+    skos:definition "The name and/or version of the SBOM data format specification used (e.g. 'SPDX 3.1', 'CycloneDX 1.6')."@en ;
+    skos:scopeNote "G7 AI separates format name (MD-03) and format version (MD-04); they share this bridge concept because SPDX encodes both in specVersion."@en .
+
+bom:doc-tool
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-document ;
+    skos:prefLabel "Document tool"@en ;
+    skos:altLabel "Tool name"@en ;
+    skos:altLabel "Tool version"@en ;
+    skos:definition "The name and/or version of the software tool used to generate the SBOM."@en ;
+    skos:scopeNote "Required by G7 SBOM for AI (2026). Not explicitly required by NTIA or FSCT (3rd Ed.)."@en .
+
+bom:doc-integrity
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-document ;
+    skos:prefLabel "Document integrity"@en ;
+    skos:altLabel "Author signature"@en ;          # G7AI MD-05 label
+    skos:definition "A cryptographic signature, hash or other integrity mechanism allowing verification of the document."@en ;
+    skos:scopeNote "Required by G7 SBOM for AI (2026). Not yet required by NTIA or FSCT (3rd Ed.). No native digital-signature field in SPDX 3.1-dev; typically attached externally (JWS, PGP detached)."@en .
+
+bom:doc-identifier
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-document ;
+    skos:prefLabel "Document identifier"@en ;
+    skos:altLabel "BOM-URI"@en ;
+    skos:definition "A persistent URI that uniquely identifies this SBOM document instance."@en ;
+    skos:scopeNote "Required (if it exists) by BSI TR-03183-2 (2025). Maps to SPDX software_Sbom.spdxId and CycloneDX serialNumber."@en ;
+    skos:relatedMatch dcterms:identifier ;
+    skos:closeMatch schema:identifier .
+
+
+# -- Component leaf concepts ---------------------------------------------------
+
+bom:component-name
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-component ;
+    skos:prefLabel "Component name"@en ;
+    skos:definition "The human-readable name of a software, AI model or dataset component."@en ;
+    skos:relatedMatch dcterms:title ;
+    skos:exactMatch schema:name .
+
+bom:component-version
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-component ;
+    skos:prefLabel "Component version"@en ;
+    skos:definition "A version or release identifier for a specific snapshot of the component."@en ;
+    skos:relatedMatch dcat:version ;
+    skos:closeMatch schema:softwareVersion .
+
+bom:component-supplier
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-component ;
+    skos:prefLabel "Component supplier"@en ;
+    skos:altLabel "Supplier Name"@en ;
+    skos:definition "The organisation or person that supplied or distributed the component."@en ;
+    skos:relatedMatch dcterms:publisher ;
+    skos:relatedMatch schema:manufacturer .
+
+bom:component-identifier
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-component ;
+    skos:prefLabel "Component identifier"@en ;
+    skos:altLabel "Unique Identifier"@en ;
+    skos:altLabel "PURL"@en ;
+    skos:definition "A stable, unique identifier for the component -- typically a PURL (Package URL), SPDX ID, DOI or similar."@en ;
+    skos:scopeNote "SPDX 3.x maps this to Software.Package.packageUrl (PURL) for external identifiers and Element.spdxId for the internal SPDX identifier."@en ;
+    skos:relatedMatch dcterms:identifier ;
+    skos:closeMatch schema:identifier .
+
+bom:component-hash
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-component ;
+    skos:prefLabel "Component hash"@en ;
+    skos:altLabel "Cryptographic Hash"@en ;
+    skos:definition "A cryptographic hash of the component artifact (algorithm + digest) for integrity verification."@en .
+
+bom:component-relationship
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-component ;
+    skos:prefLabel "Component relationship"@en ;
+    skos:altLabel "Relationship"@en ;
+    skos:definition "A typed relationship between two components (e.g. CONTAINS, DEPENDS_ON, TRAINED_ON, HAS_PREREQUISITE) with an optional completeness indication."@en .
+
+bom:component-license
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-component ;
+    skos:prefLabel "Component license"@en ;
+    skos:altLabel "Concluded License"@en ;
+    skos:altLabel "Declared License"@en ;
+    skos:definition "The declared or concluded license under which the component is distributed (expressed as an SPDX license expression or similar)."@en ;
+    skos:relatedMatch dcterms:license ;
+    skos:closeMatch schema:license .
+
+bom:component-copyright
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-component ;
+    skos:prefLabel "Component copyright"@en ;
+    skos:altLabel "Copyright Notice"@en ;
+    skos:definition "The copyright notice or holder information for the component."@en ;
+    skos:relatedMatch dcterms:rights ;
+    skos:closeMatch schema:copyrightNotice .
+
+bom:component-timestamp
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-component ;
+    skos:prefLabel "Component timestamp"@en ;
+    skos:altLabel "Build time"@en ;
+    skos:altLabel "Release time"@en ;
+    skos:definition "The date and time the component was built or officially released."@en ;
+    skos:scopeNote "Required by G7 SBOM for AI (2026) at both system and model level. Not explicitly required by NTIA or FSCT (3rd Ed.)."@en ;
+    skos:relatedMatch dcterms:issued ;
+    skos:closeMatch schema:datePublished .
+
+bom:component-description
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-component ;
+    skos:prefLabel "Component description"@en ;
+    skos:definition "A free-text description of the component's purpose, architecture or key characteristics."@en ;
+    skos:scopeNote "Required by G7 SBOM for AI (2026) for models and datasets. Not explicitly required by NTIA or FSCT (3rd Ed.)."@en ;
+    skos:relatedMatch dcterms:description ;
+    skos:closeMatch schema:description .
+
+bom:component-external-reference
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-component ;
+    skos:prefLabel "Component external reference"@en ;
+    skos:definition "Links to supplementary resources for the component such as model cards, research papers, repositories, or registries."@en ;
+    skos:scopeNote "Required by G7 SBOM for AI (2026) for AI models. Maps to SPDX Element.externalRef and Element.externalIdentifier."@en ;
+    skos:relatedMatch dcat:landingPage ;
+    skos:relatedMatch schema:url ;
+    skos:relatedMatch schema:codeRepository .
+
+bom:component-filename
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-sw ;
+    skos:prefLabel "Component filename"@en ;
+    skos:definition "The actual filename of the component (without path) as it appears in the delivered artifact."@en ;
+    skos:scopeNote "Required by BSI TR-03183-2 (2025). In SPDX 3.x represented via a software_File element linked by hasDistributionArtifact; in CycloneDX via BSI property taxonomy key bsi:component:filename."@en .
+
+bom:component-executable-property
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-sw ;
+    skos:prefLabel "Component executable property"@en ;
+    skos:definition "Whether the component is an executable file (compiled binary, interpreted script, or shared library)."@en ;
+    skos:scopeNote "Required by BSI TR-03183-2 (2025). In SPDX 3.x mapped via software_File.software_additionalPurpose; in CycloneDX via BSI property taxonomy key bsi:component:executable. See https://github.com/BSI-Bund/tr-03183-cyclonedx-property-taxonomy."@en .
+
+bom:component-archive-property
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-sw ;
+    skos:prefLabel "Component archive property"@en ;
+    skos:definition "Whether the component is an archive that combines multiple sub-components (e.g. a zip, rpm, container image)."@en ;
+    skos:scopeNote "Required by BSI TR-03183-2 (2025). In SPDX 3.x: software_additionalPurpose; in CycloneDX: bsi:component:archive property."@en .
+
+bom:component-structured-property
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-sw ;
+    skos:prefLabel "Component structured property"@en ;
+    skos:definition "Whether the component is a structured archive whose internal component metadata is still recoverable (e.g. zip, tar, container image) vs an unstructured archive such as a firmware image."@en ;
+    skos:scopeNote "Required by BSI TR-03183-2 (2025). In SPDX 3.x: software_additionalPurpose (container = structured, firmware = unstructured); in CycloneDX: bsi:component:structured property."@en .
+
+
+# -- AI/ML leaf concepts -------------------------------------------------------
+
+bom:ai-application-domain
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-ai ;
+    skos:prefLabel "AI application domain"@en ;
+    skos:altLabel "Intended application area"@en ;      # G7AI SLP-09 label
+    skos:definition "The domain(s) or application area(s) for which the AI system is intended (e.g. healthcare, finance, autonomous driving)."@en ;
+    skos:relatedMatch dcterms:subject ;
+    skos:relatedMatch mls:Task ;
+    skos:relatedMatch schema:applicationCategory ;
+    skos:scopeNote "MLDCAT-AP 3.1.0 uses MachineLearningModel.intendedUse for this concept. See https://semiceu.github.io/MLDCAT-AP/releases/3.1.0/#MachineLearningModel.intendeduse. schema:applicationCategory applies when the AI system is described as a schema:SoftwareApplication."@en .
+
+bom:ai-data-flow
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-ai ;
+    skos:prefLabel "AI data flow"@en ;
+    skos:definition "A description of how data flows into, through and out of the AI system."@en ;
+    skos:scopeNote "No first-class field in SPDX 3.1-dev; closest is informationAboutApplication. Gap identified for future SPDX AI profile extension."@en .
+
+bom:ai-data-usage
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-ai ;
+    skos:prefLabel "AI data usage"@en ;
+    skos:definition "A description of how data (including personal or sensitive data) is used by the AI system."@en .
+
+bom:ai-io-properties
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-ai ;
+    skos:prefLabel "AI input/output properties"@en ;
+    skos:definition "The types, modalities and constraints on data accepted as input and produced as output by the AI system or model."@en ;
+    skos:relatedMatch mls:hasInput ;
+    skos:relatedMatch mls:hasOutput ;
+    skos:scopeNote "In W3C MLS, mls:hasInput and mls:hasOutput are object properties of mls:Run (a training/evaluation execution), not of mls:Model directly. Used here as relatedMatch because the I/O of a training run approximates the I/O interface of the resulting model. No structured I/O schema field in SPDX 3.1-dev; partially covered by typeOfModel (modality) and informationAboutApplication. MLDCAT-AP 3.1.0 provides more specific MachineLearningModel.hasInputModality / hasOutputModality properties. See https://semiceu.github.io/MLDCAT-AP/releases/3.1.0/#MachineLearningModel"@en .
+
+bom:ai-model-properties
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-ai ;
+    skos:prefLabel "AI model properties"@en ;
+    skos:definition "AI-specific technical properties of a model: type, explainability, autonomy level, safety risk assessment and energy profile."@en ;
+    skos:relatedMatch mls:Model ;
+    skos:relatedMatch mls:Algorithm ;
+    skos:relatedMatch ai:MachineLearningModel ;
+    skos:scopeNote "MLDCAT-AP 3.1.0 covers risk properties via its HarmRisk class. See https://semiceu.github.io/MLDCAT-AP/releases/3.1.0/#HarmRisk. DPV AI ai:MachineLearningModel extends the base ai:Model class with ML-specific properties. See https://w3c-cg.github.io/dpv/2.3/ai/."@en .
+
+bom:ai-training-properties
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-ai ;
+    skos:prefLabel "AI training properties"@en ;
+    skos:definition "Characteristics of the model's training process: hyperparameters, data pre-processing steps, fine-tuning configuration and energy consumption."@en ;
+    skos:relatedMatch mls:Run ;
+    skos:relatedMatch mls:HyperParameter ;
+    skos:relatedMatch ai:ModelTraining ;
+    skos:scopeNote "MLDCAT-AP 3.1.0 uses MachineLearningModel.designSpecifications and trainingProcess for these concepts. See https://semiceu.github.io/MLDCAT-AP/releases/3.1.0/#MachineLearningModel. DPV AI ai:ModelTraining is the class representing the model training process. See https://w3c-cg.github.io/dpv/2.3/ai/."@en .
+
+
+# -- Dataset leaf concepts -----------------------------------------------------
+
+bom:dataset-type
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-dataset ;
+    skos:prefLabel "Dataset type"@en ;
+    skos:altLabel "Dataset content"@en ;
+    skos:definition "The type(s) or modality of data in the dataset (e.g. image, text, audio, tabular) and its size."@en ;
+    skos:relatedMatch dcterms:type .
+
+bom:dataset-provenance
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-dataset ;
+    skos:prefLabel "Dataset provenance"@en ;
+    skos:definition "Information about how, when and where the dataset was collected, updated and pre-processed."@en ;
+    skos:relatedMatch dcterms:provenance ;
+    skos:relatedMatch ai:DataCollection ;
+    skos:relatedMatch ai:DataPreparation ;
+    skos:scopeNote "dcterms:provenance focuses on ownership/custody chain; dataset provenance in SBOM covers collection methodology, pre-processing and curation. MLDCAT-AP 3.1.0 covers this more precisely via Dataset.dataProvenance, collectionMethod and curationMethod. See https://semiceu.github.io/MLDCAT-AP/releases/3.1.0/#Dataset. DPV AI ai:DataCollection covers how data was gathered; ai:DataPreparation covers pre-processing steps. See https://w3c-cg.github.io/dpv/2.3/ai/."@en .
+
+bom:dataset-statistical-properties
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-dataset ;
+    skos:prefLabel "Dataset statistical properties"@en ;
+    skos:definition "Statistical characteristics of the dataset including size, noise levels, known biases and class distributions."@en ;
+    skos:relatedMatch mls:DatasetCharacteristic ;
+    skos:relatedMatch ai:BiasAssessment ;
+    skos:scopeNote "MLDCAT-AP 3.1.0 covers this via Dataset.biasMethod and Distribution.numberOfDatapoints. See https://semiceu.github.io/MLDCAT-AP/releases/3.1.0/#Dataset. DPV AI ai:BiasAssessment covers the assessment of biases present in the dataset. See https://w3c-cg.github.io/dpv/2.3/ai/."@en .
+
+bom:dataset-sensitivity
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-dataset ;
+    skos:prefLabel "Dataset sensitivity"@en ;
+    skos:definition "The sensitivity classification of the dataset, including whether it contains personal or sensitive data and its confidentiality level."@en ;
+    skos:relatedMatch dcterms:accessRights .
+
+
+# -- Infrastructure leaf concepts ----------------------------------------------
+
+bom:infra-software
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-infra ;
+    skos:prefLabel "Infrastructure software"@en ;
+    skos:definition "The software environment required to run the AI system: container images, OS, ML frameworks and runtime libraries."@en ;
+    skos:relatedMatch mls:Software ;
+    skos:relatedMatch schema:operatingSystem ;
+    skos:relatedMatch schema:runtimePlatform ;
+    skos:scopeNote "MLDCAT-AP 3.1.0 covers ML framework libraries via its Library class. See https://semiceu.github.io/MLDCAT-AP/releases/3.1.0/#Library. schema:operatingSystem and schema:runtimePlatform apply when describing the software environment of a schema:SoftwareApplication."@en .
+
+bom:infra-hardware
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-infra ;
+    skos:prefLabel "Infrastructure hardware"@en ;
+    skos:definition "The hardware required to operate the AI system, including specialised accelerators (GPUs, TPUs, NPUs)."@en ;
+    skos:relatedMatch schema:processorRequirements ;
+    skos:relatedMatch schema:memoryRequirements ;
+    skos:relatedMatch schema:storageRequirements ;
+    skos:scopeNote "Maps to SPDX 3.1-dev Hardware profile (new vs 3.0.1). MLDCAT-AP 3.1.0 covers this via its ComputerInfrastructure class. See https://semiceu.github.io/MLDCAT-AP/releases/3.1.0/#ComputerInfrastructure. schema:processorRequirements, schema:memoryRequirements and schema:storageRequirements apply when describing hardware requirements of a schema:SoftwareApplication."@en .
+
+
+# -- Security leaf concepts ----------------------------------------------------
+
+bom:security-controls
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-security ;
+    skos:prefLabel "Security controls"@en ;
+    skos:definition "The security controls implemented on the AI system (e.g. access controls, encryption, audit logging)."@en ;
+    skos:scopeNote "No first-class field in SPDX 3.1-dev; represented via ExternalRef pointing to control-framework documents."@en .
+
+bom:security-compliance
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-security ;
+    skos:prefLabel "Security compliance"@en ;
+    skos:definition "The security standards, regulations or frameworks the AI system has been assessed against or conforms to (e.g. EU AI Act, ISO/IEC 42001, NIST AI RMF)."@en ;
+    skos:relatedMatch schema:Certification .
+
+bom:security-policy
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-security ;
+    skos:prefLabel "Security policy"@en ;
+    skos:altLabel "Cybersecurity policy information"@en ;
+    skos:definition "References to the supplier's vulnerability-disclosure policy, security.txt or coordinated-disclosure process."@en .
+
+bom:vulnerability-reference
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-security ;
+    skos:prefLabel "Vulnerability reference"@en ;
+    skos:altLabel "Vulnerability referencing"@en ;
+    skos:definition "References to known vulnerabilities (CVEs) and their assessment status (VEX) for the AI system and its components."@en .
+
+bom:performance-metric
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-security ;
+    skos:prefLabel "Performance metric"@en ;
+    skos:altLabel "Security metrics"@en ;
+    skos:altLabel "Operational performance KPIs"@en ;
+    skos:definition "Quantitative security and operational performance metrics and their decision thresholds (e.g. adversarial robustness, accuracy, latency, energy consumption)."@en .

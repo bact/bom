@@ -8,13 +8,13 @@
 @prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
-@prefix ntia:   <https://w3id.org/sbom/req/ntia/> .
-@prefix sbom:    <https://w3id.org/sbom/> .
+@prefix ntia:   <https://w3id.org/bom/req/ntia/> .
+@prefix bom:    <https://w3id.org/bom/> .
 
 # NTIA sub-vocabulary; imports the SBOM bridge ontology
-<https://w3id.org/sbom/req/ntia/>
+<https://w3id.org/bom/req/ntia/>
     a owl:Ontology ;
-    owl:imports <https://w3id.org/sbom/> ;
+    owl:imports <https://w3id.org/bom/> ;
     owl:versionInfo "0.1.0" ;
     dcterms:creator <https://orcid.org/0000-0002-9698-1899> .
 
@@ -24,7 +24,7 @@
 # ============================================================================
 
 ntia:scheme
-    a skos:ConceptScheme, sbom:InfoRequirementSpec ;
+    a skos:ConceptScheme, bom:InfoRequirementSpec ;
     skos:prefLabel "NTIA SBOM Minimum Elements"@en ;
     dcterms:title "NTIA SBOM Minimum Elements Concept Scheme" ;
     dcterms:creator "National Telecommunications and Information Administration (NTIA)" ;
@@ -39,66 +39,66 @@ ntia:supplier
     skos:topConceptOf ntia:scheme ;
     skos:inScheme ntia:scheme ;
     skos:prefLabel "Supplier Name"@en ;
-    skos:notation "SBOM-NTIA-DF-001"^^sbom:SarifRuleId ;
-    skos:exactMatch sbom:component-supplier .
+    skos:notation "BOM-NTIA-DF-001"^^bom:SarifRuleId ;
+    skos:exactMatch bom:component-supplier .
 
 ntia:name
     a skos:Concept ;
     skos:topConceptOf ntia:scheme ;
     skos:inScheme ntia:scheme ;
     skos:prefLabel "Component Name"@en ;
-    skos:notation "SBOM-NTIA-DF-002"^^sbom:SarifRuleId ;
-    skos:exactMatch sbom:component-name .
+    skos:notation "BOM-NTIA-DF-002"^^bom:SarifRuleId ;
+    skos:exactMatch bom:component-name .
 
 ntia:version
     a skos:Concept ;
     skos:topConceptOf ntia:scheme ;
     skos:inScheme ntia:scheme ;
     skos:prefLabel "Version of the Component"@en ;
-    skos:notation "SBOM-NTIA-DF-003"^^sbom:SarifRuleId ;
-    skos:exactMatch sbom:component-version .
+    skos:notation "BOM-NTIA-DF-003"^^bom:SarifRuleId ;
+    skos:exactMatch bom:component-version .
 
 ntia:unique-identifier
     a skos:Concept ;
     skos:topConceptOf ntia:scheme ;
     skos:inScheme ntia:scheme ;
     skos:prefLabel "Unique Identifier"@en ;
-    skos:notation "SBOM-NTIA-DF-004"^^sbom:SarifRuleId ;
-    skos:exactMatch sbom:component-identifier .
+    skos:notation "BOM-NTIA-DF-004"^^bom:SarifRuleId ;
+    skos:exactMatch bom:component-identifier .
 
 ntia:dependency-relationship
     a skos:Concept ;
     skos:topConceptOf ntia:scheme ;
     skos:inScheme ntia:scheme ;
     skos:prefLabel "Dependency Relationship"@en ;
-    skos:notation "SBOM-NTIA-DF-005"^^sbom:SarifRuleId ;
-    skos:exactMatch sbom:doc-dependency-relationship .
+    skos:notation "BOM-NTIA-DF-005"^^bom:SarifRuleId ;
+    skos:exactMatch bom:doc-dependency-relationship .
 
 ntia:author
     a skos:Concept ;
     skos:topConceptOf ntia:scheme ;
     skos:inScheme ntia:scheme ;
     skos:prefLabel "Author of SBOM Data"@en ;
-    skos:notation "SBOM-NTIA-DF-006"^^sbom:SarifRuleId ;
-    skos:exactMatch sbom:doc-author .
+    skos:notation "BOM-NTIA-DF-006"^^bom:SarifRuleId ;
+    skos:exactMatch bom:doc-author .
 
 ntia:timestamp
     a skos:Concept ;
     skos:topConceptOf ntia:scheme ;
     skos:inScheme ntia:scheme ;
     skos:prefLabel "Timestamp"@en ;
-    skos:notation "SBOM-NTIA-DF-007"^^sbom:SarifRuleId ;
-    skos:exactMatch sbom:doc-timestamp .
+    skos:notation "BOM-NTIA-DF-007"^^bom:SarifRuleId ;
+    skos:exactMatch bom:doc-timestamp .
 
 
 # ============================================================================
 # OBLIGATION ASSERTIONS
 # ============================================================================
 
-ntia:supplier               sbom:provisionType sbom:Requirement .
-ntia:name                   sbom:provisionType sbom:Requirement .
-ntia:version                sbom:provisionType sbom:Requirement .
-ntia:unique-identifier      sbom:provisionType sbom:Requirement .
-ntia:dependency-relationship sbom:provisionType sbom:Requirement .
-ntia:author                 sbom:provisionType sbom:Requirement .
-ntia:timestamp              sbom:provisionType sbom:Requirement .
+ntia:supplier               bom:provisionType bom:Requirement .
+ntia:name                   bom:provisionType bom:Requirement .
+ntia:version                bom:provisionType bom:Requirement .
+ntia:unique-identifier      bom:provisionType bom:Requirement .
+ntia:dependency-relationship bom:provisionType bom:Requirement .
+ntia:author                 bom:provisionType bom:Requirement .
+ntia:timestamp              bom:provisionType bom:Requirement .

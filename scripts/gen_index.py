@@ -15,7 +15,7 @@ import rdflib
 from rdflib.namespace import RDF, RDFS, SKOS, OWL
 
 DCTERMS = rdflib.Namespace("http://purl.org/dc/terms/")
-SBOM    = rdflib.Namespace("https://w3id.org/sbom/")
+BOM     = rdflib.Namespace("https://w3id.org/bom/")
 XSD     = rdflib.Namespace("http://www.w3.org/2001/XMLSchema#")
 
 ROOT = pathlib.Path(__file__).parent.parent / "docs"
@@ -112,7 +112,7 @@ def build_html(ttl_path: pathlib.Path) -> str:
         defn      = first(g, c, SKOS.definition)
         scope     = first(g, c, SKOS.scopeNote)
         notations = sorted(str(n) for n in g.objects(c, SKOS.notation))
-        pt        = next(g.objects(c, SBOM.provisionType), None)
+        pt        = next(g.objects(c, BOM.provisionType), None)
         pt_label  = provision_label(g, pt)
         broader   = next(g.objects(c, SKOS.broader), None)
         broader_local = str(broader).split("/")[-1] if broader else ""
@@ -154,7 +154,7 @@ def build_html(ttl_path: pathlib.Path) -> str:
 </head>
 <body>
 
-<p class="meta"><a href="{root_rel}">SBOM Bridging Ontology for Mapping</a></p>
+<p class="meta"><a href="{root_rel}">Baseline-information Obligations Mapping ontology</a></p>
 <h1>{html.escape(title)}</h1>
 <p class="meta">Namespace: <code><a href="{html.escape(namespace)}">{html.escape(namespace)}</a></code>
   &nbsp;|&nbsp; <a href="{ttl_rel}">{ttl_rel}</a>{"&nbsp;|&nbsp; v" + html.escape(version) if version else ""}</p>
@@ -166,8 +166,8 @@ def build_html(ttl_path: pathlib.Path) -> str:
 <footer>
   <a href="https://orcid.org/0000-0002-9698-1899">Arthit Suriyawongkul</a> &nbsp;|&nbsp;
   <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0-1.0</a> &nbsp;|&nbsp;
-  <a href="https://github.com/openregtech/sbom">github.com/openregtech/sbom</a> &nbsp;|&nbsp;
-  <a href="{root_rel}">SBOM Bridging Ontology for Mapping</a>
+  <a href="https://github.com/bact/bom">github.com/bact/bom</a> &nbsp;|&nbsp;
+  <a href="{root_rel}">Baseline-information Obligations Mapping ontology</a>
 </footer>
 
 </body>

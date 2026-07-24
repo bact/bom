@@ -6,18 +6,18 @@
 @prefix dpv:     <https://w3id.org/dpv#> .
 @prefix cv:      <http://data.europa.eu/m8g/> .
 
-@prefix sbom:    <https://w3id.org/sbom/> .
-@prefix euaiact: <https://w3id.org/sbom/reg/euaiact/> .
+@prefix bom:    <https://w3id.org/bom/> .
+@prefix euaiact: <https://w3id.org/bom/reg/euaiact/> .
 @prefix eli:     <http://data.europa.eu/eli/ontology#> .
 
 # EU AI Act -- Annex VIII Section C
 # Information to be submitted by DEPLOYERS of high-risk AI systems (Art. 49(3))
 # 5 items. Required when deployer is a public authority or EU institution/agency/body.
 
-<https://w3id.org/sbom/reg/euaiact/anx8-c/>
+<https://w3id.org/bom/reg/euaiact/anx8-c/>
     a owl:Ontology ;
-    owl:imports <https://w3id.org/sbom/> ;
-    owl:imports <https://w3id.org/sbom/reg/euaiact/art49/> ;
+    owl:imports <https://w3id.org/bom/> ;
+    owl:imports <https://w3id.org/bom/reg/euaiact/art49/> ;
     dcterms:title "EU AI Act -- Annex VIII Section C: Deployer Registration (Art. 49(3))"@en ;
     dcterms:description """SKOS concept scheme for the 5 information items required
 by EU AI Act Annex VIII Section C. Applies to deployers of high-risk AI systems
@@ -33,7 +33,7 @@ Filed in addition to the provider's Section A registration."""@en ;
     rdfs:seeAlso <http://data.europa.eu/eli/reg/2024/1689/anx_8/oj> .
 
 euaiact:scheme-anx8-c
-    a skos:ConceptScheme, sbom:RegulatorySpec ;
+    a skos:ConceptScheme, bom:RegulatorySpec ;
     skos:prefLabel "EU AI Act -- Annex VIII Section C (Art. 49(3))"@en ;
     dcterms:description """5 registration items for deployers (public authorities /
 EU institutions) of high-risk AI systems. Source: Annex VIII Section C,
@@ -64,70 +64,70 @@ euaiact:anx8-c1-deployer-info
     skos:inScheme euaiact:scheme-anx8-c ;
     skos:broader euaiact:anx8-c ;
     skos:notation "C.1" ;
-    skos:notation "SBOM-EUAIACT-ANX8-C-001"^^sbom:SarifRuleId ;
+    skos:notation "BOM-EUAIACT-ANX8-C-001"^^bom:SarifRuleId ;
     rdfs:seeAlso <http://data.europa.eu/eli/reg/2024/1689/anx_8/oj> ;
     rdfs:seeAlso <https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401689#anx_VIII> ;
     skos:prefLabel "Deployer name, address and contact details (C.1)"@en ;
     skos:definition "The name, address and contact details of the deployer. (Annex VIII Sec.C item 1)"@en ;
-    skos:closeMatch sbom:component-supplier ;
+    skos:closeMatch bom:component-supplier ;
     dpv:hasDataSubject dpv:PublicAuthority .
 
-euaiact:anx8-c1-deployer-info sbom:provisionType sbom:ExternalConstraint .
+euaiact:anx8-c1-deployer-info bom:provisionType bom:ExternalConstraint .
 
 euaiact:anx8-c2-deployer-submitter
     a skos:Concept ;
     skos:inScheme euaiact:scheme-anx8-c ;
     skos:broader euaiact:anx8-c ;
     skos:notation "C.2" ;
-    skos:notation "SBOM-EUAIACT-ANX8-C-002"^^sbom:SarifRuleId ;
+    skos:notation "BOM-EUAIACT-ANX8-C-002"^^bom:SarifRuleId ;
     rdfs:seeAlso <http://data.europa.eu/eli/reg/2024/1689/anx_8/oj> ;
     rdfs:seeAlso <https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401689#anx_VIII> ;
     skos:prefLabel "Submitter acting on behalf of deployer (C.2)"@en ;
     skos:definition """The name, address and contact details of the person
 submitting information on behalf of the deployer.
 (Annex VIII Sec.C item 2)"""@en ;
-    skos:closeMatch sbom:component-supplier .
+    skos:closeMatch bom:component-supplier .
 
-euaiact:anx8-c2-deployer-submitter sbom:provisionType sbom:ExternalConstraint .
+euaiact:anx8-c2-deployer-submitter bom:provisionType bom:ExternalConstraint .
 
 euaiact:anx8-c3-provider-db-url
     a skos:Concept ;
     skos:inScheme euaiact:scheme-anx8-c ;
     skos:broader euaiact:anx8-c ;
     skos:notation "C.3" ;
-    skos:notation "SBOM-EUAIACT-ANX8-C-003"^^sbom:SarifRuleId ;
+    skos:notation "BOM-EUAIACT-ANX8-C-003"^^bom:SarifRuleId ;
     rdfs:seeAlso <http://data.europa.eu/eli/reg/2024/1689/anx_8/oj> ;
     rdfs:seeAlso <https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401689#anx_VIII> ;
     skos:prefLabel "URL of provider's EU database entry (C.3)"@en ;
     skos:definition """The URL of the entry of the AI system in the EU database
 as registered by its provider. (Annex VIII Sec.C item 3)
 Links the deployer's Section C record to the provider's Section A record."""@en ;
-    skos:closeMatch sbom:component-identifier .
+    skos:closeMatch bom:component-identifier .
 
-euaiact:anx8-c3-provider-db-url sbom:provisionType sbom:ExternalConstraint .
+euaiact:anx8-c3-provider-db-url bom:provisionType bom:ExternalConstraint .
 
 euaiact:anx8-c4-fria-summary
     a skos:Concept ;
     skos:inScheme euaiact:scheme-anx8-c ;
     skos:broader euaiact:anx8-c ;
     skos:notation "C.4" ;
-    skos:notation "SBOM-EUAIACT-ANX8-C-004"^^sbom:SarifRuleId ;
+    skos:notation "BOM-EUAIACT-ANX8-C-004"^^bom:SarifRuleId ;
     rdfs:seeAlso <http://data.europa.eu/eli/reg/2024/1689/anx_8/oj> ;
     rdfs:seeAlso <https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401689#anx_VIII> ;
     skos:prefLabel "Fundamental rights impact assessment summary (C.4)"@en ;
     skos:definition """A summary of the findings of the fundamental rights impact
 assessment (FRIA) conducted in accordance with Article 27.
 (Annex VIII Sec.C item 4)"""@en ;
-    skos:closeMatch sbom:security-compliance .
+    skos:closeMatch bom:security-compliance .
 
-euaiact:anx8-c4-fria-summary sbom:provisionType sbom:ExternalConstraint .
+euaiact:anx8-c4-fria-summary bom:provisionType bom:ExternalConstraint .
 
 euaiact:anx8-c5-dpia-summary
     a skos:Concept ;
     skos:inScheme euaiact:scheme-anx8-c ;
     skos:broader euaiact:anx8-c ;
     skos:notation "C.5" ;
-    skos:notation "SBOM-EUAIACT-ANX8-C-005"^^sbom:SarifRuleId ;
+    skos:notation "BOM-EUAIACT-ANX8-C-005"^^bom:SarifRuleId ;
     rdfs:seeAlso <http://data.europa.eu/eli/reg/2024/1689/anx_8/oj> ;
     rdfs:seeAlso <https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401689#anx_VIII> ;
     skos:prefLabel "Data protection impact assessment summary [where applicable] (C.5)"@en ;
@@ -135,10 +135,10 @@ euaiact:anx8-c5-dpia-summary
 carried out in accordance with Article 35 of Regulation (EU) 2016/679 or
 Article 27 of Directive (EU) 2016/680, where applicable.
 (Annex VIII Sec.C item 5)"""@en ;
-    skos:closeMatch sbom:security-compliance ;
+    skos:closeMatch bom:security-compliance ;
     dpv:hasLegalBasis dpv:LegitimateInterest .
 
-euaiact:anx8-c5-dpia-summary sbom:provisionType sbom:ConditionalRequirement .
+euaiact:anx8-c5-dpia-summary bom:provisionType bom:ConditionalRequirement .
 
 euaiact:non-public-anx8-c
     a skos:Collection ;

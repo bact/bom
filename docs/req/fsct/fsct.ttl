@@ -7,13 +7,13 @@
 @prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
-@prefix fsct:  <https://w3id.org/sbom/req/fsct/> .
-@prefix sbom:    <https://w3id.org/sbom/> .
+@prefix fsct:  <https://w3id.org/bom/req/fsct/> .
+@prefix bom:    <https://w3id.org/bom/> .
 
 # FSCT sub-vocabulary; imports the SBOM bridge ontology
-<https://w3id.org/sbom/req/fsct/>
+<https://w3id.org/bom/req/fsct/>
     a owl:Ontology ;
-    owl:imports <https://w3id.org/sbom/> ;
+    owl:imports <https://w3id.org/bom/> ;
     owl:versionInfo "0.1.0" ;
     dcterms:creator <https://orcid.org/0000-0002-9698-1899> .
 
@@ -23,7 +23,7 @@
 # ============================================================================
 
 fsct:scheme
-    a skos:ConceptScheme, sbom:InfoRequirementSpec ;
+    a skos:ConceptScheme, bom:InfoRequirementSpec ;
     skos:prefLabel "CISA FSCT (3rd Ed.) SBOM Minimum Elements"@en ;
     dcterms:title "CISA Framing Software Component Transparency (3rd ed., 2024)" ;
     dcterms:creator "Cybersecurity and Infrastructure Security Agency (CISA)" ;
@@ -41,16 +41,16 @@ fsct:author-name
     skos:topConceptOf fsct:scheme ;
     skos:inScheme fsct:scheme ;
     skos:prefLabel "Author Name"@en ;
-    skos:notation "SBOM-FSCT-META-001"^^sbom:SarifRuleId ;
-    skos:exactMatch sbom:doc-author .
+    skos:notation "BOM-FSCT-META-001"^^bom:SarifRuleId ;
+    skos:exactMatch bom:doc-author .
 
 fsct:timestamp
     a skos:Concept ;
     skos:topConceptOf fsct:scheme ;
     skos:inScheme fsct:scheme ;
     skos:prefLabel "Timestamp"@en ;
-    skos:notation "SBOM-FSCT-META-002"^^sbom:SarifRuleId ;
-    skos:exactMatch sbom:doc-timestamp .
+    skos:notation "BOM-FSCT-META-002"^^bom:SarifRuleId ;
+    skos:exactMatch bom:doc-timestamp .
 
 fsct:sbom-type
     a skos:Concept ;
@@ -58,104 +58,104 @@ fsct:sbom-type
     skos:inScheme fsct:scheme ;
     skos:prefLabel "SBOM Type"@en ;
     skos:altLabel "SBOM generation context"@en ;
-    skos:notation "SBOM-FSCT-META-003"^^sbom:SarifRuleId ;
-    skos:exactMatch sbom:doc-lifecycle-stage .
+    skos:notation "BOM-FSCT-META-003"^^bom:SarifRuleId ;
+    skos:exactMatch bom:doc-lifecycle-stage .
 
 fsct:primary-component
     a skos:Concept ;
     skos:topConceptOf fsct:scheme ;
     skos:inScheme fsct:scheme ;
     skos:prefLabel "Primary Component"@en ;
-    skos:notation "SBOM-FSCT-META-004"^^sbom:SarifRuleId ;
-    skos:exactMatch sbom:doc-primary-component .
+    skos:notation "BOM-FSCT-META-004"^^bom:SarifRuleId ;
+    skos:exactMatch bom:doc-primary-component .
 
 fsct:dependency-relationship
     a skos:Concept ;
     skos:topConceptOf fsct:scheme ;
     skos:inScheme fsct:scheme ;
     skos:prefLabel "Dependency Relationship"@en ;
-    skos:notation "SBOM-FSCT-META-005"^^sbom:SarifRuleId ;
-    skos:exactMatch sbom:doc-dependency-relationship .
+    skos:notation "BOM-FSCT-META-005"^^bom:SarifRuleId ;
+    skos:exactMatch bom:doc-dependency-relationship .
 
 fsct:name
     a skos:Concept ;
     skos:topConceptOf fsct:scheme ;
     skos:inScheme fsct:scheme ;
     skos:prefLabel "Component Name"@en ;
-    skos:notation "SBOM-FSCT-COMP-001"^^sbom:SarifRuleId ;
-    skos:exactMatch sbom:component-name .
+    skos:notation "BOM-FSCT-COMP-001"^^bom:SarifRuleId ;
+    skos:exactMatch bom:component-name .
 
 fsct:version
     a skos:Concept ;
     skos:topConceptOf fsct:scheme ;
     skos:inScheme fsct:scheme ;
     skos:prefLabel "Version"@en ;
-    skos:notation "SBOM-FSCT-COMP-002"^^sbom:SarifRuleId ;
-    skos:exactMatch sbom:component-version .
+    skos:notation "BOM-FSCT-COMP-002"^^bom:SarifRuleId ;
+    skos:exactMatch bom:component-version .
 
 fsct:supplier
     a skos:Concept ;
     skos:topConceptOf fsct:scheme ;
     skos:inScheme fsct:scheme ;
     skos:prefLabel "Supplier"@en ;
-    skos:notation "SBOM-FSCT-COMP-003"^^sbom:SarifRuleId ;
-    skos:exactMatch sbom:component-supplier .
+    skos:notation "BOM-FSCT-COMP-003"^^bom:SarifRuleId ;
+    skos:exactMatch bom:component-supplier .
 
 fsct:unique-identifier
     a skos:Concept ;
     skos:topConceptOf fsct:scheme ;
     skos:inScheme fsct:scheme ;
     skos:prefLabel "Unique Identifier"@en ;
-    skos:notation "SBOM-FSCT-COMP-004"^^sbom:SarifRuleId ;
-    skos:exactMatch sbom:component-identifier .
+    skos:notation "BOM-FSCT-COMP-004"^^bom:SarifRuleId ;
+    skos:exactMatch bom:component-identifier .
 
 fsct:cryptographic-hash
     a skos:Concept ;
     skos:topConceptOf fsct:scheme ;
     skos:inScheme fsct:scheme ;
     skos:prefLabel "Cryptographic Hash"@en ;
-    skos:notation "SBOM-FSCT-COMP-005"^^sbom:SarifRuleId ;
-    skos:exactMatch sbom:component-hash .
+    skos:notation "BOM-FSCT-COMP-005"^^bom:SarifRuleId ;
+    skos:exactMatch bom:component-hash .
 
 fsct:relationship
     a skos:Concept ;
     skos:topConceptOf fsct:scheme ;
     skos:inScheme fsct:scheme ;
     skos:prefLabel "Relationship"@en ;
-    skos:notation "SBOM-FSCT-COMP-006"^^sbom:SarifRuleId ;
-    skos:exactMatch sbom:component-relationship .
+    skos:notation "BOM-FSCT-COMP-006"^^bom:SarifRuleId ;
+    skos:exactMatch bom:component-relationship .
 
 fsct:concluded-license
     a skos:Concept ;
     skos:topConceptOf fsct:scheme ;
     skos:inScheme fsct:scheme ;
     skos:prefLabel "Concluded License"@en ;
-    skos:notation "SBOM-FSCT-COMP-007"^^sbom:SarifRuleId ;
-    skos:exactMatch sbom:component-license .
+    skos:notation "BOM-FSCT-COMP-007"^^bom:SarifRuleId ;
+    skos:exactMatch bom:component-license .
 
 fsct:copyright-notice
     a skos:Concept ;
     skos:topConceptOf fsct:scheme ;
     skos:inScheme fsct:scheme ;
     skos:prefLabel "Copyright Notice"@en ;
-    skos:notation "SBOM-FSCT-COMP-008"^^sbom:SarifRuleId ;
-    skos:exactMatch sbom:component-copyright .
+    skos:notation "BOM-FSCT-COMP-008"^^bom:SarifRuleId ;
+    skos:exactMatch bom:component-copyright .
 
 
 # ============================================================================
 # OBLIGATION ASSERTIONS
 # ============================================================================
 
-fsct:author-name            sbom:provisionType sbom:Requirement .
-fsct:timestamp              sbom:provisionType sbom:Requirement .
-fsct:sbom-type              sbom:provisionType sbom:Requirement .
-fsct:primary-component      sbom:provisionType sbom:Requirement .
-fsct:dependency-relationship sbom:provisionType sbom:Requirement .
-fsct:name                   sbom:provisionType sbom:Requirement .
-fsct:version                sbom:provisionType sbom:Requirement .
-fsct:supplier               sbom:provisionType sbom:Requirement .
-fsct:unique-identifier      sbom:provisionType sbom:Requirement .
-fsct:cryptographic-hash     sbom:provisionType sbom:Requirement .
-fsct:relationship           sbom:provisionType sbom:Requirement .
-fsct:concluded-license      sbom:provisionType sbom:Requirement .
-fsct:copyright-notice       sbom:provisionType sbom:Requirement .
+fsct:author-name            bom:provisionType bom:Requirement .
+fsct:timestamp              bom:provisionType bom:Requirement .
+fsct:sbom-type              bom:provisionType bom:Requirement .
+fsct:primary-component      bom:provisionType bom:Requirement .
+fsct:dependency-relationship bom:provisionType bom:Requirement .
+fsct:name                   bom:provisionType bom:Requirement .
+fsct:version                bom:provisionType bom:Requirement .
+fsct:supplier               bom:provisionType bom:Requirement .
+fsct:unique-identifier      bom:provisionType bom:Requirement .
+fsct:cryptographic-hash     bom:provisionType bom:Requirement .
+fsct:relationship           bom:provisionType bom:Requirement .
+fsct:concluded-license      bom:provisionType bom:Requirement .
+fsct:copyright-notice       bom:provisionType bom:Requirement .

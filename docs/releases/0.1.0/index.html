@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Baseline-information Obligations Mapping ontology v0.1.0</title>
+    <script src="https://www.w3.org/Tools/respec/respec-w3c" class="remove" defer></script>
+    <script class="remove">
+      var respecConfig = {
+        specStatus: "CG-DRAFT",
+        shortName: "bom",
+        publishDate: "2026-06-21",
+        editors: [{
+          name: "Arthit Suriyawongkul",
+          url: "https://orcid.org/0000-0002-9698-1899"
+        }],
+        github: "https://github.com/bact/bom",
+        otherLinks: [{
+          key: "Ontology Source",
+          data: [{
+            value: "Turtle (bom.ttl)",
+            href: "bom.ttl"
+          }]
+        }]
+      };
+    </script>
+    <style>
+      table.definition {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+      }
+      table.definition th, table.definition td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+        vertical-align: top;
+      }
+      table.definition th {
+        background-color: #f2f2f2;
+      }
+      .curie {
+        font-family: monospace;
+        font-weight: bold;
+        color: #0b66c3;
+      }
+    </style>
+  </head>
+  <body>
+    <section id="abstract">
+      <p>
+        This document defines the <strong>Baseline-information Obligations Mapping ontology</strong>, 
+        a bridging vocabulary of stable, persistent identifiers for the minimum elements 
+        required in a Bill of Materials (BOM) and regulatory compliance standards.
+      </p>
+    </section>
+
+    <section id="sotd">
+      <p>
+        This document is a draft version of the Baseline-information Obligations Mapping ontology v0.1.0, 
+        developed to support crosswalk mappings between information requirement specs and exchange formats.
+      </p>
+    </section>
+
+    <section>
+      <h2>Introduction & Architecture</h2>
+      <p>
+        The BOM Ontology bridges the gap between various regulatory obligations, information requirement 
+        specifications, and technical serialization formats (such as SPDX and CycloneDX).
+      </p>
+      <p>
+        It functions in four distinct layers:
+      </p>
+      <ul>
+        <li><strong>Layer A: Information Requirement Specs</strong> — baseline requirements (e.g. NTIA, CISA, FSCT, G7 AI, BSI, MOF).</li>
+        <li><strong>Layer B: Tiered Assessment Frameworks</strong> — maturity level models.</li>
+        <li><strong>Layer C: Regulatory Specs</strong> — legally binding regulations (e.g. EU AI Act).</li>
+        <li><strong>Layer D: The Bridge Ontology</strong> — the canonical concept scheme (<code>bom:</code>) acting as a pivot for all mappings.</li>
+      </ul>
+      <p>
+        Rather than mapping $N \times M$ combinations of formats and specifications directly, all specifications 
+        are mapped via a "one-hop" alignment: <strong>Source Concept &rarr; Bridge Concept &rarr; Exchange Format Field</strong>.
+      </p>
+    </section>
+
+    <section>
+      <h2>Core Classes & Properties</h2>
+      <p>
+        The ontology defines type classes to categorize specifications and properties to model constraints and normative provisions:
+      </p>
+      <table class="definition">
+        <thead>
+          <tr>
+            <th>Term</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="curie">bom:InfoRequirementSpec</td>
+            <td>owl:Class</td>
+            <td>A standard or guidance document specifying which SBOM elements MUST/SHOULD be present.</td>
+          </tr>
+          <tr>
+            <td class="curie">bom:RegulatorySpec</td>
+            <td>owl:Class</td>
+            <td>A legally binding instrument that mandates compliance-related obligations (e.g. EU AI Act).</td>
+          </tr>
+          <tr>
+            <td class="curie">bom:ExchangeFormatSpec</td>
+            <td>owl:Class</td>
+            <td>A technical specification defining a serialization format for SBOM content.</td>
+          </tr>
+          <tr>
+            <td class="curie">bom:valueConstraint</td>
+            <td>owl:ObjectProperty</td>
+            <td>Links a concept to a SKOS Collection of allowed values for the mapped field.</td>
+          </tr>
+          <tr>
+            <td class="curie">bom:provisionType</td>
+            <td>owl:ObjectProperty</td>
+            <td>The normative strength of a requirement element (SHALL, SHOULD, etc.) linking to the provision type vocabulary.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Provision Type Vocabulary</h2>
+      <p>
+         Normative requirements are categorized into six provision types aligned with ISO/IEC Directives Part 2 §7 and RFC 2119:
+      </p>
+      <table class="definition">
+        <thead>
+          <tr>
+            <th>Concept</th>
+            <th>Keywords</th>
+            <th>Definition</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="curie">bom:Requirement</td>
+            <td>SHALL, MUST, REQUIRED</td>
+            <td>Mandatory; absence makes the document non-conformant with the source specification.</td>
+          </tr>
+          <tr>
+            <td class="curie">bom:ConditionalRequirement</td>
+            <td>SHALL IF, MUST IF</td>
+            <td>Mandatory when specific conditions hold (e.g. if the data exists).</td>
+          </tr>
+          <tr>
+            <td class="curie">bom:Recommendation</td>
+            <td>SHOULD, RECOMMENDED</td>
+            <td>Highly recommended; valid reasons may exist to omit the element, but consequences must be understood.</td>
+          </tr>
+          <tr>
+            <td class="curie">bom:Permission</td>
+            <td>MAY, OPTIONAL</td>
+            <td>Completely optional; absence has no conformance implication.</td>
+          </tr>
+          <tr>
+            <td class="curie">bom:PossibilityAndCapability</td>
+            <td>CAN</td>
+            <td>Statement of technical possibility or capability rather than a requirement.</td>
+          </tr>
+          <tr>
+            <td class="curie">bom:ExternalConstraint</td>
+            <td>MUST (External)</td>
+            <td>Mandatory due to external legal requirements or regulations outside the requirement specification.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Bridge Concepts</h2>
+      <p>
+        The neutral bridge concepts are grouped under seven top-level categories:
+      </p>
+
+      <section>
+        <h3>Document Metadata (<code>bom:bom-document</code>)</h3>
+        <table class="definition">
+          <thead>
+            <tr>
+              <th>Concept</th>
+              <th>Preferred Label</th>
+              <th>Definition</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="curie">bom:doc-author</td>
+              <td>Document Author</td>
+              <td>The entity (person, organization, or tool) that created the document.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:doc-timestamp</td>
+              <td>Document Timestamp</td>
+              <td>The timestamp indicating when the document data was compiled.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:doc-identifier</td>
+              <td>Document Identifier</td>
+              <td>A unique identifier (URI or serial number) for the document.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:doc-relationship</td>
+              <td>Document Relationship</td>
+              <td>Defines metadata relationships between the document and its contained elements.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:doc-comment</td>
+              <td>Document Comment</td>
+              <td>General comments or remarks concerning the document itself.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h3>Component Attributes (<code>bom:bom-component</code>)</h3>
+        <table class="definition">
+          <thead>
+            <tr>
+              <th>Concept</th>
+              <th>Preferred Label</th>
+              <th>Definition</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="curie">bom:component-supplier</td>
+              <td>Component Supplier</td>
+              <td>The entity that supplies the component (which might differ from the original developer/author).</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:component-name</td>
+              <td>Component Name</td>
+              <td>The name of the software component as designated by its creator.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:component-version</td>
+              <td>Component Version</td>
+              <td>The version identifier of the component.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:component-identifier</td>
+              <td>Component Identifier</td>
+              <td>Unique identifiers such as CPE, SWID, or Package URL (PURL).</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:component-relationship</td>
+              <td>Component Relationship</td>
+              <td>Dependency, nesting, or compilation relationships between software components.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:component-hash</td>
+              <td>Component Hash</td>
+              <td>Cryptographic checksum (SHA-512, etc.) verifying component integrity.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:component-license</td>
+              <td>Component License</td>
+              <td>Concluded, declared, or effective licenses associated with the component.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:component-external-reference</td>
+              <td>Component External Reference</td>
+              <td>Pointers to external pages, security policies, or vulnerability disclosure locations.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h3>Software-Specific Attributes (<code>bom:bom-sw</code>)</h3>
+        <table class="definition">
+          <thead>
+            <tr>
+              <th>Concept</th>
+              <th>Preferred Label</th>
+              <th>Definition</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="curie">bom:component-executable-property</td>
+              <td>Component Executable Property</td>
+              <td>A flag indicating whether the component is executable (e.g. executable vs library/script).</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:component-archive-property</td>
+              <td>Component Archive Property</td>
+              <td>A flag indicating whether the component is an archive or distribution bundle.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:component-structured-property</td>
+              <td>Component Structured Property</td>
+              <td>A flag indicating whether the component file has structured metadata present.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h3>AI-Specific Attributes (<code>bom:bom-ai</code>)</h3>
+        <table class="definition">
+          <thead>
+            <tr>
+              <th>Concept</th>
+              <th>Preferred Label</th>
+              <th>Definition</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="curie">bom:ai-application-domain</td>
+              <td>AI Application Domain</td>
+              <td>The domain (e.g. healthcare, finance) where the AI model is intended to be used.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:ai-data-flow</td>
+              <td>AI Data Flow</td>
+              <td>Description of inputs, outputs, and information pipelines through the AI system.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:ai-data-usage</td>
+              <td>AI Data Usage</td>
+              <td>Normative limits or conditions on data processed during model inference.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:ai-io-properties</td>
+              <td>AI IO Properties</td>
+              <td>Input and output formats, modalities, and interface properties of the model.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:ai-model-properties</td>
+              <td>AI Model Properties</td>
+              <td>AI model architectural properties (model type, explainability, safety characteristics).</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:ai-training-properties</td>
+              <td>AI Training Properties</td>
+              <td>Hyperparameters, fine-tuning configuration, and hardware resource footprint.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h3>Dataset Attributes (<code>bom:bom-dataset</code>)</h3>
+        <table class="definition">
+          <thead>
+            <tr>
+              <th>Concept</th>
+              <th>Preferred Label</th>
+              <th>Definition</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="curie">bom:dataset-type</td>
+              <td>Dataset Type</td>
+              <td>Modality or types of content inside the dataset (image, text, tabular).</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:dataset-provenance</td>
+              <td>Dataset Provenance</td>
+              <td>Information about collection, preprocessing, and chain of custody.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:dataset-statistical-properties</td>
+              <td>Dataset Statistical Properties</td>
+              <td>Noise levels, class distributions, and bias assessments.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:dataset-sensitivity</td>
+              <td>Dataset Sensitivity</td>
+              <td>Presence of sensitive/personal information and anonymization status.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h3>Infrastructure Attributes (<code>bom:bom-infra</code>)</h3>
+        <table class="definition">
+          <thead>
+            <tr>
+              <th>Concept</th>
+              <th>Preferred Label</th>
+              <th>Definition</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="curie">bom:infra-software</td>
+              <td>Infrastructure Software</td>
+              <td>The software stack (frameworks, runtimes, container images, OS) supporting operation.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:infra-hardware</td>
+              <td>Infrastructure Hardware</td>
+              <td>Hardware host requirements, including specialized computing accelerators (GPUs, TPUs).</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h3>Security Attributes (<code>bom:bom-security</code>)</h3>
+        <table class="definition">
+          <thead>
+            <tr>
+              <th>Concept</th>
+              <th>Preferred Label</th>
+              <th>Definition</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="curie">bom:security-controls</td>
+              <td>Security Controls</td>
+              <td>References to security safeguards, access controls, or encryption methods in place.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:security-compliance</td>
+              <td>Security Compliance</td>
+              <td>Compliance with standards or frameworks (ISO/IEC 42001, NIST AI RMF).</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:security-policy</td>
+              <td>Security Policy</td>
+              <td>Vulnerability disclosure guidelines, contact information, or security.txt.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:vulnerability-reference</td>
+              <td>Vulnerability Reference</td>
+              <td>Known CVEs and VEX assessments linked to the components.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:performance-metric</td>
+              <td>Performance Metric</td>
+              <td>Model performance metrics (adversarial robustness, accuracy thresholds).</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </section>
+  </body>
+</html>

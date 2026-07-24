@@ -7,13 +7,13 @@
 @prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
-@prefix g7ai:   <https://w3id.org/sbom/req/g7ai/> .
-@prefix sbom:    <https://w3id.org/sbom/> .
+@prefix g7ai:   <https://w3id.org/bom/req/g7ai/> .
+@prefix bom:    <https://w3id.org/bom/> .
 
 # G7AI sub-vocabulary; imports the SBOM bridge ontology
-<https://w3id.org/sbom/req/g7ai/>
+<https://w3id.org/bom/req/g7ai/>
     a owl:Ontology ;
-    owl:imports <https://w3id.org/sbom/> ;
+    owl:imports <https://w3id.org/bom/> ;
     owl:versionInfo "0.1.0" ;
     dcterms:creator <https://orcid.org/0000-0002-9698-1899> .
 
@@ -23,7 +23,7 @@
 # ============================================================================
 
 g7ai:scheme
-    a skos:ConceptScheme, sbom:InfoRequirementSpec ;
+    a skos:ConceptScheme, bom:InfoRequirementSpec ;
     skos:prefLabel "G7 SBOM for AI - Minimum Elements"@en ;
     dcterms:title "G7 SBOM for AI - Minimum Elements Concept Scheme" ;
     dcterms:description """Concepts derived from 'Software Bill of Materials (SBOM) for Artificial
@@ -53,7 +53,7 @@ g7ai:metadata
     skos:topConceptOf g7ai:scheme ;
     skos:prefLabel "Metadata"@en ;
     skos:notation "G7AI-MD" ;
-    skos:definition "Elements describing the SBOM document itself: authorship, format, versioning, tooling and relationships."@en .
+    skos:definition "Elements describing the document itself: authorship, format, versioning, tooling and relationships."@en .
 
 g7ai:system-level-properties
     a skos:Concept ;
@@ -109,102 +109,102 @@ g7ai:sbom-author
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
     skos:broader g7ai:metadata ;
-    skos:prefLabel "SBOM author"@en ;
+    skos:prefLabel "Document author"@en ;
     skos:notation "G7AI-MD-01" ;
-    skos:notation "SBOM-G7AI-MD-001"^^sbom:SarifRuleId ;
-    skos:definition "The agent (person, organisation or tool) that produced the SBOM document."@en ;
-    skos:exactMatch sbom:doc-author .
+    skos:notation "BOM-G7AI-MD-001"^^bom:SarifRuleId ;
+    skos:definition "The agent (person, organisation or tool) that produced the document."@en ;
+    skos:exactMatch bom:doc-author .
 
 g7ai:sbom-version
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
     skos:broader g7ai:metadata ;
-    skos:prefLabel "SBOM version"@en ;
+    skos:prefLabel "Document version"@en ;
     skos:notation "G7AI-MD-02" ;
-    skos:notation "SBOM-G7AI-MD-002"^^sbom:SarifRuleId ;
-    skos:definition "A version identifier for this specific instance of the SBOM document."@en ;
-    skos:exactMatch sbom:doc-version .
+    skos:notation "BOM-G7AI-MD-002"^^bom:SarifRuleId ;
+    skos:definition "A version identifier for this specific instance of the document."@en ;
+    skos:exactMatch bom:doc-version .
 
 g7ai:sbom-data-format-name
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
     skos:broader g7ai:metadata ;
-    skos:prefLabel "SBOM data format name"@en ;
+    skos:prefLabel "Data format name"@en ;
     skos:notation "G7AI-MD-03" ;
-    skos:notation "SBOM-G7AI-MD-003"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-MD-003"^^bom:SarifRuleId ;
     skos:definition "The name of the standard or schema used to serialise the SBOM (e.g. SPDX, CycloneDX)."@en ;
-    skos:closeMatch sbom:doc-spec-version .
+    skos:closeMatch bom:doc-spec-version .
 
 g7ai:sbom-data-format-version
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
     skos:broader g7ai:metadata ;
-    skos:prefLabel "SBOM data format version"@en ;
+    skos:prefLabel "Data format version"@en ;
     skos:notation "G7AI-MD-04" ;
-    skos:notation "SBOM-G7AI-MD-004"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-MD-004"^^bom:SarifRuleId ;
     skos:definition "The version of the SBOM data format specification used (e.g. 3.1, 1.6)."@en ;
-    skos:exactMatch sbom:doc-spec-version .
+    skos:exactMatch bom:doc-spec-version .
 
 g7ai:sbom-author-signature
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
     skos:broader g7ai:metadata ;
-    skos:prefLabel "SBOM author signature"@en ;
+    skos:prefLabel "Author signature"@en ;
     skos:notation "G7AI-MD-05" ;
-    skos:notation "SBOM-G7AI-MD-005"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-MD-005"^^bom:SarifRuleId ;
     skos:definition "A cryptographic signature or integrity method that allows verification of SBOM authorship."@en ;
-    skos:exactMatch sbom:doc-integrity .
+    skos:exactMatch bom:doc-integrity .
 
 g7ai:sbom-tool-name
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
     skos:broader g7ai:metadata ;
-    skos:prefLabel "SBOM tool name"@en ;
+    skos:prefLabel "Tool name"@en ;
     skos:notation "G7AI-MD-06" ;
-    skos:notation "SBOM-G7AI-MD-006"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-MD-006"^^bom:SarifRuleId ;
     skos:definition "The name of the software tool used to generate the SBOM."@en ;
-    skos:closeMatch sbom:doc-tool .
+    skos:closeMatch bom:doc-tool .
 
 g7ai:sbom-tool-version
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
     skos:broader g7ai:metadata ;
-    skos:prefLabel "SBOM tool version"@en ;
+    skos:prefLabel "Tool version"@en ;
     skos:notation "G7AI-MD-07" ;
-    skos:notation "SBOM-G7AI-MD-007"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-MD-007"^^bom:SarifRuleId ;
     skos:definition "The version of the software tool used to generate the SBOM."@en ;
-    skos:closeMatch sbom:doc-tool .
+    skos:closeMatch bom:doc-tool .
 
 g7ai:sbom-generation-context
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
     skos:broader g7ai:metadata ;
     skos:prefLabel "SBOM generation context"@en ;
-    skos:altLabel "SBOM type"@en ;
+    skos:altLabel "Document type"@en ;
     skos:notation "G7AI-MD-08" ;
-    skos:notation "SBOM-G7AI-MD-008"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-MD-008"^^bom:SarifRuleId ;
     skos:definition "The lifecycle stage or context in which the SBOM was generated (e.g. build, release, deploy, runtime)."@en ;
-    skos:exactMatch sbom:doc-lifecycle-stage .
+    skos:exactMatch bom:doc-lifecycle-stage .
 
 g7ai:sbom-timestamp
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
     skos:broader g7ai:metadata ;
-    skos:prefLabel "SBOM timestamp"@en ;
+    skos:prefLabel "Document timestamp"@en ;
     skos:notation "G7AI-MD-09" ;
-    skos:notation "SBOM-G7AI-MD-009"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-MD-009"^^bom:SarifRuleId ;
     skos:definition "The date and time at which the SBOM was created."@en ;
-    skos:exactMatch sbom:doc-timestamp .
+    skos:exactMatch bom:doc-timestamp .
 
 g7ai:sbom-dependency-relationship
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
     skos:broader g7ai:metadata ;
-    skos:prefLabel "SBOM dependency relationship"@en ;
+    skos:prefLabel "Document dependency relationship"@en ;
     skos:notation "G7AI-MD-10" ;
-    skos:notation "SBOM-G7AI-MD-010"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-MD-010"^^bom:SarifRuleId ;
     skos:definition "Explicit dependency relationships between components recorded in the SBOM."@en ;
-    skos:exactMatch sbom:doc-dependency-relationship .
+    skos:exactMatch bom:doc-dependency-relationship .
 
 # -- G7AI System Level Properties elements (SLP-01 ... SLP-09) -----------------
 
@@ -214,9 +214,9 @@ g7ai:system-name
     skos:broader g7ai:system-level-properties ;
     skos:prefLabel "System name"@en ;
     skos:notation "G7AI-SLP-01" ;
-    skos:notation "SBOM-G7AI-SLP-001"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-SLP-001"^^bom:SarifRuleId ;
     skos:definition "The name of the AI system as a whole."@en ;
-    skos:closeMatch sbom:component-name .
+    skos:closeMatch bom:component-name .
 
 g7ai:system-components
     a skos:Concept ;
@@ -224,9 +224,9 @@ g7ai:system-components
     skos:broader g7ai:system-level-properties ;
     skos:prefLabel "System components"@en ;
     skos:notation "G7AI-SLP-02" ;
-    skos:notation "SBOM-G7AI-SLP-002"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-SLP-002"^^bom:SarifRuleId ;
     skos:definition "The constituent sub-components (models, datasets, libraries) that make up the AI system."@en ;
-    skos:closeMatch sbom:doc-primary-component .
+    skos:closeMatch bom:doc-primary-component .
 
 g7ai:system-producer
     a skos:Concept ;
@@ -234,9 +234,9 @@ g7ai:system-producer
     skos:broader g7ai:system-level-properties ;
     skos:prefLabel "System producer"@en ;
     skos:notation "G7AI-SLP-03" ;
-    skos:notation "SBOM-G7AI-SLP-003"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-SLP-003"^^bom:SarifRuleId ;
     skos:definition "The organisation or person that developed or supplied the AI system."@en ;
-    skos:closeMatch sbom:component-supplier .
+    skos:closeMatch bom:component-supplier .
 
 g7ai:system-version
     a skos:Concept ;
@@ -244,9 +244,9 @@ g7ai:system-version
     skos:broader g7ai:system-level-properties ;
     skos:prefLabel "System version"@en ;
     skos:notation "G7AI-SLP-04" ;
-    skos:notation "SBOM-G7AI-SLP-004"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-SLP-004"^^bom:SarifRuleId ;
     skos:definition "The release or version identifier of the AI system."@en ;
-    skos:closeMatch sbom:component-version .
+    skos:closeMatch bom:component-version .
 
 g7ai:system-timestamp
     a skos:Concept ;
@@ -254,9 +254,9 @@ g7ai:system-timestamp
     skos:broader g7ai:system-level-properties ;
     skos:prefLabel "System timestamp"@en ;
     skos:notation "G7AI-SLP-05" ;
-    skos:notation "SBOM-G7AI-SLP-005"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-SLP-005"^^bom:SarifRuleId ;
     skos:definition "The date and time the AI system was built or released."@en ;
-    skos:exactMatch sbom:component-timestamp .
+    skos:exactMatch bom:component-timestamp .
 
 g7ai:system-data-flow
     a skos:Concept ;
@@ -264,9 +264,9 @@ g7ai:system-data-flow
     skos:broader g7ai:system-level-properties ;
     skos:prefLabel "System data flow"@en ;
     skos:notation "G7AI-SLP-06" ;
-    skos:notation "SBOM-G7AI-SLP-006"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-SLP-006"^^bom:SarifRuleId ;
     skos:definition "A description of how data flows into, through and out of the AI system."@en ;
-    skos:exactMatch sbom:ai-data-flow .
+    skos:exactMatch bom:ai-data-flow .
 
 g7ai:system-data-usage
     a skos:Concept ;
@@ -274,9 +274,9 @@ g7ai:system-data-usage
     skos:broader g7ai:system-level-properties ;
     skos:prefLabel "System data usage"@en ;
     skos:notation "G7AI-SLP-07" ;
-    skos:notation "SBOM-G7AI-SLP-007"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-SLP-007"^^bom:SarifRuleId ;
     skos:definition "A description of how data (including personal or sensitive data) is used by the AI system."@en ;
-    skos:exactMatch sbom:ai-data-usage .
+    skos:exactMatch bom:ai-data-usage .
 
 g7ai:system-input-output-properties
     a skos:Concept ;
@@ -284,9 +284,9 @@ g7ai:system-input-output-properties
     skos:broader g7ai:system-level-properties ;
     skos:prefLabel "System input/output properties"@en ;
     skos:notation "G7AI-SLP-08" ;
-    skos:notation "SBOM-G7AI-SLP-008"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-SLP-008"^^bom:SarifRuleId ;
     skos:definition "The types, modalities and constraints of data accepted as input and produced as output by the AI system."@en ;
-    skos:exactMatch sbom:ai-io-properties .
+    skos:exactMatch bom:ai-io-properties .
 
 g7ai:system-intended-application-area
     a skos:Concept ;
@@ -294,9 +294,9 @@ g7ai:system-intended-application-area
     skos:broader g7ai:system-level-properties ;
     skos:prefLabel "Intended application area"@en ;
     skos:notation "G7AI-SLP-09" ;
-    skos:notation "SBOM-G7AI-SLP-009"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-SLP-009"^^bom:SarifRuleId ;
     skos:definition "The domain(s) or application area(s) for which the AI system is intended (e.g. healthcare, finance, autonomous driving)."@en ;
-    skos:exactMatch sbom:ai-application-domain .
+    skos:exactMatch bom:ai-application-domain .
 
 # -- G7AI Model elements (MDL-01 ... MDL-13) ------------------------------------
 
@@ -306,9 +306,9 @@ g7ai:model-name
     skos:broader g7ai:models ;
     skos:prefLabel "Model name"@en ;
     skos:notation "G7AI-MDL-01" ;
-    skos:notation "SBOM-G7AI-MDL-001"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-MDL-001"^^bom:SarifRuleId ;
     skos:definition "The human-readable name of an individual AI model component."@en ;
-    skos:closeMatch sbom:component-name .
+    skos:closeMatch bom:component-name .
 
 g7ai:model-identifier
     a skos:Concept ;
@@ -316,9 +316,9 @@ g7ai:model-identifier
     skos:broader g7ai:models ;
     skos:prefLabel "Model identifier"@en ;
     skos:notation "G7AI-MDL-02" ;
-    skos:notation "SBOM-G7AI-MDL-002"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-MDL-002"^^bom:SarifRuleId ;
     skos:definition "A stable, unique identifier for the model (e.g. PURL, SPDX ID, Hugging Face model ID, DOI)."@en ;
-    skos:exactMatch sbom:component-identifier .
+    skos:exactMatch bom:component-identifier .
 
 g7ai:model-version
     a skos:Concept ;
@@ -326,9 +326,9 @@ g7ai:model-version
     skos:broader g7ai:models ;
     skos:prefLabel "Model version"@en ;
     skos:notation "G7AI-MDL-03" ;
-    skos:notation "SBOM-G7AI-MDL-003"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-MDL-003"^^bom:SarifRuleId ;
     skos:definition "A version or checkpoint identifier for the specific weight snapshot of the model."@en ;
-    skos:closeMatch sbom:component-version .
+    skos:closeMatch bom:component-version .
 
 g7ai:model-timestamp
     a skos:Concept ;
@@ -336,9 +336,9 @@ g7ai:model-timestamp
     skos:broader g7ai:models ;
     skos:prefLabel "Model timestamp"@en ;
     skos:notation "G7AI-MDL-04" ;
-    skos:notation "SBOM-G7AI-MDL-004"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-MDL-004"^^bom:SarifRuleId ;
     skos:definition "The date and time the model was trained, built, or released."@en ;
-    skos:closeMatch sbom:component-timestamp .
+    skos:closeMatch bom:component-timestamp .
 
 g7ai:model-producer
     a skos:Concept ;
@@ -346,9 +346,9 @@ g7ai:model-producer
     skos:broader g7ai:models ;
     skos:prefLabel "Model producer"@en ;
     skos:notation "G7AI-MDL-05" ;
-    skos:notation "SBOM-G7AI-MDL-005"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-MDL-005"^^bom:SarifRuleId ;
     skos:definition "The organisation or person that trained or supplied the model."@en ;
-    skos:closeMatch sbom:component-supplier .
+    skos:closeMatch bom:component-supplier .
 
 g7ai:model-description
     a skos:Concept ;
@@ -356,9 +356,9 @@ g7ai:model-description
     skos:broader g7ai:models ;
     skos:prefLabel "Model description"@en ;
     skos:notation "G7AI-MDL-06" ;
-    skos:notation "SBOM-G7AI-MDL-006"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-MDL-006"^^bom:SarifRuleId ;
     skos:definition "A free-text description of the model's purpose, architecture and key characteristics."@en ;
-    skos:exactMatch sbom:component-description .
+    skos:exactMatch bom:component-description .
 
 g7ai:model-hash-value
     a skos:Concept ;
@@ -366,9 +366,9 @@ g7ai:model-hash-value
     skos:broader g7ai:models ;
     skos:prefLabel "Model hash value"@en ;
     skos:notation "G7AI-MDL-07" ;
-    skos:notation "SBOM-G7AI-MDL-007"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-MDL-007"^^bom:SarifRuleId ;
     skos:definition "The cryptographic digest of the model weight file(s) for integrity verification."@en ;
-    skos:closeMatch sbom:component-hash .
+    skos:closeMatch bom:component-hash .
 
 g7ai:model-hash-algorithm
     a skos:Concept ;
@@ -376,9 +376,9 @@ g7ai:model-hash-algorithm
     skos:broader g7ai:models ;
     skos:prefLabel "Model hash algorithm"@en ;
     skos:notation "G7AI-MDL-08" ;
-    skos:notation "SBOM-G7AI-MDL-008"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-MDL-008"^^bom:SarifRuleId ;
     skos:definition "The algorithm used to compute the model hash (e.g. SHA-256, SHA-512, BLAKE3)."@en ;
-    skos:closeMatch sbom:component-hash .
+    skos:closeMatch bom:component-hash .
 
 g7ai:model-properties
     a skos:Concept ;
@@ -386,9 +386,9 @@ g7ai:model-properties
     skos:broader g7ai:models ;
     skos:prefLabel "Model properties"@en ;
     skos:notation "G7AI-MDL-09" ;
-    skos:notation "SBOM-G7AI-MDL-009"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-MDL-009"^^bom:SarifRuleId ;
     skos:definition "AI-specific technical properties of the model such as type, explainability, autonomy level and energy profile."@en ;
-    skos:exactMatch sbom:ai-model-properties .
+    skos:exactMatch bom:ai-model-properties .
 
 g7ai:model-input-output-properties
     a skos:Concept ;
@@ -396,9 +396,9 @@ g7ai:model-input-output-properties
     skos:broader g7ai:models ;
     skos:prefLabel "Model input/output properties"@en ;
     skos:notation "G7AI-MDL-10" ;
-    skos:notation "SBOM-G7AI-MDL-010"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-MDL-010"^^bom:SarifRuleId ;
     skos:definition "The types, modalities and constraints on the model's input and output (e.g. image, text, structured data)."@en ;
-    skos:closeMatch sbom:ai-io-properties .
+    skos:closeMatch bom:ai-io-properties .
 
 g7ai:model-training-properties
     a skos:Concept ;
@@ -406,9 +406,9 @@ g7ai:model-training-properties
     skos:broader g7ai:models ;
     skos:prefLabel "Model training properties"@en ;
     skos:notation "G7AI-MDL-11" ;
-    skos:notation "SBOM-G7AI-MDL-011"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-MDL-011"^^bom:SarifRuleId ;
     skos:definition "Characteristics of the model's training process, including hyperparameters, data pre-processing and fine-tuning steps."@en ;
-    skos:exactMatch sbom:ai-training-properties .
+    skos:exactMatch bom:ai-training-properties .
 
 g7ai:model-license
     a skos:Concept ;
@@ -416,9 +416,9 @@ g7ai:model-license
     skos:broader g7ai:models ;
     skos:prefLabel "Model license"@en ;
     skos:notation "G7AI-MDL-12" ;
-    skos:notation "SBOM-G7AI-MDL-012"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-MDL-012"^^bom:SarifRuleId ;
     skos:definition "The declared or concluded license under which the model is distributed (e.g. SPDX expression, AI-specific RAIL license)."@en ;
-    skos:exactMatch sbom:component-license .
+    skos:exactMatch bom:component-license .
 
 g7ai:model-external-references
     a skos:Concept ;
@@ -426,9 +426,9 @@ g7ai:model-external-references
     skos:broader g7ai:models ;
     skos:prefLabel "Model external references"@en ;
     skos:notation "G7AI-MDL-13" ;
-    skos:notation "SBOM-G7AI-MDL-013"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-MDL-013"^^bom:SarifRuleId ;
     skos:definition "Links to supplementary resources such as model cards, research papers, repositories and model registries."@en ;
-    skos:exactMatch sbom:component-external-reference .
+    skos:exactMatch bom:component-external-reference .
 
 # -- G7AI Dataset Properties elements (DP-01 ... DP-10) ------------------------
 
@@ -438,9 +438,9 @@ g7ai:dataset-name
     skos:broader g7ai:dataset-properties ;
     skos:prefLabel "Dataset name"@en ;
     skos:notation "G7AI-DP-01" ;
-    skos:notation "SBOM-G7AI-DP-001"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-DP-001"^^bom:SarifRuleId ;
     skos:definition "The human-readable name of a dataset used to train, validate or test the AI model."@en ;
-    skos:closeMatch sbom:component-name .
+    skos:closeMatch bom:component-name .
 
 g7ai:dataset-description
     a skos:Concept ;
@@ -448,9 +448,9 @@ g7ai:dataset-description
     skos:broader g7ai:dataset-properties ;
     skos:prefLabel "Dataset description"@en ;
     skos:notation "G7AI-DP-02" ;
-    skos:notation "SBOM-G7AI-DP-002"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-DP-002"^^bom:SarifRuleId ;
     skos:definition "A free-text description of the dataset's contents, scope and purpose."@en ;
-    skos:closeMatch sbom:component-description .
+    skos:closeMatch bom:component-description .
 
 g7ai:dataset-content
     a skos:Concept ;
@@ -458,9 +458,9 @@ g7ai:dataset-content
     skos:broader g7ai:dataset-properties ;
     skos:prefLabel "Dataset content"@en ;
     skos:notation "G7AI-DP-03" ;
-    skos:notation "SBOM-G7AI-DP-003"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-DP-003"^^bom:SarifRuleId ;
     skos:definition "The type(s) of data in the dataset (e.g. image, text, audio, tabular) and its size."@en ;
-    skos:exactMatch sbom:dataset-type .
+    skos:exactMatch bom:dataset-type .
 
 g7ai:dataset-identifier
     a skos:Concept ;
@@ -468,9 +468,9 @@ g7ai:dataset-identifier
     skos:broader g7ai:dataset-properties ;
     skos:prefLabel "Dataset identifier"@en ;
     skos:notation "G7AI-DP-04" ;
-    skos:notation "SBOM-G7AI-DP-004"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-DP-004"^^bom:SarifRuleId ;
     skos:definition "A stable, unique identifier for the dataset (e.g. DOI, SPDX ID, dataset registry URL)."@en ;
-    skos:closeMatch sbom:component-identifier .
+    skos:closeMatch bom:component-identifier .
 
 g7ai:dataset-hash
     a skos:Concept ;
@@ -478,9 +478,9 @@ g7ai:dataset-hash
     skos:broader g7ai:dataset-properties ;
     skos:prefLabel "Dataset hash"@en ;
     skos:notation "G7AI-DP-05" ;
-    skos:notation "SBOM-G7AI-DP-005"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-DP-005"^^bom:SarifRuleId ;
     skos:definition "A cryptographic hash of the dataset archive or snapshot for integrity verification."@en ;
-    skos:exactMatch sbom:component-hash .
+    skos:exactMatch bom:component-hash .
 
 g7ai:dataset-provenance
     a skos:Concept ;
@@ -488,9 +488,9 @@ g7ai:dataset-provenance
     skos:broader g7ai:dataset-properties ;
     skos:prefLabel "Dataset provenance"@en ;
     skos:notation "G7AI-DP-06" ;
-    skos:notation "SBOM-G7AI-DP-006"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-DP-006"^^bom:SarifRuleId ;
     skos:definition "Information about how, when and where the dataset was collected, updated and pre-processed."@en ;
-    skos:exactMatch sbom:dataset-provenance .
+    skos:exactMatch bom:dataset-provenance .
 
 g7ai:dataset-statistical-properties
     a skos:Concept ;
@@ -498,9 +498,9 @@ g7ai:dataset-statistical-properties
     skos:broader g7ai:dataset-properties ;
     skos:prefLabel "Dataset statistical properties"@en ;
     skos:notation "G7AI-DP-07" ;
-    skos:notation "SBOM-G7AI-DP-007"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-DP-007"^^bom:SarifRuleId ;
     skos:definition "Statistical characteristics of the dataset including size, noise levels, known biases and class distributions."@en ;
-    skos:exactMatch sbom:dataset-statistical-properties .
+    skos:exactMatch bom:dataset-statistical-properties .
 
 g7ai:dataset-sensitivity
     a skos:Concept ;
@@ -508,9 +508,9 @@ g7ai:dataset-sensitivity
     skos:broader g7ai:dataset-properties ;
     skos:prefLabel "Dataset sensitivity"@en ;
     skos:notation "G7AI-DP-08" ;
-    skos:notation "SBOM-G7AI-DP-008"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-DP-008"^^bom:SarifRuleId ;
     skos:definition "The sensitivity classification of the dataset, including whether it contains personal or sensitive data and its confidentiality level."@en ;
-    skos:exactMatch sbom:dataset-sensitivity .
+    skos:exactMatch bom:dataset-sensitivity .
 
 g7ai:dataset-dependency-relationship
     a skos:Concept ;
@@ -518,9 +518,9 @@ g7ai:dataset-dependency-relationship
     skos:broader g7ai:dataset-properties ;
     skos:prefLabel "Dataset dependency relationship"@en ;
     skos:notation "G7AI-DP-09" ;
-    skos:notation "SBOM-G7AI-DP-009"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-DP-009"^^bom:SarifRuleId ;
     skos:definition "Relationships linking a model to the datasets it was trained on, tested on, or depends on."@en ;
-    skos:closeMatch sbom:component-relationship .
+    skos:closeMatch bom:component-relationship .
 
 g7ai:dataset-license
     a skos:Concept ;
@@ -528,9 +528,9 @@ g7ai:dataset-license
     skos:broader g7ai:dataset-properties ;
     skos:prefLabel "Dataset license"@en ;
     skos:notation "G7AI-DP-10" ;
-    skos:notation "SBOM-G7AI-DP-010"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-DP-010"^^bom:SarifRuleId ;
     skos:definition "The declared or concluded license under which the dataset is distributed, including access and usage restrictions."@en ;
-    skos:closeMatch sbom:component-license .
+    skos:closeMatch bom:component-license .
 
 # -- G7AI Infrastructure elements (INF-01 ... INF-02) ---------------------------
 
@@ -540,9 +540,9 @@ g7ai:infrastructure-software
     skos:broader g7ai:infrastructure ;
     skos:prefLabel "Infrastructure software"@en ;
     skos:notation "G7AI-INF-01" ;
-    skos:notation "SBOM-G7AI-INF-001"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-INF-001"^^bom:SarifRuleId ;
     skos:definition "The software environment required to run the AI system, including container images, OS, ML frameworks and runtime libraries."@en ;
-    skos:exactMatch sbom:infra-software .
+    skos:exactMatch bom:infra-software .
 
 g7ai:infrastructure-hardware
     a skos:Concept ;
@@ -550,9 +550,9 @@ g7ai:infrastructure-hardware
     skos:broader g7ai:infrastructure ;
     skos:prefLabel "Infrastructure hardware"@en ;
     skos:notation "G7AI-INF-02" ;
-    skos:notation "SBOM-G7AI-INF-002"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-INF-002"^^bom:SarifRuleId ;
     skos:definition "The hardware required to operate the AI system, including specialised accelerators (GPUs, TPUs, NPUs)."@en ;
-    skos:exactMatch sbom:infra-hardware .
+    skos:exactMatch bom:infra-hardware .
 
 # -- G7AI Security Properties elements (SP-01 ... SP-04) ------------------------
 
@@ -562,9 +562,9 @@ g7ai:security-controls
     skos:broader g7ai:security-properties ;
     skos:prefLabel "Security controls"@en ;
     skos:notation "G7AI-SP-01" ;
-    skos:notation "SBOM-G7AI-SP-001"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-SP-001"^^bom:SarifRuleId ;
     skos:definition "The security controls implemented on the AI system (e.g. access controls, encryption, audit logging)."@en ;
-    skos:exactMatch sbom:security-controls .
+    skos:exactMatch bom:security-controls .
 
 g7ai:security-compliance
     a skos:Concept ;
@@ -572,9 +572,9 @@ g7ai:security-compliance
     skos:broader g7ai:security-properties ;
     skos:prefLabel "Security compliance"@en ;
     skos:notation "G7AI-SP-02" ;
-    skos:notation "SBOM-G7AI-SP-002"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-SP-002"^^bom:SarifRuleId ;
     skos:definition "The security standards, regulations or frameworks the AI system has been assessed against or conforms to."@en ;
-    skos:exactMatch sbom:security-compliance .
+    skos:exactMatch bom:security-compliance .
 
 g7ai:cybersecurity-policy
     a skos:Concept ;
@@ -582,9 +582,9 @@ g7ai:cybersecurity-policy
     skos:broader g7ai:security-properties ;
     skos:prefLabel "Cybersecurity policy information"@en ;
     skos:notation "G7AI-SP-03" ;
-    skos:notation "SBOM-G7AI-SP-003"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-SP-003"^^bom:SarifRuleId ;
     skos:definition "References to the supplier's vulnerability-disclosure policy, security.txt or coordinated-disclosure process."@en ;
-    skos:exactMatch sbom:security-policy .
+    skos:exactMatch bom:security-policy .
 
 g7ai:vulnerability-referencing
     a skos:Concept ;
@@ -592,9 +592,9 @@ g7ai:vulnerability-referencing
     skos:broader g7ai:security-properties ;
     skos:prefLabel "Vulnerability referencing"@en ;
     skos:notation "G7AI-SP-04" ;
-    skos:notation "SBOM-G7AI-SP-004"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-SP-004"^^bom:SarifRuleId ;
     skos:definition "References to known vulnerabilities (CVEs) and their assessment status (VEX) for the AI system and its components."@en ;
-    skos:exactMatch sbom:vulnerability-reference .
+    skos:exactMatch bom:vulnerability-reference .
 
 # -- G7AI Key Performance Indicators elements (KPI-01 ... KPI-02) ---------------
 
@@ -604,9 +604,9 @@ g7ai:security-metrics
     skos:broader g7ai:key-performance-indicators ;
     skos:prefLabel "Security metrics"@en ;
     skos:notation "G7AI-KPI-01" ;
-    skos:notation "SBOM-G7AI-KPI-001"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-KPI-001"^^bom:SarifRuleId ;
     skos:definition "Quantitative security-related performance metrics and their decision thresholds (e.g. adversarial robustness scores, CVSS scores)."@en ;
-    skos:closeMatch sbom:performance-metric .
+    skos:closeMatch bom:performance-metric .
 
 g7ai:operational-performance-kpis
     a skos:Concept ;
@@ -614,9 +614,9 @@ g7ai:operational-performance-kpis
     skos:broader g7ai:key-performance-indicators ;
     skos:prefLabel "Operational performance KPIs"@en ;
     skos:notation "G7AI-KPI-02" ;
-    skos:notation "SBOM-G7AI-KPI-002"^^sbom:SarifRuleId ;
+    skos:notation "BOM-G7AI-KPI-002"^^bom:SarifRuleId ;
     skos:definition "Operational performance indicators for the AI system such as accuracy, F1, latency, throughput and energy consumption."@en ;
-    skos:closeMatch sbom:performance-metric .
+    skos:closeMatch bom:performance-metric .
 
 
 # ============================================================================
@@ -624,74 +624,74 @@ g7ai:operational-performance-kpis
 # ============================================================================
 
 # -- Metadata (MD-01 ... MD-09) -----------------------------------------------
-g7ai:sbom-author                  sbom:provisionType sbom:Requirement .
-g7ai:sbom-version                 sbom:provisionType sbom:Requirement .
-g7ai:sbom-data-format-name        sbom:provisionType sbom:Requirement .
-g7ai:sbom-data-format-version     sbom:provisionType sbom:Requirement .
-g7ai:sbom-integrity               sbom:provisionType sbom:Requirement .
-g7ai:sbom-timestamp               sbom:provisionType sbom:Requirement .
-g7ai:sbom-tool-name               sbom:provisionType sbom:Requirement .
-g7ai:sbom-tool-version            sbom:provisionType sbom:Requirement .
-g7ai:sbom-generation-context      sbom:provisionType sbom:Requirement .
+g7ai:sbom-author                  bom:provisionType bom:Requirement .
+g7ai:sbom-version                 bom:provisionType bom:Requirement .
+g7ai:sbom-data-format-name        bom:provisionType bom:Requirement .
+g7ai:sbom-data-format-version     bom:provisionType bom:Requirement .
+g7ai:sbom-integrity               bom:provisionType bom:Requirement .
+g7ai:sbom-timestamp               bom:provisionType bom:Requirement .
+g7ai:sbom-tool-name               bom:provisionType bom:Requirement .
+g7ai:sbom-tool-version            bom:provisionType bom:Requirement .
+g7ai:sbom-generation-context      bom:provisionType bom:Requirement .
 
 # -- System-Level Properties (SLP-01 ... SLP-10) ------------------------------
-g7ai:system-name                  sbom:provisionType sbom:Requirement .
-g7ai:system-version               sbom:provisionType sbom:Requirement .
-g7ai:system-supplier              sbom:provisionType sbom:Requirement .
-g7ai:system-timestamp             sbom:provisionType sbom:Requirement .
-g7ai:system-description           sbom:provisionType sbom:Requirement .
-g7ai:system-identifier            sbom:provisionType sbom:Requirement .
-g7ai:system-license               sbom:provisionType sbom:Requirement .
-g7ai:system-dependency-relationship sbom:provisionType sbom:Requirement .
-g7ai:system-data-flow             sbom:provisionType sbom:Requirement .
-g7ai:system-input-output-properties sbom:provisionType sbom:Requirement .
+g7ai:system-name                  bom:provisionType bom:Requirement .
+g7ai:system-version               bom:provisionType bom:Requirement .
+g7ai:system-supplier              bom:provisionType bom:Requirement .
+g7ai:system-timestamp             bom:provisionType bom:Requirement .
+g7ai:system-description           bom:provisionType bom:Requirement .
+g7ai:system-identifier            bom:provisionType bom:Requirement .
+g7ai:system-license               bom:provisionType bom:Requirement .
+g7ai:system-dependency-relationship bom:provisionType bom:Requirement .
+g7ai:system-data-flow             bom:provisionType bom:Requirement .
+g7ai:system-input-output-properties bom:provisionType bom:Requirement .
 
 # -- Model Properties (MP-01 ... MP-09) ----------------------------------------
-g7ai:model-name                   sbom:provisionType sbom:Requirement .
-g7ai:model-version                sbom:provisionType sbom:Requirement .
-g7ai:model-supplier               sbom:provisionType sbom:Requirement .
-g7ai:model-timestamp              sbom:provisionType sbom:Requirement .
-g7ai:model-description            sbom:provisionType sbom:Requirement .
-g7ai:model-identifier             sbom:provisionType sbom:Requirement .
-g7ai:model-license                sbom:provisionType sbom:Requirement .
-g7ai:model-dependency-relationship sbom:provisionType sbom:Requirement .
-g7ai:model-external-reference     sbom:provisionType sbom:Requirement .
+g7ai:model-name                   bom:provisionType bom:Requirement .
+g7ai:model-version                bom:provisionType bom:Requirement .
+g7ai:model-supplier               bom:provisionType bom:Requirement .
+g7ai:model-timestamp              bom:provisionType bom:Requirement .
+g7ai:model-description            bom:provisionType bom:Requirement .
+g7ai:model-identifier             bom:provisionType bom:Requirement .
+g7ai:model-license                bom:provisionType bom:Requirement .
+g7ai:model-dependency-relationship bom:provisionType bom:Requirement .
+g7ai:model-external-reference     bom:provisionType bom:Requirement .
 
 # -- Model AI Properties (MAP-01 ... MAP-05) -----------------------------------
-g7ai:model-type                   sbom:provisionType sbom:Requirement .
-g7ai:model-application-domain     sbom:provisionType sbom:Requirement .
-g7ai:model-explainability         sbom:provisionType sbom:Requirement .
-g7ai:model-autonomy-level         sbom:provisionType sbom:Requirement .
-g7ai:model-safety-risk-assessment sbom:provisionType sbom:Requirement .
+g7ai:model-type                   bom:provisionType bom:Requirement .
+g7ai:model-application-domain     bom:provisionType bom:Requirement .
+g7ai:model-explainability         bom:provisionType bom:Requirement .
+g7ai:model-autonomy-level         bom:provisionType bom:Requirement .
+g7ai:model-safety-risk-assessment bom:provisionType bom:Requirement .
 
 # -- Training Properties (TP-01 ... TP-04) -------------------------------------
-g7ai:training-data-preprocessing  sbom:provisionType sbom:Requirement .
-g7ai:training-hyperparameters     sbom:provisionType sbom:Requirement .
-g7ai:training-fine-tuning         sbom:provisionType sbom:Requirement .
-g7ai:training-energy-consumption  sbom:provisionType sbom:Requirement .
+g7ai:training-data-preprocessing  bom:provisionType bom:Requirement .
+g7ai:training-hyperparameters     bom:provisionType bom:Requirement .
+g7ai:training-fine-tuning         bom:provisionType bom:Requirement .
+g7ai:training-energy-consumption  bom:provisionType bom:Requirement .
 
 # -- Dataset Properties (DP-01 ... DP-10) --------------------------------------
-g7ai:dataset-name                 sbom:provisionType sbom:Requirement .
-g7ai:dataset-version              sbom:provisionType sbom:Requirement .
-g7ai:dataset-supplier             sbom:provisionType sbom:Requirement .
-g7ai:dataset-timestamp            sbom:provisionType sbom:Requirement .
-g7ai:dataset-description          sbom:provisionType sbom:Requirement .
-g7ai:dataset-identifier           sbom:provisionType sbom:Requirement .
-g7ai:dataset-type                 sbom:provisionType sbom:Requirement .
-g7ai:dataset-sensitivity          sbom:provisionType sbom:Requirement .
-g7ai:dataset-dependency-relationship sbom:provisionType sbom:Requirement .
-g7ai:dataset-license              sbom:provisionType sbom:Requirement .
+g7ai:dataset-name                 bom:provisionType bom:Requirement .
+g7ai:dataset-version              bom:provisionType bom:Requirement .
+g7ai:dataset-supplier             bom:provisionType bom:Requirement .
+g7ai:dataset-timestamp            bom:provisionType bom:Requirement .
+g7ai:dataset-description          bom:provisionType bom:Requirement .
+g7ai:dataset-identifier           bom:provisionType bom:Requirement .
+g7ai:dataset-type                 bom:provisionType bom:Requirement .
+g7ai:dataset-sensitivity          bom:provisionType bom:Requirement .
+g7ai:dataset-dependency-relationship bom:provisionType bom:Requirement .
+g7ai:dataset-license              bom:provisionType bom:Requirement .
 
 # -- Infrastructure (INF-01 ... INF-02) ----------------------------------------
-g7ai:infrastructure-software      sbom:provisionType sbom:Requirement .
-g7ai:infrastructure-hardware      sbom:provisionType sbom:Requirement .
+g7ai:infrastructure-software      bom:provisionType bom:Requirement .
+g7ai:infrastructure-hardware      bom:provisionType bom:Requirement .
 
 # -- Security Properties (SP-01 ... SP-04) -------------------------------------
-g7ai:security-controls            sbom:provisionType sbom:Requirement .
-g7ai:security-compliance          sbom:provisionType sbom:Requirement .
-g7ai:cybersecurity-policy         sbom:provisionType sbom:Requirement .
-g7ai:vulnerability-referencing    sbom:provisionType sbom:Requirement .
+g7ai:security-controls            bom:provisionType bom:Requirement .
+g7ai:security-compliance          bom:provisionType bom:Requirement .
+g7ai:cybersecurity-policy         bom:provisionType bom:Requirement .
+g7ai:vulnerability-referencing    bom:provisionType bom:Requirement .
 
 # -- Key Performance Indicators (KPI-01 ... KPI-02) ----------------------------
-g7ai:security-metrics             sbom:provisionType sbom:Requirement .
-g7ai:operational-performance-kpis sbom:provisionType sbom:Requirement .
+g7ai:security-metrics             bom:provisionType bom:Requirement .
+g7ai:operational-performance-kpis bom:provisionType bom:Requirement .

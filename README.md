@@ -1,20 +1,19 @@
-# SBOM Bridging Ontology for Mapping
+# Baseline-information Obligations Mapping ontology
 
-A SKOS bridge vocabulary and SSSOM crosswalk files for
-Software Bill of Materials (SBOM) minimum-element standards.
+A SKOS vocabulary and SSSOM crosswalk files for
+baseline information (minimum element) obligations mapping.
 
 ## What this is
 
-1) Different organisations (BSI, CISA, G7, NTIA) publish their own lists of
-   minimum elements that an SBOM shall or should contain.
-2) Different SBOM data exchange (CycloneDX, SPDX) and serialisation formats have
-   their own field names.
+1) Regulations and guidelines set baseline information or minimum element
+   that a compliance document should shall or should contain.
+2) Different data exchange and serialisation formats have their own field names.
 3) This project provides a neutral bridge vocabulary that connects (1) and (2).
 
-**`docs/sbom.ttl`** -- a small [SKOS] ontology that assigns stable,
+**`docs/bom.ttl`** -- a small [SKOS] ontology that assigns stable,
 persistent IRIs to each minimum-element concept. It has two layers:
 
-- a *bridge concept scheme* (`sbom:bridge`) that abstracts across all source standards
+- a *bridge concept scheme* (`bom:bridge`) that abstracts across all source standards
 - per-standard concept schemes whose concepts link to bridge concepts
   via `skos:exactMatch` / `skos:closeMatch`
 
@@ -43,7 +42,7 @@ SSSOM files follow the `{source}-to-{target}.sssom.tsv` naming convention. `semi
 
 | File | Source | Target | Rows |
 | ---- | ------ | ------ | ---- |
-| `docs/mapping/sbom-to-spdx31.sssom.tsv` | Bridge ontology | SPDX 3.1-dev | 51 |
+| `docs/mapping/bom-to-spdx31.sssom.tsv` | Bridge ontology | SPDX 3.1-dev | 51 |
 | `docs/mapping/g7ai-to-spdx31.sssom.tsv` | G7 SBOM for AI | SPDX 3.1-dev | 52 |
 | `docs/mapping/ntia-to-spdx31.sssom.tsv` | NTIA | SPDX 3.1-dev | 8 |
 | `docs/mapping/bsi-to-spdx31.sssom.tsv` | BSI TR-03183-2 | SPDX 3.1-dev | 25 |
@@ -56,7 +55,7 @@ SSSOM files follow the `{source}-to-{target}.sssom.tsv` naming convention. `semi
 
 ## Namespace
 
-Base IRI: `https://w3id.org/sbom/`  
+Base IRI: `https://w3id.org/bom/` (tentative)
 
 ## Repository layout
 

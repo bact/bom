@@ -6,18 +6,18 @@
 @prefix dpv:     <https://w3id.org/dpv#> .
 @prefix cv:      <http://data.europa.eu/m8g/> .
 
-@prefix sbom:    <https://w3id.org/sbom/> .
-@prefix euaiact: <https://w3id.org/sbom/reg/euaiact/> .
+@prefix bom:    <https://w3id.org/bom/> .
+@prefix euaiact: <https://w3id.org/bom/reg/euaiact/> .
 @prefix eli:     <http://data.europa.eu/eli/ontology#> .
 
 # EU AI Act -- Annex VIII Section A
 # Information to be submitted by providers of HIGH-RISK AI systems (Art. 49(1))
 # 13 items.
 
-<https://w3id.org/sbom/reg/euaiact/anx8-a/>
+<https://w3id.org/bom/reg/euaiact/anx8-a/>
     a owl:Ontology ;
-    owl:imports <https://w3id.org/sbom/> ;
-    owl:imports <https://w3id.org/sbom/reg/euaiact/art49/> ;
+    owl:imports <https://w3id.org/bom/> ;
+    owl:imports <https://w3id.org/bom/reg/euaiact/art49/> ;
     dcterms:title "EU AI Act -- Annex VIII Section A: Provider, High-Risk AI Systems (Art. 49(1))"@en ;
     dcterms:description """SKOS concept scheme for the 13 information items required
 by EU AI Act Annex VIII Section A. Applies to providers of high-risk AI systems
@@ -32,7 +32,7 @@ registering in the EU database under Article 49(1)."""@en ;
     rdfs:seeAlso <http://data.europa.eu/eli/reg/2024/1689/anx_8/oj> .
 
 euaiact:scheme-anx8-a
-    a skos:ConceptScheme, sbom:RegulatorySpec ;
+    a skos:ConceptScheme, bom:RegulatorySpec ;
     skos:prefLabel "EU AI Act -- Annex VIII Section A (Art. 49(1))"@en ;
     dcterms:description """13 registration items for providers of high-risk AI systems
 (Art.49(1)). Source: Annex VIII Section A, Regulation (EU) 2024/1689."""@en ;
@@ -66,105 +66,105 @@ euaiact:anx8-a1-provider-info
     skos:inScheme euaiact:scheme-anx8-a ;
     skos:broader euaiact:anx8-a ;
     skos:notation "A.1" ;
-    skos:notation "SBOM-EUAIACT-ANX8-A-001"^^sbom:SarifRuleId ;
+    skos:notation "BOM-EUAIACT-ANX8-A-001"^^bom:SarifRuleId ;
     rdfs:seeAlso <http://data.europa.eu/eli/reg/2024/1689/anx_8/oj> ;
     rdfs:seeAlso <https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401689#anx_VIII> ;
     skos:prefLabel "Provider name, address and contact details (A.1)"@en ;
     skos:definition "The name, address and contact details of the provider. (Annex VIII Sec.A item 1)"@en ;
-    skos:closeMatch sbom:component-supplier ;
+    skos:closeMatch bom:component-supplier ;
     dpv:hasDataSubject dpv:Organisation .
 
-euaiact:anx8-a1-provider-info sbom:provisionType sbom:ExternalConstraint .
+euaiact:anx8-a1-provider-info bom:provisionType bom:ExternalConstraint .
 
 euaiact:anx8-a2-submitter
     a skos:Concept ;
     skos:inScheme euaiact:scheme-anx8-a ;
     skos:broader euaiact:anx8-a ;
     skos:notation "A.2" ;
-    skos:notation "SBOM-EUAIACT-ANX8-A-002"^^sbom:SarifRuleId ;
+    skos:notation "BOM-EUAIACT-ANX8-A-002"^^bom:SarifRuleId ;
     rdfs:seeAlso <http://data.europa.eu/eli/reg/2024/1689/anx_8/oj> ;
     rdfs:seeAlso <https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401689#anx_VIII> ;
     skos:prefLabel "Submitter acting on behalf of provider (A.2)"@en ;
     skos:definition """Where submission is carried out by another person on behalf
 of the provider, that person's name, address and contact details.
 (Annex VIII Sec.A item 2)"""@en ;
-    skos:closeMatch sbom:component-supplier .
+    skos:closeMatch bom:component-supplier .
 
-euaiact:anx8-a2-submitter sbom:provisionType sbom:ExternalConstraint .
+euaiact:anx8-a2-submitter bom:provisionType bom:ExternalConstraint .
 
 euaiact:anx8-a3-authorised-rep
     a skos:Concept ;
     skos:inScheme euaiact:scheme-anx8-a ;
     skos:broader euaiact:anx8-a ;
     skos:notation "A.3" ;
-    skos:notation "SBOM-EUAIACT-ANX8-A-003"^^sbom:SarifRuleId ;
+    skos:notation "BOM-EUAIACT-ANX8-A-003"^^bom:SarifRuleId ;
     rdfs:seeAlso <http://data.europa.eu/eli/reg/2024/1689/anx_8/oj> ;
     rdfs:seeAlso <https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401689#anx_VIII> ;
     skos:prefLabel "Authorised representative (where applicable) (A.3)"@en ;
     skos:definition """The name, address and contact details of the authorised
 representative, where applicable (Art. 22). (Annex VIII Sec.A item 3)"""@en ;
-    skos:closeMatch sbom:component-supplier .
+    skos:closeMatch bom:component-supplier .
 
-euaiact:anx8-a3-authorised-rep sbom:provisionType sbom:ExternalConstraint .
+euaiact:anx8-a3-authorised-rep bom:provisionType bom:ExternalConstraint .
 
 euaiact:anx8-a4-system-identity
     a skos:Concept ;
     skos:inScheme euaiact:scheme-anx8-a ;
     skos:broader euaiact:anx8-a ;
     skos:notation "A.4" ;
-    skos:notation "SBOM-EUAIACT-ANX8-A-004"^^sbom:SarifRuleId ;
+    skos:notation "BOM-EUAIACT-ANX8-A-004"^^bom:SarifRuleId ;
     rdfs:seeAlso <http://data.europa.eu/eli/reg/2024/1689/anx_8/oj> ;
     rdfs:seeAlso <https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401689#anx_VIII> ;
     skos:prefLabel "AI system trade name and traceability reference (A.4)"@en ;
     skos:definition """The AI system trade name and any additional unambiguous
 reference allowing the identification and traceability of the AI system.
 (Annex VIII Sec.A item 4)"""@en ;
-    skos:exactMatch sbom:component-name ;
-    skos:closeMatch sbom:component-identifier .
+    skos:exactMatch bom:component-name ;
+    skos:closeMatch bom:component-identifier .
 
-euaiact:anx8-a4-system-identity sbom:provisionType sbom:ExternalConstraint .
+euaiact:anx8-a4-system-identity bom:provisionType bom:ExternalConstraint .
 
 euaiact:anx8-a5-purpose-and-functions
     a skos:Concept ;
     skos:inScheme euaiact:scheme-anx8-a ;
     skos:broader euaiact:anx8-a ;
     skos:notation "A.5" ;
-    skos:notation "SBOM-EUAIACT-ANX8-A-005"^^sbom:SarifRuleId ;
+    skos:notation "BOM-EUAIACT-ANX8-A-005"^^bom:SarifRuleId ;
     rdfs:seeAlso <http://data.europa.eu/eli/reg/2024/1689/anx_8/oj> ;
     rdfs:seeAlso <https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401689#anx_VIII> ;
     skos:prefLabel "Intended purpose and components/functions (A.5)"@en ;
     skos:definition """A description of the intended purpose of the AI system and
 of the components and functions supported through this AI system.
 (Annex VIII Sec.A item 5)"""@en ;
-    skos:closeMatch sbom:component-description ;
-    skos:closeMatch sbom:ai-application-domain .
+    skos:closeMatch bom:component-description ;
+    skos:closeMatch bom:ai-application-domain .
 
-euaiact:anx8-a5-purpose-and-functions sbom:provisionType sbom:ExternalConstraint .
+euaiact:anx8-a5-purpose-and-functions bom:provisionType bom:ExternalConstraint .
 
 euaiact:anx8-a6-data-and-logic
     a skos:Concept ;
     skos:inScheme euaiact:scheme-anx8-a ;
     skos:broader euaiact:anx8-a ;
     skos:notation "A.6" ;
-    skos:notation "SBOM-EUAIACT-ANX8-A-006"^^sbom:SarifRuleId ;
+    skos:notation "BOM-EUAIACT-ANX8-A-006"^^bom:SarifRuleId ;
     rdfs:seeAlso <http://data.europa.eu/eli/reg/2024/1689/anx_8/oj> ;
     rdfs:seeAlso <https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401689#anx_VIII> ;
     skos:prefLabel "Data, inputs and operating logic description (A.6)"@en ;
     skos:definition """A basic and concise description of the information used by
 the system (data, inputs) and its operating logic.
 (Annex VIII Sec.A item 6)"""@en ;
-    skos:scopeNote "No direct equivalent in current SBOM exchange formats. Closest bridge: sbom:ai-data-usage or sbom:dataset-type."@en ;
-    skos:closeMatch sbom:ai-data-usage ;
-    skos:closeMatch sbom:dataset-type .
+    skos:scopeNote "No direct equivalent in current SBOM exchange formats. Closest bridge: bom:ai-data-usage or bom:dataset-type."@en ;
+    skos:closeMatch bom:ai-data-usage ;
+    skos:closeMatch bom:dataset-type .
 
-euaiact:anx8-a6-data-and-logic sbom:provisionType sbom:ExternalConstraint .
+euaiact:anx8-a6-data-and-logic bom:provisionType bom:ExternalConstraint .
 
 euaiact:anx8-a7-market-status
     a skos:Concept ;
     skos:inScheme euaiact:scheme-anx8-a ;
     skos:broader euaiact:anx8-a ;
     skos:notation "A.7" ;
-    skos:notation "SBOM-EUAIACT-ANX8-A-007"^^sbom:SarifRuleId ;
+    skos:notation "BOM-EUAIACT-ANX8-A-007"^^bom:SarifRuleId ;
     rdfs:seeAlso <http://data.europa.eu/eli/reg/2024/1689/anx_8/oj> ;
     rdfs:seeAlso <https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401689#anx_VIII> ;
     skos:prefLabel "Market availability status (A.7)"@en ;
@@ -173,8 +173,8 @@ no longer placed on the market / in service; recalled.
 (Annex VIII Sec.A item 7)"""@en ;
     skos:scopeNote "No exact SBOM equivalent. spdx-ai:supportLevel approximates but does not precisely match EU market status categories."@en .
 
-euaiact:anx8-a7-market-status sbom:provisionType sbom:ExternalConstraint .
-euaiact:anx8-a7-market-status sbom:valueConstraint euaiact:market-status-values .
+euaiact:anx8-a7-market-status bom:provisionType bom:ExternalConstraint .
+euaiact:anx8-a7-market-status bom:valueConstraint euaiact:market-status-values .
 
 euaiact:market-status-values
     a skos:Collection ;
@@ -206,7 +206,7 @@ euaiact:anx8-a8-certificate
     skos:inScheme euaiact:scheme-anx8-a ;
     skos:broader euaiact:anx8-a ;
     skos:notation "A.8" ;
-    skos:notation "SBOM-EUAIACT-ANX8-A-008"^^sbom:SarifRuleId ;
+    skos:notation "BOM-EUAIACT-ANX8-A-008"^^bom:SarifRuleId ;
     rdfs:seeAlso <http://data.europa.eu/eli/reg/2024/1689/anx_8/oj> ;
     rdfs:seeAlso <https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401689#anx_VIII> ;
     skos:prefLabel "Notified body certificate (type, number, expiry) [where applicable] (A.8)"@en ;
@@ -216,28 +216,28 @@ where applicable. Required only for systems that underwent third-party conformit
 (Annex VIII Sec.A item 8)"""@en ;
     skos:scopeNote "No SBOM equivalent. Regulatory compliance metadata."@en .
 
-euaiact:anx8-a8-certificate sbom:provisionType sbom:ConditionalRequirement .
+euaiact:anx8-a8-certificate bom:provisionType bom:ConditionalRequirement .
 
 euaiact:anx8-a9-certificate-copy
     a skos:Concept ;
     skos:inScheme euaiact:scheme-anx8-a ;
     skos:broader euaiact:anx8-a ;
     skos:notation "A.9" ;
-    skos:notation "SBOM-EUAIACT-ANX8-A-009"^^sbom:SarifRuleId ;
+    skos:notation "BOM-EUAIACT-ANX8-A-009"^^bom:SarifRuleId ;
     rdfs:seeAlso <http://data.europa.eu/eli/reg/2024/1689/anx_8/oj> ;
     rdfs:seeAlso <https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401689#anx_VIII> ;
     skos:prefLabel "Scanned copy of notified body certificate [where applicable] (A.9)"@en ;
     skos:definition "A scanned copy of the certificate referred to in item 8, where applicable. (Annex VIII Sec.A item 9)"@en ;
     skos:scopeNote "Binary document attachment; no SBOM equivalent."@en .
 
-euaiact:anx8-a9-certificate-copy sbom:provisionType sbom:ConditionalRequirement .
+euaiact:anx8-a9-certificate-copy bom:provisionType bom:ConditionalRequirement .
 
 euaiact:anx8-a10-member-states
     a skos:Concept ;
     skos:inScheme euaiact:scheme-anx8-a ;
     skos:broader euaiact:anx8-a ;
     skos:notation "A.10" ;
-    skos:notation "SBOM-EUAIACT-ANX8-A-010"^^sbom:SarifRuleId ;
+    skos:notation "BOM-EUAIACT-ANX8-A-010"^^bom:SarifRuleId ;
     rdfs:seeAlso <http://data.europa.eu/eli/reg/2024/1689/anx_8/oj> ;
     rdfs:seeAlso <https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401689#anx_VIII> ;
     skos:prefLabel "Member states of market availability (A.10)"@en ;
@@ -246,28 +246,28 @@ the market, put into service or made available in the Union.
 (Annex VIII Sec.A item 10)"""@en ;
     skos:scopeNote "Geographic deployment scope. No equivalent in SBOM formats. Could be modelled as dpv:hasJurisdiction on the AI system record."@en .
 
-euaiact:anx8-a10-member-states sbom:provisionType sbom:ExternalConstraint .
+euaiact:anx8-a10-member-states bom:provisionType bom:ExternalConstraint .
 
 euaiact:anx8-a11-declaration-of-conformity
     a skos:Concept ;
     skos:inScheme euaiact:scheme-anx8-a ;
     skos:broader euaiact:anx8-a ;
     skos:notation "A.11" ;
-    skos:notation "SBOM-EUAIACT-ANX8-A-011"^^sbom:SarifRuleId ;
+    skos:notation "BOM-EUAIACT-ANX8-A-011"^^bom:SarifRuleId ;
     rdfs:seeAlso <http://data.europa.eu/eli/reg/2024/1689/anx_8/oj> ;
     rdfs:seeAlso <https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401689#anx_VIII> ;
     skos:prefLabel "EU declaration of conformity (copy) (A.11)"@en ;
     skos:definition "A copy of the EU declaration of conformity referred to in Article 47. (Annex VIII Sec.A item 11)"@en ;
-    skos:closeMatch sbom:security-compliance .
+    skos:closeMatch bom:security-compliance .
 
-euaiact:anx8-a11-declaration-of-conformity sbom:provisionType sbom:ExternalConstraint .
+euaiact:anx8-a11-declaration-of-conformity bom:provisionType bom:ExternalConstraint .
 
 euaiact:anx8-a12-instructions-for-use
     a skos:Concept ;
     skos:inScheme euaiact:scheme-anx8-a ;
     skos:broader euaiact:anx8-a ;
     skos:notation "A.12" ;
-    skos:notation "SBOM-EUAIACT-ANX8-A-012"^^sbom:SarifRuleId ;
+    skos:notation "BOM-EUAIACT-ANX8-A-012"^^bom:SarifRuleId ;
     rdfs:seeAlso <http://data.europa.eu/eli/reg/2024/1689/anx_8/oj> ;
     rdfs:seeAlso <https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401689#anx_VIII> ;
     skos:prefLabel "Electronic instructions for use [exception: law enforcement/migration/asylum/border] (A.12)"@en ;
@@ -277,23 +277,23 @@ euaiact:anx8-a12-instructions-for-use
 EXCEPTION: NOT required for high-risk AI systems in Annex III points 1, 6 and 7
 (law enforcement; migration, asylum and border control management).
 These systems register in the NON-PUBLIC section."""@en ;
-    skos:closeMatch sbom:component-external-reference .
+    skos:closeMatch bom:component-external-reference .
 
-euaiact:anx8-a12-instructions-for-use sbom:provisionType sbom:ExternalConstraint .
+euaiact:anx8-a12-instructions-for-use bom:provisionType bom:ExternalConstraint .
 
 euaiact:anx8-a13-additional-url
     a skos:Concept ;
     skos:inScheme euaiact:scheme-anx8-a ;
     skos:broader euaiact:anx8-a ;
     skos:notation "A.13" ;
-    skos:notation "SBOM-EUAIACT-ANX8-A-013"^^sbom:SarifRuleId ;
+    skos:notation "BOM-EUAIACT-ANX8-A-013"^^bom:SarifRuleId ;
     rdfs:seeAlso <http://data.europa.eu/eli/reg/2024/1689/anx_8/oj> ;
     rdfs:seeAlso <https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401689#anx_VIII> ;
     skos:prefLabel "URL for additional information (optional) (A.13)"@en ;
     skos:definition "A URL for additional information (optional). (Annex VIII Sec.A item 13)"@en ;
-    skos:closeMatch sbom:component-external-reference .
+    skos:closeMatch bom:component-external-reference .
 
-euaiact:anx8-a13-additional-url sbom:provisionType sbom:Permission .
+euaiact:anx8-a13-additional-url bom:provisionType bom:Permission .
 
 # Non-public Section A subset (Art.49(4) law enforcement/migration/asylum/border path)
 euaiact:non-public-anx8-a

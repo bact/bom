@@ -6,8 +6,8 @@
 @prefix dpv:     <https://w3id.org/dpv#> .
 @prefix cv:      <http://data.europa.eu/m8g/> .
 
-@prefix sbom:    <https://w3id.org/sbom/> .
-@prefix euaiact: <https://w3id.org/sbom/reg/euaiact/> .
+@prefix bom:    <https://w3id.org/bom/> .
+@prefix euaiact: <https://w3id.org/bom/reg/euaiact/> .
 @prefix eli:     <http://data.europa.eu/eli/ontology#> .
 
 # EU AI Act -- Aggregate index
@@ -19,14 +19,14 @@
 #   euaiact-anx8-c.ttl  -- Annex VIII Sec.C, Art.49(3) (deployer)
 #   euaiact-anx9.ttl    -- Annex IX, Art.60 (real-world testing)
 
-<https://w3id.org/sbom/reg/euaiact/>
+<https://w3id.org/bom/reg/euaiact/>
     a owl:Ontology ;
-    owl:imports <https://w3id.org/sbom/> ;
-    owl:imports <https://w3id.org/sbom/reg/euaiact/art49/> ;
-    owl:imports <https://w3id.org/sbom/reg/euaiact/anx8-a/> ;
-    owl:imports <https://w3id.org/sbom/reg/euaiact/anx8-b/> ;
-    owl:imports <https://w3id.org/sbom/reg/euaiact/anx8-c/> ;
-    owl:imports <https://w3id.org/sbom/reg/euaiact/anx9/> ;
+    owl:imports <https://w3id.org/bom/> ;
+    owl:imports <https://w3id.org/bom/reg/euaiact/art49/> ;
+    owl:imports <https://w3id.org/bom/reg/euaiact/anx8-a/> ;
+    owl:imports <https://w3id.org/bom/reg/euaiact/anx8-b/> ;
+    owl:imports <https://w3id.org/bom/reg/euaiact/anx8-c/> ;
+    owl:imports <https://w3id.org/bom/reg/euaiact/anx9/> ;
     dcterms:title "EU AI Act -- Registration Database Obligations (Art. 49 and Art. 60)"@en ;
     dcterms:description "Aggregate ontology importing all EU AI Act registration provision files."@en ;
     dcterms:source <https://eur-lex.europa.eu/eli/reg/2024/1689/oj/eng> ;
@@ -44,7 +44,7 @@
     rdfs:seeAlso <http://data.europa.eu/eli/reg/2024/1689/anx_9/oj> .
 
 euaiact:scheme
-    a skos:ConceptScheme, sbom:RegulatorySpec ;
+    a skos:ConceptScheme, bom:RegulatorySpec ;
     skos:prefLabel "EU AI Act -- Registration Database Obligations (Art. 49 and Art. 60)"@en ;
     dcterms:description "Combined scheme. Prefer per-section schemes (euaiact:scheme-anx8-a etc.) for SSSOM mapping."@en ;
     skos:hasTopConcept

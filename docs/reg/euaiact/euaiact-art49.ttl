@@ -6,16 +6,16 @@
 @prefix dpv:     <https://w3id.org/dpv#> .
 @prefix cv:      <http://data.europa.eu/m8g/> .
 
-@prefix sbom:    <https://w3id.org/sbom/> .
-@prefix euaiact: <https://w3id.org/sbom/reg/euaiact/> .
+@prefix bom:    <https://w3id.org/bom/> .
+@prefix euaiact: <https://w3id.org/bom/reg/euaiact/> .
 @prefix eli:     <http://data.europa.eu/eli/ontology#> .
 
 # EU AI Act -- Art. 49 / Art. 60 Registration Eligibility Classification
 # Five decision questions from the Art.49 registration flowchart.
 
-<https://w3id.org/sbom/reg/euaiact/art49/>
+<https://w3id.org/bom/reg/euaiact/art49/>
     a owl:Ontology ;
-    owl:imports <https://w3id.org/sbom/> ;
+    owl:imports <https://w3id.org/bom/> ;
     dcterms:title "EU AI Act -- Registration Eligibility Classification (Art. 49 flowchart)"@en ;
     dcterms:description """Five decision questions (Q1-Q5) from the Art.49 registration flowchart
 determining WHETHER a system must register in the EU database and WHICH Annex VIII
@@ -29,7 +29,7 @@ section applies (A, B, or C), plus the Art.60(4)(c) testing path."""@en ;
     rdfs:seeAlso <http://data.europa.eu/eli/reg/2024/1689/art_49/oj> .
 
 euaiact:scheme-art49
-    a skos:ConceptScheme, sbom:RegulatorySpec ;
+    a skos:ConceptScheme, bom:RegulatorySpec ;
     skos:prefLabel "EU AI Act -- Registration Eligibility Classification"@en ;
     dcterms:description "Decision questions for Art.49 registration path determination."@en ;
     skos:hasTopConcept euaiact:art49-flowchart .
@@ -67,9 +67,9 @@ Annex III points:
 (6) Law enforcement
 (7) Migration, asylum and border control management
 (8) Administration of justice and democratic processes"""@en ;
-    skos:closeMatch sbom:ai-application-domain .
+    skos:closeMatch bom:ai-application-domain .
 
-euaiact:q1-annex-iii-listing sbom:provisionType sbom:ExternalConstraint .
+euaiact:q1-annex-iii-listing bom:provisionType bom:ExternalConstraint .
 
 euaiact:q2-annex-iii-point2
     a skos:Concept ;
@@ -85,9 +85,9 @@ If NO: proceed to Q3.
 Annex I products include: machinery, medical devices, in-vitro diagnostics, civil
 aviation safety, rail systems, motor vehicles, agricultural tractors, marine
 equipment, lifts, pressure equipment, radio equipment."""@en ;
-    skos:closeMatch sbom:ai-application-domain .
+    skos:closeMatch bom:ai-application-domain .
 
-euaiact:q2-annex-iii-point2 sbom:provisionType sbom:ExternalConstraint .
+euaiact:q2-annex-iii-point2 bom:provisionType bom:ExternalConstraint .
 
 euaiact:q3-art6-3-assessment
     a skos:Concept ;
@@ -105,7 +105,7 @@ and register under Art. 49(2). Section B item 6 requires citing the specific
 Art.6(3) condition applied."""@en ;
     skos:relatedMatch dpv:Justification .
 
-euaiact:q3-art6-3-assessment sbom:provisionType sbom:ExternalConstraint .
+euaiact:q3-art6-3-assessment bom:provisionType bom:ExternalConstraint .
 
 euaiact:q4-law-enforcement-category
     a skos:Concept ;
@@ -117,9 +117,9 @@ specifically in the areas of law enforcement, migration, asylum and border contr
 management (Art. 49(4)).
 If YES: EU database registration is in the NON-PUBLIC section; additionally,
 Annex VIII Section A item 12 (electronic instructions for use) is NOT required."""@en ;
-    skos:closeMatch sbom:ai-application-domain .
+    skos:closeMatch bom:ai-application-domain .
 
-euaiact:q4-law-enforcement-category sbom:provisionType sbom:ExternalConstraint .
+euaiact:q4-law-enforcement-category bom:provisionType bom:ExternalConstraint .
 
 euaiact:q5-deployer-type
     a skos:Concept ;
@@ -132,4 +132,4 @@ If YES: the deployer must also register under Annex VIII Section C.
 If NO: only the provider's Section A registration is required."""@en ;
     skos:relatedMatch dpv:Authority .
 
-euaiact:q5-deployer-type sbom:provisionType sbom:ExternalConstraint .
+euaiact:q5-deployer-type bom:provisionType bom:ExternalConstraint .

@@ -6,18 +6,18 @@
 @prefix dpv:     <https://w3id.org/dpv#> .
 @prefix cv:      <http://data.europa.eu/m8g/> .
 
-@prefix sbom:    <https://w3id.org/sbom/> .
-@prefix euaiact: <https://w3id.org/sbom/reg/euaiact/> .
+@prefix bom:    <https://w3id.org/bom/> .
+@prefix euaiact: <https://w3id.org/bom/reg/euaiact/> .
 @prefix eli:     <http://data.europa.eu/eli/ontology#> .
 
 # EU AI Act -- Annex VIII Section B
 # Information to be submitted by providers of NOT-HIGH-RISK AI systems (Art. 49(2))
 # 9 items.
 
-<https://w3id.org/sbom/reg/euaiact/anx8-b/>
+<https://w3id.org/bom/reg/euaiact/anx8-b/>
     a owl:Ontology ;
-    owl:imports <https://w3id.org/sbom/> ;
-    owl:imports <https://w3id.org/sbom/reg/euaiact/art49/> ;
+    owl:imports <https://w3id.org/bom/> ;
+    owl:imports <https://w3id.org/bom/reg/euaiact/art49/> ;
     dcterms:title "EU AI Act -- Annex VIII Section B: Provider, Not-High-Risk AI Systems (Art. 49(2))"@en ;
     dcterms:description """SKOS concept scheme for the 9 information items required
 by EU AI Act Annex VIII Section B. Applies to providers who have determined their
@@ -32,7 +32,7 @@ Annex III system is NOT high-risk per Article 6(3) and register under Art. 49(2)
     rdfs:seeAlso <http://data.europa.eu/eli/reg/2024/1689/anx_8/oj> .
 
 euaiact:scheme-anx8-b
-    a skos:ConceptScheme, sbom:RegulatorySpec ;
+    a skos:ConceptScheme, bom:RegulatorySpec ;
     skos:prefLabel "EU AI Act -- Annex VIII Section B (Art. 49(2))"@en ;
     dcterms:description """9 registration items for providers of not-high-risk AI systems
 invoking Art.6(3). Source: Annex VIII Section B, Regulation (EU) 2024/1689."""@en ;
@@ -66,72 +66,72 @@ euaiact:anx8-b1-provider-info
     skos:inScheme euaiact:scheme-anx8-b ;
     skos:broader euaiact:anx8-b ;
     skos:notation "B.1" ;
-    skos:notation "SBOM-EUAIACT-ANX8-B-001"^^sbom:SarifRuleId ;
+    skos:notation "BOM-EUAIACT-ANX8-B-001"^^bom:SarifRuleId ;
     rdfs:seeAlso <http://data.europa.eu/eli/reg/2024/1689/anx_8/oj> ;
     rdfs:seeAlso <https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401689#anx_VIII> ;
     skos:prefLabel "Provider name, address and contact details (B.1)"@en ;
     skos:definition "The name, address and contact details of the provider. (Annex VIII Sec.B item 1) -- same actor concept as A.1."@en ;
-    skos:closeMatch sbom:component-supplier ;
+    skos:closeMatch bom:component-supplier ;
     skos:exactMatch euaiact:anx8-a1-provider-info ;
     dpv:hasDataSubject dpv:Organisation .
 
-euaiact:anx8-b1-provider-info sbom:provisionType sbom:ExternalConstraint .
+euaiact:anx8-b1-provider-info bom:provisionType bom:ExternalConstraint .
 
 euaiact:anx8-b2-submitter
     a skos:Concept ;
     skos:inScheme euaiact:scheme-anx8-b ;
     skos:broader euaiact:anx8-b ;
     skos:notation "B.2" ;
-    skos:notation "SBOM-EUAIACT-ANX8-B-002"^^sbom:SarifRuleId ;
+    skos:notation "BOM-EUAIACT-ANX8-B-002"^^bom:SarifRuleId ;
     rdfs:seeAlso <http://data.europa.eu/eli/reg/2024/1689/anx_8/oj> ;
     rdfs:seeAlso <https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401689#anx_VIII> ;
     skos:prefLabel "Submitter acting on behalf of provider (B.2)"@en ;
     skos:definition """Where submission is carried out by another person on behalf
 of the provider, that person's name, address and contact details.
 (Annex VIII Sec.B item 2) -- same concept as A.2."""@en ;
-    skos:closeMatch sbom:component-supplier ;
+    skos:closeMatch bom:component-supplier ;
     skos:exactMatch euaiact:anx8-a2-submitter .
 
-euaiact:anx8-b2-submitter sbom:provisionType sbom:ExternalConstraint .
+euaiact:anx8-b2-submitter bom:provisionType bom:ExternalConstraint .
 
 euaiact:anx8-b3-authorised-rep
     a skos:Concept ;
     skos:inScheme euaiact:scheme-anx8-b ;
     skos:broader euaiact:anx8-b ;
     skos:notation "B.3" ;
-    skos:notation "SBOM-EUAIACT-ANX8-B-003"^^sbom:SarifRuleId ;
+    skos:notation "BOM-EUAIACT-ANX8-B-003"^^bom:SarifRuleId ;
     rdfs:seeAlso <http://data.europa.eu/eli/reg/2024/1689/anx_8/oj> ;
     rdfs:seeAlso <https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401689#anx_VIII> ;
     skos:prefLabel "Authorised representative (where applicable) (B.3)"@en ;
     skos:definition "The name, address and contact details of the authorised representative, where applicable. (Annex VIII Sec.B item 3) -- same as A.3."@en ;
-    skos:closeMatch sbom:component-supplier ;
+    skos:closeMatch bom:component-supplier ;
     skos:exactMatch euaiact:anx8-a3-authorised-rep .
 
-euaiact:anx8-b3-authorised-rep sbom:provisionType sbom:ExternalConstraint .
+euaiact:anx8-b3-authorised-rep bom:provisionType bom:ExternalConstraint .
 
 euaiact:anx8-b4-system-identity
     a skos:Concept ;
     skos:inScheme euaiact:scheme-anx8-b ;
     skos:broader euaiact:anx8-b ;
     skos:notation "B.4" ;
-    skos:notation "SBOM-EUAIACT-ANX8-B-004"^^sbom:SarifRuleId ;
+    skos:notation "BOM-EUAIACT-ANX8-B-004"^^bom:SarifRuleId ;
     rdfs:seeAlso <http://data.europa.eu/eli/reg/2024/1689/anx_8/oj> ;
     rdfs:seeAlso <https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401689#anx_VIII> ;
     skos:prefLabel "AI system trade name and traceability reference (B.4)"@en ;
     skos:definition """The AI system trade name and any additional unambiguous
 reference allowing identification and traceability.
 (Annex VIII Sec.B item 4) -- same as A.4 but for not-high-risk systems."""@en ;
-    skos:closeMatch sbom:component-name ;
-    skos:closeMatch sbom:component-identifier .
+    skos:closeMatch bom:component-name ;
+    skos:closeMatch bom:component-identifier .
 
-euaiact:anx8-b4-system-identity sbom:provisionType sbom:ExternalConstraint .
+euaiact:anx8-b4-system-identity bom:provisionType bom:ExternalConstraint .
 
 euaiact:anx8-b5-intended-purpose
     a skos:Concept ;
     skos:inScheme euaiact:scheme-anx8-b ;
     skos:broader euaiact:anx8-b ;
     skos:notation "B.5" ;
-    skos:notation "SBOM-EUAIACT-ANX8-B-005"^^sbom:SarifRuleId ;
+    skos:notation "BOM-EUAIACT-ANX8-B-005"^^bom:SarifRuleId ;
     rdfs:seeAlso <http://data.europa.eu/eli/reg/2024/1689/anx_8/oj> ;
     rdfs:seeAlso <https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401689#anx_VIII> ;
     skos:prefLabel "Intended purpose (B.5)"@en ;
@@ -139,17 +139,17 @@ euaiact:anx8-b5-intended-purpose
 (Annex VIII Sec.B item 5)
 Note: Section B does NOT require the components/functions or data/logic description
 that Section A requires (items A.5-A.6). Scope is narrower."""@en ;
-    skos:closeMatch sbom:component-description ;
-    skos:closeMatch sbom:ai-application-domain .
+    skos:closeMatch bom:component-description ;
+    skos:closeMatch bom:ai-application-domain .
 
-euaiact:anx8-b5-intended-purpose sbom:provisionType sbom:ExternalConstraint .
+euaiact:anx8-b5-intended-purpose bom:provisionType bom:ExternalConstraint .
 
 euaiact:anx8-b6-art6-3-condition
     a skos:Concept ;
     skos:inScheme euaiact:scheme-anx8-b ;
     skos:broader euaiact:anx8-b ;
     skos:notation "B.6" ;
-    skos:notation "SBOM-EUAIACT-ANX8-B-006"^^sbom:SarifRuleId ;
+    skos:notation "BOM-EUAIACT-ANX8-B-006"^^bom:SarifRuleId ;
     rdfs:seeAlso <http://data.europa.eu/eli/reg/2024/1689/anx_8/oj> ;
     rdfs:seeAlso <https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401689#anx_VIII> ;
     skos:prefLabel "Art.6(3) condition for not-high-risk determination (B.6)"@en ;
@@ -160,14 +160,14 @@ This is the key Section-B-specific element linking to the legal basis
 for the not-high-risk self-assessment."""@en ;
     skos:relatedMatch dpv:Justification .
 
-euaiact:anx8-b6-art6-3-condition sbom:provisionType sbom:ExternalConstraint .
+euaiact:anx8-b6-art6-3-condition bom:provisionType bom:ExternalConstraint .
 
 euaiact:anx8-b7-not-high-risk-grounds
     a skos:Concept ;
     skos:inScheme euaiact:scheme-anx8-b ;
     skos:broader euaiact:anx8-b ;
     skos:notation "B.7" ;
-    skos:notation "SBOM-EUAIACT-ANX8-B-007"^^sbom:SarifRuleId ;
+    skos:notation "BOM-EUAIACT-ANX8-B-007"^^bom:SarifRuleId ;
     rdfs:seeAlso <http://data.europa.eu/eli/reg/2024/1689/anx_8/oj> ;
     rdfs:seeAlso <https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401689#anx_VIII> ;
     skos:prefLabel "Summary of grounds for not-high-risk determination (B.7)"@en ;
@@ -176,14 +176,14 @@ considered to be not-high-risk in application of the procedure under Article 6(3
 (Annex VIII Sec.B item 7)"""@en ;
     skos:relatedMatch dpv:Justification .
 
-euaiact:anx8-b7-not-high-risk-grounds sbom:provisionType sbom:ExternalConstraint .
+euaiact:anx8-b7-not-high-risk-grounds bom:provisionType bom:ExternalConstraint .
 
 euaiact:anx8-b8-market-status
     a skos:Concept ;
     skos:inScheme euaiact:scheme-anx8-b ;
     skos:broader euaiact:anx8-b ;
     skos:notation "B.8" ;
-    skos:notation "SBOM-EUAIACT-ANX8-B-008"^^sbom:SarifRuleId ;
+    skos:notation "BOM-EUAIACT-ANX8-B-008"^^bom:SarifRuleId ;
     rdfs:seeAlso <http://data.europa.eu/eli/reg/2024/1689/anx_8/oj> ;
     rdfs:seeAlso <https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401689#anx_VIII> ;
     skos:prefLabel "Market availability status (B.8)"@en ;
@@ -192,14 +192,14 @@ no longer placed on the market / in service; recalled.
 (Annex VIII Sec.B item 8) -- same concept as A.7."""@en ;
     skos:exactMatch euaiact:anx8-a7-market-status .
 
-euaiact:anx8-b8-market-status sbom:provisionType sbom:ExternalConstraint .
+euaiact:anx8-b8-market-status bom:provisionType bom:ExternalConstraint .
 
 euaiact:anx8-b9-member-states
     a skos:Concept ;
     skos:inScheme euaiact:scheme-anx8-b ;
     skos:broader euaiact:anx8-b ;
     skos:notation "B.9" ;
-    skos:notation "SBOM-EUAIACT-ANX8-B-009"^^sbom:SarifRuleId ;
+    skos:notation "BOM-EUAIACT-ANX8-B-009"^^bom:SarifRuleId ;
     rdfs:seeAlso <http://data.europa.eu/eli/reg/2024/1689/anx_8/oj> ;
     rdfs:seeAlso <https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401689#anx_VIII> ;
     skos:prefLabel "Member states of market availability (B.9)"@en ;
@@ -208,7 +208,7 @@ the market, put into service or made available in the Union.
 (Annex VIII Sec.B item 9) -- same concept as A.10."""@en ;
     skos:exactMatch euaiact:anx8-a10-member-states .
 
-euaiact:anx8-b9-member-states sbom:provisionType sbom:ExternalConstraint .
+euaiact:anx8-b9-member-states bom:provisionType bom:ExternalConstraint .
 
 euaiact:non-public-anx8-b
     a skos:Collection ;

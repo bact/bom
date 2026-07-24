@@ -5,17 +5,17 @@
 @prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
 @prefix cv:      <http://data.europa.eu/m8g/> .
 
-@prefix sbom:    <https://w3id.org/sbom/> .
-@prefix mof:     <https://w3id.org/sbom/req/mof/> .
+@prefix bom:    <https://w3id.org/bom/> .
+@prefix mof:     <https://w3id.org/bom/req/mof/> .
 
 
 # ============================================================================
 # Ontology declaration
 # ============================================================================
 
-<https://w3id.org/sbom/req/mof/>
+<https://w3id.org/bom/req/mof/>
     a owl:Ontology ;
-    owl:imports <https://w3id.org/sbom/> ;
+    owl:imports <https://w3id.org/bom/> ;
     dcterms:title "Model Openness Framework (MOF) 1.0 - SBOM Mapping"@en ;
     dcterms:description """SKOS concept scheme for the Model Openness Framework
 (MOF) Specification v1.0 (LF AI & Data Generative AI Commons, December 2024).
@@ -39,7 +39,7 @@ which license category."""@en ;
 # ============================================================================
 
 mof:scheme
-    a skos:ConceptScheme, sbom:InfoRequirementSpec ;
+    a skos:ConceptScheme, bom:InfoRequirementSpec ;
     skos:prefLabel "Model Openness Framework (MOF) 1.0"@en ;
     dcterms:title "LF AI & Data Model Openness Framework Specification v1.0"@en ;
     dcterms:description """A ranked classification system rating ML models based
@@ -113,7 +113,7 @@ similar model, and data exploration. All Class I + II + III components required.
 
 # ============================================================================
 # License value constraint sets
-# (referenced by sbom:valueConstraint on components requiring open licenses)
+# (referenced by bom:valueConstraint on components requiring open licenses)
 # ============================================================================
 
 mof:open-source-license-set
@@ -155,11 +155,11 @@ mof:model-architecture
 patterns, activation functions and other architectural elements. MUST be
 distributed as open source code under an OSI-approved open source software
 license."""@en ;
-    skos:closeMatch sbom:component-description ;
-    skos:closeMatch sbom:ai-model-properties .
+    skos:closeMatch bom:component-description ;
+    skos:closeMatch bom:ai-model-properties .
 
-mof:model-architecture sbom:provisionType sbom:Requirement .
-mof:model-architecture sbom:valueConstraint mof:open-source-license-set .
+mof:model-architecture bom:provisionType bom:Requirement .
+mof:model-architecture bom:valueConstraint mof:open-source-license-set .
 
 
 mof:model-parameters
@@ -173,10 +173,10 @@ model parameters and optimizer state MUST be distributed, compressed or
 uncompressed, in a format compatible with popular deep learning frameworks.
 MUST be released under an open license; SHOULD use an open data license
 (e.g. CDLA-Permissive-2.0) rather than a code license."""@en ;
-    skos:closeMatch sbom:component-external-reference .
+    skos:closeMatch bom:component-external-reference .
 
-mof:model-parameters sbom:provisionType sbom:Requirement .
-mof:model-parameters sbom:valueConstraint mof:open-data-license-set .
+mof:model-parameters bom:provisionType bom:Requirement .
+mof:model-parameters bom:valueConstraint mof:open-data-license-set .
 
 
 mof:technical-report
@@ -190,10 +190,10 @@ mof:technical-report
 information. MUST be included in the distribution or made available on a
 permanent open access platform (e.g. arXiv). MUST be distributed under an
 open license (SHOULD be CC-BY-4.0). MAY be omitted if a research paper is provided."""@en ;
-    skos:closeMatch sbom:component-external-reference .
+    skos:closeMatch bom:component-external-reference .
 
-mof:technical-report sbom:provisionType sbom:Requirement .
-mof:technical-report sbom:valueConstraint mof:open-content-license-set .
+mof:technical-report bom:provisionType bom:Requirement .
+mof:technical-report bom:valueConstraint mof:open-content-license-set .
 
 
 mof:evaluation-results
@@ -205,11 +205,11 @@ mof:evaluation-results
     skos:definition """Detailed quantitative metrics and qualitative results from
 evaluating the model. MUST include benchmark test results (standard or custom).
 Raw outputs MUST be distributed under an open license (SHOULD be CC-BY-4.0)."""@en ;
-    skos:closeMatch sbom:component-external-reference ;
-    skos:closeMatch sbom:performance-metric .
+    skos:closeMatch bom:component-external-reference ;
+    skos:closeMatch bom:performance-metric .
 
-mof:evaluation-results sbom:provisionType sbom:Requirement .
-mof:evaluation-results sbom:valueConstraint mof:open-content-license-set .
+mof:evaluation-results bom:provisionType bom:Requirement .
+mof:evaluation-results bom:valueConstraint mof:open-content-license-set .
 
 
 mof:model-card
@@ -221,11 +221,11 @@ mof:model-card
     skos:definition """A document covering model details, intended uses, evaluation
 factors, risks and mitigations. MUST be distributed under an open license
 (SHOULD be CC-BY-4.0)."""@en ;
-    skos:closeMatch sbom:component-external-reference ;
-    skos:closeMatch sbom:component-description .
+    skos:closeMatch bom:component-external-reference ;
+    skos:closeMatch bom:component-description .
 
-mof:model-card sbom:provisionType sbom:Requirement .
-mof:model-card sbom:valueConstraint mof:open-content-license-set .
+mof:model-card bom:provisionType bom:Requirement .
+mof:model-card bom:valueConstraint mof:open-content-license-set .
 
 
 mof:data-card
@@ -238,11 +238,11 @@ mof:data-card
 features, instances, intended uses, motivation and collection process.
 MAY be combined with the model card. MUST be distributed under an open license
 (SHOULD be CC-BY-4.0)."""@en ;
-    skos:closeMatch sbom:dataset-provenance ;
-    skos:closeMatch sbom:dataset-statistical-properties .
+    skos:closeMatch bom:dataset-provenance ;
+    skos:closeMatch bom:dataset-statistical-properties .
 
-mof:data-card sbom:provisionType sbom:Requirement .
-mof:data-card sbom:valueConstraint mof:open-content-license-set .
+mof:data-card bom:provisionType bom:Requirement .
+mof:data-card bom:valueConstraint mof:open-content-license-set .
 
 
 mof:sample-outputs
@@ -254,9 +254,9 @@ mof:sample-outputs
     skos:definition """Text, image, audio, code or other outputs generated by the
 model. RECOMMENDED but not required. If included MUST be shared publicly without
 copyright or restrictions where legally permitted."""@en ;
-    skos:closeMatch sbom:component-external-reference .
+    skos:closeMatch bom:component-external-reference .
 
-mof:sample-outputs sbom:provisionType sbom:Recommendation .
+mof:sample-outputs bom:provisionType bom:Recommendation .
 
 
 # ============================================================================
@@ -273,10 +273,10 @@ mof:training-code
 model construction, training loop, hyperparameter selection, checkpointing,
 fine-tuning, RLHF and adapter code. MUST be released under an OSI-approved
 open source software license."""@en ;
-    skos:closeMatch sbom:component-external-reference .
+    skos:closeMatch bom:component-external-reference .
 
-mof:training-code sbom:provisionType sbom:Requirement .
-mof:training-code sbom:valueConstraint mof:open-source-license-set .
+mof:training-code bom:provisionType bom:Requirement .
+mof:training-code bom:valueConstraint mof:open-source-license-set .
 
 
 mof:inference-code
@@ -289,10 +289,10 @@ mof:inference-code
 postprocessing, model optimizations and dependencies. MUST include code
 required to fully replicate benchmark results. MUST be released under an
 OSI-approved open source software license."""@en ;
-    skos:closeMatch sbom:component-external-reference .
+    skos:closeMatch bom:component-external-reference .
 
-mof:inference-code sbom:provisionType sbom:Requirement .
-mof:inference-code sbom:valueConstraint mof:open-source-license-set .
+mof:inference-code bom:provisionType bom:Requirement .
+mof:inference-code bom:valueConstraint mof:open-source-license-set .
 
 
 mof:evaluation-code
@@ -303,10 +303,10 @@ mof:evaluation-code
     skos:prefLabel "Evaluation code"@en ;
     skos:definition """Code for model evaluation and benchmarking.
 MUST be released under an OSI-approved open source software license."""@en ;
-    skos:closeMatch sbom:component-external-reference .
+    skos:closeMatch bom:component-external-reference .
 
-mof:evaluation-code sbom:provisionType sbom:Requirement .
-mof:evaluation-code sbom:valueConstraint mof:open-source-license-set .
+mof:evaluation-code bom:provisionType bom:Requirement .
+mof:evaluation-code bom:valueConstraint mof:open-source-license-set .
 
 
 mof:evaluation-data
@@ -319,10 +319,10 @@ mof:evaluation-data
 included (standard benchmark datasets MAY be omitted if described in the report).
 MUST be released under a data or content appropriate open license
 (e.g. CDLA-Permissive-2.0 or CC-BY-4.0)."""@en ;
-    skos:closeMatch sbom:dataset-provenance .
+    skos:closeMatch bom:dataset-provenance .
 
-mof:evaluation-data sbom:provisionType sbom:Requirement .
-mof:evaluation-data sbom:valueConstraint mof:open-data-license-set .
+mof:evaluation-data bom:provisionType bom:Requirement .
+mof:evaluation-data bom:valueConstraint mof:open-data-license-set .
 
 
 mof:supporting-libraries
@@ -335,10 +335,10 @@ mof:supporting-libraries
 of the model. SHOULD be released under an OSI-approved open source software
 license. Includes tokenizers, data loaders, visualisation code, container
 definitions, hyperparameter search code, monitoring code, frontend code."""@en ;
-    skos:closeMatch sbom:component-external-reference .
+    skos:closeMatch bom:component-external-reference .
 
-mof:supporting-libraries sbom:provisionType sbom:Recommendation .
-mof:supporting-libraries sbom:valueConstraint mof:open-source-license-set .
+mof:supporting-libraries bom:provisionType bom:Recommendation .
+mof:supporting-libraries bom:valueConstraint mof:open-source-license-set .
 
 
 mof:mof-config-file
@@ -350,9 +350,9 @@ mof:mof-config-file
 components are included in the distribution and their locations.
 SHOULD be included in every MOF-conformant distribution."""@en ;
     skos:scopeNote "No direct bridge concept; closest is doc-identifier or component-external-reference."@en ;
-    skos:closeMatch sbom:component-external-reference .
+    skos:closeMatch bom:component-external-reference .
 
-mof:mof-config-file sbom:provisionType sbom:Recommendation .
+mof:mof-config-file bom:provisionType bom:Recommendation .
 
 
 # ============================================================================
@@ -369,10 +369,10 @@ mof:research-paper
 model methodology, results and analysis. MUST be available in the distribution
 or on a permanent open access platform. MUST be released under CC-BY-4.0 or
 equivalent open content license. MAY replace the technical report (III.3)."""@en ;
-    skos:closeMatch sbom:component-external-reference .
+    skos:closeMatch bom:component-external-reference .
 
-mof:research-paper sbom:provisionType sbom:Requirement .
-mof:research-paper sbom:valueConstraint mof:open-content-license-set .
+mof:research-paper bom:provisionType bom:Requirement .
+mof:research-paper bom:valueConstraint mof:open-content-license-set .
 
 
 mof:datasets
@@ -385,11 +385,11 @@ mof:datasets
 alignment (RLHF) and testing. Any media format. Includes tokenized datasets
 and any metadata (annotations, labels, bounding boxes, etc.). MUST be released
 under an appropriate open data or content license."""@en ;
-    skos:closeMatch sbom:dataset-provenance ;
-    skos:closeMatch sbom:dataset-type .
+    skos:closeMatch bom:dataset-provenance ;
+    skos:closeMatch bom:dataset-type .
 
-mof:datasets sbom:provisionType sbom:Requirement .
-mof:datasets sbom:valueConstraint mof:open-data-license-set .
+mof:datasets bom:provisionType bom:Requirement .
+mof:datasets bom:valueConstraint mof:open-data-license-set .
 
 
 mof:data-preprocessing-code
@@ -402,11 +402,11 @@ mof:data-preprocessing-code
 training/validation/test data, fine-tuning data transformations, data ingestion,
 feature engineering, data augmentation and tokenization. MUST be released under
 an OSI-approved open source software license."""@en ;
-    skos:closeMatch sbom:dataset-provenance ;
-    skos:closeMatch sbom:component-external-reference .
+    skos:closeMatch bom:dataset-provenance ;
+    skos:closeMatch bom:component-external-reference .
 
-mof:data-preprocessing-code sbom:provisionType sbom:Requirement .
-mof:data-preprocessing-code sbom:valueConstraint mof:open-source-license-set .
+mof:data-preprocessing-code bom:provisionType bom:Requirement .
+mof:data-preprocessing-code bom:valueConstraint mof:open-source-license-set .
 
 
 mof:intermediate-parameters
@@ -418,10 +418,10 @@ mof:intermediate-parameters
     skos:definition """Model parameter checkpoints from key intermediate stages
 of training, in addition to the final parameters required by III.2.
 SHOULD be included to enable reproduction and analysis of training dynamics."""@en ;
-    skos:closeMatch sbom:component-external-reference .
+    skos:closeMatch bom:component-external-reference .
 
-mof:intermediate-parameters sbom:provisionType sbom:Recommendation .
-mof:intermediate-parameters sbom:valueConstraint mof:open-data-license-set .
+mof:intermediate-parameters bom:provisionType bom:Recommendation .
+mof:intermediate-parameters bom:valueConstraint mof:open-data-license-set .
 
 
 mof:model-metadata
@@ -433,7 +433,7 @@ mof:model-metadata
     skos:definition """Structured metadata about the model distribution (optional
 component for Class I). Provides machine-readable information about model
 components, their locations and relationships."""@en ;
-    skos:closeMatch sbom:component-description ;
-    skos:closeMatch sbom:component-identifier .
+    skos:closeMatch bom:component-description ;
+    skos:closeMatch bom:component-identifier .
 
-mof:model-metadata sbom:provisionType sbom:Permission .
+mof:model-metadata bom:provisionType bom:Permission .

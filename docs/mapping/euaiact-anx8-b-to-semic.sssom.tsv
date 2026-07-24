@@ -1,6 +1,6 @@
 # curie_map:
-#   euaiact: "https://w3id.org/sbom/reg/euaiact/"
-#   sbom: "https://w3id.org/sbom/"
+#   euaiact: "https://w3id.org/bom/reg/euaiact/"
+#   bom: "https://w3id.org/bom/"
 #   mldcatap: "http://data.europa.eu/it6/"
 #   dcat: "http://www.w3.org/ns/dcat#"
 #   dcterms: "http://purl.org/dc/terms/"
@@ -13,38 +13,38 @@
 #   schema: "https://schema.org/"
 #   skos: "http://www.w3.org/2004/02/skos/core#"
 #   semapv: "https://w3id.org/semapv/vocab/"
-# mapping_set_id: "https://w3id.org/sbom/mapping/euaiact-anx8-b-to-semic"
+# mapping_set_id: "https://w3id.org/bom/mapping/euaiact-anx8-b-to-semic"
 # mapping_set_version: "0.1.0"
 # mapping_set_title: "EU AI Act Annex VIII Section B (Art.49(2)) <-> SEMIC vocabularies"
-# mapping_set_description: "Maps the 9 information items of Annex VIII Section B (provider of not-high-risk AI systems, Art.49(2)) to MLDCAT-AP 3.1.0, Schema.org and DPV EU AI Act. The sbom: bridge concept in see_also provides the shared abstraction."
+# mapping_set_description: "Maps the 9 information items of Annex VIII Section B (provider of not-high-risk AI systems, Art.49(2)) to MLDCAT-AP 3.1.0, Schema.org and DPV EU AI Act. The bom: bridge concept in see_also provides the shared abstraction."
 # license: "https://creativecommons.org/publicdomain/zero/1.0/"
 # creator_id:
 #   - "orcid:0000-0002-9698-1899"
 # mapping_date: "2026-06-17"
-# subject_source: "https://w3id.org/sbom/reg/euaiact/anx8-b/"
+# subject_source: "https://w3id.org/bom/reg/euaiact/anx8-b/"
 # object_source: "https://semiceu.github.io/MLDCAT-AP/releases/3.1.0/"
 # see_also:
-#   - "https://w3id.org/sbom/"
+#   - "https://w3id.org/bom/"
 #   - "https://digital-strategy.ec.europa.eu/en/library/eu-artificial-intelligence-act"
 subject_id	subject_label	predicate_id	object_id	object_label	mapping_justification	see_also	comment
-euaiact:anx8-b1-provider-info	Provider information (B.1)	skos:closeMatch	dcterms:publisher	Publisher	semapv:ManualMappingCuration	sbom:component-supplier	Same as A.1 — provider of not-high-risk AI system; dcterms:publisher on mldcatap:MachineLearningModel
-euaiact:anx8-b2-submitter	Submitter on behalf of provider (B.2)	skos:relatedMatch	prov:actedOnBehalfOf	actedOnBehalfOf	semapv:ManualMappingCuration	sbom:component-supplier	Same as A.2 — submitter acting on behalf of provider
-euaiact:anx8-b3-authorised-rep	EU authorised representative (B.3)	skos:relatedMatch	prov:actedOnBehalfOf	actedOnBehalfOf	semapv:ManualMappingCuration	sbom:component-supplier	Same as A.3 — authorised representative
-euaiact:anx8-b4-system-identity	System trade name and version (B.4)	skos:closeMatch	dcterms:title	Title	semapv:ManualMappingCuration	sbom:component-name	Same as A.4 — trade name of AI system; dcterms:title on MachineLearningModel
-euaiact:anx8-b4-system-identity	System trade name and version (B.4)	skos:closeMatch	dcat:version	Version	semapv:ManualMappingCuration	sbom:component-version	Version string maps to dcat:version on MachineLearningModel
-euaiact:anx8-b5-intended-purpose	Intended purpose (B.5)	skos:closeMatch	mldcatap:intendedUse	intendedUse	semapv:ManualMappingCuration	sbom:ai-application-domain	Same as A.5 — intended purpose maps to MachineLearningModel.intendedUse
-euaiact:anx8-b6-art6-3-condition	Art.6(3) condition for not-high-risk determination (B.6)	skos:relatedMatch	mldcatap:HarmRisk	HarmRisk	semapv:ManualMappingCuration	sbom:security-compliance	Justification for not-high-risk classification is loosely related to risk assessment; MLDCAT-AP HarmRisk is the nearest concept
-euaiact:anx8-b7-not-high-risk-grounds	Summary of grounds for not-high-risk determination (B.7)	skos:relatedMatch	mldcatap:HarmRisk	HarmRisk	semapv:ManualMappingCuration	sbom:security-compliance	Grounds for not-high-risk classification relates to risk evaluation; mldcatap:HarmRisk is the nearest concept
+euaiact:anx8-b1-provider-info	Provider information (B.1)	skos:closeMatch	dcterms:publisher	Publisher	semapv:ManualMappingCuration	bom:component-supplier	Same as A.1 — provider of not-high-risk AI system; dcterms:publisher on mldcatap:MachineLearningModel
+euaiact:anx8-b2-submitter	Submitter on behalf of provider (B.2)	skos:relatedMatch	prov:actedOnBehalfOf	actedOnBehalfOf	semapv:ManualMappingCuration	bom:component-supplier	Same as A.2 — submitter acting on behalf of provider
+euaiact:anx8-b3-authorised-rep	EU authorised representative (B.3)	skos:relatedMatch	prov:actedOnBehalfOf	actedOnBehalfOf	semapv:ManualMappingCuration	bom:component-supplier	Same as A.3 — authorised representative
+euaiact:anx8-b4-system-identity	System trade name and version (B.4)	skos:closeMatch	dcterms:title	Title	semapv:ManualMappingCuration	bom:component-name	Same as A.4 — trade name of AI system; dcterms:title on MachineLearningModel
+euaiact:anx8-b4-system-identity	System trade name and version (B.4)	skos:closeMatch	dcat:version	Version	semapv:ManualMappingCuration	bom:component-version	Version string maps to dcat:version on MachineLearningModel
+euaiact:anx8-b5-intended-purpose	Intended purpose (B.5)	skos:closeMatch	mldcatap:intendedUse	intendedUse	semapv:ManualMappingCuration	bom:ai-application-domain	Same as A.5 — intended purpose maps to MachineLearningModel.intendedUse
+euaiact:anx8-b6-art6-3-condition	Art.6(3) condition for not-high-risk determination (B.6)	skos:relatedMatch	mldcatap:HarmRisk	HarmRisk	semapv:ManualMappingCuration	bom:security-compliance	Justification for not-high-risk classification is loosely related to risk assessment; MLDCAT-AP HarmRisk is the nearest concept
+euaiact:anx8-b7-not-high-risk-grounds	Summary of grounds for not-high-risk determination (B.7)	skos:relatedMatch	mldcatap:HarmRisk	HarmRisk	semapv:ManualMappingCuration	bom:security-compliance	Grounds for not-high-risk classification relates to risk evaluation; mldcatap:HarmRisk is the nearest concept
 euaiact:anx8-b7-not-high-risk-grounds	Summary of grounds for not-high-risk determination (B.7)	skos:relatedMatch	dcterms:description	Description	semapv:ManualMappingCuration		Textual summary of grounds maps to dcterms:description; no dedicated MLDCAT-AP or eu-aiact: property for this justification field
-euaiact:anx8-b8-market-status	Market availability status (B.8)	skos:closeMatch	adms:status	status	semapv:ManualMappingCuration	sbom:doc-lifecycle-stage	Same as A.7 — market availability status (on the market / in service / no longer placed) of not-high-risk AI system
+euaiact:anx8-b8-market-status	Market availability status (B.8)	skos:closeMatch	adms:status	status	semapv:ManualMappingCuration	bom:doc-lifecycle-stage	Same as A.7 — market availability status (on the market / in service / no longer placed) of not-high-risk AI system
 euaiact:anx8-b9-member-states	Member states of market availability (B.9)	skos:relatedMatch	dcterms:spatial	Spatial	semapv:ManualMappingCuration		Same as A.10 — member states where not-high-risk AI system is placed on the market; geographic scope maps to dcterms:spatial
 euaiact:anx8-b9-member-states	Member states of market availability (B.9)	skos:relatedMatch	schema:areaServed	areaServed	semapv:ManualMappingCuration		Same as A.10 — schema:areaServed (geographic area where product is available) supplements dcterms:spatial for market scope
-euaiact:anx8-b1-provider-info	Provider information (B.1)	skos:relatedMatch	schema:manufacturer	manufacturer	semapv:ManualMappingCuration	sbom:component-supplier	Same as A.1 — schema:manufacturer supplements dcterms:publisher for the not-high-risk provider
-euaiact:anx8-b4-system-identity	System trade name and version (B.4)	skos:closeMatch	schema:name	name	semapv:ManualMappingCuration	sbom:component-name	Same as A.4 — schema:name for trade name of not-high-risk AI system
-euaiact:anx8-b4-system-identity	System trade name and version (B.4)	skos:closeMatch	schema:softwareVersion	softwareVersion	semapv:ManualMappingCuration	sbom:component-version	Same as A.4 — schema:softwareVersion for version of not-high-risk AI system
-euaiact:anx8-b5-intended-purpose	Intended purpose (B.5)	skos:relatedMatch	schema:applicationCategory	applicationCategory	semapv:ManualMappingCuration	sbom:ai-application-domain	Same as A.5 — schema:applicationCategory for application domain of not-high-risk AI system
-euaiact:anx8-b1-provider-info	Provider information (B.1)	skos:closeMatch	eu-aiact:AIProvider	AIProvider	semapv:ManualMappingCuration	sbom:component-supplier	Same as A.1 — eu-aiact:AIProvider for the not-high-risk AI system provider
-euaiact:anx8-b2-submitter	Submitter on behalf of provider (B.2)	skos:relatedMatch	eu-aiact:AIProvider	AIProvider	semapv:ManualMappingCuration	sbom:component-supplier	Same as A.2 — delegated AIProvider for not-high-risk registration
-euaiact:anx8-b3-authorised-rep	EU authorised representative (B.3)	skos:exactMatch	eu-aiact:AuthorisedRepresentative	AuthorisedRepresentative	semapv:ManualMappingCuration	sbom:component-supplier	Same as A.3 — exact match for EU authorised representative in not-high-risk AI system registration
-euaiact:anx8-b5-intended-purpose	Intended purpose (B.5)	skos:exactMatch	eu-aiact:IntendedPurpose	IntendedPurpose	semapv:ManualMappingCuration	sbom:ai-application-domain	Same as A.5 — exact match for intended purpose in not-high-risk AI system registration
-euaiact:anx8-b8-market-status	Market availability status (B.8)	skos:exactMatch	eu-aiact:MarketAvailabilityStatus	MarketAvailabilityStatus	semapv:ManualMappingCuration	sbom:doc-lifecycle-stage	Same as A.7 — eu-aiact:MarketAvailabilityStatus for not-high-risk AI system registration status
+euaiact:anx8-b1-provider-info	Provider information (B.1)	skos:relatedMatch	schema:manufacturer	manufacturer	semapv:ManualMappingCuration	bom:component-supplier	Same as A.1 — schema:manufacturer supplements dcterms:publisher for the not-high-risk provider
+euaiact:anx8-b4-system-identity	System trade name and version (B.4)	skos:closeMatch	schema:name	name	semapv:ManualMappingCuration	bom:component-name	Same as A.4 — schema:name for trade name of not-high-risk AI system
+euaiact:anx8-b4-system-identity	System trade name and version (B.4)	skos:closeMatch	schema:softwareVersion	softwareVersion	semapv:ManualMappingCuration	bom:component-version	Same as A.4 — schema:softwareVersion for version of not-high-risk AI system
+euaiact:anx8-b5-intended-purpose	Intended purpose (B.5)	skos:relatedMatch	schema:applicationCategory	applicationCategory	semapv:ManualMappingCuration	bom:ai-application-domain	Same as A.5 — schema:applicationCategory for application domain of not-high-risk AI system
+euaiact:anx8-b1-provider-info	Provider information (B.1)	skos:closeMatch	eu-aiact:AIProvider	AIProvider	semapv:ManualMappingCuration	bom:component-supplier	Same as A.1 — eu-aiact:AIProvider for the not-high-risk AI system provider
+euaiact:anx8-b2-submitter	Submitter on behalf of provider (B.2)	skos:relatedMatch	eu-aiact:AIProvider	AIProvider	semapv:ManualMappingCuration	bom:component-supplier	Same as A.2 — delegated AIProvider for not-high-risk registration
+euaiact:anx8-b3-authorised-rep	EU authorised representative (B.3)	skos:exactMatch	eu-aiact:AuthorisedRepresentative	AuthorisedRepresentative	semapv:ManualMappingCuration	bom:component-supplier	Same as A.3 — exact match for EU authorised representative in not-high-risk AI system registration
+euaiact:anx8-b5-intended-purpose	Intended purpose (B.5)	skos:exactMatch	eu-aiact:IntendedPurpose	IntendedPurpose	semapv:ManualMappingCuration	bom:ai-application-domain	Same as A.5 — exact match for intended purpose in not-high-risk AI system registration
+euaiact:anx8-b8-market-status	Market availability status (B.8)	skos:exactMatch	eu-aiact:MarketAvailabilityStatus	MarketAvailabilityStatus	semapv:ManualMappingCuration	bom:doc-lifecycle-stage	Same as A.7 — eu-aiact:MarketAvailabilityStatus for not-high-risk AI system registration status
