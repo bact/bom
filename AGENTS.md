@@ -121,6 +121,12 @@ bom/
 
 Source concept → bridge concept → exchange format field. All current files use this pattern. Cross-standard alignment (e.g. EU AI Act overlaps NTIA) belongs in SSSOM via the shared bridge concept, not as OWL property assertions in the TTL.
 
+### GitHub Actions Workflows (`.github/workflows/`)
+
+- **Pin by commit SHA:** In all GitHub Actions workflows, all third-party actions MUST be pinned by full 40-character commit SHA hash corresponding to the latest public stable release.
+- **Version comment:** Include an inline comment with the tag version (e.g. `uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1`).
+- **Direct version verification:** Always verify release versions and commit SHAs directly against the official GitHub repository of the actions (e.g. via `git ls-remote --tags https://github.com/actions/<repo>.git`), rather than using loose version tags or unverified hashes.
+
 ---
 
 ## How to add a new source standard
@@ -201,7 +207,7 @@ grep -rn 'w3id.org/bom/ntia\|w3id.org/bom/g7ai\|w3id.org/bom/bsi\|w3id.org/bom/f
 - [ ] Verify provision types for cisa against source doc (TODO annotation in cisa.ttl)
 - [ ] Verify provision types for g7ai against source doc (TODO annotation in g7ai.ttl)
 - [ ] Commit `euaiact.yaml` to `sarif-output` branch of ntia-conformance-checker and open PR
-- [ ] GitHub Pages setup
+- [x] GitHub Pages setup
 - [ ] w3id.org registration PR
 
 ---

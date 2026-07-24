@@ -1,0 +1,74 @@
+name: Validate Ontologies and Crosswalks
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**/*.ttl'
+      - '.github/workflows/validate.yml'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '**/*.ttl'
+      - '.github/workflows/validate.yml'
+  workflow_dispatch:
+
+jobs:
+  validate-ttl:
+    name: Validate Turtle (.ttl) Syntax
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install rdflib
+
+      - name: Validate Turtle (.ttl) files
+        run: |
+          python -c "
+          import sys, glob
+          from rdflib import Graph
+
+          errors = 0
+          for path in sorted(glob.glob('docs/**/*.ttl', recursive=True)):
+              try:
+                  g = Graph()
+                  g.parse(path, format='turtle')
+                  print(f'✓ {len(g):4d} triples: {path}')
+              except Exception as e:
+                  print(f'✗ ERROR in {path}: {e}', file=sys.stderr)
+                  errors += 1
+
+          if errors > 0:
+              sys.exit(1)
+          "
+
+      - name: Check flat-namespace IRIs
+        run: |
+          python -c "
+          import sys, glob, re
+
+          pattern = re.compile(r'w3id\.org/bom/(ntia|g7ai|bsi|fsct|cisa)')
+          errors = 0
+          for path in sorted(glob.glob('docs/**/*', recursive=True)):
+              if path.endswith('.ttl') or path.endswith('.tsv'):
+                  content = open(path, encoding='utf-8', errors='ignore').read()
+                  matches = pattern.findall(content)
+                  if matches:
+                      print(f'✗ ERROR in {path}: found obsolete flat IRIs {set(matches)}', file=sys.stderr)
+                      errors += 1
+
+          if errors > 0:
+              sys.exit(1)
+          print('✓ No obsolete flat-namespace IRIs found.')
+          "

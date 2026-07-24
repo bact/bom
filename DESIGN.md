@@ -617,7 +617,7 @@ Rare. Only if a new family of concepts doesn't fit any of the 7 existing categor
 | `cisa-to-spdx31.sssom.tsv` | Not started |
 | Any ↔ CycloneDX | Not started |
 | EU Cyber Resilience Act (CRA) regulatory TTL (`reg/eucra/eucra.ttl`) | Not started |
-| GitHub Pages setup | Not started |
+| GitHub Pages setup | Done |
 | w3id.org registration | Not started |
 | Value-constraint layer (beyond structural presence) | Future |
 | `tools/generate_yaml_spec.py` to auto-generate checker YAML from TTL + SSSOM | Future |

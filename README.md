@@ -53,6 +53,13 @@ SSSOM files follow the `{source}-to-{target}.sssom.tsv` naming convention. `semi
 | `docs/mapping/ntia-to-semic.sssom.tsv` | NTIA | SEMIC vocabularies | 14 |
 | `docs/mapping/g7ai-to-semic.sssom.tsv` | G7 SBOM for AI | SEMIC vocabularies | 94 |
 
+## Documentation & Live Site
+
+The ontology and specification documentation is published at:
+**[https://bact.github.io/bom/](https://bact.github.io/bom/)**
+
+Automated deployment is configured via GitHub Actions (`.github/workflows/deploy-pages.yml`) publishing static files from the `docs/` directory.
+
 ## Namespace
 
 Base IRI: `https://w3id.org/bom/` (tentative)
