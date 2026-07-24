@@ -533,6 +533,22 @@ bom:component-structured-property
     skos:definition "Whether the component is a structured archive whose internal component metadata is still recoverable (e.g. zip, tar, container image) vs an unstructured archive such as a firmware image."@en ;
     skos:scopeNote "Required by BSI TR-03183-2 (2025). In SPDX 3.x: software_additionalPurpose (container = structured, firmware = unstructured); in CycloneDX: bsi:component:structured property."@en .
 
+bom:component-source-code
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-sw ;
+    skos:prefLabel "Component source code"@en ;
+    skos:definition "Source code files or packages for training, inference, evaluation, or data pre-processing."@en ;
+    skos:scopeNote "Required by MOF. Represents code components distributed with or alongside the main system."@en .
+
+bom:component-documentation
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-component ;
+    skos:prefLabel "Component documentation"@en ;
+    skos:definition "Technical reports, research papers, manuals, or configuration files describing the component."@en ;
+    skos:scopeNote "Required by MOF. Documentation may be distributed as a separate file, or as an external identifier/reference pointing to an external resource."@en .
+
 
 # -- AI/ML leaf concepts -------------------------------------------------------
 
@@ -595,6 +611,22 @@ bom:ai-training-properties
     skos:relatedMatch ai:ModelTraining ;
     skos:scopeNote "MLDCAT-AP 3.1.0 uses MachineLearningModel.designSpecifications and trainingProcess for these concepts. See https://semiceu.github.io/MLDCAT-AP/releases/3.1.0/#MachineLearningModel. DPV AI ai:ModelTraining is the class representing the model training process. See https://w3c-cg.github.io/dpv/2.3/ai/."@en .
 
+bom:ai-model-card
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-ai ;
+    skos:prefLabel "AI model card"@en ;
+    skos:definition "A structured document (model card) covering model details, intended uses, evaluation factors, risks and mitigations."@en ;
+    skos:scopeNote "Required by MOF. Can be modelled as a separate component linked to the model, or an external reference."@en .
+
+bom:ai-model-parameters
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-ai ;
+    skos:prefLabel "AI model parameters"@en ;
+    skos:definition "The trained weights, biases, checkpoints, and optimizer state of the AI model."@en ;
+    skos:scopeNote "Required by MOF. These are the core data files that make up the trained model artifact."@en .
+
 
 # -- Dataset leaf concepts -----------------------------------------------------
 
@@ -635,6 +667,14 @@ bom:dataset-sensitivity
     skos:prefLabel "Dataset sensitivity"@en ;
     skos:definition "The sensitivity classification of the dataset, including whether it contains personal or sensitive data and its confidentiality level."@en ;
     skos:relatedMatch dcterms:accessRights .
+
+bom:dataset-data-card
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-dataset ;
+    skos:prefLabel "Dataset data card"@en ;
+    skos:definition "A structured document (data card) providing summary statistics and details about training datasets, features, instances, and intended uses."@en ;
+    skos:scopeNote "Required by MOF."@en .
 
 
 # -- Infrastructure leaf concepts ----------------------------------------------

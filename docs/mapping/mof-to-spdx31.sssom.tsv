@@ -1,0 +1,44 @@
+# curie_map:
+#   mof: "https://w3id.org/bom/req/mof/"
+#   bom: "https://w3id.org/bom/"
+#   spdx3-core: "https://spdx.org/rdf/3/terms/Core/"
+#   spdx3-sw: "https://spdx.org/rdf/3/terms/Software/"
+#   spdx3-ai: "https://spdx.org/rdf/3/terms/AI/"
+#   spdx3-ds: "https://spdx.org/rdf/3/terms/Dataset/"
+#   spdx3-sec: "https://spdx.org/rdf/3/terms/Security/"
+#   spdx3-hw: "https://spdx.org/rdf/3/terms/Hardware/"
+#   skos: "http://www.w3.org/2004/02/skos/core#"
+#   semapv: "https://w3id.org/semapv/vocab/"
+# mapping_set_id: "https://w3id.org/bom/mapping/mof-to-spdx31"
+# mapping_set_version: "0.1.0"
+# mapping_set_title: "Model Openness Framework (MOF) 1.0 <-> SPDX 3.1-dev"
+# mapping_set_description: "Maps the components defined in the Model Openness Framework (MOF) to classes and properties in the SPDX 3.1-dev specification. Uses expanded bridge concepts to map documentation and code correctly."
+# license: "https://creativecommons.org/publicdomain/zero/1.0/"
+# creator_id:
+#   - "orcid:0000-0002-9698-1899"
+# mapping_date: "2026-07-24"
+# subject_source: "https://w3id.org/bom/req/mof/"
+# object_source: "https://spdx.github.io/spdx-spec/v3.1-dev/"
+# see_also:
+#   - "https://spdx.github.io/spdx-spec/v3.1-dev/model/"
+#   - "https://lfaidata.foundation/blog/2024/12/17/mof-specification-v1/"
+#   - "https://w3id.org/bom/"
+subject_id	subject_label	predicate_id	object_id	object_label	mapping_justification	see_also	comment	object_qualifier
+mof:model-architecture	Model architecture	skos:closeMatch	spdx3-sw:SoftwareArtifact	SoftwareArtifact	semapv:ManualMappingCuration	bom:component-source-code	Model architecture is required to be distributed as open source code. Modelled as a SoftwareArtifact.	spdx3-sw:SoftwareArtifact
+mof:model-parameters	Final model parameters	skos:closeMatch	spdx3-core:Artifact	Artifact	semapv:ManualMappingCuration	bom:ai-model-parameters	Trained weights and biases are modelled as an Artifact linked to the AIPackage.	spdx3-core:Artifact
+mof:technical-report	Technical report	skos:closeMatch	spdx3-core:externalIdentifier	externalIdentifier	semapv:ManualMappingCuration	bom:component-documentation	Technical reports distributed separately can be referenced via Element.externalIdentifier.	spdx3-core:Element
+mof:evaluation-results	Evaluation results	skos:closeMatch	spdx3-core:externalIdentifier	externalIdentifier	semapv:ManualMappingCuration	bom:component-documentation	Evaluation results/raw outputs can be referenced via Element.externalIdentifier.	spdx3-core:Element
+mof:model-card	Model card	skos:closeMatch	spdx3-core:externalIdentifier	externalIdentifier	semapv:ManualMappingCuration	bom:ai-model-card	Model cards distributed separately can be referenced via Element.externalIdentifier.	spdx3-core:Element
+mof:data-card	Data card	skos:closeMatch	spdx3-core:externalIdentifier	externalIdentifier	semapv:ManualMappingCuration	bom:dataset-data-card	Data cards distributed separately can be referenced via Element.externalIdentifier.	spdx3-core:Element
+mof:sample-outputs	Sample model outputs	skos:closeMatch	spdx3-core:externalIdentifier	externalIdentifier	semapv:ManualMappingCuration	bom:component-documentation	Sample outputs distributed separately can be referenced via Element.externalIdentifier.	spdx3-core:Element
+mof:training-code	Training code	skos:closeMatch	spdx3-sw:SoftwareArtifact	SoftwareArtifact	semapv:ManualMappingCuration	bom:component-source-code	Training, validation and testing code. Modelled as a SoftwareArtifact.	spdx3-sw:SoftwareArtifact
+mof:inference-code	Inference code	skos:closeMatch	spdx3-sw:SoftwareArtifact	SoftwareArtifact	semapv:ManualMappingCuration	bom:component-source-code	Code for performing inference. Modelled as a SoftwareArtifact.	spdx3-sw:SoftwareArtifact
+mof:evaluation-code	Evaluation code	skos:closeMatch	spdx3-sw:SoftwareArtifact	SoftwareArtifact	semapv:ManualMappingCuration	bom:component-source-code	Code for model evaluation and benchmarking. Modelled as a SoftwareArtifact.	spdx3-sw:SoftwareArtifact
+mof:evaluation-data	Evaluation data	skos:closeMatch	spdx3-ds:DatasetPackage	DatasetPackage	semapv:ManualMappingCuration	bom:dataset-provenance	Data used for evaluation. Modelled as a DatasetPackage.	spdx3-ds:DatasetPackage
+mof:supporting-libraries	Supporting libraries and tools	skos:closeMatch	spdx3-sw:SoftwareArtifact	SoftwareArtifact	semapv:ManualMappingCuration	bom:component-source-code	Code libraries and utilities. Modelled as a SoftwareArtifact.	spdx3-sw:SoftwareArtifact
+mof:mof-config-file	MOF configuration file	skos:closeMatch	spdx3-core:externalIdentifier	externalIdentifier	semapv:ManualMappingCuration	bom:component-documentation	MOF configuration file can be referenced via Element.externalIdentifier.	spdx3-core:Element
+mof:research-paper	Research paper	skos:closeMatch	spdx3-core:externalIdentifier	externalIdentifier	semapv:ManualMappingCuration	bom:component-documentation	Research papers distributed separately can be referenced via Element.externalIdentifier.	spdx3-core:Element
+mof:datasets	Datasets	skos:closeMatch	spdx3-ds:DatasetPackage	DatasetPackage	semapv:ManualMappingCuration	bom:dataset-type	All data used for training/validation. Modelled as a DatasetPackage.	spdx3-ds:DatasetPackage
+mof:data-preprocessing-code	Data preprocessing code	skos:closeMatch	spdx3-sw:SoftwareArtifact	SoftwareArtifact	semapv:ManualMappingCuration	bom:component-source-code	Code for preprocessing and tokenization. Modelled as a SoftwareArtifact.	spdx3-sw:SoftwareArtifact
+mof:intermediate-parameters	Intermediate model parameters	skos:closeMatch	spdx3-core:Artifact	Artifact	semapv:ManualMappingCuration	bom:ai-model-parameters	Checkpoints from intermediate stages. Modelled as an Artifact.	spdx3-core:Artifact
+mof:model-metadata	Model metadata	skos:closeMatch	spdx3-core:description	description	semapv:ManualMappingCuration	bom:component-description	Structured metadata about the distribution. Can be mapped to Element.description or Element.externalIdentifier.	spdx3-core:Element
