@@ -181,13 +181,11 @@ The bridge vocabulary (`bom.ttl`) is the shared artefact that benefits from ever
 
 1. **The regulatory landscape is fragmenting fast.** EU AI Act, EU CRA, G7 AI commitments, US Executive Order 14028, and national requirements (BSI, ANSSI) all require SBOMs with overlapping but not identical field sets. Without shared infrastructure, every compliance tool maintains its own private N×M mapping — duplicated, unreviewed, and inconsistent.
 
-2. **SBOM tooling currently checks format, not content compliance.** Existing validators tell you if an SPDX file is syntactically valid; they do not tell you if it satisfies NTIA. This project provides the data layer to build content-compliance checkers.
+2. **Gap analysis is directly actionable.** When a mapping file documents that BSI's `structured-property` has no equivalent in SPDX 3.1-dev, that is a citable, specific input to the SPDX working group — not a vague complaint.
 
-3. **Gap analysis is directly actionable.** When a mapping file documents that BSI's `structured-property` has no equivalent in SPDX 3.1-dev, that is a citable, specific input to the SPDX working group — not a vague complaint.
+3. **Bridge reuse compounds.** Each new source standard mapped to the bridge immediately gains a shared anchor for cross-standard queries and a structured starting point for mapping to any target format. The per-source SSSOM files still need to be authored, but they are produced faster and more consistently because the bridge pre-structures the semantic space.
 
-4. **Bridge reuse compounds.** Each new source standard mapped to the bridge immediately gains a shared anchor for cross-standard queries and a structured starting point for mapping to any target format. The per-source SSSOM files still need to be authored, but they are produced faster and more consistently because the bridge pre-structures the semantic space.
-
-5. **Machine-readable and open.** SSSOM is a W3C-adjacent standard. The output files can power SPARQL queries, documentation generators, spreadsheet views, and compliance APIs without further transformation.
+4. **Machine-readable and open.** SSSOM is a W3C-adjacent standard. The output files can power SPARQL queries, documentation generators, spreadsheet views, and compliance APIs without further transformation.
 
 ---
 
@@ -195,8 +193,8 @@ The bridge vocabulary (`bom.ttl`) is the shared artefact that benefits from ever
 
 | Class | Meaning | Examples |
 |---|---|---|
-| `bom:InfoRequirementSpec` | Layer A — standard or guidance enumerating specific SBOM information elements with provision levels | NTIA, G7 AI, BSI TR-03183-2, CISA FSCT (3rd Ed.) |
-| `bom:ExchangeFormatSpec` | Layer B — technical standard defining SBOM serialisation | SPDX 3.1, CycloneDX 1.6 |
+| `bom:InfoRequirementSpec` | Layer A — standard or guidance enumerating specific baseline information (minimum elements) with provision levels | NTIA, G7 AI, BSI TR-03183-2, CISA FSCT (3rd Ed.) |
+| `bom:ExchangeFormatSpec` | Layer B — technical standard defining compliance document format/serialisation | SPDX 3.1, CycloneDX 1.6 |
 | `bom:RegulatorySpec` | Layer C — legally binding instrument defining compliance-related obligations (subclass of `dpv:Regulation`) | EU AI Act, EU CRA |
 
 Assessment frameworks (MOF) do not fit neatly into Layer A or C — MOF defines maturity levels whose *criteria* can overlap with SBOM minimum elements. MOF is treated as a separate `bom:InfoRequirementSpec` whose concepts are the individual criteria; mapping to the bridge links MOF criteria to the same concepts as NTIA/G7.

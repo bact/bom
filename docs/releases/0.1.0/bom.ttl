@@ -58,7 +58,7 @@ bom:SarifRuleId
 bom:InfoRequirementSpec
     a owl:Class ;
     rdfs:label "Information Requirement Specification"@en ;
-    rdfs:comment "A standard or guidance document specifying which SBOM elements MUST/SHOULD be present (e.g. NTIA, CISA, G7 AI, BSI TR-03183-2, MOF)."@en .
+    rdfs:comment "A standard or guidance document specifying which baseline information MUST/SHOULD be present."@en .
 
 bom:RegulatorySpec
     a owl:Class ;
