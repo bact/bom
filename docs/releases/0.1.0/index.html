@@ -8,7 +8,7 @@
       var respecConfig = {
         specStatus: "CG-DRAFT",
         shortName: "bom",
-        publishDate: "2026-06-21",
+        publishDate: "2026-07-24",
         editors: [{
           name: "Arthit Suriyawongkul",
           url: "https://orcid.org/0000-0002-9698-1899"
@@ -270,6 +270,11 @@
               <td>Component External Reference</td>
               <td>Pointers to external pages, security policies, or vulnerability disclosure locations.</td>
             </tr>
+            <tr>
+              <td class="curie">bom:component-documentation</td>
+              <td>Component Documentation</td>
+              <td>Technical reports, research papers, manuals, or configuration files describing the component.</td>
+            </tr>
           </tbody>
         </table>
       </section>
@@ -299,6 +304,11 @@
               <td class="curie">bom:component-structured-property</td>
               <td>Component Structured Property</td>
               <td>A flag indicating whether the component file has structured metadata present.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:component-source-code</td>
+              <td>Component Source Code</td>
+              <td>Source code files or packages for training, inference, evaluation, or data pre-processing.</td>
             </tr>
           </tbody>
         </table>
@@ -345,6 +355,16 @@
               <td>AI Training Properties</td>
               <td>Hyperparameters, fine-tuning configuration, and hardware resource footprint.</td>
             </tr>
+            <tr>
+              <td class="curie">bom:ai-model-card</td>
+              <td>AI Model Card</td>
+              <td>A structured document (model card) covering model details, intended uses, evaluation factors, risks and mitigations.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:ai-model-parameters</td>
+              <td>AI Model Parameters</td>
+              <td>The trained weights, biases, checkpoints, and optimizer state of the AI model.</td>
+            </tr>
           </tbody>
         </table>
       </section>
@@ -379,6 +399,11 @@
               <td class="curie">bom:dataset-sensitivity</td>
               <td>Dataset Sensitivity</td>
               <td>Presence of sensitive/personal information and anonymization status.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:dataset-data-card</td>
+              <td>Dataset Data Card</td>
+              <td>A structured document (data card) providing summary statistics and details about training datasets, features, instances, and intended uses.</td>
             </tr>
           </tbody>
         </table>

@@ -28,7 +28,7 @@ bom:
     dcterms:creator <https://orcid.org/0000-0002-9698-1899> ;
     dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
     dcterms:created "2026-06-13"^^xsd:date ;
-    dcterms:modified "2026-06-17"^^xsd:date ;
+    dcterms:modified "2026-07-24"^^xsd:date ;
     owl:versionInfo "0.1.0" ;
     rdfs:seeAlso <https://spdx.github.io/spdx-spec/v3.1-dev/> ;
     rdfs:seeAlso <https://ntia.gov/sites/default/files/publications/sbom_minimum_elements_for_a_software_bill_of_materials.pdf> ;
