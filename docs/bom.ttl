@@ -250,7 +250,7 @@ bom:bom-sw
     skos:prefLabel "Software Component"@en ;
     skos:definition "Concepts specific to software package components: executable characteristics, archive structure, filename and other properties that apply to software but not to hardware or data components."@en ;
     skos:closeMatch schema:SoftwareApplication ;
-    skos:scopeNote "Software-generic attributes (name, version, identifier, supplier, license, etc.) are under bom:bom-component. bom:bom-sw carries only software-specific attributes. NTIA (2021) minimum elements are software-specific; BSI TR-03183-2 (2025) executable/archive/structured properties are the primary leaf concepts here."@en .
+    skos:scopeNote "Software-generic attributes (name, version, identifier, supplier, license, etc.) are under bom:bom-component. bom:bom-sw carries only software-specific attributes. NTIA (2021) minimum elements are software-specific; BSI TR-03183-2 (2025) executable/archive/structured flags are the primary leaf concepts here."@en .
 
 bom:bom-ai
     a skos:Concept ;
@@ -317,7 +317,7 @@ bom:doc-lifecycle-stage
     skos:inScheme bom:bridge ;
     skos:broader bom:bom-document ;
     skos:prefLabel "Document lifecycle stage"@en ;
-    skos:altLabel "Document type"@en ;                      # FSCT (3rd Ed.), SPDX 3 label
+    skos:altLabel "Document type"@en ;                  # FSCT (3rd Ed.), SPDX 3 label
     skos:altLabel "SBOM generation context"@en ;        # G7 AI, CISA 2025 label
     skos:definition "The lifecycle stage or context in which the SBOM was generated (e.g. build, analysed, deployed, runtime)."@en ;
     skos:scopeNote "Terminology variant: 'SBOM type' is used in CISA FSCT (3rd Ed.) (2024) and SPDX 3; 'SBOM generation context' is used in G7 SBOM for AI (2026) and CISA (2025). Both refer to the same concept."@en ;
@@ -490,7 +490,7 @@ bom:component-description
     skos:relatedMatch dcterms:description ;
     skos:closeMatch schema:description .
 
-bom:component-external-reference
+bom:component-external-ref
     a skos:Concept ;
     skos:inScheme bom:bridge ;
     skos:broader bom:bom-component ;
@@ -509,29 +509,29 @@ bom:component-filename
     skos:definition "The actual filename of the component (without path) as it appears in the delivered artifact."@en ;
     skos:scopeNote "Required by BSI TR-03183-2 (2025). In SPDX 3.x represented via a software_File element linked by hasDistributionArtifact; in CycloneDX via BSI property taxonomy key bsi:component:filename."@en .
 
-bom:component-executable-property
+bom:is-executable
     a skos:Concept ;
     skos:inScheme bom:bridge ;
     skos:broader bom:bom-sw ;
-    skos:prefLabel "Component executable property"@en ;
+    skos:prefLabel "Is executable"@en ;
     skos:definition "Whether the component is an executable file (compiled binary, interpreted script, or shared library)."@en ;
     skos:scopeNote "Required by BSI TR-03183-2 (2025). In SPDX 3.x mapped via software_File.software_additionalPurpose; in CycloneDX via BSI property taxonomy key bsi:component:executable. See https://github.com/BSI-Bund/tr-03183-cyclonedx-property-taxonomy."@en .
 
-bom:component-archive-property
+bom:is-archive
     a skos:Concept ;
     skos:inScheme bom:bridge ;
     skos:broader bom:bom-sw ;
-    skos:prefLabel "Component archive property"@en ;
+    skos:prefLabel "Is archive"@en ;
     skos:definition "Whether the component is an archive that combines multiple sub-components (e.g. a zip, rpm, container image)."@en ;
-    skos:scopeNote "Required by BSI TR-03183-2 (2025). In SPDX 3.x: software_additionalPurpose; in CycloneDX: bsi:component:archive property."@en .
+    skos:scopeNote "Required by BSI TR-03183-2 (2025). In SPDX 3.x: software_additionalPurpose; in CycloneDX: bsi:component:archive flag."@en .
 
-bom:component-structured-property
+bom:is-structured
     a skos:Concept ;
     skos:inScheme bom:bridge ;
     skos:broader bom:bom-sw ;
-    skos:prefLabel "Component structured property"@en ;
+    skos:prefLabel "Is structured"@en ;
     skos:definition "Whether the component is a structured archive whose internal component metadata is still recoverable (e.g. zip, tar, container image) vs an unstructured archive such as a firmware image."@en ;
-    skos:scopeNote "Required by BSI TR-03183-2 (2025). In SPDX 3.x: software_additionalPurpose (container = structured, firmware = unstructured); in CycloneDX: bsi:component:structured property."@en .
+    skos:scopeNote "Required by BSI TR-03183-2 (2025). In SPDX 3.x: software_additionalPurpose (container = structured, firmware = unstructured); in CycloneDX: bsi:component:structured flag."@en .
 
 bom:component-source-code
     a skos:Concept ;
@@ -579,37 +579,46 @@ bom:ai-data-usage
     skos:prefLabel "AI data usage"@en ;
     skos:definition "A description of how data (including personal or sensitive data) is used by the AI system."@en .
 
-bom:ai-io-properties
+bom:ai-io-prop
     a skos:Concept ;
     skos:inScheme bom:bridge ;
     skos:broader bom:bom-ai ;
-    skos:prefLabel "AI input/output properties"@en ;
+    skos:prefLabel "AI input/output property"@en ;
     skos:definition "The types, modalities and constraints on data accepted as input and produced as output by the AI system or model."@en ;
     skos:relatedMatch mls:hasInput ;
     skos:relatedMatch mls:hasOutput ;
     skos:scopeNote "In W3C MLS, mls:hasInput and mls:hasOutput are object properties of mls:Run (a training/evaluation execution), not of mls:Model directly. Used here as relatedMatch because the I/O of a training run approximates the I/O interface of the resulting model. No structured I/O schema field in SPDX 3.1-dev; partially covered by typeOfModel (modality) and informationAboutApplication. MLDCAT-AP 3.1.0 provides more specific MachineLearningModel.hasInputModality / hasOutputModality properties. See https://semiceu.github.io/MLDCAT-AP/releases/3.1.0/#MachineLearningModel"@en .
 
-bom:ai-model-properties
+bom:ai-model-prop
     a skos:Concept ;
     skos:inScheme bom:bridge ;
     skos:broader bom:bom-ai ;
-    skos:prefLabel "AI model properties"@en ;
+    skos:prefLabel "AI model property"@en ;
     skos:definition "AI-specific technical properties of a model: type, explainability, autonomy level, safety risk assessment and energy profile."@en ;
     skos:relatedMatch mls:Model ;
     skos:relatedMatch mls:Algorithm ;
     skos:relatedMatch ai:MachineLearningModel ;
     skos:scopeNote "MLDCAT-AP 3.1.0 covers risk properties via its HarmRisk class. See https://semiceu.github.io/MLDCAT-AP/releases/3.1.0/#HarmRisk. DPV AI ai:MachineLearningModel extends the base ai:Model class with ML-specific properties. See https://w3c-cg.github.io/dpv/2.3/ai/."@en .
 
-bom:ai-training-properties
+bom:ai-training-prop
     a skos:Concept ;
     skos:inScheme bom:bridge ;
     skos:broader bom:bom-ai ;
-    skos:prefLabel "AI training properties"@en ;
+    skos:prefLabel "AI training property"@en ;
     skos:definition "Characteristics of the model's training process: hyperparameters, data pre-processing steps, fine-tuning configuration and energy consumption."@en ;
     skos:relatedMatch mls:Run ;
     skos:relatedMatch mls:HyperParameter ;
     skos:relatedMatch ai:ModelTraining ;
     skos:scopeNote "MLDCAT-AP 3.1.0 uses MachineLearningModel.designSpecifications and trainingProcess for these concepts. See https://semiceu.github.io/MLDCAT-AP/releases/3.1.0/#MachineLearningModel. DPV AI ai:ModelTraining is the class representing the model training process. See https://w3c-cg.github.io/dpv/2.3/ai/."@en .
+
+bom:ai-perf-metric
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-ai ;
+    skos:prefLabel "Performance metric"@en ;
+    skos:altLabel "Security metric"@en ;
+    skos:altLabel "Operational performance KPI"@en ;
+    skos:definition "Quantitative security and operational performance metrics and their decision thresholds (e.g. adversarial robustness, accuracy, latency, energy consumption)."@en .
 
 bom:ai-model-card
     a skos:Concept ;
@@ -650,11 +659,11 @@ bom:dataset-provenance
     skos:relatedMatch ai:DataPreparation ;
     skos:scopeNote "dcterms:provenance focuses on ownership/custody chain; dataset provenance in SBOM covers collection methodology, pre-processing and curation. MLDCAT-AP 3.1.0 covers this more precisely via Dataset.dataProvenance, collectionMethod and curationMethod. See https://semiceu.github.io/MLDCAT-AP/releases/3.1.0/#Dataset. DPV AI ai:DataCollection covers how data was gathered; ai:DataPreparation covers pre-processing steps. See https://w3c-cg.github.io/dpv/2.3/ai/."@en .
 
-bom:dataset-statistical-properties
+bom:dataset-statistical-prop
     a skos:Concept ;
     skos:inScheme bom:bridge ;
     skos:broader bom:bom-dataset ;
-    skos:prefLabel "Dataset statistical properties"@en ;
+    skos:prefLabel "Dataset statistical property"@en ;
     skos:definition "Statistical characteristics of the dataset including size, noise levels, known biases and class distributions."@en ;
     skos:relatedMatch mls:DatasetCharacteristic ;
     skos:relatedMatch ai:BiasAssessment ;
@@ -728,7 +737,7 @@ bom:security-policy
     skos:altLabel "Cybersecurity policy information"@en ;
     skos:definition "References to the supplier's vulnerability-disclosure policy, security.txt or coordinated-disclosure process."@en .
 
-bom:vulnerability-reference
+bom:security-vuln-ref
     a skos:Concept ;
     skos:inScheme bom:bridge ;
     skos:broader bom:bom-security ;
@@ -736,11 +745,3 @@ bom:vulnerability-reference
     skos:altLabel "Vulnerability referencing"@en ;
     skos:definition "References to known vulnerabilities (CVEs) and their assessment status (VEX) for the AI system and its components."@en .
 
-bom:performance-metric
-    a skos:Concept ;
-    skos:inScheme bom:bridge ;
-    skos:broader bom:bom-security ;
-    skos:prefLabel "Performance metric"@en ;
-    skos:altLabel "Security metrics"@en ;
-    skos:altLabel "Operational performance KPIs"@en ;
-    skos:definition "Quantitative security and operational performance metrics and their decision thresholds (e.g. adversarial robustness, accuracy, latency, energy consumption)."@en .

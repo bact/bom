@@ -157,7 +157,7 @@ distributed as open source code under an OSI-approved open source software
 license."""@en ;
     skos:closeMatch bom:component-description ;
     skos:closeMatch bom:component-source-code ;
-    skos:closeMatch bom:ai-model-properties .
+    skos:closeMatch bom:ai-model-prop .
 
 mof:model-architecture bom:provisionType bom:Requirement .
 mof:model-architecture bom:valueConstraint mof:open-source-license-set .
@@ -207,7 +207,7 @@ mof:evaluation-results
 evaluating the model. MUST include benchmark test results (standard or custom).
 Raw outputs MUST be distributed under an open license (SHOULD be CC-BY-4.0)."""@en ;
     skos:closeMatch bom:component-documentation ;
-    skos:closeMatch bom:performance-metric .
+    skos:closeMatch bom:ai-perf-metric .
 
 mof:evaluation-results bom:provisionType bom:Requirement .
 mof:evaluation-results bom:valueConstraint mof:open-content-license-set .
@@ -241,7 +241,7 @@ MAY be combined with the model card. MUST be distributed under an open license
 (SHOULD be CC-BY-4.0)."""@en ;
     skos:closeMatch bom:dataset-data-card ;
     skos:closeMatch bom:dataset-provenance ;
-    skos:closeMatch bom:dataset-statistical-properties .
+    skos:closeMatch bom:dataset-statistical-prop .
 
 mof:data-card bom:provisionType bom:Requirement .
 mof:data-card bom:valueConstraint mof:open-content-license-set .

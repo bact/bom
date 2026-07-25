@@ -266,7 +266,7 @@
               <td>Concluded, declared, or effective licenses associated with the component.</td>
             </tr>
             <tr>
-              <td class="curie">bom:component-external-reference</td>
+              <td class="curie">bom:component-external-ref</td>
               <td>Component External Reference</td>
               <td>Pointers to external pages, security policies, or vulnerability disclosure locations.</td>
             </tr>
@@ -291,17 +291,17 @@
           </thead>
           <tbody>
             <tr>
-              <td class="curie">bom:component-executable-property</td>
+              <td class="curie">bom:is-executable</td>
               <td>Component Executable Property</td>
               <td>A flag indicating whether the component is executable (e.g. executable vs library/script).</td>
             </tr>
             <tr>
-              <td class="curie">bom:component-archive-property</td>
+              <td class="curie">bom:is-archive</td>
               <td>Component Archive Property</td>
               <td>A flag indicating whether the component is an archive or distribution bundle.</td>
             </tr>
             <tr>
-              <td class="curie">bom:component-structured-property</td>
+              <td class="curie">bom:is-structured</td>
               <td>Component Structured Property</td>
               <td>A flag indicating whether the component file has structured metadata present.</td>
             </tr>
@@ -341,17 +341,17 @@
               <td>Normative limits or conditions on data processed during model inference.</td>
             </tr>
             <tr>
-              <td class="curie">bom:ai-io-properties</td>
+              <td class="curie">bom:ai-io-prop</td>
               <td>AI IO Properties</td>
               <td>Input and output formats, modalities, and interface properties of the model.</td>
             </tr>
             <tr>
-              <td class="curie">bom:ai-model-properties</td>
+              <td class="curie">bom:ai-model-prop</td>
               <td>AI Model Properties</td>
               <td>AI model architectural properties (model type, explainability, safety characteristics).</td>
             </tr>
             <tr>
-              <td class="curie">bom:ai-training-properties</td>
+              <td class="curie">bom:ai-training-prop</td>
               <td>AI Training Properties</td>
               <td>Hyperparameters, fine-tuning configuration, and hardware resource footprint.</td>
             </tr>
@@ -364,6 +364,12 @@
               <td class="curie">bom:ai-model-parameters</td>
               <td>AI Model Parameters</td>
               <td>The trained weights, biases, checkpoints, and optimizer state of the AI model.</td>
+            </tr>
+          
+            <tr>
+              <td class="curie">bom:ai-perf-metric</td>
+              <td>Performance Metric</td>
+              <td>Model performance metrics (adversarial robustness, accuracy thresholds).</td>
             </tr>
           </tbody>
         </table>
@@ -391,7 +397,7 @@
               <td>Information about collection, preprocessing, and chain of custody.</td>
             </tr>
             <tr>
-              <td class="curie">bom:dataset-statistical-properties</td>
+              <td class="curie">bom:dataset-statistical-prop</td>
               <td>Dataset Statistical Properties</td>
               <td>Noise levels, class distributions, and bias assessments.</td>
             </tr>
@@ -461,14 +467,9 @@
               <td>Vulnerability disclosure guidelines, contact information, or security.txt.</td>
             </tr>
             <tr>
-              <td class="curie">bom:vulnerability-reference</td>
+              <td class="curie">bom:security-vuln-ref</td>
               <td>Vulnerability Reference</td>
               <td>Known CVEs and VEX assessments linked to the components.</td>
-            </tr>
-            <tr>
-              <td class="curie">bom:performance-metric</td>
-              <td>Performance Metric</td>
-              <td>Model performance metrics (adversarial robustness, accuracy thresholds).</td>
             </tr>
           </tbody>
         </table>

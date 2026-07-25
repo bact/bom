@@ -93,7 +93,7 @@ Layer A / C concept  →  Layer D bridge concept  →  Layer B format field
 **Refinement pass — optional, per source-target pair.** Where the bridge's abstraction introduces imprecision, a hand-authored SSSOM file refines the generated one:
 
 - A `closeMatch` at the bridge level that should be `narrowMatch` for a specific source concept.
-- A gap that only exists for one particular standard (e.g. BSI's `structured-property` has no SPDX 3.1 equivalent, even though the bridge concept `bom:component-structured-property` exists).
+- A gap that only exists for one particular standard (e.g. BSI's `structured-property` has no SPDX 3.1 equivalent, even though the bridge concept `bom:is-structured` exists).
 - A value-level constraint the bridge does not capture (e.g. BSI mandates SHA-512 specifically).
 - Source-specific commentary and `object_qualifier` details.
 
@@ -379,7 +379,7 @@ Pattern: `BOM-[SPEC]-[CAT]-[NNN]`. Lowercasing yields a valid OSCAL catalog cont
 | Document | `bom:doc-{name}` | `bom:doc-author` |
 | Component (generic) | `bom:component-{name}` | `bom:component-hash` |
 | Software | `bom:component-{name}` (same namespace) | `bom:component-filename` |
-| AI/ML | `bom:ai-{name}` | `bom:ai-training-properties` |
+| AI/ML | `bom:ai-{name}` | `bom:ai-training-prop` |
 | Dataset | `bom:dataset-{name}` | `bom:dataset-provenance` |
 | Infrastructure | `bom:infra-{name}` | `bom:infra-hardware` |
 | Security | `bom:security-{name}` / `bom:performance-{name}` / `bom:vulnerability-{name}` | `bom:security-compliance` |

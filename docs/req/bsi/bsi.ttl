@@ -34,8 +34,8 @@ bsi:scheme
         bsi:component-creator , bsi:component-name , bsi:component-version ,
         bsi:component-filename , bsi:component-dependencies ,
         bsi:component-distribution-license , bsi:component-hash-deployable ,
-        bsi:component-executable-property , bsi:component-archive-property ,
-        bsi:component-structured-property ,
+        bsi:is-executable , bsi:is-archive ,
+        bsi:is-structured ,
         bsi:component-source-uri , bsi:component-distribution-uri ,
         bsi:component-identifiers , bsi:component-original-license ,
         bsi:component-license-effective , bsi:component-hash-source ,
@@ -141,32 +141,32 @@ bsi:component-hash-deployable
     skos:notation "BOM-BSI-COMP-007"^^bom:SarifRuleId ;
     skos:closeMatch bom:component-hash .
 
-bsi:component-executable-property
+bsi:is-executable
     a skos:Concept ;
     skos:topConceptOf bsi:scheme ;
     skos:inScheme bsi:scheme ;
-    skos:prefLabel "Executable property"@en ;
+    skos:prefLabel "Is executable"@en ;
     skos:definition "Whether the component is executable; possible values: 'executable' / 'non-executable'."@en ;
     skos:notation "BOM-BSI-COMP-008"^^bom:SarifRuleId ;
-    skos:exactMatch bom:component-executable-property .
+    skos:exactMatch bom:is-executable .
 
-bsi:component-archive-property
+bsi:is-archive
     a skos:Concept ;
     skos:topConceptOf bsi:scheme ;
     skos:inScheme bsi:scheme ;
-    skos:prefLabel "Archive property"@en ;
+    skos:prefLabel "Is archive"@en ;
     skos:definition "Whether the component is an archive; possible values: 'archive' / 'no archive'."@en ;
     skos:notation "BOM-BSI-COMP-009"^^bom:SarifRuleId ;
-    skos:exactMatch bom:component-archive-property .
+    skos:exactMatch bom:is-archive .
 
-bsi:component-structured-property
+bsi:is-structured
     a skos:Concept ;
     skos:topConceptOf bsi:scheme ;
     skos:inScheme bsi:scheme ;
-    skos:prefLabel "Structured property"@en ;
+    skos:prefLabel "Is structured"@en ;
     skos:definition "Whether the component is a structured file whose internal metadata is still present; possible values: 'structured' / 'unstructured'."@en ;
     skos:notation "BOM-BSI-COMP-010"^^bom:SarifRuleId ;
-    skos:exactMatch bom:component-structured-property .
+    skos:exactMatch bom:is-structured .
 
 # -- BSI TR-03183-2: Additional data fields for each component (Table 5) ------
 
@@ -177,7 +177,7 @@ bsi:component-source-uri
     skos:prefLabel "Source code URI"@en ;
     skos:definition "URI of the source code of the component (e.g. a versioned repository URL), required if it exists."@en ;
     skos:notation "BOM-BSI-COMP-011"^^bom:SarifRuleId ;
-    skos:closeMatch bom:component-external-reference .
+    skos:closeMatch bom:component-external-ref .
 
 bsi:component-distribution-uri
     a skos:Concept ;
@@ -186,7 +186,7 @@ bsi:component-distribution-uri
     skos:prefLabel "URI of the deployable form of the component"@en ;
     skos:definition "URI pointing directly to the deployable (e.g. downloadable) form of the component, required if it exists."@en ;
     skos:notation "BOM-BSI-COMP-012"^^bom:SarifRuleId ;
-    skos:closeMatch bom:component-external-reference .
+    skos:closeMatch bom:component-external-ref .
 
 bsi:component-identifiers
     a skos:Concept ;
@@ -257,9 +257,9 @@ bsi:component-filename            bom:provisionType bom:Requirement .
 bsi:component-dependencies        bom:provisionType bom:Requirement .
 bsi:component-distribution-license bom:provisionType bom:Requirement .
 bsi:component-hash-deployable     bom:provisionType bom:Requirement .
-bsi:component-executable-property bom:provisionType bom:Requirement .
-bsi:component-archive-property    bom:provisionType bom:Requirement .
-bsi:component-structured-property bom:provisionType bom:Requirement .
+bsi:is-executable bom:provisionType bom:Requirement .
+bsi:is-archive    bom:provisionType bom:Requirement .
+bsi:is-structured bom:provisionType bom:Requirement .
 
 # -- Additional if exists: each component (Table 5) ---------------------------
 bsi:component-source-uri          bom:provisionType bom:ConditionalRequirement .

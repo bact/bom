@@ -38,11 +38,11 @@ Key Performance Indicators (KPI)."""@en ;
     dcterms:source <https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/KI/SBOM-for-AI_minimum-elements.pdf?__blob=publicationFile&v=4> ;
     skos:hasTopConcept
         g7ai:metadata ,
-        g7ai:system-level-properties ,
+        g7ai:system-level-prop ,
         g7ai:models ,
-        g7ai:dataset-properties ,
+        g7ai:dataset-prop ,
         g7ai:infrastructure ,
-        g7ai:security-properties ,
+        g7ai:security-prop ,
         g7ai:key-performance-indicators .
 
 # -- G7AI top-level category concepts -----------------------------------------
@@ -55,7 +55,7 @@ g7ai:metadata
     skos:notation "G7AI-MD" ;
     skos:definition "Elements describing the document itself: authorship, format, versioning, tooling and relationships."@en .
 
-g7ai:system-level-properties
+g7ai:system-level-prop
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
     skos:topConceptOf g7ai:scheme ;
@@ -71,7 +71,7 @@ g7ai:models
     skos:notation "G7AI-MDL" ;
     skos:definition "Elements describing individual AI model artifacts: identity, provenance, hashes, licensing and training characteristics."@en .
 
-g7ai:dataset-properties
+g7ai:dataset-prop
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
     skos:topConceptOf g7ai:scheme ;
@@ -87,7 +87,7 @@ g7ai:infrastructure
     skos:notation "G7AI-INF" ;
     skos:definition "Elements describing the software and hardware environment on which the AI system runs."@en .
 
-g7ai:security-properties
+g7ai:security-prop
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
     skos:topConceptOf g7ai:scheme ;
@@ -211,7 +211,7 @@ g7ai:sbom-dependency-relationship
 g7ai:system-name
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
-    skos:broader g7ai:system-level-properties ;
+    skos:broader g7ai:system-level-prop ;
     skos:prefLabel "System name"@en ;
     skos:notation "G7AI-SLP-01" ;
     skos:notation "BOM-G7AI-SLP-001"^^bom:SarifRuleId ;
@@ -221,7 +221,7 @@ g7ai:system-name
 g7ai:system-components
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
-    skos:broader g7ai:system-level-properties ;
+    skos:broader g7ai:system-level-prop ;
     skos:prefLabel "System components"@en ;
     skos:notation "G7AI-SLP-02" ;
     skos:notation "BOM-G7AI-SLP-002"^^bom:SarifRuleId ;
@@ -231,7 +231,7 @@ g7ai:system-components
 g7ai:system-producer
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
-    skos:broader g7ai:system-level-properties ;
+    skos:broader g7ai:system-level-prop ;
     skos:prefLabel "System producer"@en ;
     skos:notation "G7AI-SLP-03" ;
     skos:notation "BOM-G7AI-SLP-003"^^bom:SarifRuleId ;
@@ -241,7 +241,7 @@ g7ai:system-producer
 g7ai:system-version
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
-    skos:broader g7ai:system-level-properties ;
+    skos:broader g7ai:system-level-prop ;
     skos:prefLabel "System version"@en ;
     skos:notation "G7AI-SLP-04" ;
     skos:notation "BOM-G7AI-SLP-004"^^bom:SarifRuleId ;
@@ -251,7 +251,7 @@ g7ai:system-version
 g7ai:system-timestamp
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
-    skos:broader g7ai:system-level-properties ;
+    skos:broader g7ai:system-level-prop ;
     skos:prefLabel "System timestamp"@en ;
     skos:notation "G7AI-SLP-05" ;
     skos:notation "BOM-G7AI-SLP-005"^^bom:SarifRuleId ;
@@ -261,7 +261,7 @@ g7ai:system-timestamp
 g7ai:system-data-flow
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
-    skos:broader g7ai:system-level-properties ;
+    skos:broader g7ai:system-level-prop ;
     skos:prefLabel "System data flow"@en ;
     skos:notation "G7AI-SLP-06" ;
     skos:notation "BOM-G7AI-SLP-006"^^bom:SarifRuleId ;
@@ -271,27 +271,27 @@ g7ai:system-data-flow
 g7ai:system-data-usage
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
-    skos:broader g7ai:system-level-properties ;
+    skos:broader g7ai:system-level-prop ;
     skos:prefLabel "System data usage"@en ;
     skos:notation "G7AI-SLP-07" ;
     skos:notation "BOM-G7AI-SLP-007"^^bom:SarifRuleId ;
     skos:definition "A description of how data (including personal or sensitive data) is used by the AI system."@en ;
     skos:exactMatch bom:ai-data-usage .
 
-g7ai:system-input-output-properties
+g7ai:system-input-output-prop
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
-    skos:broader g7ai:system-level-properties ;
-    skos:prefLabel "System input/output properties"@en ;
+    skos:broader g7ai:system-level-prop ;
+    skos:prefLabel "System input/output property"@en ;
     skos:notation "G7AI-SLP-08" ;
     skos:notation "BOM-G7AI-SLP-008"^^bom:SarifRuleId ;
     skos:definition "The types, modalities and constraints of data accepted as input and produced as output by the AI system."@en ;
-    skos:exactMatch bom:ai-io-properties .
+    skos:exactMatch bom:ai-io-prop .
 
 g7ai:system-intended-application-area
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
-    skos:broader g7ai:system-level-properties ;
+    skos:broader g7ai:system-level-prop ;
     skos:prefLabel "Intended application area"@en ;
     skos:notation "G7AI-SLP-09" ;
     skos:notation "BOM-G7AI-SLP-009"^^bom:SarifRuleId ;
@@ -380,35 +380,35 @@ g7ai:model-hash-algorithm
     skos:definition "The algorithm used to compute the model hash (e.g. SHA-256, SHA-512, BLAKE3)."@en ;
     skos:closeMatch bom:component-hash .
 
-g7ai:model-properties
+g7ai:model-prop
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
     skos:broader g7ai:models ;
-    skos:prefLabel "Model properties"@en ;
+    skos:prefLabel "Model property"@en ;
     skos:notation "G7AI-MDL-09" ;
     skos:notation "BOM-G7AI-MDL-009"^^bom:SarifRuleId ;
     skos:definition "AI-specific technical properties of the model such as type, explainability, autonomy level and energy profile."@en ;
-    skos:exactMatch bom:ai-model-properties .
+    skos:exactMatch bom:ai-model-prop .
 
-g7ai:model-input-output-properties
+g7ai:model-input-output-prop
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
     skos:broader g7ai:models ;
-    skos:prefLabel "Model input/output properties"@en ;
+    skos:prefLabel "Model input/output property"@en ;
     skos:notation "G7AI-MDL-10" ;
     skos:notation "BOM-G7AI-MDL-010"^^bom:SarifRuleId ;
     skos:definition "The types, modalities and constraints on the model's input and output (e.g. image, text, structured data)."@en ;
-    skos:closeMatch bom:ai-io-properties .
+    skos:closeMatch bom:ai-io-prop .
 
-g7ai:model-training-properties
+g7ai:model-training-prop
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
     skos:broader g7ai:models ;
-    skos:prefLabel "Model training properties"@en ;
+    skos:prefLabel "Model training property"@en ;
     skos:notation "G7AI-MDL-11" ;
     skos:notation "BOM-G7AI-MDL-011"^^bom:SarifRuleId ;
     skos:definition "Characteristics of the model's training process, including hyperparameters, data pre-processing and fine-tuning steps."@en ;
-    skos:exactMatch bom:ai-training-properties .
+    skos:exactMatch bom:ai-training-prop .
 
 g7ai:model-license
     a skos:Concept ;
@@ -420,22 +420,22 @@ g7ai:model-license
     skos:definition "The declared or concluded license under which the model is distributed (e.g. SPDX expression, AI-specific RAIL license)."@en ;
     skos:exactMatch bom:component-license .
 
-g7ai:model-external-references
+g7ai:model-external-ref
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
     skos:broader g7ai:models ;
-    skos:prefLabel "Model external references"@en ;
+    skos:prefLabel "Model external reference"@en ;
     skos:notation "G7AI-MDL-13" ;
     skos:notation "BOM-G7AI-MDL-013"^^bom:SarifRuleId ;
     skos:definition "Links to supplementary resources such as model cards, research papers, repositories and model registries."@en ;
-    skos:exactMatch bom:component-external-reference .
+    skos:exactMatch bom:component-external-ref .
 
 # -- G7AI Dataset Properties elements (DP-01 ... DP-10) ------------------------
 
 g7ai:dataset-name
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
-    skos:broader g7ai:dataset-properties ;
+    skos:broader g7ai:dataset-prop ;
     skos:prefLabel "Dataset name"@en ;
     skos:notation "G7AI-DP-01" ;
     skos:notation "BOM-G7AI-DP-001"^^bom:SarifRuleId ;
@@ -445,7 +445,7 @@ g7ai:dataset-name
 g7ai:dataset-description
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
-    skos:broader g7ai:dataset-properties ;
+    skos:broader g7ai:dataset-prop ;
     skos:prefLabel "Dataset description"@en ;
     skos:notation "G7AI-DP-02" ;
     skos:notation "BOM-G7AI-DP-002"^^bom:SarifRuleId ;
@@ -455,7 +455,7 @@ g7ai:dataset-description
 g7ai:dataset-content
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
-    skos:broader g7ai:dataset-properties ;
+    skos:broader g7ai:dataset-prop ;
     skos:prefLabel "Dataset content"@en ;
     skos:notation "G7AI-DP-03" ;
     skos:notation "BOM-G7AI-DP-003"^^bom:SarifRuleId ;
@@ -465,7 +465,7 @@ g7ai:dataset-content
 g7ai:dataset-identifier
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
-    skos:broader g7ai:dataset-properties ;
+    skos:broader g7ai:dataset-prop ;
     skos:prefLabel "Dataset identifier"@en ;
     skos:notation "G7AI-DP-04" ;
     skos:notation "BOM-G7AI-DP-004"^^bom:SarifRuleId ;
@@ -475,7 +475,7 @@ g7ai:dataset-identifier
 g7ai:dataset-hash
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
-    skos:broader g7ai:dataset-properties ;
+    skos:broader g7ai:dataset-prop ;
     skos:prefLabel "Dataset hash"@en ;
     skos:notation "G7AI-DP-05" ;
     skos:notation "BOM-G7AI-DP-005"^^bom:SarifRuleId ;
@@ -485,27 +485,27 @@ g7ai:dataset-hash
 g7ai:dataset-provenance
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
-    skos:broader g7ai:dataset-properties ;
+    skos:broader g7ai:dataset-prop ;
     skos:prefLabel "Dataset provenance"@en ;
     skos:notation "G7AI-DP-06" ;
     skos:notation "BOM-G7AI-DP-006"^^bom:SarifRuleId ;
     skos:definition "Information about how, when and where the dataset was collected, updated and pre-processed."@en ;
     skos:exactMatch bom:dataset-provenance .
 
-g7ai:dataset-statistical-properties
+g7ai:dataset-statistical-prop
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
-    skos:broader g7ai:dataset-properties ;
-    skos:prefLabel "Dataset statistical properties"@en ;
+    skos:broader g7ai:dataset-prop ;
+    skos:prefLabel "Dataset statistical property"@en ;
     skos:notation "G7AI-DP-07" ;
     skos:notation "BOM-G7AI-DP-007"^^bom:SarifRuleId ;
     skos:definition "Statistical characteristics of the dataset including size, noise levels, known biases and class distributions."@en ;
-    skos:exactMatch bom:dataset-statistical-properties .
+    skos:exactMatch bom:dataset-statistical-prop .
 
 g7ai:dataset-sensitivity
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
-    skos:broader g7ai:dataset-properties ;
+    skos:broader g7ai:dataset-prop ;
     skos:prefLabel "Dataset sensitivity"@en ;
     skos:notation "G7AI-DP-08" ;
     skos:notation "BOM-G7AI-DP-008"^^bom:SarifRuleId ;
@@ -515,7 +515,7 @@ g7ai:dataset-sensitivity
 g7ai:dataset-dependency-relationship
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
-    skos:broader g7ai:dataset-properties ;
+    skos:broader g7ai:dataset-prop ;
     skos:prefLabel "Dataset dependency relationship"@en ;
     skos:notation "G7AI-DP-09" ;
     skos:notation "BOM-G7AI-DP-009"^^bom:SarifRuleId ;
@@ -525,7 +525,7 @@ g7ai:dataset-dependency-relationship
 g7ai:dataset-license
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
-    skos:broader g7ai:dataset-properties ;
+    skos:broader g7ai:dataset-prop ;
     skos:prefLabel "Dataset license"@en ;
     skos:notation "G7AI-DP-10" ;
     skos:notation "BOM-G7AI-DP-010"^^bom:SarifRuleId ;
@@ -559,7 +559,7 @@ g7ai:infrastructure-hardware
 g7ai:security-controls
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
-    skos:broader g7ai:security-properties ;
+    skos:broader g7ai:security-prop ;
     skos:prefLabel "Security controls"@en ;
     skos:notation "G7AI-SP-01" ;
     skos:notation "BOM-G7AI-SP-001"^^bom:SarifRuleId ;
@@ -569,7 +569,7 @@ g7ai:security-controls
 g7ai:security-compliance
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
-    skos:broader g7ai:security-properties ;
+    skos:broader g7ai:security-prop ;
     skos:prefLabel "Security compliance"@en ;
     skos:notation "G7AI-SP-02" ;
     skos:notation "BOM-G7AI-SP-002"^^bom:SarifRuleId ;
@@ -579,7 +579,7 @@ g7ai:security-compliance
 g7ai:cybersecurity-policy
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
-    skos:broader g7ai:security-properties ;
+    skos:broader g7ai:security-prop ;
     skos:prefLabel "Cybersecurity policy information"@en ;
     skos:notation "G7AI-SP-03" ;
     skos:notation "BOM-G7AI-SP-003"^^bom:SarifRuleId ;
@@ -589,34 +589,34 @@ g7ai:cybersecurity-policy
 g7ai:vulnerability-referencing
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
-    skos:broader g7ai:security-properties ;
+    skos:broader g7ai:security-prop ;
     skos:prefLabel "Vulnerability referencing"@en ;
     skos:notation "G7AI-SP-04" ;
     skos:notation "BOM-G7AI-SP-004"^^bom:SarifRuleId ;
     skos:definition "References to known vulnerabilities (CVEs) and their assessment status (VEX) for the AI system and its components."@en ;
-    skos:exactMatch bom:vulnerability-reference .
+    skos:exactMatch bom:security-vuln-ref .
 
 # -- G7AI Key Performance Indicators elements (KPI-01 ... KPI-02) ---------------
 
-g7ai:security-metrics
+g7ai:security-metric
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
     skos:broader g7ai:key-performance-indicators ;
-    skos:prefLabel "Security metrics"@en ;
+    skos:prefLabel "Security metric"@en ;
     skos:notation "G7AI-KPI-01" ;
     skos:notation "BOM-G7AI-KPI-001"^^bom:SarifRuleId ;
     skos:definition "Quantitative security-related performance metrics and their decision thresholds (e.g. adversarial robustness scores, CVSS scores)."@en ;
-    skos:closeMatch bom:performance-metric .
+    skos:closeMatch bom:ai-perf-metric .
 
-g7ai:operational-performance-kpis
+g7ai:operational-performance-kpi
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
     skos:broader g7ai:key-performance-indicators ;
-    skos:prefLabel "Operational performance KPIs"@en ;
+    skos:prefLabel "Operational performance KPI"@en ;
     skos:notation "G7AI-KPI-02" ;
     skos:notation "BOM-G7AI-KPI-002"^^bom:SarifRuleId ;
     skos:definition "Operational performance indicators for the AI system such as accuracy, F1, latency, throughput and energy consumption."@en ;
-    skos:closeMatch bom:performance-metric .
+    skos:closeMatch bom:ai-perf-metric .
 
 
 # ============================================================================
@@ -644,7 +644,7 @@ g7ai:system-identifier            bom:provisionType bom:Requirement .
 g7ai:system-license               bom:provisionType bom:Requirement .
 g7ai:system-dependency-relationship bom:provisionType bom:Requirement .
 g7ai:system-data-flow             bom:provisionType bom:Requirement .
-g7ai:system-input-output-properties bom:provisionType bom:Requirement .
+g7ai:system-input-output-prop bom:provisionType bom:Requirement .
 
 # -- Model Properties (MP-01 ... MP-09) ----------------------------------------
 g7ai:model-name                   bom:provisionType bom:Requirement .
@@ -655,7 +655,7 @@ g7ai:model-description            bom:provisionType bom:Requirement .
 g7ai:model-identifier             bom:provisionType bom:Requirement .
 g7ai:model-license                bom:provisionType bom:Requirement .
 g7ai:model-dependency-relationship bom:provisionType bom:Requirement .
-g7ai:model-external-reference     bom:provisionType bom:Requirement .
+g7ai:model-external-ref     bom:provisionType bom:Requirement .
 
 # -- Model AI Properties (MAP-01 ... MAP-05) -----------------------------------
 g7ai:model-type                   bom:provisionType bom:Requirement .
@@ -693,5 +693,5 @@ g7ai:cybersecurity-policy         bom:provisionType bom:Requirement .
 g7ai:vulnerability-referencing    bom:provisionType bom:Requirement .
 
 # -- Key Performance Indicators (KPI-01 ... KPI-02) ----------------------------
-g7ai:security-metrics             bom:provisionType bom:Requirement .
-g7ai:operational-performance-kpis bom:provisionType bom:Requirement .
+g7ai:security-metric             bom:provisionType bom:Requirement .
+g7ai:operational-performance-kpi bom:provisionType bom:Requirement .

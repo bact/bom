@@ -277,7 +277,7 @@ euaiact:anx8-a12-instructions-for-use
 EXCEPTION: NOT required for high-risk AI systems in Annex III points 1, 6 and 7
 (law enforcement; migration, asylum and border control management).
 These systems register in the NON-PUBLIC section."""@en ;
-    skos:closeMatch bom:component-external-reference .
+    skos:closeMatch bom:component-external-ref .
 
 euaiact:anx8-a12-instructions-for-use bom:provisionType bom:ExternalConstraint .
 
@@ -291,7 +291,7 @@ euaiact:anx8-a13-additional-url
     rdfs:seeAlso <https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401689#anx_VIII> ;
     skos:prefLabel "URL for additional information (optional) (A.13)"@en ;
     skos:definition "A URL for additional information (optional). (Annex VIII Sec.A item 13)"@en ;
-    skos:closeMatch bom:component-external-reference .
+    skos:closeMatch bom:component-external-ref .
 
 euaiact:anx8-a13-additional-url bom:provisionType bom:Permission .
 
