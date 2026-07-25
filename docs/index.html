@@ -288,10 +288,10 @@
   <div class="container">
     
     <div class="header">
-      <div class="logo-container">
+      <!-- <div class="logo-container">
         <span class="logo-icon">&harr;</span>
-      </div>
-      <h1>Baseline-information Obligations Mapping</h1>
+      </div> -->
+      <h1>Baseline-information Obligations Mapping ontology</h1>
       <!-- <a href="https://w3id.org/bom/" class="namespace-badge">https://w3id.org/bom/</a> -->
       <p class="description">
         A SKOS bridging vocabulary of stable, persistent identifiers mapping information obligations 
@@ -299,11 +299,11 @@
       </p>
     </div>
 
-    <h2 class="section-title">Ontology Specification</h2>
+    <h2 class="section-title">Main ontology</h2>
     <div class="card">
       <div class="release-meta">
         <span class="release-tag">Latest stable</span>
-        <span class="release-date">Released: June 21, 2026</span>
+        <span class="release-date">Released: 24 July 2026</span>
       </div>
       <h3>Baseline-information Obligations Mapping ontology v0.1.0</h3>
       <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
@@ -331,8 +331,8 @@
 
       <div class="item-card">
         <div>
-          <h4 class="item-title">CISA SBOM Elements</h4>
-          <p class="item-desc">CISA SBOM Minimum Elements specification (2025).</p>
+          <h4 class="item-title">CISA SBOM</h4>
+          <p class="item-desc">CISA SBOM Minimum Elements (Public Comment Draft) (2025)</p>
         </div>
         <div class="item-meta">
           <a href="req/cisa/cisa.ttl" class="link-item">cisa.ttl</a>
@@ -342,8 +342,8 @@
 
       <div class="item-card">
         <div>
-          <h4 class="item-title">CISA FSCT 3rd Ed.</h4>
-          <p class="item-desc">Framing Software Component Transparency 3rd Edition (2024).</p>
+          <h4 class="item-title">CISA FSCT</h4>
+          <p class="item-desc">CISA Framing Software Component Transparency 3rd Edition (2024)</p>
         </div>
         <div class="item-meta">
           <a href="req/fsct/fsct.ttl" class="link-item">fsct.ttl</a>
@@ -354,7 +354,7 @@
       <div class="item-card">
         <div>
           <h4 class="item-title">G7 SBOM for AI</h4>
-          <p class="item-desc">G7 SBOM for AI Minimum Elements specification (2026).</p>
+          <p class="item-desc">G7 SBOM for AI Minimum Elements (2026)</p>
         </div>
         <div class="item-meta">
           <a href="req/g7ai/g7ai.ttl" class="link-item">g7ai.ttl</a>
@@ -364,8 +364,8 @@
 
       <div class="item-card">
         <div>
-          <h4 class="item-title">Model Openness Framework</h4>
-          <p class="item-desc">Model Openness Framework (MOF) v1.0 by LF AI & Data (2024).</p>
+          <h4 class="item-title">MOF</h4>
+          <p class="item-desc">Model Openness Framework (2024)</p>
         </div>
         <div class="item-meta">
           <a href="req/mof/mof.ttl" class="link-item">mof.ttl</a>
@@ -375,8 +375,8 @@
 
       <div class="item-card">
         <div>
-          <h4 class="item-title">NTIA Minimum Elements</h4>
-          <p class="item-desc">NTIA SBOM Minimum Elements baseline specification (2021).</p>
+          <h4 class="item-title">NTIA</h4>
+          <p class="item-desc">NTIA SBOM Minimum Elements (2021)</p>
         </div>
         <div class="item-meta">
           <a href="req/ntia/ntia.ttl" class="link-item">ntia.ttl</a>
@@ -389,8 +389,8 @@
     <div class="grid" style="grid-template-columns: 1fr;">
       <div class="item-card" style="flex-direction: row; align-items: center; justify-content: space-between;">
         <div style="max-width: 70%;">
-          <h4 class="item-title" style="margin: 0 0 0.25rem 0;">EU Artificial Intelligence Act</h4>
-          <p class="item-desc" style="margin: 0;">Harmonized obligational concept mapping for Provider & Deployer items (Art. 49, Art. 60).</p>
+          <h4 class="item-title" style="margin: 0 0 0.25rem 0;">EU AI Act</h4>
+          <p class="item-desc" style="margin: 0;">EU Artificial Intelligence Act (Art. 49, Art. 60)</p>
         </div>
         <div style="display: flex; gap: 1.5rem; align-items: center;">
           <a href="reg/euaiact/euaiact.ttl" class="link-item">euaiact.ttl</a>
@@ -399,29 +399,29 @@
       </div>
     </div>
 
-    <h2 class="section-title">SSSOM Crosswalk Mappings (in development)</h2>
+    <h2 class="section-title">SSSOM crosswalks (in development)</h2>
     <table>
       <thead>
         <tr>
-          <th>Mapping File</th>
-          <th>Source Specification</th>
-          <th>Target Format</th>
+          <th>Mapping file</th>
+          <th>Source specification</th>
+          <th>Target format</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td><a href="mapping/bom-to-spdx31.sssom.tsv" class="link-item">bom-to-spdx31.sssom.tsv</a></td>
-          <td>BOM Bridge Ontology</td>
+          <td>BOM ontology</td>
           <td>SPDX 3.1-dev</td>
         </tr>
         <tr>
           <td><a href="mapping/g7ai-to-spdx31.sssom.tsv" class="link-item">g7ai-to-spdx31.sssom.tsv</a></td>
-          <td>G7 AI Minimum Elements</td>
+          <td>G7 SBOM for AI Minimum Elements</td>
           <td>SPDX 3.1-dev</td>
         </tr>
         <tr>
           <td><a href="mapping/ntia-to-spdx31.sssom.tsv" class="link-item">ntia-to-spdx31.sssom.tsv</a></td>
-          <td>NTIA Minimum Elements</td>
+          <td>NTIA SBOM Minimum Elements</td>
           <td>SPDX 3.1-dev</td>
         </tr>
         <tr>
@@ -429,7 +429,7 @@
           <td>BSI TR-03183-2</td>
           <td>SPDX 3.1-dev</td>
         </tr>
-        <tr>
+<!--        <tr>
           <td><a href="mapping/euaiact-anx8-a-to-semic.sssom.tsv" class="link-item">euaiact-anx8-a-to-semic.sssom.tsv</a></td>
           <td>EU AI Act Annex VIII Sec.A</td>
           <td>SEMIC Vocabularies</td>
@@ -459,9 +459,11 @@
           <td>G7 AI Minimum Elements</td>
           <td>SEMIC Vocabularies</td>
         </tr>
+      -->
       </tbody>
     </table>
 
+    <!--
     <h2 class="section-title">Developer Resources</h2>
     <div class="grid" style="grid-template-columns: repeat(2, 1fr);">
       <div class="item-card">
@@ -482,6 +484,7 @@
           <a href="https://github.com/bact/bom/blob/main/AGENTS.md" class="link-item">View on GitHub</a>
         </div>
       </div>
+    -->
     </div>
 
     <footer>
