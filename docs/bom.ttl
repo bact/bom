@@ -759,3 +759,65 @@ bom:security-vuln-ref
     skos:altLabel "Vulnerability referencing"@en ;
     skos:definition "References to known vulnerabilities (CVEs) and their assessment status (VEX) for the AI system and its components."@en .
 
+
+# -- CERT-In additional leaf concepts -----------------------------------------
+
+bom:component-origin
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-component ;
+    skos:prefLabel "Component origin"@en ;
+    skos:definition "The source, origin or manufacturing location of the component (e.g. open source, proprietary, third-party)."@en .
+
+bom:component-patch-status
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-security ;
+    skos:prefLabel "Component patch status"@en ;
+    skos:definition "The patch, update or remediation status of the component."@en .
+
+bom:component-eol-date
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-component ;
+    skos:prefLabel "Component end-of-life date"@en ;
+    skos:altLabel "Component EOL date"@en ;
+    skos:definition "The official end-of-life or end-of-support date for the component."@en .
+
+bom:component-criticality
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-security ;
+    skos:prefLabel "Component criticality"@en ;
+    skos:definition "The security or operational criticality level assigned to the component."@en .
+
+bom:component-usage-restriction
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-component ;
+    skos:prefLabel "Component usage restriction"@en ;
+    skos:definition "Legal, contractual or operational restrictions on the usage of the component."@en .
+
+bom:component-comment
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-component ;
+    skos:prefLabel "Component comment"@en ;
+    skos:altLabel "Component note"@en ;
+    skos:definition "Free-text comments, notes or annotations concerning the component."@en .
+
+bom:ai-out-of-scope-usage
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-ai ;
+    skos:prefLabel "AI out-of-scope usage"@en ;
+    skos:definition "Uses or scenarios for which the AI system or model is explicitly not intended and should be avoided."@en .
+
+bom:component-environmental-impact
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-component ;
+    skos:prefLabel "Component environmental impact"@en ;
+    skos:definition "Environmental impact metrics for the component, including energy consumption, resource use, and carbon footprint."@en .
+
+

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>India CERT-In SBOM &amp; AIBOM Guidelines v2.0 Mapping</title>
+  <style>body{font-family:system-ui,sans-serif;max-width:900px;margin:2rem auto;padding:0 1.5rem;color:#222;line-height:1.6}
+h1{font-size:1.4rem;border-bottom:2px solid #ddd;padding-bottom:.3rem}
+p.meta{color:#555;font-size:.9rem;margin-top:-.4rem}
+h2{font-size:1rem;margin-top:1.8rem;color:#444}
+a{color:#0969da}
+table{border-collapse:collapse;width:100%;font-size:.88rem}
+th,td{text-align:left;padding:.35rem .6rem;border:1px solid #ddd;vertical-align:top}
+th{background:#f6f8fa}
+code{background:#f6f8fa;padding:.1rem .3rem;border-radius:3px;font-size:.85em}
+.tag{display:inline-block;background:#e8f0fe;color:#1a56db;border-radius:3px;
+     padding:.05rem .4rem;font-size:.8em;white-space:nowrap}
+footer{margin-top:2.5rem;font-size:.82rem;color:#666;border-top:1px solid #ddd;padding-top:.8rem}</style>
+</head>
+<body>
+
+<p class="meta"><a href="../../">Baseline-information Obligations Mapping ontology</a></p>
+<h1>India CERT-In SBOM &amp; AIBOM Guidelines v2.0 Mapping</h1>
+<p class="meta">Namespace: <code><a href="https://w3id.org/bom/req/certin/">https://w3id.org/bom/req/certin/</a></code>
+  &nbsp;|&nbsp; <a href="certin.ttl">certin.ttl</a>&nbsp;|&nbsp; v0.1.0</p>
+
+<p>SKOS concept scheme for the Indian Computer Emergency Response Team (CERT-In)
+Technical Guidelines on Software Bill of Materials (SBOM) and Artificial Intelligence
+Bill of Materials (AIBOM) Version 2.0 (Dated 09.07.2025).
+
+Covers 21 SBOM Data Fields (Chapter 4, Table 5) and 19 AIBOM Elements (Chapter 9, Table 10).</p>
+
+<h2>Concepts (40)</h2>
+<table>
+<tr><th>ID</th><th>Label</th><th>Notation</th><th>Type</th><th>Definition</th></tr>
+<tr><td><code>model-name</code></td><td>Model Name</td><td><code>BOM-CERTIN-AIBOM-001</code></td><td><span class=tag>Requirement</span></td><td>The official name of the AI model, serving as a unique identifier for tracking, referencing, and discussion.</td></tr>
+<tr><td><code>model-version</code></td><td>Model Version</td><td><code>BOM-CERTIN-AIBOM-002</code></td><td><span class=tag>Requirement</span></td><td>The specific version of the AI model, ensuring that any changes, updates, and version control are documented.</td></tr>
+<tr><td><code>model-type</code></td><td>Model Type</td><td><code>BOM-CERTIN-AIBOM-003</code></td><td><span class=tag>Requirement</span></td><td>The type of the model (e.g., text-generation, image-processing, or image-classifier).</td></tr>
+<tr><td><code>model-developer</code></td><td>Model Developer</td><td><code>BOM-CERTIN-AIBOM-004</code></td><td><span class=tag>Requirement</span></td><td>The name of the developer or organization responsible for developing the model.</td></tr>
+<tr><td><code>model-licensing-information</code></td><td>Model Licensing Information</td><td><code>BOM-CERTIN-AIBOM-005</code></td><td><span class=tag>Requirement</span></td><td>Details of the licenses for the model and any components used (e.g., Apache 2.0, GPL 3.0).</td></tr>
+<tr><td><code>software-dependencies</code></td><td>Software Dependencies</td><td><code>BOM-CERTIN-AIBOM-006</code></td><td><span class=tag>Requirement</span></td><td>All software elements required to run the model, including third-party libraries, frameworks, OS requirements, and proprietary software.</td></tr>
+<tr><td><code>ml-models-and-algorithms</code></td><td>ML Models and Algorithms</td><td><code>BOM-CERTIN-AIBOM-007</code></td><td><span class=tag>Requirement</span></td><td>The specific machine learning models and algorithms used in the AI system, documenting decision-making processes, input handling, and learning mechanisms.</td></tr>
+<tr><td><code>model-performance-metrics</code></td><td>Model Performance Metrics</td><td><code>BOM-CERTIN-AIBOM-008</code></td><td><span class=tag>Requirement</span></td><td>Metrics for evaluating the performance of the AI model, such as accuracy, precision, recall, F1 score, etc.</td></tr>
+<tr><td><code>data-source</code></td><td>Data Source</td><td><code>BOM-CERTIN-AIBOM-009</code></td><td><span class=tag>Requirement</span></td><td>The origin or source of the data used to train the model (e.g., proprietary datasets, publicly available datasets, real-time data, synthetic data).</td></tr>
+<tr><td><code>data-sets</code></td><td>Data Sets</td><td><code>BOM-CERTIN-AIBOM-010</code></td><td><span class=tag>Requirement</span></td><td>Information about the datasets used to train the model, including names, versions, formats, and limitations. Ensures compliance with privacy and licensing regulations.</td></tr>
+<tr><td><code>hardware</code></td><td>Hardware</td><td><code>BOM-CERTIN-AIBOM-011</code></td><td><span class=tag>Requirement</span></td><td>The hardware or computing resources required to run the model, including processors (e.g., GPUs, TPUs), storage, and memory.</td></tr>
+<tr><td><code>security-requirements</code></td><td>Security Requirements</td><td><code>BOM-CERTIN-AIBOM-012</code></td><td><span class=tag>Requirement</span></td><td>Encryption methods and access control mechanisms used to protect model data and user information.</td></tr>
+<tr><td><code>input</code></td><td>Input</td><td><code>BOM-CERTIN-AIBOM-013</code></td><td><span class=tag>Requirement</span></td><td>The type of input the model accepts, such as text, images, or other data.</td></tr>
+<tr><td><code>output</code></td><td>Output</td><td><code>BOM-CERTIN-AIBOM-014</code></td><td><span class=tag>Requirement</span></td><td>The type of output the model generates, such as text, images, or other data.</td></tr>
+<tr><td><code>intended-usage</code></td><td>Intended Usage</td><td><code>BOM-CERTIN-AIBOM-015</code></td><td><span class=tag>Requirement</span></td><td>The specific use cases or scenarios for which the AI model is designed and intended to be used.</td></tr>
+<tr><td><code>out-of-scope-usage</code></td><td>Out of Scope Usage</td><td><code>BOM-CERTIN-AIBOM-016</code></td><td><span class=tag>Requirement</span></td><td>Uses or scenarios that the AI model is not intended for and should be avoided to prevent misuse or unintended consequences.</td></tr>
+<tr><td><code>environmental-impact</code></td><td>Environmental Impact</td><td><code>BOM-CERTIN-AIBOM-017</code></td><td><span class=tag>Requirement</span></td><td>The potential environmental impact of training and deploying the AI model, including energy consumption, resource use, and carbon footprint.</td></tr>
+<tr><td><code>aibom-vulnerabilities</code></td><td>Vulnerabilities</td><td><code>BOM-CERTIN-AIBOM-018</code></td><td><span class=tag>Requirement</span></td><td>Known security vulnerabilities or weaknesses in the components, including severity ratings and references to security advisories or CVE identifiers.</td></tr>
+<tr><td><code>attestations</code></td><td>Attestations</td><td><code>BOM-CERTIN-AIBOM-019</code></td><td><span class=tag>Requirement</span></td><td>Digital signature for the model or AIBOM to ensure authenticity and integrity.</td></tr>
+<tr><td><code>component-name</code></td><td>Component Name</td><td><code>BOM-CERTIN-SBOM-001</code></td><td><span class=tag>Requirement</span></td><td>The name of the software component or library included in the SBOM.</td></tr>
+<tr><td><code>component-version</code></td><td>Component Version</td><td><code>BOM-CERTIN-SBOM-002</code></td><td><span class=tag>Requirement</span></td><td>The version number or identifier of the software component.</td></tr>
+<tr><td><code>component-description</code></td><td>Component Description</td><td><code>BOM-CERTIN-SBOM-003</code></td><td><span class=tag>Requirement</span></td><td>A brief description or summary of the functionality and purpose of the software component.</td></tr>
+<tr><td><code>component-supplier</code></td><td>Component Supplier</td><td><code>BOM-CERTIN-SBOM-004</code></td><td><span class=tag>Requirement</span></td><td>The entity or organization that supplied the software component, such as a vendor, third-party supplier, or open-source project.</td></tr>
+<tr><td><code>component-license</code></td><td>Component License</td><td><code>BOM-CERTIN-SBOM-005</code></td><td><span class=tag>Requirement</span></td><td>The license under which the software component is distributed, including details such as license type, terms, and restrictions.</td></tr>
+<tr><td><code>component-origin</code></td><td>Component Origin</td><td><code>BOM-CERTIN-SBOM-006</code></td><td><span class=tag>Requirement</span></td><td>The source or origin of the software component, such as whether it is proprietary, open-source, or obtained from a third-party vendor.</td></tr>
+<tr><td><code>component-dependencies</code></td><td>Component Dependencies</td><td><code>BOM-CERTIN-SBOM-007</code></td><td><span class=tag>Requirement</span></td><td>Any other software components or libraries that the current component depends on, including their names and versions.</td></tr>
+<tr><td><code>vulnerabilities</code></td><td>Vulnerabilities</td><td><code>BOM-CERTIN-SBOM-008</code></td><td><span class=tag>Requirement</span></td><td>Information about known security vulnerabilities or weaknesses associated with the software component.</td></tr>
+<tr><td><code>patch-status</code></td><td>Patch Status</td><td><code>BOM-CERTIN-SBOM-009</code></td><td><span class=tag>Requirement</span></td><td>Details on whether patches or updates have been applied to address known vulnerabilities in the component.</td></tr>
+<tr><td><code>release-date</code></td><td>Release Date</td><td><code>BOM-CERTIN-SBOM-010</code></td><td><span class=tag>Requirement</span></td><td>The date when the specific version of the software component was officially released by the supplier.</td></tr>
+<tr><td><code>eol-date</code></td><td>End-of-Life (EOL) Date</td><td><code>BOM-CERTIN-SBOM-011</code></td><td><span class=tag>Requirement</span></td><td>The date when the software component is no longer supported or maintained by the supplier.</td></tr>
+<tr><td><code>criticality</code></td><td>Criticality</td><td><code>BOM-CERTIN-SBOM-012</code></td><td><span class=tag>Requirement</span></td><td>An assessment of how critical the component is to the overall software system&#x27;s functionality and security.</td></tr>
+<tr><td><code>usage-restrictions</code></td><td>Usage Restrictions</td><td><code>BOM-CERTIN-SBOM-013</code></td><td><span class=tag>Requirement</span></td><td>Any restrictions or limitations on how the component can be used within the organization or software system.</td></tr>
+<tr><td><code>checksums-or-hashes</code></td><td>Checksums or Hashes</td><td><code>BOM-CERTIN-SBOM-014</code></td><td><span class=tag>Requirement</span></td><td>Cryptographic hashes (e.g. SHA-256) used to verify the integrity and authenticity of the software component.</td></tr>
+<tr><td><code>comments-or-notes</code></td><td>Comments or Notes</td><td><code>BOM-CERTIN-SBOM-015</code></td><td><span class=tag>Requirement</span></td><td>Additional information or context regarding the component, such as internal notes, configuration details, or special handling instructions.</td></tr>
+<tr><td><code>author-of-sbom-data</code></td><td>Author of SBOM Data</td><td><code>BOM-CERTIN-SBOM-016</code></td><td><span class=tag>Requirement</span></td><td>The entity or tool responsible for creating or generating the SBOM data for the component.</td></tr>
+<tr><td><code>timestamp</code></td><td>Timestamp</td><td><code>BOM-CERTIN-SBOM-017</code></td><td><span class=tag>Requirement</span></td><td>The date and time when the SBOM data was generated or last updated.</td></tr>
+<tr><td><code>executable-property</code></td><td>Executable Property</td><td><code>BOM-CERTIN-SBOM-018</code></td><td><span class=tag>Requirement</span></td><td>Indicates whether the software component is an executable binary or compiled code.</td></tr>
+<tr><td><code>archive-property</code></td><td>Archive Property</td><td><code>BOM-CERTIN-SBOM-019</code></td><td><span class=tag>Requirement</span></td><td>Indicates whether the component is delivered as an archive file containing multiple sub-components or artifacts.</td></tr>
+<tr><td><code>structured-property</code></td><td>Structured Property</td><td><code>BOM-CERTIN-SBOM-020</code></td><td><span class=tag>Requirement</span></td><td>Indicates whether the component has structured internal metadata that can be extracted and parsed.</td></tr>
+<tr><td><code>unique-identifier</code></td><td>Unique Identifier</td><td><code>BOM-CERTIN-SBOM-021</code></td><td><span class=tag>Requirement</span></td><td>A unique identifier (such as PURL or CPE) that globally identifies the component across systems and databases.</td></tr>
+</table>
+
+<footer>
+  <a href="https://orcid.org/0000-0002-9698-1899">Arthit Suriyawongkul</a> &nbsp;|&nbsp;
+  <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0-1.0</a> &nbsp;|&nbsp;
+  <a href="https://github.com/bact/bom">github.com/bact/bom</a> &nbsp;|&nbsp;
+  <a href="../../">Baseline-information Obligations Mapping ontology</a>
+</footer>
+
+</body>
+</html>
