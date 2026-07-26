@@ -72,7 +72,7 @@ ntia:dependency-relationship
     skos:inScheme ntia:scheme ;
     skos:prefLabel "Dependency Relationship"@en ;
     skos:notation "BOM-NTIA-DF-005"^^bom:SarifRuleId ;
-    skos:exactMatch bom:doc-dependency-relationship .
+    skos:exactMatch bom:MetadataRelationship .
 
 ntia:author
     a skos:Concept ;

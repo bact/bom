@@ -75,7 +75,7 @@ fsct:dependency-relationship
     skos:inScheme fsct:scheme ;
     skos:prefLabel "Dependency Relationship"@en ;
     skos:notation "BOM-FSCT-META-005"^^bom:SarifRuleId ;
-    skos:exactMatch bom:doc-dependency-relationship .
+    skos:exactMatch bom:MetadataRelationship .
 
 fsct:name
     a skos:Concept ;
@@ -123,7 +123,7 @@ fsct:relationship
     skos:inScheme fsct:scheme ;
     skos:prefLabel "Relationship"@en ;
     skos:notation "BOM-FSCT-COMP-006"^^bom:SarifRuleId ;
-    skos:exactMatch bom:component-relationship .
+    skos:exactMatch bom:MetadataRelationship .
 
 fsct:concluded-license
     a skos:Concept ;

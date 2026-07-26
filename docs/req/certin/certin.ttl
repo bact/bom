@@ -119,7 +119,7 @@ certin:component-dependencies
     skos:prefLabel "Component Dependencies"@en ;
     skos:definition "Any other software components or libraries that the current component depends on, including their names and versions."@en ;
     skos:notation "BOM-CERTIN-SBOM-007"^^bom:SarifRuleId ;
-    skos:exactMatch bom:doc-dependency-relationship .
+    skos:exactMatch bom:MetadataRelationship .
 
 certin:vulnerabilities
     a skos:Concept ;
@@ -340,7 +340,7 @@ certin:data-sets
     skos:prefLabel "Data Sets"@en ;
     skos:definition "Information about the datasets used to train the model, including names, versions, formats, and limitations. Ensures compliance with privacy and licensing regulations."@en ;
     skos:notation "BOM-CERTIN-AIBOM-010"^^bom:SarifRuleId ;
-    skos:exactMatch bom:doc-dependency-relationship .
+    skos:exactMatch bom:MetadataRelationship .
 
 certin:hardware
     a skos:Concept ;

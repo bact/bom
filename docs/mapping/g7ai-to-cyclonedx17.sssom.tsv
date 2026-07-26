@@ -29,7 +29,7 @@ g7ai:sbom-tool-name	SBOM tool name	skos:exactMatch	cdx:tools	tools	semapv:Manual
 g7ai:sbom-tool-version	SBOM tool version	skos:exactMatch	cdx:tools	tools	semapv:ManualMappingCuration	bom:doc-tool-version	Tool version recorded within metadata.tools elements.	cdx:Metadata
 g7ai:sbom-generation-context	SBOM generation context	skos:closeMatch	cdx:lifecycles	lifecycles	semapv:ManualMappingCuration	bom:doc-lifecycle-stage	Metadata.lifecycles specifies lifecycle stage context.	cdx:Metadata
 g7ai:sbom-timestamp	Document timestamp	skos:exactMatch	cdx:timestamp	timestamp	semapv:ManualMappingCuration	bom:doc-timestamp	Metadata.timestamp records document creation time.	cdx:Metadata
-g7ai:sbom-dependency-relationship	SBOM dependency relationship	skos:closeMatch	cdx:dependencies	dependencies	semapv:ManualMappingCuration	bom:doc-dependency-relationship	Dependencies graph.	cdx:Dependency
+g7ai:sbom-dependency-relationship	SBOM dependency relationship	skos:closeMatch	cdx:dependencies	dependencies	semapv:ManualMappingCuration	bom:MetadataRelationship	Dependencies graph.	cdx:Dependency
 g7ai:system-name	System name	skos:exactMatch	cdx:name	name	semapv:ManualMappingCuration	bom:component-name	Component name of the root AI system.	cdx:Component
 g7ai:system-components	System components	skos:closeMatch	cdx:components	components	semapv:ManualMappingCuration	bom:doc-primary-component	Child components of the AI system.	cdx:Component
 g7ai:system-producer	System producer	skos:exactMatch	cdx:supplier	supplier	semapv:ManualMappingCuration	bom:component-supplier	Supplier of the AI system.	cdx:Component
@@ -62,7 +62,7 @@ g7ai:dataset-hash	Dataset hash	skos:exactMatch	cdx:hashes	hashes	semapv:ManualMa
 g7ai:dataset-provenance	Dataset provenance	skos:closeMatch	cdx:governance	governance	semapv:ManualMappingCuration	bom:dataset-provenance	Dataset governance and provenance.	cdx:Data
 g7ai:dataset-statistical-prop	Dataset statistical property	skos:closeMatch	cdx:contents	contents	semapv:ManualMappingCuration	bom:dataset-statistical-prop	Dataset content statistics.	cdx:Data
 g7ai:dataset-sensitivity	Dataset sensitivity	skos:closeMatch	cdx:classification	classification	semapv:ManualMappingCuration	bom:dataset-sensitivity	Dataset classification and sensitivity.	cdx:Data
-g7ai:dataset-dependency-relationship	Dataset dependency relationship	skos:closeMatch	cdx:dependencies	dependencies	semapv:ManualMappingCuration	bom:component-relationship	Dataset dependency relationships.	cdx:Dependency
+g7ai:dataset-dependency-relationship	Dataset dependency relationship	skos:closeMatch	cdx:dependencies	dependencies	semapv:ManualMappingCuration	bom:MetadataRelationship	Dataset dependency relationships.	cdx:Dependency
 g7ai:dataset-license	Dataset license	skos:exactMatch	cdx:licenses	licenses	semapv:ManualMappingCuration	bom:component-license	Dataset license information.	cdx:Data
 g7ai:infrastructure-software	Infrastructure software	skos:closeMatch	cdx:component	component	semapv:ManualMappingCuration	bom:infra-software	Software framework/container components.	cdx:Component
 g7ai:infrastructure-hardware	Infrastructure hardware	skos:exactMatch	cdx:component	component	semapv:ManualMappingCuration	bom:infra-hardware	Hardware device components.	cdx:Component

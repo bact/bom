@@ -176,11 +176,11 @@
     <section>
       <h2>Bridge Concepts</h2>
       <p>
-        The neutral bridge concepts are grouped under seven top-level categories:
+        The neutral bridge concepts are grouped by structural metadata category and domain profiles:
       </p>
 
       <section>
-        <h3>Document Metadata (<code>bom:bom-document</code>)</h3>
+        <h3>Document Metadata (<code>bom:MetadataDocument</code>)</h3>
         <table class="definition">
           <thead>
             <tr>
@@ -192,130 +192,60 @@
           <tbody>
             <tr>
               <td class="curie">bom:doc-author</td>
-              <td>Document Author</td>
-              <td>The entity (person, organization, or tool) that created the document.</td>
-            </tr>
-            <tr>
-              <td class="curie">bom:doc-timestamp</td>
-              <td>Document Timestamp</td>
-              <td>The timestamp indicating when the document data was compiled.</td>
+              <td>Document author</td>
+              <td>The agent (person, organisation or tool) that produced the document.</td>
             </tr>
             <tr>
               <td class="curie">bom:doc-identifier</td>
-              <td>Document Identifier</td>
-              <td>A unique identifier (URI or serial number) for the document.</td>
+              <td>Document identifier</td>
+              <td>A persistent URI that uniquely identifies this SBOM document instance.</td>
             </tr>
             <tr>
-              <td class="curie">bom:doc-relationship</td>
-              <td>Document Relationship</td>
-              <td>Defines metadata relationships between the document and its contained elements.</td>
+              <td class="curie">bom:doc-integrity</td>
+              <td>Document integrity</td>
+              <td>A cryptographic signature, hash or other integrity mechanism allowing verification of the document.</td>
             </tr>
             <tr>
-              <td class="curie">bom:doc-comment</td>
-              <td>Document Comment</td>
-              <td>General comments or remarks concerning the document itself.</td>
+              <td class="curie">bom:doc-lifecycle-stage</td>
+              <td>Document lifecycle stage</td>
+              <td>The lifecycle stage or context in which the SBOM was generated (e.g. build, analysed, deployed, runtime).</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:doc-primary-component</td>
+              <td>Document primary component</td>
+              <td>The top-level component or system that the SBOM describes (the SBOM's root subject).</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:doc-spec-version</td>
+              <td>Document spec version</td>
+              <td>The name and/or version of the SBOM data format specification used (e.g. 'SPDX 3.1', 'CycloneDX 1.7').</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:doc-timestamp</td>
+              <td>Document timestamp</td>
+              <td>The date and time at which the document was created.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:doc-tool-name</td>
+              <td>Document tool name</td>
+              <td>The name of the software tool used to generate the SBOM.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:doc-tool-version</td>
+              <td>Document tool version</td>
+              <td>The version of the software tool used to generate the SBOM.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:doc-version</td>
+              <td>Document version</td>
+              <td>A version identifier for this specific instance of the document.</td>
             </tr>
           </tbody>
         </table>
       </section>
 
       <section>
-        <h3>Component Attributes (<code>bom:bom-component</code>)</h3>
-        <table class="definition">
-          <thead>
-            <tr>
-              <th>Concept</th>
-              <th>Preferred Label</th>
-              <th>Definition</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="curie">bom:component-supplier</td>
-              <td>Component Supplier</td>
-              <td>The entity that supplies the component (which might differ from the original developer/author).</td>
-            </tr>
-            <tr>
-              <td class="curie">bom:component-name</td>
-              <td>Component Name</td>
-              <td>The name of the software component as designated by its creator.</td>
-            </tr>
-            <tr>
-              <td class="curie">bom:component-version</td>
-              <td>Component Version</td>
-              <td>The version identifier of the component.</td>
-            </tr>
-            <tr>
-              <td class="curie">bom:component-identifier</td>
-              <td>Component Identifier</td>
-              <td>Unique identifiers such as CPE, SWID, or Package URL (PURL).</td>
-            </tr>
-            <tr>
-              <td class="curie">bom:component-relationship</td>
-              <td>Component Relationship</td>
-              <td>Dependency, nesting, or compilation relationships between software components.</td>
-            </tr>
-            <tr>
-              <td class="curie">bom:component-hash</td>
-              <td>Component Hash</td>
-              <td>Cryptographic checksum (SHA-512, etc.) verifying component integrity.</td>
-            </tr>
-            <tr>
-              <td class="curie">bom:component-license</td>
-              <td>Component License</td>
-              <td>Concluded, declared, or effective licenses associated with the component.</td>
-            </tr>
-            <tr>
-              <td class="curie">bom:component-external-ref</td>
-              <td>Component External Reference</td>
-              <td>Pointers to external pages, security policies, or vulnerability disclosure locations.</td>
-            </tr>
-            <tr>
-              <td class="curie">bom:component-documentation</td>
-              <td>Component Documentation</td>
-              <td>Technical reports, research papers, manuals, or configuration files describing the component.</td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-
-      <section>
-        <h3>Software-Specific Attributes (<code>bom:bom-sw</code>)</h3>
-        <table class="definition">
-          <thead>
-            <tr>
-              <th>Concept</th>
-              <th>Preferred Label</th>
-              <th>Definition</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="curie">bom:is-executable</td>
-              <td>Component Executable Property</td>
-              <td>A flag indicating whether the component is executable (e.g. executable vs library/script).</td>
-            </tr>
-            <tr>
-              <td class="curie">bom:is-archive</td>
-              <td>Component Archive Property</td>
-              <td>A flag indicating whether the component is an archive or distribution bundle.</td>
-            </tr>
-            <tr>
-              <td class="curie">bom:is-structured</td>
-              <td>Component Structured Property</td>
-              <td>A flag indicating whether the component file has structured metadata present.</td>
-            </tr>
-            <tr>
-              <td class="curie">bom:component-source-code</td>
-              <td>Component Source Code</td>
-              <td>Source code files or packages for training, inference, evaluation, or data pre-processing.</td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-
-      <section>
-        <h3>AI-Specific Attributes (<code>bom:bom-ai</code>)</h3>
+        <h3>Component Metadata (<code>bom:MetadataComponent</code>)</h3>
         <table class="definition">
           <thead>
             <tr>
@@ -327,121 +257,235 @@
           <tbody>
             <tr>
               <td class="curie">bom:ai-application-domain</td>
-              <td>AI Application Domain</td>
-              <td>The domain (e.g. healthcare, finance) where the AI model is intended to be used.</td>
+              <td>AI application domain</td>
+              <td>The domain(s) or application area(s) for which the AI system is intended (e.g. healthcare, finance, autonomous driving).</td>
             </tr>
             <tr>
               <td class="curie">bom:ai-data-flow</td>
-              <td>AI Data Flow</td>
-              <td>Description of inputs, outputs, and information pipelines through the AI system.</td>
+              <td>AI data flow</td>
+              <td>A description of how data flows into, through and out of the AI system.</td>
             </tr>
             <tr>
               <td class="curie">bom:ai-data-usage</td>
-              <td>AI Data Usage</td>
-              <td>Normative limits or conditions on data processed during model inference.</td>
+              <td>AI data usage</td>
+              <td>A description of how data (including personal or sensitive data) is used by the AI system.</td>
             </tr>
             <tr>
               <td class="curie">bom:ai-io-prop</td>
-              <td>AI IO Properties</td>
-              <td>Input and output formats, modalities, and interface properties of the model.</td>
-            </tr>
-            <tr>
-              <td class="curie">bom:ai-model-prop</td>
-              <td>AI Model Properties</td>
-              <td>AI model architectural properties (model type, explainability, safety characteristics).</td>
-            </tr>
-            <tr>
-              <td class="curie">bom:ai-training-prop</td>
-              <td>AI Training Properties</td>
-              <td>Hyperparameters, fine-tuning configuration, and hardware resource footprint.</td>
+              <td>AI input/output property</td>
+              <td>The types, modalities and constraints on data accepted as input and produced as output by the AI system or model.</td>
             </tr>
             <tr>
               <td class="curie">bom:ai-model-card</td>
-              <td>AI Model Card</td>
+              <td>AI model card</td>
               <td>A structured document (model card) covering model details, intended uses, evaluation factors, risks and mitigations.</td>
             </tr>
             <tr>
               <td class="curie">bom:ai-model-parameters</td>
-              <td>AI Model Parameters</td>
+              <td>AI model parameters</td>
               <td>The trained weights, biases, checkpoints, and optimizer state of the AI model.</td>
             </tr>
-          
+            <tr>
+              <td class="curie">bom:ai-model-prop</td>
+              <td>AI model property</td>
+              <td>AI-specific technical properties of a model: type, explainability, autonomy level, safety risk assessment and energy profile.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:ai-out-of-scope-usage</td>
+              <td>AI out-of-scope usage</td>
+              <td>Uses or scenarios for which the AI system or model is explicitly not intended and should be avoided.</td>
+            </tr>
             <tr>
               <td class="curie">bom:ai-perf-metric</td>
-              <td>Performance Metric</td>
-              <td>Model performance metrics (adversarial robustness, accuracy thresholds).</td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-
-      <section>
-        <h3>Dataset Attributes (<code>bom:bom-dataset</code>)</h3>
-        <table class="definition">
-          <thead>
-            <tr>
-              <th>Concept</th>
-              <th>Preferred Label</th>
-              <th>Definition</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="curie">bom:dataset-type</td>
-              <td>Dataset Type</td>
-              <td>Modality or types of content inside the dataset (image, text, tabular).</td>
+              <td>Operational perf metric</td>
+              <td>Operational and functional perf indicators for the AI system (e.g. accuracy, F1 score, latency, throughput, energy consumption).</td>
             </tr>
             <tr>
-              <td class="curie">bom:dataset-provenance</td>
-              <td>Dataset Provenance</td>
-              <td>Information about collection, preprocessing, and chain of custody.</td>
+              <td class="curie">bom:ai-training-prop</td>
+              <td>AI training property</td>
+              <td>Characteristics of the model's training process: hyperparameters, data pre-processing steps, fine-tuning configuration and energy consumption.</td>
             </tr>
             <tr>
-              <td class="curie">bom:dataset-statistical-prop</td>
-              <td>Dataset Statistical Properties</td>
-              <td>Noise levels, class distributions, and bias assessments.</td>
+              <td class="curie">bom:component-comment</td>
+              <td>Component comment</td>
+              <td>Free-text comments, notes or annotations concerning the component.</td>
             </tr>
             <tr>
-              <td class="curie">bom:dataset-sensitivity</td>
-              <td>Dataset Sensitivity</td>
-              <td>Presence of sensitive/personal information and anonymization status.</td>
+              <td class="curie">bom:component-copyright</td>
+              <td>Component copyright</td>
+              <td>The copyright notice or holder information for the component.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:component-criticality</td>
+              <td>Component criticality</td>
+              <td>The security or operational criticality level assigned to the component.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:component-description</td>
+              <td>Component description</td>
+              <td>A free-text description of the component's purpose, architecture or key characteristics.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:component-documentation</td>
+              <td>Component documentation</td>
+              <td>Technical reports, research papers, manuals, or configuration files describing the component.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:component-environmental-impact</td>
+              <td>Component environmental impact</td>
+              <td>Environmental impact metrics for the component, including energy consumption, resource use, and carbon footprint.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:component-eol-date</td>
+              <td>Component end-of-life date</td>
+              <td>The official end-of-life or end-of-support date for the component.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:component-external-ref</td>
+              <td>Component external reference</td>
+              <td>Links to supplementary resources for the component such as model cards, research papers, repositories, or registries.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:component-filename</td>
+              <td>Component filename</td>
+              <td>The actual filename of the component (without path) as it appears in the delivered artifact.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:component-hash</td>
+              <td>Component hash</td>
+              <td>A cryptographic hash of the component artifact (algorithm + digest) for integrity verification.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:component-identifier</td>
+              <td>Component identifier</td>
+              <td>A stable, unique identifier for the component -- typically a PURL (Package URL), SPDX ID, DOI or similar.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:component-license</td>
+              <td>Component license</td>
+              <td>The declared or concluded license under which the component is distributed (expressed as an SPDX license expression or similar).</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:component-name</td>
+              <td>Component name</td>
+              <td>The human-readable name of a software, AI model or dataset component.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:component-origin</td>
+              <td>Component origin</td>
+              <td>The source, origin or manufacturing location of the component (e.g. open source, proprietary, third-party).</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:component-patch-status</td>
+              <td>Component patch status</td>
+              <td>The patch, update or remediation status of the component.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:component-source-code</td>
+              <td>Component source code</td>
+              <td>Source code files or packages for training, inference, evaluation, or data pre-processing.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:component-supplier</td>
+              <td>Component supplier</td>
+              <td>The organisation or person that supplied or distributed the component.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:component-timestamp</td>
+              <td>Component timestamp</td>
+              <td>The date and time the component was built or officially released.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:component-usage-restriction</td>
+              <td>Component usage restriction</td>
+              <td>Legal, contractual or operational restrictions on the usage of the component.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:component-version</td>
+              <td>Component version</td>
+              <td>A version or release identifier for a specific snapshot of the component.</td>
             </tr>
             <tr>
               <td class="curie">bom:dataset-data-card</td>
-              <td>Dataset Data Card</td>
+              <td>Dataset data card</td>
               <td>A structured document (data card) providing summary statistics and details about training datasets, features, instances, and intended uses.</td>
             </tr>
-          </tbody>
-        </table>
-      </section>
-
-      <section>
-        <h3>Infrastructure Attributes (<code>bom:bom-infra</code>)</h3>
-        <table class="definition">
-          <thead>
             <tr>
-              <th>Concept</th>
-              <th>Preferred Label</th>
-              <th>Definition</th>
+              <td class="curie">bom:dataset-provenance</td>
+              <td>Dataset provenance</td>
+              <td>Information about how, when and where the dataset was collected, updated and pre-processed.</td>
             </tr>
-          </thead>
-          <tbody>
             <tr>
-              <td class="curie">bom:infra-software</td>
-              <td>Infrastructure Software</td>
-              <td>The software stack (frameworks, runtimes, container images, OS) supporting operation.</td>
+              <td class="curie">bom:dataset-sensitivity</td>
+              <td>Dataset sensitivity</td>
+              <td>The sensitivity classification of the dataset, including whether it contains personal or sensitive data and its confidentiality level.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:dataset-statistical-prop</td>
+              <td>Dataset statistical property</td>
+              <td>Statistical characteristics of the dataset including size, noise levels, known biases and class distributions.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:dataset-type</td>
+              <td>Dataset type</td>
+              <td>The type(s) or modality of data in the dataset (e.g. image, text, audio, tabular) and its size.</td>
             </tr>
             <tr>
               <td class="curie">bom:infra-hardware</td>
-              <td>Infrastructure Hardware</td>
-              <td>Hardware host requirements, including specialized computing accelerators (GPUs, TPUs).</td>
+              <td>Infrastructure hardware</td>
+              <td>The hardware required to operate the AI system, including specialised accelerators (GPUs, TPUs, NPUs).</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:infra-software</td>
+              <td>Infrastructure software</td>
+              <td>The software environment required to run the AI system: container images, OS, ML frameworks and runtime libraries.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:is-archive</td>
+              <td>Is archive</td>
+              <td>Whether the component is an archive that combines multiple sub-components (e.g. a zip, rpm, container image).</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:is-executable</td>
+              <td>Is executable</td>
+              <td>Whether the component is an executable file (compiled binary, interpreted script, or shared library).</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:is-structured</td>
+              <td>Is structured</td>
+              <td>Whether the component is a structured archive whose internal component metadata is still recoverable (e.g. zip, tar, container image) vs an unstructured archive such as a firmware image.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:security-compliance</td>
+              <td>Security compliance</td>
+              <td>The security standards, regulations or frameworks the AI system has been assessed against or conforms to (e.g. EU AI Act, ISO/IEC 42001, NIST AI RMF).</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:security-controls</td>
+              <td>Security controls</td>
+              <td>The security controls implemented on the AI system (e.g. access controls, encryption, audit logging).</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:security-metric</td>
+              <td>Security metric</td>
+              <td>Quantitative security evaluation metrics and decision thresholds (e.g. adversarial robustness scores, CVSS scores).</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:security-policy</td>
+              <td>Security policy</td>
+              <td>References to the supplier's vulnerability-disclosure policy, security.txt or coordinated-disclosure process.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:security-vuln-ref</td>
+              <td>Vulnerability reference</td>
+              <td>References to known vulnerabilities (CVEs) and their assessment status (VEX) for the AI system and its components.</td>
             </tr>
           </tbody>
         </table>
       </section>
 
       <section>
-        <h3>Security Attributes (<code>bom:bom-security</code>)</h3>
+        <h3>Relationship Metadata (<code>bom:MetadataRelationship</code>)</h3>
         <table class="definition">
           <thead>
             <tr>
@@ -452,24 +496,239 @@
           </thead>
           <tbody>
             <tr>
-              <td class="curie">bom:security-controls</td>
-              <td>Security Controls</td>
-              <td>References to security safeguards, access controls, or encryption methods in place.</td>
+              <td class="curie">bom:rel-contains</td>
+              <td>Contains relationship</td>
+              <td>A relationship indicating one component contains another.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:rel-depends-on</td>
+              <td>Depends on relationship</td>
+              <td>A relationship indicating one component depends on another.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:rel-trained-on</td>
+              <td>Trained on relationship</td>
+              <td>A relationship indicating a model was trained on a specific dataset.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h3>Software Profile (<code>bom:CollectionSoftware</code>)</h3>
+        <table class="definition">
+          <thead>
+            <tr>
+              <th>Concept</th>
+              <th>Preferred Label</th>
+              <th>Definition</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="curie">bom:component-filename</td>
+              <td>Component filename</td>
+              <td>The actual filename of the component (without path) as it appears in the delivered artifact.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:component-source-code</td>
+              <td>Component source code</td>
+              <td>Source code files or packages for training, inference, evaluation, or data pre-processing.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:is-archive</td>
+              <td>Is archive</td>
+              <td>Whether the component is an archive that combines multiple sub-components (e.g. a zip, rpm, container image).</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:is-executable</td>
+              <td>Is executable</td>
+              <td>Whether the component is an executable file (compiled binary, interpreted script, or shared library).</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:is-structured</td>
+              <td>Is structured</td>
+              <td>Whether the component is a structured archive whose internal component metadata is still recoverable (e.g. zip, tar, container image) vs an unstructured archive such as a firmware image.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h3>AI System and Model Profile (<code>bom:CollectionAI</code>)</h3>
+        <table class="definition">
+          <thead>
+            <tr>
+              <th>Concept</th>
+              <th>Preferred Label</th>
+              <th>Definition</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="curie">bom:ai-application-domain</td>
+              <td>AI application domain</td>
+              <td>The domain(s) or application area(s) for which the AI system is intended (e.g. healthcare, finance, autonomous driving).</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:ai-data-flow</td>
+              <td>AI data flow</td>
+              <td>A description of how data flows into, through and out of the AI system.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:ai-data-usage</td>
+              <td>AI data usage</td>
+              <td>A description of how data (including personal or sensitive data) is used by the AI system.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:ai-io-prop</td>
+              <td>AI input/output property</td>
+              <td>The types, modalities and constraints on data accepted as input and produced as output by the AI system or model.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:ai-model-card</td>
+              <td>AI model card</td>
+              <td>A structured document (model card) covering model details, intended uses, evaluation factors, risks and mitigations.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:ai-model-parameters</td>
+              <td>AI model parameters</td>
+              <td>The trained weights, biases, checkpoints, and optimizer state of the AI model.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:ai-model-prop</td>
+              <td>AI model property</td>
+              <td>AI-specific technical properties of a model: type, explainability, autonomy level, safety risk assessment and energy profile.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:ai-out-of-scope-usage</td>
+              <td>AI out-of-scope usage</td>
+              <td>Uses or scenarios for which the AI system or model is explicitly not intended and should be avoided.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:ai-perf-metric</td>
+              <td>Operational perf metric</td>
+              <td>Operational and functional perf indicators for the AI system (e.g. accuracy, F1 score, latency, throughput, energy consumption).</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:ai-training-prop</td>
+              <td>AI training property</td>
+              <td>Characteristics of the model's training process: hyperparameters, data pre-processing steps, fine-tuning configuration and energy consumption.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h3>Dataset Profile (<code>bom:CollectionDataset</code>)</h3>
+        <table class="definition">
+          <thead>
+            <tr>
+              <th>Concept</th>
+              <th>Preferred Label</th>
+              <th>Definition</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="curie">bom:dataset-data-card</td>
+              <td>Dataset data card</td>
+              <td>A structured document (data card) providing summary statistics and details about training datasets, features, instances, and intended uses.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:dataset-provenance</td>
+              <td>Dataset provenance</td>
+              <td>Information about how, when and where the dataset was collected, updated and pre-processed.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:dataset-sensitivity</td>
+              <td>Dataset sensitivity</td>
+              <td>The sensitivity classification of the dataset, including whether it contains personal or sensitive data and its confidentiality level.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:dataset-statistical-prop</td>
+              <td>Dataset statistical property</td>
+              <td>Statistical characteristics of the dataset including size, noise levels, known biases and class distributions.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:dataset-type</td>
+              <td>Dataset type</td>
+              <td>The type(s) or modality of data in the dataset (e.g. image, text, audio, tabular) and its size.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h3>Infrastructure Profile (<code>bom:CollectionInfra</code>)</h3>
+        <table class="definition">
+          <thead>
+            <tr>
+              <th>Concept</th>
+              <th>Preferred Label</th>
+              <th>Definition</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="curie">bom:infra-hardware</td>
+              <td>Infrastructure hardware</td>
+              <td>The hardware required to operate the AI system, including specialised accelerators (GPUs, TPUs, NPUs).</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:infra-software</td>
+              <td>Infrastructure software</td>
+              <td>The software environment required to run the AI system: container images, OS, ML frameworks and runtime libraries.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h3>Security Profile (<code>bom:CollectionSecurity</code>)</h3>
+        <table class="definition">
+          <thead>
+            <tr>
+              <th>Concept</th>
+              <th>Preferred Label</th>
+              <th>Definition</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="curie">bom:component-criticality</td>
+              <td>Component criticality</td>
+              <td>The security or operational criticality level assigned to the component.</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:component-patch-status</td>
+              <td>Component patch status</td>
+              <td>The patch, update or remediation status of the component.</td>
             </tr>
             <tr>
               <td class="curie">bom:security-compliance</td>
-              <td>Security Compliance</td>
-              <td>Compliance with standards or frameworks (ISO/IEC 42001, NIST AI RMF).</td>
+              <td>Security compliance</td>
+              <td>The security standards, regulations or frameworks the AI system has been assessed against or conforms to (e.g. EU AI Act, ISO/IEC 42001, NIST AI RMF).</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:security-controls</td>
+              <td>Security controls</td>
+              <td>The security controls implemented on the AI system (e.g. access controls, encryption, audit logging).</td>
+            </tr>
+            <tr>
+              <td class="curie">bom:security-metric</td>
+              <td>Security metric</td>
+              <td>Quantitative security evaluation metrics and decision thresholds (e.g. adversarial robustness scores, CVSS scores).</td>
             </tr>
             <tr>
               <td class="curie">bom:security-policy</td>
-              <td>Security Policy</td>
-              <td>Vulnerability disclosure guidelines, contact information, or security.txt.</td>
+              <td>Security policy</td>
+              <td>References to the supplier's vulnerability-disclosure policy, security.txt or coordinated-disclosure process.</td>
             </tr>
             <tr>
               <td class="curie">bom:security-vuln-ref</td>
-              <td>Vulnerability Reference</td>
-              <td>Known CVEs and VEX assessments linked to the components.</td>
+              <td>Vulnerability reference</td>
+              <td>References to known vulnerabilities (CVEs) and their assessment status (VEX) for the AI system and its components.</td>
             </tr>
           </tbody>
         </table>

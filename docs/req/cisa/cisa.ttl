@@ -51,7 +51,7 @@ cisa:dependency-relationships
     skos:topConceptOf cisa:scheme ;
     skos:inScheme cisa:scheme ;
     skos:prefLabel "Dependency Relationships"@en ;
-    skos:exactMatch bom:doc-dependency-relationship .
+    skos:exactMatch bom:MetadataRelationship .
 
 cisa:name
     a skos:Concept ;
