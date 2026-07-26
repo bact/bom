@@ -3,7 +3,7 @@
 Generate a minimal index.html for each spec subdirectory under docs/.
 
 Usage:
-    python scripts/gen_index.py
+    python3 scripts/gen_index.py
 
 Writes docs/req/<prefix>/index.html and docs/reg/<prefix>/index.html
 from the corresponding .ttl files.
@@ -12,11 +12,10 @@ from the corresponding .ttl files.
 import html
 import pathlib
 import rdflib
-from rdflib.namespace import RDF, RDFS, SKOS, OWL
+from rdflib.namespace import RDF, SKOS, OWL
 
 DCTERMS = rdflib.Namespace("http://purl.org/dc/terms/")
 BOM     = rdflib.Namespace("https://w3id.org/bom/")
-XSD     = rdflib.Namespace("http://www.w3.org/2001/XMLSchema#")
 
 ROOT = pathlib.Path(__file__).parent.parent / "docs"
 
@@ -114,8 +113,6 @@ def build_html(ttl_path: pathlib.Path) -> str:
         notations = sorted(str(n) for n in g.objects(c, SKOS.notation))
         pt        = next(g.objects(c, BOM.provisionType), None)
         pt_label  = provision_label(g, pt)
-        broader   = next(g.objects(c, SKOS.broader), None)
-        broader_local = str(broader).split("/")[-1] if broader else ""
 
         notation_html = " ".join(
             f'<code>{html.escape(n)}</code>' for n in notations
@@ -178,12 +175,12 @@ def build_html(ttl_path: pathlib.Path) -> str:
 def main():
     # Find all .ttl files one level below docs/req/ and docs/reg/
     patterns = [
-        ROOT / "req" / "*" / "*.ttl",
-        ROOT / "reg" / "*" / "*.ttl",
+        "req/*/*.ttl",
+        "reg/*/*.ttl",
     ]
     found = []
     for pat in patterns:
-        found.extend(sorted(ROOT.glob(str(pat.relative_to(ROOT)))))
+        found.extend(sorted(ROOT.glob(pat)))
 
     for ttl_path in found:
         out = ttl_path.parent / "index.html"

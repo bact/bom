@@ -25,6 +25,6 @@ ntia:name	Component Name	skos:exactMatch	cdx:name	name	semapv:ManualMappingCurat
 ntia:version	Version of the Component	skos:exactMatch	cdx:version	version	semapv:ManualMappingCuration	bom:component-version	Component version field.	cdx:Component
 ntia:unique-identifier	Unique Identifier	skos:exactMatch	cdx:purl	purl	semapv:ManualMappingCuration	bom:component-identifier	Package URL (purl) field on Component.	cdx:Component
 ntia:unique-identifier	Unique Identifier	skos:closeMatch	cdx:cpe	cpe	semapv:ManualMappingCuration	bom:component-identifier	Common Platform Enumeration (cpe) field on Component.	cdx:Component
-ntia:dependency-relationship	Dependency Relationship	skos:closeMatch	cdx:dependencies	dependencies	semapv:ManualMappingCuration	bom:doc-dependency-relationship	Dependency graph specified in CycloneDX dependencies section.	cdx:Dependency
+ntia:dependency-relationship	Dependency Relationship	skos:closeMatch	cdx:dependencies	dependencies	semapv:ManualMappingCuration	bom:MetadataRelationship	Dependency graph specified in CycloneDX dependencies section.	cdx:Dependency
 ntia:author	Author of SBOM Data	skos:exactMatch	cdx:authors	authors	semapv:ManualMappingCuration	bom:doc-author	Authors listed in metadata.	cdx:Metadata
 ntia:timestamp	Timestamp	skos:exactMatch	cdx:timestamp	timestamp	semapv:ManualMappingCuration	bom:doc-timestamp	Timestamp recorded in metadata.	cdx:Metadata

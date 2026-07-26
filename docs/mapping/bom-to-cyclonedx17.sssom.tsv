@@ -19,18 +19,18 @@
 #   - "http://cyclonedx.org/schema/bom/1.7b"
 #   - "https://w3id.org/bom/"
 subject_id	subject_label	predicate_id	object_id	object_label	mapping_justification	see_also	comment	object_qualifier
-bom:bom-document	Bill of Materials Document	skos:closeMatch	cdx:bom	bom	semapv:ManualMappingCuration		The BOM document corresponds to the root bom element in CycloneDX 1.7.	cdx:bom
-bom:bom-component	Component	skos:closeMatch	cdx:component	component	semapv:ManualMappingCuration		Generic component element in CycloneDX representing software, hardware, data, or AI models.	cdx:Component
-bom:bom-sw	Software Component	skos:closeMatch	cdx:type	type	semapv:ManualMappingCuration		Software components are represented as Component elements with type application, framework, library, container, etc.	cdx:Component
-bom:bom-ai	AI System and Model	skos:closeMatch	cdx:machineLearningModel	machineLearningModel	semapv:ManualMappingCuration		AI systems and models are represented using the machineLearningModel element on a Component.	cdx:Component
-bom:bom-dataset	Dataset	skos:closeMatch	cdx:data	data	semapv:ManualMappingCuration		Datasets are represented using data elements or Component with type data.	cdx:Component
-bom:bom-infra	Infrastructure	skos:relatedMatch	cdx:service	service	semapv:ManualMappingCuration		Infrastructure components are represented as services or platform components.	cdx:Service
-bom:bom-security	Security	skos:relatedMatch	cdx:vulnerabilities	vulnerabilities	semapv:ManualMappingCuration		Security aspects are represented via top-level vulnerabilities, declarations, or formulations.	cdx:bom
+bom:MetadataDocument	Document Metadata	skos:closeMatch	cdx:bom	bom	semapv:ManualMappingCuration		The BOM document corresponds to the root bom element in CycloneDX 1.7.	cdx:bom
+bom:MetadataComponent	Component Metadata	skos:closeMatch	cdx:component	component	semapv:ManualMappingCuration		Generic component element in CycloneDX representing software, hardware, data, or AI models.	cdx:Component
+bom:CollectionSoftware	Software Profile	skos:closeMatch	cdx:type	type	semapv:ManualMappingCuration		Software components are represented as Component elements with type application, framework, library, container, etc.	cdx:Component
+bom:CollectionAI	AI System and Model Profile	skos:closeMatch	cdx:machineLearningModel	machineLearningModel	semapv:ManualMappingCuration		AI systems and models are represented using the machineLearningModel element on a Component.	cdx:Component
+bom:CollectionDataset	Dataset Profile	skos:closeMatch	cdx:data	data	semapv:ManualMappingCuration		Datasets are represented using data elements or Component with type data.	cdx:Component
+bom:CollectionInfra	Infrastructure Profile	skos:relatedMatch	cdx:service	service	semapv:ManualMappingCuration		Infrastructure components are represented as services or platform components.	cdx:Service
+bom:CollectionSecurity	Security Profile	skos:relatedMatch	cdx:vulnerabilities	vulnerabilities	semapv:ManualMappingCuration		Security aspects are represented via top-level vulnerabilities, declarations, or formulations.	cdx:bom
 bom:doc-author	Document author	skos:exactMatch	cdx:authors	authors	semapv:ManualMappingCuration		Metadata.authors specifies the author(s) of the CycloneDX document.	cdx:Metadata
 bom:doc-timestamp	Document timestamp	skos:exactMatch	cdx:timestamp	timestamp	semapv:ManualMappingCuration		Metadata.timestamp records when the document was created.	cdx:Metadata
 bom:doc-lifecycle-stage	SBOM lifecycle stage	skos:closeMatch	cdx:lifecycles	lifecycles	semapv:ManualMappingCuration		Metadata.lifecycles specifies the product lifecycle phase in which the BOM was created.	cdx:Metadata
 bom:doc-primary-component	SBOM primary component	skos:closeMatch	cdx:component	component	semapv:ManualMappingCuration		Metadata.component defines the primary subject component described by the BOM.	cdx:Metadata
-bom:doc-dependency-relationship	SBOM dependency relationship	skos:closeMatch	cdx:dependencies	dependencies	semapv:ManualMappingCuration		Top-level dependencies graph describing relationships between components.	cdx:Dependency
+bom:MetadataRelationship	SBOM dependency relationship	skos:closeMatch	cdx:dependencies	dependencies	semapv:ManualMappingCuration		Top-level dependencies graph describing relationships between components.	cdx:Dependency
 bom:doc-version	Document version	skos:exactMatch	cdx:version	version	semapv:ManualMappingCuration		Version attribute on the root bom element.	cdx:bom
 bom:doc-spec-version	SBOM spec version	skos:exactMatch	cdx:specVersion	specVersion	semapv:ManualMappingCuration		specVersion attribute on the root bom element identifying the CycloneDX schema version (e.g. 1.7).	cdx:bom
 bom:doc-tool-name	Document tool name	skos:exactMatch	cdx:tools	tools	semapv:ManualMappingCuration		Metadata.tools lists tool(s); Tool.name carries the tool name.	cdx:Metadata
@@ -43,7 +43,7 @@ bom:component-supplier	Component supplier	skos:exactMatch	cdx:supplier	supplier	
 bom:component-identifier	Component identifier	skos:exactMatch	cdx:purl	purl	semapv:ManualMappingCuration		Component.purl specifies the Package URL identifier for the component.	cdx:Component
 bom:component-identifier	Component identifier	skos:closeMatch	cdx:cpe	cpe	semapv:ManualMappingCuration		Component.cpe specifies the Common Platform Enumeration identifier.	cdx:Component
 bom:component-hash	Component hash	skos:exactMatch	cdx:hashes	hashes	semapv:ManualMappingCuration		Component.hashes contains cryptographic checksums (alg + content) for integrity.	cdx:Component
-bom:component-relationship	Component relationship	skos:closeMatch	cdx:dependencies	dependencies	semapv:ManualMappingCuration		Dependency relationships linking parent components to child components via ref identifiers.	cdx:Dependency
+bom:MetadataRelationship	Relationship Metadata	skos:closeMatch	cdx:dependencies	dependencies	semapv:ManualMappingCuration		Dependency relationships linking parent components to child components via ref identifiers.	cdx:Dependency
 bom:component-license	Component license	skos:exactMatch	cdx:licenses	licenses	semapv:ManualMappingCuration		Component.licenses contains declared or concluded SPDX license expressions or license objects.	cdx:Component
 bom:component-copyright	Component copyright	skos:exactMatch	cdx:copyright	copyright	semapv:ManualMappingCuration		Component.copyright carries the copyright notice string.	cdx:Component
 bom:component-timestamp	Component timestamp	skos:closeMatch	cdx:timestamp	timestamp	semapv:ManualMappingCuration		Timestamp associated with component creation or release.	cdx:Component

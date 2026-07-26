@@ -118,7 +118,7 @@ bsi:component-dependencies
     skos:prefLabel "Dependencies on other components"@en ;
     skos:definition "Enumeration of all components on which this component directly depends or which it contains, with an explicit completeness indication."@en ;
     skos:notation "BOM-BSI-COMP-005"^^bom:SarifRuleId ;
-    skos:exactMatch bom:component-relationship .
+    skos:exactMatch bom:MetadataRelationship .
 
 bsi:component-distribution-license
     a skos:Concept ;

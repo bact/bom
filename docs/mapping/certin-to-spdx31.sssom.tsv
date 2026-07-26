@@ -1,0 +1,66 @@
+# curie_map:
+#   certin: "https://w3id.org/bom/req/certin/"
+#   bom: "https://w3id.org/bom/"
+#   spdx3-core: "https://spdx.org/rdf/3/terms/Core/"
+#   spdx3-sw: "https://spdx.org/rdf/3/terms/Software/"
+#   spdx3-ai: "https://spdx.org/rdf/3/terms/AI/"
+#   spdx3-ds: "https://spdx.org/rdf/3/terms/Dataset/"
+#   spdx3-sec: "https://spdx.org/rdf/3/terms/Security/"
+#   spdx3-hw: "https://spdx.org/rdf/3/terms/Hardware/"
+#   skos: "http://www.w3.org/2004/02/skos/core#"
+#   semapv: "https://w3id.org/semapv/vocab/"
+# mapping_set_id: "https://w3id.org/bom/mapping/certin-to-spdx31"
+# mapping_set_version: "0.1.0"
+# mapping_set_title: "India CERT-In SBOM & AIBOM Guidelines v2.0 <-> SPDX 3.1-dev"
+# mapping_set_description: "Maps the 21 SBOM Data Fields and 19 AIBOM Elements defined in 'Technical Guidelines on SBOM | QBOM & CBOM | AIBOM | HBOM (Version 2.0)' (CERT-In, July 2025) to classes and properties in the SPDX 3.1-dev specification. The see_also column cites the neutral bridge concept from bom.ttl."
+# license: "https://creativecommons.org/publicdomain/zero/1.0/"
+# extension_slot: object_qualifier
+# extension_slot_uri: https://w3id.org/bom/vocab/object_qualifier
+# creator_id:
+#   - "orcid:0000-0002-9698-1899"
+# mapping_date: "2026-07-26"
+# subject_source: "https://w3id.org/bom/req/certin/"
+# object_source: "https://spdx.github.io/spdx-spec/v3.1-dev/"
+# see_also:
+#   - "https://w3id.org/bom/"
+subject_id	subject_label	predicate_id	object_id	object_label	mapping_justification	see_also	comment	object_qualifier
+certin:component-name	Component Name	skos:exactMatch	spdx3-core:name	name	semapv:ManualMappingCuration	bom:component-name	Element.name on a Package or Artifact element carries the component name.	spdx3-core:Element
+certin:component-version	Component Version	skos:exactMatch	spdx3-sw:packageVersion	packageVersion	semapv:ManualMappingCuration	bom:component-version	Software.Package.packageVersion carries the component version string.	spdx3-sw:Package
+certin:component-description	Component Description	skos:exactMatch	spdx3-core:summary	summary	semapv:ManualMappingCuration	bom:component-description	Element.summary or Element.description carries the component description.	spdx3-core:Element
+certin:component-supplier	Component Supplier	skos:closeMatch	spdx3-core:suppliedBy	suppliedBy	semapv:ManualMappingCuration	bom:component-supplier	Artifact.suppliedBy points to the Agent supplier of the software component.	spdx3-core:Artifact
+certin:component-license	Component License	skos:exactMatch	spdx3-sw:concludedLicense	concludedLicense	semapv:ManualMappingCuration	bom:component-license	Software.Package.concludedLicense carries the license governing the component.	spdx3-sw:Package
+certin:component-origin	Component Origin	skos:exactMatch	spdx3-core:originatedBy	originatedBy	semapv:ManualMappingCuration	bom:component-origin	Artifact.originatedBy identifies the origin/authoring agent of the software component.	spdx3-core:Artifact
+certin:component-dependencies	Component Dependencies	skos:exactMatch	spdx3-core:Relationship	Relationship	semapv:ManualMappingCuration	bom:MetadataRelationship	Component dependency relationships are expressed via Relationship elements.	
+certin:vulnerabilities	Vulnerabilities	skos:exactMatch	spdx3-sec:Vulnerability	Vulnerability	semapv:ManualMappingCuration	bom:security-vuln-ref	Security.Vulnerability elements and VulnerabilityAssessmentRelationship track component vulnerabilities.	
+certin:patch-status	Patch Status	skos:closeMatch	spdx3-sec:VulnerabilityAssessmentRelationship	VulnerabilityAssessmentRelationship	semapv:ManualMappingCuration	bom:component-patch-status	Patch and remediation status is expressed via VulnerabilityAssessmentRelationship (e.g. fixedState).	
+certin:release-date	Release Date	skos:exactMatch	spdx3-core:releaseTime	releaseTime	semapv:ManualMappingCuration	bom:component-timestamp	Artifact.releaseTime specifies the official release date and time.	spdx3-core:Artifact
+certin:eol-date	End-of-Life (EOL) Date	skos:exactMatch	spdx3-core:endOfSupport	endOfSupport	semapv:ManualMappingCuration	bom:component-eol-date	Artifact.endOfSupport records the end-of-life / end-of-support date.	spdx3-core:Artifact
+certin:criticality	Criticality	skos:closeMatch	spdx3-core:comment	comment	semapv:ManualMappingCuration	bom:component-criticality	No dedicated property in SPDX 3.1-dev; recorded via Element.comment or security assessment notes.	spdx3-core:Element
+certin:usage-restrictions	Usage Restrictions	skos:closeMatch	spdx3-core:comment	comment	semapv:ManualMappingCuration	bom:component-usage-restriction	Recorded via Element.comment or license exception clauses in SPDX 3.1.	spdx3-core:Element
+certin:checksums-or-hashes	Checksums or Hashes	skos:exactMatch	spdx3-core:verifiedUsing	verifiedUsing	semapv:ManualMappingCuration	bom:component-hash	Artifact.verifiedUsing with Hash elements captures cryptographic checksums.	spdx3-core:Artifact
+certin:comments-or-notes	Comments or Notes	skos:exactMatch	spdx3-core:comment	comment	semapv:ManualMappingCuration	bom:component-comment	Element.comment carries free-text comments or notes.	spdx3-core:Element
+certin:author-of-sbom-data	Author of SBOM Data	skos:exactMatch	spdx3-core:createdBy	createdBy	semapv:ManualMappingCuration	bom:doc-author	CreationInfo.createdBy captures the agent(s) that authored the document.	spdx3-core:CreationInfo
+certin:timestamp	Timestamp	skos:exactMatch	spdx3-core:created	created	semapv:ManualMappingCuration	bom:doc-timestamp	CreationInfo.created is a mandatory xsd:dateTime recording when the SBOM was created.	spdx3-core:CreationInfo
+certin:executable-property	Executable Property	skos:exactMatch	spdx3-sw:primaryPurpose	primaryPurpose	semapv:ManualMappingCuration	bom:is-executable	Software.Package.primaryPurpose (set to executable/application) specifies executable nature.	spdx3-sw:Package
+certin:archive-property	Archive Property	skos:exactMatch	spdx3-sw:primaryPurpose	primaryPurpose	semapv:ManualMappingCuration	bom:is-archive	Software.Package.primaryPurpose (set to archive) specifies archive property.	spdx3-sw:Package
+certin:structured-property	Structured Property	skos:closeMatch	spdx3-sw:sbomType	sbomType	semapv:ManualMappingCuration	bom:is-structured	Software.Sbom structure indicates structured metadata format.	spdx3-sw:Sbom
+certin:unique-identifier	Unique Identifier	skos:exactMatch	spdx3-sw:packageUrl	packageUrl	semapv:ManualMappingCuration	bom:component-identifier	Software.Package.packageUrl carries the PURL unique identifier.	spdx3-sw:Package
+certin:model-name	Model Name	skos:exactMatch	spdx3-core:name	name	semapv:ManualMappingCuration	bom:component-name	Element.name on an AI.AIPackage element carries the AI model name.	spdx3-ai:AIPackage
+certin:model-version	Model Version	skos:exactMatch	spdx3-sw:packageVersion	packageVersion	semapv:ManualMappingCuration	bom:component-version	Software.Package.packageVersion on AIPackage carries the model version.	spdx3-ai:AIPackage
+certin:model-type	Model Type	skos:exactMatch	spdx3-ai:modelType	modelType	semapv:ManualMappingCuration	bom:ai-model-prop	AI.AIPackage.modelType carries the model architecture/type classification.	spdx3-ai:AIPackage
+certin:model-developer	Model Developer	skos:exactMatch	spdx3-core:originatedBy	originatedBy	semapv:ManualMappingCuration	bom:component-supplier	Artifact.originatedBy specifies the developer or organization that authored the model.	spdx3-core:Artifact
+certin:model-licensing-information	Model Licensing Information	skos:exactMatch	spdx3-sw:concludedLicense	concludedLicense	semapv:ManualMappingCuration	bom:component-license	Software.Package.concludedLicense on AIPackage carries the licensing terms.	spdx3-ai:AIPackage
+certin:software-dependencies	Software Dependencies	skos:closeMatch	spdx3-core:Relationship	Relationship	semapv:ManualMappingCuration	bom:infra-software	Dependencies on software frameworks, libraries, and runtime tools are expressed via Relationship elements.	
+certin:ml-models-and-algorithms	ML Models and Algorithms	skos:exactMatch	spdx3-ai:hyperparameter	hyperparameter	semapv:ManualMappingCuration	bom:ai-model-parameters	AI.AIPackage.hyperparameter and modelType capture ML model architectures and parameter details.	spdx3-ai:AIPackage
+certin:model-performance-metrics	Model Performance Metrics	skos:exactMatch	spdx3-ai:metric	metric	semapv:ManualMappingCuration	bom:ai-perf-metric	AI.AIPackage.metric (-> Metric) captures model evaluation metrics.	spdx3-ai:AIPackage
+certin:data-source	Data Source	skos:exactMatch	spdx3-ds:datasetSize	datasetSize	semapv:ManualMappingCuration	bom:dataset-provenance	Dataset element properties and Artifact.originatedBy capture data source origin and provenance.	spdx3-ds:Dataset
+certin:data-sets	Data Sets	skos:exactMatch	spdx3-core:Relationship	Relationship	semapv:ManualMappingCuration	bom:rel-trained-on	DataSets link between AIPackage and Dataset elements via TRAINED_ON / DEPENDS_ON Relationship elements.	
+certin:hardware	Hardware	skos:exactMatch	spdx3-hw:Hardware	Hardware	semapv:ManualMappingCuration	bom:infra-hardware	Hardware element describes computing resources (GPUs, TPUs, accelerators) used for training/inference.	
+certin:security-requirements	Security Requirements	skos:closeMatch	spdx3-core:comment	comment	semapv:ManualMappingCuration	bom:security-controls	Encryption and access control security requirements documented via Element.comment or ExternalRef.	spdx3-core:Element
+certin:input	Input	skos:narrowMatch	spdx3-ai:informationAboutApplication	informationAboutApplication	semapv:ManualMappingCuration	bom:ai-io-prop	Input types partially covered by informationAboutApplication and typeOfModel. Narrow match; gap identified.	spdx3-ai:AIPackage
+certin:output	Output	skos:narrowMatch	spdx3-ai:informationAboutApplication	informationAboutApplication	semapv:ManualMappingCuration	bom:ai-io-prop	Output types partially covered by informationAboutApplication and typeOfModel. Narrow match; gap identified.	spdx3-ai:AIPackage
+certin:intended-usage	Intended Usage	skos:exactMatch	spdx3-ai:domain	domain	semapv:ManualMappingCuration	bom:ai-application-domain	AI.AIPackage.domain specifies the intended application domain or target use cases.	spdx3-ai:AIPackage
+certin:out-of-scope-usage	Out of Scope Usage	skos:closeMatch	spdx3-core:comment	comment	semapv:ManualMappingCuration	bom:ai-out-of-scope-usage	Out-of-scope or prohibited usage scenarios recorded via Element.comment or model card documentation.	spdx3-core:Element
+certin:environmental-impact	Environmental Impact	skos:exactMatch	spdx3-ai:energyConsumption	energyConsumption	semapv:ManualMappingCuration	bom:component-environmental-impact	AI.AIPackage.energyConsumption captures energy use, resource footprint, and carbon impact.	spdx3-ai:AIPackage
+certin:aibom-vulnerabilities	Vulnerabilities	skos:exactMatch	spdx3-sec:Vulnerability	Vulnerability	semapv:ManualMappingCuration	bom:security-vuln-ref	Security.Vulnerability elements track known security issues in the AI model and dependencies.	
+certin:attestations	Attestations	skos:closeMatch	spdx3-core:verifiedUsing	verifiedUsing	semapv:ManualMappingCuration	bom:doc-integrity	Digital signatures and integrity attestations recorded via verifiedUsing with Hash or external signature bundle.	spdx3-core:Element
