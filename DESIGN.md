@@ -28,7 +28,7 @@ Key characteristic: the document itself itemises the requirements explicitly. As
 
 Technical standards that define **how to serialise compliance content**. These already provide stable IRIs or identifiers for every field.
 
-Examples: SPDX 3.1 (`spdx3-core:`, `spdx3-sw:`, `spdx3-ai:`, …), CycloneDX 1.6.
+Examples: SPDX 3.1 (`spdx3-core:`, `spdx3-sw:`, `spdx3-ai:`, …), CycloneDX 1.7 (`cdx:`).
 
 Key characteristic: IRIs exist already. The mapping task is purely semantic (does this spec field carry the same meaning as that requirement element?).
 
@@ -81,7 +81,7 @@ The bridge reduces **conceptual mapping work**, not file count.
 
 Without a bridge, mapping N source standards to M target formats requires N×M independent crosswalks — each one authored from scratch with no shared vocabulary. With the bridge, every source maps *to* the bridge via `skos:exactMatch`/`closeMatch` assertions in its own TTL file, and every target format can be mapped *from* the bridge once:
 
-```
+```text
 Layer A / C concept  →  Layer D bridge concept  →  Layer B format field
 (e.g. ntia:supplier)    (bom:component-supplier)   (spdx3-core:suppliedBy)
 ```
@@ -109,7 +109,7 @@ What the bridge buys in both passes:
 
 For **Layer C (regulatory) sources**, there is an additional preprocessing step before the bridge pattern applies:
 
-```
+```text
 Regulation obligation  →  [Itemisation]  →  Own TTL concept  →  Bridge  →  Format field
 (EU AI Act Art. 11)        (euaiact.ttl)     (euaiact:a6-data-and-logic)   →  …  →  …
 ```
@@ -194,7 +194,7 @@ The bridge vocabulary (`bom.ttl`) is the shared artefact that benefits from ever
 | Class | Meaning | Examples |
 |---|---|---|
 | `bom:InfoRequirementSpec` | Layer A — standard or guidance enumerating specific baseline information (minimum elements) with provision levels | NTIA, G7 AI, BSI TR-03183-2, CISA FSCT (3rd Ed.) |
-| `bom:ExchangeFormatSpec` | Layer B — technical standard defining compliance document format/serialisation | SPDX 3.1, CycloneDX 1.6 |
+| `bom:ExchangeFormatSpec` | Layer B — technical standard defining compliance document format/serialisation | SPDX 3.1, CycloneDX 1.7 |
 | `bom:RegulatorySpec` | Layer C — legally binding instrument defining compliance-related obligations (subclass of `dpv:Regulation`) | EU AI Act, EU CRA |
 
 Assessment frameworks (MOF) do not fit neatly into Layer A or C — MOF defines maturity levels whose *criteria* can overlap with SBOM minimum elements. MOF is treated as a separate `bom:InfoRequirementSpec` whose concepts are the individual criteria; mapping to the bridge links MOF criteria to the same concepts as NTIA/G7.
@@ -370,7 +370,7 @@ Pattern: `BOM-[SPEC]-[CAT]-[NNN]`. Lowercasing yields a valid OSCAL catalog cont
 | `bom:bom-ai` | AI System and Model | AI/ML-specific. Aligns to `dcat:Dataset`, `mls:Model`, `ai:AISystem`, `ai:Model`, `schema:SoftwareApplication` |
 | `bom:bom-dataset` | Dataset | `skos:exactMatch dcat:Dataset`, `skos:closeMatch schema:Dataset` |
 | `bom:bom-infra` | Infrastructure | Software and hardware runtime environment |
-| `bom:bom-security` | Security | Compliance, controls, vulnerabilities, performance metrics |
+| `bom:bom-security` | Security | Compliance, controls, vulnerabilities, security metrics |
 
 **IRI naming convention for leaf concepts:**
 
@@ -382,7 +382,7 @@ Pattern: `BOM-[SPEC]-[CAT]-[NNN]`. Lowercasing yields a valid OSCAL catalog cont
 | AI/ML | `bom:ai-{name}` | `bom:ai-training-prop` |
 | Dataset | `bom:dataset-{name}` | `bom:dataset-provenance` |
 | Infrastructure | `bom:infra-{name}` | `bom:infra-hardware` |
-| Security | `bom:security-{name}` / `bom:performance-{name}` / `bom:vulnerability-{name}` | `bom:security-compliance` |
+| Security | `bom:security-{name}` / `bom:security-perf-{name}` / `bom:security-vuln-{name}` | `bom:security-compliance` |
 
 ### 12.5 Provision Type Vocabulary
 
@@ -613,7 +613,9 @@ Rare. Only if a new family of concepts doesn't fit any of the 7 existing categor
 | `spdx31-to-semic.sssom.tsv` — SPDX 3.1-dev ↔ SEMIC vocabularies (format transformation leg) | Not started |
 | `fsct-to-spdx31.sssom.tsv` | Not started |
 | `cisa-to-spdx31.sssom.tsv` | Not started |
-| Any ↔ CycloneDX | Not started |
+| `bom-to-cyclonedx17.sssom.tsv` — BOM Bridge Concepts ↔ CycloneDX 1.7 | Done |
+| `ntia-to-cyclonedx17.sssom.tsv` — NTIA Minimum Elements ↔ CycloneDX 1.7 | Done |
+| `g7ai-to-cyclonedx17.sssom.tsv` — G7 AI Minimum Elements ↔ CycloneDX 1.7 | Done |
 | EU Cyber Resilience Act (CRA) regulatory TTL (`reg/eucra/eucra.ttl`) | Not started |
 | GitHub Pages setup | Done |
 | w3id.org registration | Not started |

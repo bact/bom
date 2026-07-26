@@ -1,0 +1,30 @@
+# curie_map:
+#   ntia: "https://w3id.org/bom/req/ntia/"
+#   bom: "https://w3id.org/bom/"
+#   cdx: "http://cyclonedx.org/schema/bom/1.7b#"
+#   skos: "http://www.w3.org/2004/02/skos/core#"
+#   semapv: "https://w3id.org/semapv/vocab/"
+# mapping_set_id: "https://w3id.org/bom/mapping/ntia-to-cyclonedx17"
+# mapping_set_version: "0.1.0"
+# mapping_set_title: "NTIA SBOM Minimum Elements <-> CycloneDX 1.7"
+# mapping_set_description: "Maps the 7 minimum-element concepts defined in 'The Minimum Elements For a Software Bill of Materials (SBOM)' (NTIA, November 2021) to elements and properties in CycloneDX 1.7. The see_also column cites the neutral bridge concept from bom.ttl."
+# license: "https://creativecommons.org/publicdomain/zero/1.0/"
+# extension_slot: object_qualifier
+# extension_slot_uri: https://w3id.org/bom/vocab/object_qualifier
+# creator_id:
+#   - "orcid:0000-0000-0000-0000"
+# mapping_date: "2026-07-25"
+# subject_source: "https://w3id.org/bom/req/ntia/"
+# object_source: "http://cyclonedx.org/schema/bom/1.7b"
+# see_also:
+#   - "https://ntia.gov/sites/default/files/publications/sbom_minimum_elements_for_a_software_bill_of_materials.pdf"
+#   - "https://w3id.org/bom/"
+subject_id	subject_label	predicate_id	object_id	object_label	mapping_justification	see_also	comment	object_qualifier
+ntia:supplier	Supplier Name	skos:exactMatch	cdx:supplier	supplier	semapv:ManualMappingCuration	bom:component-supplier	Component supplier specified in CycloneDX component metadata.	cdx:Component
+ntia:name	Component Name	skos:exactMatch	cdx:name	name	semapv:ManualMappingCuration	bom:component-name	Component name field.	cdx:Component
+ntia:version	Version of the Component	skos:exactMatch	cdx:version	version	semapv:ManualMappingCuration	bom:component-version	Component version field.	cdx:Component
+ntia:unique-identifier	Unique Identifier	skos:exactMatch	cdx:purl	purl	semapv:ManualMappingCuration	bom:component-identifier	Package URL (purl) field on Component.	cdx:Component
+ntia:unique-identifier	Unique Identifier	skos:closeMatch	cdx:cpe	cpe	semapv:ManualMappingCuration	bom:component-identifier	Common Platform Enumeration (cpe) field on Component.	cdx:Component
+ntia:dependency-relationship	Dependency Relationship	skos:closeMatch	cdx:dependencies	dependencies	semapv:ManualMappingCuration	bom:doc-dependency-relationship	Dependency graph specified in CycloneDX dependencies section.	cdx:Dependency
+ntia:author	Author of SBOM Data	skos:exactMatch	cdx:authors	authors	semapv:ManualMappingCuration	bom:doc-author	Authors listed in metadata.	cdx:Metadata
+ntia:timestamp	Timestamp	skos:exactMatch	cdx:timestamp	timestamp	semapv:ManualMappingCuration	bom:doc-timestamp	Timestamp recorded in metadata.	cdx:Metadata

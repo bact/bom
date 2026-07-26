@@ -208,7 +208,7 @@ grep -rn 'w3id.org/bom/ntia\|w3id.org/bom/g7ai\|w3id.org/bom/bsi\|w3id.org/bom/f
 - [ ] Verify provision types for g7ai against source doc (TODO annotation in g7ai.ttl)
 - [ ] Commit `euaiact.yaml` to `sarif-output` branch of ntia-conformance-checker and open PR
 - [x] GitHub Pages setup
-- [ ] w3id.org registration PR
+- [x] w3id.org registration PR
 
 ---
 

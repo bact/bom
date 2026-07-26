@@ -1,0 +1,78 @@
+# curie_map:
+#   bom: "https://w3id.org/bom/"
+#   cdx: "http://cyclonedx.org/schema/bom/1.7b#"
+#   skos: "http://www.w3.org/2004/02/skos/core#"
+#   semapv: "https://w3id.org/semapv/vocab/"
+# mapping_set_id: "https://w3id.org/bom/mapping/bom-to-cyclonedx17"
+# mapping_set_version: "0.1.0"
+# mapping_set_title: "SBOM Bridge Concepts <-> CycloneDX 1.7"
+# mapping_set_description: "Maps each concept in the document bridge ontology (bom.ttl) to the corresponding element or property in the CycloneDX 1.7 specification."
+# license: "https://creativecommons.org/publicdomain/zero/1.0/"
+# extension_slot: object_qualifier
+# extension_slot_uri: https://w3id.org/bom/vocab/object_qualifier
+# creator_id:
+#   - "orcid:0000-0002-9698-1899"
+# mapping_date: "2026-07-25"
+# subject_source: "https://w3id.org/bom/"
+# object_source: "http://cyclonedx.org/schema/bom/1.7b"
+# see_also:
+#   - "http://cyclonedx.org/schema/bom/1.7b"
+#   - "https://w3id.org/bom/"
+subject_id	subject_label	predicate_id	object_id	object_label	mapping_justification	see_also	comment	object_qualifier
+bom:bom-document	Bill of Materials Document	skos:closeMatch	cdx:bom	bom	semapv:ManualMappingCuration		The BOM document corresponds to the root bom element in CycloneDX 1.7.	cdx:bom
+bom:bom-component	Component	skos:closeMatch	cdx:component	component	semapv:ManualMappingCuration		Generic component element in CycloneDX representing software, hardware, data, or AI models.	cdx:Component
+bom:bom-sw	Software Component	skos:closeMatch	cdx:type	type	semapv:ManualMappingCuration		Software components are represented as Component elements with type application, framework, library, container, etc.	cdx:Component
+bom:bom-ai	AI System and Model	skos:closeMatch	cdx:machineLearningModel	machineLearningModel	semapv:ManualMappingCuration		AI systems and models are represented using the machineLearningModel element on a Component.	cdx:Component
+bom:bom-dataset	Dataset	skos:closeMatch	cdx:data	data	semapv:ManualMappingCuration		Datasets are represented using data elements or Component with type data.	cdx:Component
+bom:bom-infra	Infrastructure	skos:relatedMatch	cdx:service	service	semapv:ManualMappingCuration		Infrastructure components are represented as services or platform components.	cdx:Service
+bom:bom-security	Security	skos:relatedMatch	cdx:vulnerabilities	vulnerabilities	semapv:ManualMappingCuration		Security aspects are represented via top-level vulnerabilities, declarations, or formulations.	cdx:bom
+bom:doc-author	Document author	skos:exactMatch	cdx:authors	authors	semapv:ManualMappingCuration		Metadata.authors specifies the author(s) of the CycloneDX document.	cdx:Metadata
+bom:doc-timestamp	Document timestamp	skos:exactMatch	cdx:timestamp	timestamp	semapv:ManualMappingCuration		Metadata.timestamp records when the document was created.	cdx:Metadata
+bom:doc-lifecycle-stage	SBOM lifecycle stage	skos:closeMatch	cdx:lifecycles	lifecycles	semapv:ManualMappingCuration		Metadata.lifecycles specifies the product lifecycle phase in which the BOM was created.	cdx:Metadata
+bom:doc-primary-component	SBOM primary component	skos:closeMatch	cdx:component	component	semapv:ManualMappingCuration		Metadata.component defines the primary subject component described by the BOM.	cdx:Metadata
+bom:doc-dependency-relationship	SBOM dependency relationship	skos:closeMatch	cdx:dependencies	dependencies	semapv:ManualMappingCuration		Top-level dependencies graph describing relationships between components.	cdx:Dependency
+bom:doc-version	Document version	skos:exactMatch	cdx:version	version	semapv:ManualMappingCuration		Version attribute on the root bom element.	cdx:bom
+bom:doc-spec-version	SBOM spec version	skos:exactMatch	cdx:specVersion	specVersion	semapv:ManualMappingCuration		specVersion attribute on the root bom element identifying the CycloneDX schema version (e.g. 1.7).	cdx:bom
+bom:doc-tool-name	Document tool name	skos:exactMatch	cdx:tools	tools	semapv:ManualMappingCuration		Metadata.tools lists tool(s); Tool.name carries the tool name.	cdx:Metadata
+bom:doc-tool-version	Document tool version	skos:exactMatch	cdx:tools	tools	semapv:ManualMappingCuration		Metadata.tools lists tool(s); Tool.version carries the tool version.	cdx:Metadata
+bom:doc-integrity	SBOM integrity	skos:closeMatch	cdx:signature	signature	semapv:ManualMappingCuration		Digital signature structure on the root bom element or sub-elements.	cdx:bom
+bom:doc-identifier	Document identifier	skos:exactMatch	cdx:serialNumber	serialNumber	semapv:ManualMappingCuration		serialNumber attribute on the root bom element serving as a unique URN for the document.	cdx:bom
+bom:component-name	Component name	skos:exactMatch	cdx:name	name	semapv:ManualMappingCuration		Component.name carries the human-readable name of the component.	cdx:Component
+bom:component-version	Component version	skos:exactMatch	cdx:version	version	semapv:ManualMappingCuration		Component.version carries the version string of the component.	cdx:Component
+bom:component-supplier	Component supplier	skos:exactMatch	cdx:supplier	supplier	semapv:ManualMappingCuration		Component.supplier specifies the organization or person that supplied the component.	cdx:Component
+bom:component-identifier	Component identifier	skos:exactMatch	cdx:purl	purl	semapv:ManualMappingCuration		Component.purl specifies the Package URL identifier for the component.	cdx:Component
+bom:component-identifier	Component identifier	skos:closeMatch	cdx:cpe	cpe	semapv:ManualMappingCuration		Component.cpe specifies the Common Platform Enumeration identifier.	cdx:Component
+bom:component-hash	Component hash	skos:exactMatch	cdx:hashes	hashes	semapv:ManualMappingCuration		Component.hashes contains cryptographic checksums (alg + content) for integrity.	cdx:Component
+bom:component-relationship	Component relationship	skos:closeMatch	cdx:dependencies	dependencies	semapv:ManualMappingCuration		Dependency relationships linking parent components to child components via ref identifiers.	cdx:Dependency
+bom:component-license	Component license	skos:exactMatch	cdx:licenses	licenses	semapv:ManualMappingCuration		Component.licenses contains declared or concluded SPDX license expressions or license objects.	cdx:Component
+bom:component-copyright	Component copyright	skos:exactMatch	cdx:copyright	copyright	semapv:ManualMappingCuration		Component.copyright carries the copyright notice string.	cdx:Component
+bom:component-timestamp	Component timestamp	skos:closeMatch	cdx:timestamp	timestamp	semapv:ManualMappingCuration		Timestamp associated with component creation or release.	cdx:Component
+bom:component-description	Component description	skos:exactMatch	cdx:description	description	semapv:ManualMappingCuration		Component.description provides text describing the component.	cdx:Component
+bom:component-external-ref	Component external reference	skos:exactMatch	cdx:externalReferences	externalReferences	semapv:ManualMappingCuration		Component.externalReferences links to external resources (documentation, VCS, issues, etc.).	cdx:Component
+bom:component-filename	Component filename	skos:closeMatch	cdx:name	name	semapv:ManualMappingCuration		Filename for file-type components.	cdx:Component
+bom:is-executable	Is executable	skos:relatedMatch	cdx:type	type	semapv:ManualMappingCuration		Component type set to application or binary executable context.	cdx:Component
+bom:is-archive	Is archive	skos:closeMatch	cdx:type	type	semapv:ManualMappingCuration		Component type set to archive or file container context.	cdx:Component
+bom:is-structured	Is structured	skos:closeMatch	cdx:properties	properties	semapv:ManualMappingCuration		CycloneDX key-value properties taxonomy describing component structure metadata.	cdx:Component
+bom:ai-application-domain	AI application domain	skos:closeMatch	cdx:considerations	considerations	semapv:ManualMappingCuration		MachineLearningModel.considerations.useCases specifies intended application domains.	cdx:MachineLearningModel
+bom:ai-data-flow	AI data flow	skos:closeMatch	cdx:inputs	inputs	semapv:ManualMappingCuration		MachineLearningModel.inputs and outputs specify data flow interfaces.	cdx:MachineLearningModel
+bom:ai-data-usage	AI data usage	skos:closeMatch	cdx:datasets	datasets	semapv:ManualMappingCuration		MachineLearningModel.datasets references datasets used for training or evaluation.	cdx:MachineLearningModel
+bom:ai-io-prop	AI input/output property	skos:closeMatch	cdx:inputs	inputs	semapv:ManualMappingCuration		MachineLearningModel.inputs and outputs elements describe input/output formats and modalities.	cdx:MachineLearningModel
+bom:ai-model-prop	AI model property	skos:closeMatch	cdx:machineLearningModel	machineLearningModel	semapv:ManualMappingCuration		Component.machineLearningModel contains comprehensive AI model metadata.	cdx:Component
+bom:ai-training-prop	AI training property	skos:closeMatch	cdx:trainingData	trainingData	semapv:ManualMappingCuration		MachineLearningModel.trainingData describes training datasets and methodology.	cdx:MachineLearningModel
+bom:dataset-type	Dataset type	skos:closeMatch	cdx:type	type	semapv:ManualMappingCuration		Component or Data element type specifying data classification.	cdx:Data
+bom:dataset-provenance	Dataset provenance	skos:closeMatch	cdx:governance	governance	semapv:ManualMappingCuration		Data governance metadata covering dataset origin, collection, and ownership.	cdx:Data
+bom:dataset-statistical-prop	Dataset statistical property	skos:closeMatch	cdx:contents	contents	semapv:ManualMappingCuration		Data contents element describing dataset statistics and structural properties.	cdx:Data
+bom:dataset-sensitivity	Dataset sensitivity	skos:closeMatch	cdx:classification	classification	semapv:ManualMappingCuration		Data classification element detailing privacy and sensitivity level.	cdx:Data
+bom:infra-software	Infrastructure software	skos:closeMatch	cdx:component	component	semapv:ManualMappingCuration		Infrastructure software specified as components with type framework, container, or operating-system.	cdx:Component
+bom:infra-hardware	Infrastructure hardware	skos:exactMatch	cdx:component	component	semapv:ManualMappingCuration		Hardware accelerators or devices specified as components with type device.	cdx:Component
+bom:security-controls	Security controls	skos:closeMatch	cdx:declarations	declarations	semapv:ManualMappingCuration		Declarations section specifying compliance with security controls and frameworks.	cdx:Declarations
+bom:security-compliance	Security compliance	skos:exactMatch	cdx:standards	standards	semapv:ManualMappingCuration		Declarations.standards element documenting compliance with regulatory standards.	cdx:Declarations
+bom:security-policy	Security policy	skos:closeMatch	cdx:externalReferences	externalReferences	semapv:ManualMappingCuration		External references with type vulnerability-advisory or security-contact.	cdx:Component
+bom:security-vuln-ref	Vulnerability reference	skos:exactMatch	cdx:vulnerabilities	vulnerabilities	semapv:ManualMappingCuration		Vulnerabilities section containing CVE/GHSA identifiers and VEX ratings.	cdx:Vulnerability
+bom:security-metric	Security metric	skos:exactMatch	cdx:performanceMetrics	performanceMetrics	semapv:ManualMappingCuration		MachineLearningModel.performanceMetrics lists security evaluation metrics and benchmarks.	cdx:MachineLearningModel
+bom:ai-perf-metric	Operational perf metric	skos:exactMatch	cdx:performanceMetrics	performanceMetrics	semapv:ManualMappingCuration		MachineLearningModel.performanceMetrics lists operational evaluation metrics and benchmarks.	cdx:MachineLearningModel
+bom:component-source-code	Component source code	skos:closeMatch	cdx:externalReferences	externalReferences	semapv:ManualMappingCuration		External references with type vcs or distribution for source code location.	cdx:Component
+bom:component-documentation	Component documentation	skos:exactMatch	cdx:externalReferences	externalReferences	semapv:ManualMappingCuration		External references with type documentation for component manuals and docs.	cdx:Component
+bom:ai-model-card	AI model card	skos:exactMatch	cdx:externalReferences	externalReferences	semapv:ManualMappingCuration		External references with type model-card linking to AI model cards.	cdx:Component
+bom:ai-model-parameters	AI model parameters	skos:exactMatch	cdx:modelParameters	modelParameters	semapv:ManualMappingCuration		MachineLearningModel.modelParameters details hyperparameter and architecture specs.	cdx:MachineLearningModel
+bom:dataset-data-card	Dataset data card	skos:exactMatch	cdx:externalReferences	externalReferences	semapv:ManualMappingCuration		External references with type documentation linking to dataset data cards.	cdx:Data

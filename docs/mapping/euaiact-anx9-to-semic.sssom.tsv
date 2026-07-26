@@ -18,6 +18,8 @@
 # mapping_set_title: "EU AI Act Annex IX (Art.60) <-> SEMIC vocabularies"
 # mapping_set_description: "Maps the 5 information items of Annex IX (real-world testing registration, Art.60) to MLDCAT-AP 3.1.0, Schema.org and DPV EU AI Act. The bom: bridge concept in see_also provides the shared abstraction."
 # license: "https://creativecommons.org/publicdomain/zero/1.0/"
+# extension_slot: object_qualifier
+# extension_slot_uri: https://w3id.org/bom/vocab/object_qualifier
 # creator_id:
 #   - "orcid:0000-0002-9698-1899"
 # mapping_date: "2026-06-17"
@@ -26,14 +28,14 @@
 # see_also:
 #   - "https://w3id.org/bom/"
 #   - "https://digital-strategy.ec.europa.eu/en/library/eu-artificial-intelligence-act"
-subject_id	subject_label	predicate_id	object_id	object_label	mapping_justification	see_also	comment
-euaiact:anx9-1-test-uid	Unique test identifier (IX.1)	skos:closeMatch	dcterms:identifier	Identifier	semapv:ManualMappingCuration	bom:component-identifier	Unique identifier for the real-world testing plan maps to dcterms:identifier on the MachineLearningModel or associated Dataset
-euaiact:anx9-2-parties	Providers and deployers in test (IX.2)	skos:closeMatch	dcterms:creator	Creator	semapv:ManualMappingCuration	bom:component-supplier	Parties (providers/deployers) involved in the test map to dcterms:creator; prov:actedOnBehalfOf for delegated roles
-euaiact:anx9-2-parties	Providers and deployers in test (IX.2)	skos:relatedMatch	prov:actedOnBehalfOf	actedOnBehalfOf	semapv:ManualMappingCuration	bom:component-supplier	Deployers acting under provider's plan in real-world testing
-euaiact:anx9-3-system-description	AI system description for testing (IX.3)	skos:closeMatch	dcterms:description	Description	semapv:ManualMappingCuration	bom:component-description	Description of the AI system under test maps to dcterms:description on MachineLearningModel
-euaiact:anx9-3-system-description	AI system description for testing (IX.3)	skos:closeMatch	mldcatap:intendedUse	intendedUse	semapv:ManualMappingCuration	bom:ai-application-domain	Intended use of the AI system during testing maps to MachineLearningModel.intendedUse
-euaiact:anx9-4-testing-plan-summary	Real-world testing plan summary (IX.4)	skos:relatedMatch	mldcatap:designSpecifications	designSpecifications	semapv:ManualMappingCuration		Testing plan methodology loosely relates to designSpecifications; no direct MLDCAT-AP equivalent for a formal testing plan document
-euaiact:anx9-5-suspension-termination	Suspension and termination conditions (IX.5)	skos:relatedMatch	adms:status	status	semapv:ManualMappingCuration	bom:doc-lifecycle-stage	Conditions triggering suspension/termination of the test relate to lifecycle status transitions; adms:status is the nearest MLDCAT-AP concept
-euaiact:anx9-3-system-description	AI system description for testing (IX.3)	skos:closeMatch	schema:description	description	semapv:ManualMappingCuration	bom:component-description	schema:description is a closeMatch for the textual description of the AI system under test
-euaiact:anx9-3-system-description	AI system description for testing (IX.3)	skos:relatedMatch	schema:applicationCategory	applicationCategory	semapv:ManualMappingCuration	bom:ai-application-domain	Application category of the AI system under test; supplements mldcatap:intendedUse
-euaiact:anx9-4-testing-plan-summary	Real-world testing plan summary (IX.4)	skos:exactMatch	eu-aiact:RealWorldTestingPlan	RealWorldTestingPlan	semapv:ManualMappingCuration		eu-aiact:RealWorldTestingPlan is the class representing the Art.60 real-world testing plan — exact semantic match for IX.4
+subject_id	subject_label	predicate_id	object_id	object_label	mapping_justification	see_also	comment	object_qualifier
+euaiact:anx9-1-test-uid	Unique test identifier (IX.1)	skos:closeMatch	dcterms:identifier	Identifier	semapv:ManualMappingCuration	bom:component-identifier	Unique identifier for the real-world testing plan maps to dcterms:identifier on the MachineLearningModel or associated Dataset	
+euaiact:anx9-2-parties	Providers and deployers in test (IX.2)	skos:closeMatch	dcterms:creator	Creator	semapv:ManualMappingCuration	bom:component-supplier	Parties (providers/deployers) involved in the test map to dcterms:creator; prov:actedOnBehalfOf for delegated roles	
+euaiact:anx9-2-parties	Providers and deployers in test (IX.2)	skos:relatedMatch	prov:actedOnBehalfOf	actedOnBehalfOf	semapv:ManualMappingCuration	bom:component-supplier	Deployers acting under provider's plan in real-world testing	
+euaiact:anx9-3-system-description	AI system description for testing (IX.3)	skos:closeMatch	dcterms:description	Description	semapv:ManualMappingCuration	bom:component-description	Description of the AI system under test maps to dcterms:description on MachineLearningModel	
+euaiact:anx9-3-system-description	AI system description for testing (IX.3)	skos:closeMatch	mldcatap:intendedUse	intendedUse	semapv:ManualMappingCuration	bom:ai-application-domain	Intended use of the AI system during testing maps to MachineLearningModel.intendedUse	
+euaiact:anx9-4-testing-plan-summary	Real-world testing plan summary (IX.4)	skos:relatedMatch	mldcatap:designSpecifications	designSpecifications	semapv:ManualMappingCuration		Testing plan methodology loosely relates to designSpecifications; no direct MLDCAT-AP equivalent for a formal testing plan document	
+euaiact:anx9-5-suspension-termination	Suspension and termination conditions (IX.5)	skos:relatedMatch	adms:status	status	semapv:ManualMappingCuration	bom:doc-lifecycle-stage	Conditions triggering suspension/termination of the test relate to lifecycle status transitions; adms:status is the nearest MLDCAT-AP concept	
+euaiact:anx9-3-system-description	AI system description for testing (IX.3)	skos:closeMatch	schema:description	description	semapv:ManualMappingCuration	bom:component-description	schema:description is a closeMatch for the textual description of the AI system under test	
+euaiact:anx9-3-system-description	AI system description for testing (IX.3)	skos:relatedMatch	schema:applicationCategory	applicationCategory	semapv:ManualMappingCuration	bom:ai-application-domain	Application category of the AI system under test; supplements mldcatap:intendedUse	
+euaiact:anx9-4-testing-plan-summary	Real-world testing plan summary (IX.4)	skos:exactMatch	eu-aiact:RealWorldTestingPlan	RealWorldTestingPlan	semapv:ManualMappingCuration		eu-aiact:RealWorldTestingPlan is the class representing the Art.60 real-world testing plan — exact semantic match for IX.4	
