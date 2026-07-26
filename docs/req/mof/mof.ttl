@@ -351,7 +351,7 @@ mof:mof-config-file
     skos:definition """A machine-readable configuration file declaring which MOF
 components are included in the distribution and their locations.
 SHOULD be included in every MOF-conformant distribution."""@en ;
-    skos:scopeNote "No direct bridge concept; closest is doc-identifier or component-external-reference."@en ;
+    skos:scopeNote "No direct bridge concept; closest is doc-identifier or component-external-ref."@en ;
     skos:closeMatch bom:component-documentation .
 
 mof:mof-config-file bom:provisionType bom:Recommendation .

@@ -31,7 +31,7 @@ Intelligence - Minimum Elements', written by the G7 Cybersecurity Working Group 
 published by BSI (Federal Office for Information Security, Germany) on 2026-05-12.
 Categories: Metadata (MD), System Level Properties (SLP), Models (MDL),
 Dataset Properties (DP), Infrastructure (INF), Security Properties (SP),
-Key Performance Indicators (KPI)."""@en ;
+Key Perf Indicators (KPI)."""@en ;
     dcterms:creator "G7 Cybersecurity Working Group" ;
     dcterms:publisher "Federal Office for Information Security (BSI)" ;
     dcterms:issued "2026-05-12"^^xsd:date ;
@@ -43,7 +43,7 @@ Key Performance Indicators (KPI)."""@en ;
         g7ai:dataset-prop ,
         g7ai:infrastructure ,
         g7ai:security-prop ,
-        g7ai:key-performance-indicators .
+        g7ai:key-perf-indicators .
 
 # -- G7AI top-level category concepts -----------------------------------------
 
@@ -95,13 +95,13 @@ g7ai:security-prop
     skos:notation "G7AI-SP" ;
     skos:definition "Elements describing security controls, compliance, policies and known vulnerabilities."@en .
 
-g7ai:key-performance-indicators
+g7ai:key-perf-indicators
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
     skos:topConceptOf g7ai:scheme ;
-    skos:prefLabel "Key Performance Indicators"@en ;
+    skos:prefLabel "Key Perf Indicators"@en ;
     skos:notation "G7AI-KPI" ;
-    skos:definition "Elements describing measurable security and operational performance metrics for the AI system."@en .
+    skos:definition "Elements describing measurable security and operational perf metrics for the AI system."@en .
 
 # -- G7AI Metadata elements (MD-01 ... MD-10) -----------------------------------
 
@@ -163,7 +163,7 @@ g7ai:sbom-tool-name
     skos:notation "G7AI-MD-06" ;
     skos:notation "BOM-G7AI-MD-006"^^bom:SarifRuleId ;
     skos:definition "The name of the software tool used to generate the SBOM."@en ;
-    skos:closeMatch bom:doc-tool .
+    skos:exactMatch bom:doc-tool-name .
 
 g7ai:sbom-tool-version
     a skos:Concept ;
@@ -173,7 +173,7 @@ g7ai:sbom-tool-version
     skos:notation "G7AI-MD-07" ;
     skos:notation "BOM-G7AI-MD-007"^^bom:SarifRuleId ;
     skos:definition "The version of the software tool used to generate the SBOM."@en ;
-    skos:closeMatch bom:doc-tool .
+    skos:exactMatch bom:doc-tool-version .
 
 g7ai:sbom-generation-context
     a skos:Concept ;
@@ -596,27 +596,27 @@ g7ai:vulnerability-referencing
     skos:definition "References to known vulnerabilities (CVEs) and their assessment status (VEX) for the AI system and its components."@en ;
     skos:exactMatch bom:security-vuln-ref .
 
-# -- G7AI Key Performance Indicators elements (KPI-01 ... KPI-02) ---------------
+# -- G7AI Key Perf Indicators elements (KPI-01 ... KPI-02) ---------------
 
 g7ai:security-metric
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
-    skos:broader g7ai:key-performance-indicators ;
+    skos:broader g7ai:key-perf-indicators ;
     skos:prefLabel "Security metric"@en ;
     skos:notation "G7AI-KPI-01" ;
     skos:notation "BOM-G7AI-KPI-001"^^bom:SarifRuleId ;
-    skos:definition "Quantitative security-related performance metrics and their decision thresholds (e.g. adversarial robustness scores, CVSS scores)."@en ;
-    skos:closeMatch bom:ai-perf-metric .
+    skos:definition "Quantitative security-related perf metrics and their decision thresholds (e.g. adversarial robustness scores, CVSS scores)."@en ;
+    skos:exactMatch bom:security-metric .
 
-g7ai:operational-performance-kpi
+g7ai:operational-perf-kpi
     a skos:Concept ;
     skos:inScheme g7ai:scheme ;
-    skos:broader g7ai:key-performance-indicators ;
-    skos:prefLabel "Operational performance KPI"@en ;
+    skos:broader g7ai:key-perf-indicators ;
+    skos:prefLabel "Operational perf KPI"@en ;
     skos:notation "G7AI-KPI-02" ;
     skos:notation "BOM-G7AI-KPI-002"^^bom:SarifRuleId ;
     skos:definition "Operational performance indicators for the AI system such as accuracy, F1, latency, throughput and energy consumption."@en ;
-    skos:closeMatch bom:ai-perf-metric .
+    skos:exactMatch bom:ai-perf-metric .
 
 
 # ============================================================================
@@ -692,6 +692,6 @@ g7ai:security-compliance          bom:provisionType bom:Requirement .
 g7ai:cybersecurity-policy         bom:provisionType bom:Requirement .
 g7ai:vulnerability-referencing    bom:provisionType bom:Requirement .
 
-# -- Key Performance Indicators (KPI-01 ... KPI-02) ----------------------------
+# -- Key Perf Indicators (KPI-01 ... KPI-02) ----------------------------
 g7ai:security-metric             bom:provisionType bom:Requirement .
-g7ai:operational-performance-kpi bom:provisionType bom:Requirement .
+g7ai:operational-perf-kpi bom:provisionType bom:Requirement .

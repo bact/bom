@@ -1,0 +1,74 @@
+# curie_map:
+#   g7ai: "https://w3id.org/bom/req/g7ai/"
+#   bom: "https://w3id.org/bom/"
+#   cdx: "http://cyclonedx.org/schema/bom/1.7b#"
+#   skos: "http://www.w3.org/2004/02/skos/core#"
+#   semapv: "https://w3id.org/semapv/vocab/"
+# mapping_set_id: "https://w3id.org/bom/mapping/g7ai-to-cyclonedx17"
+# mapping_set_version: "0.1.0"
+# mapping_set_title: "G7 SBOM for AI minimum elements <-> CycloneDX 1.7"
+# mapping_set_description: "Maps the minimum-element concepts defined in 'SBOM for Artificial Intelligence - Minimum Elements' (G7 Cybersecurity Working Group, 2026-05-12) to elements and properties in CycloneDX 1.7. The see_also column cites the neutral bridge concept from bom.ttl."
+# license: "https://creativecommons.org/publicdomain/zero/1.0/"
+# extension_slot: object_qualifier
+# extension_slot_uri: https://w3id.org/bom/vocab/object_qualifier
+# creator_id:
+#   - "orcid:0000-0000-0000-0000"
+# mapping_date: "2026-07-25"
+# subject_source: "https://w3id.org/bom/req/g7ai/"
+# object_source: "http://cyclonedx.org/schema/bom/1.7b"
+# see_also:
+#   - "https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/KI/SBOM-for-AI_minimum-elements.pdf?__blob=publicationFile&v=4"
+#   - "https://w3id.org/bom/"
+subject_id	subject_label	predicate_id	object_id	object_label	mapping_justification	see_also	comment	object_qualifier
+g7ai:sbom-author	Document author	skos:exactMatch	cdx:authors	authors	semapv:ManualMappingCuration	bom:doc-author	Metadata.authors captures document author(s).	cdx:Metadata
+g7ai:sbom-version	Document version	skos:exactMatch	cdx:version	version	semapv:ManualMappingCuration	bom:doc-version	Version attribute on root bom element.	cdx:bom
+g7ai:sbom-data-format-name	SBOM data format name	skos:exactMatch	cdx:specVersion	specVersion	semapv:ManualMappingCuration	bom:doc-spec-version	specVersion attribute on root bom element identifies CycloneDX format name and version.	cdx:bom
+g7ai:sbom-data-format-version	SBOM data format version	skos:exactMatch	cdx:specVersion	specVersion	semapv:ManualMappingCuration	bom:doc-spec-version	specVersion attribute on root bom element.	cdx:bom
+g7ai:sbom-author-signature	Document author signature	skos:exactMatch	cdx:signature	signature	semapv:ManualMappingCuration	bom:doc-integrity	Signature structure on root bom element.	cdx:bom
+g7ai:sbom-tool-name	SBOM tool name	skos:exactMatch	cdx:tools	tools	semapv:ManualMappingCuration	bom:doc-tool-name	Metadata.tools lists creation tools; Tool.name carries tool name.	cdx:Metadata
+g7ai:sbom-tool-version	SBOM tool version	skos:exactMatch	cdx:tools	tools	semapv:ManualMappingCuration	bom:doc-tool-version	Tool version recorded within metadata.tools elements.	cdx:Metadata
+g7ai:sbom-generation-context	SBOM generation context	skos:closeMatch	cdx:lifecycles	lifecycles	semapv:ManualMappingCuration	bom:doc-lifecycle-stage	Metadata.lifecycles specifies lifecycle stage context.	cdx:Metadata
+g7ai:sbom-timestamp	Document timestamp	skos:exactMatch	cdx:timestamp	timestamp	semapv:ManualMappingCuration	bom:doc-timestamp	Metadata.timestamp records document creation time.	cdx:Metadata
+g7ai:sbom-dependency-relationship	SBOM dependency relationship	skos:closeMatch	cdx:dependencies	dependencies	semapv:ManualMappingCuration	bom:doc-dependency-relationship	Dependencies graph.	cdx:Dependency
+g7ai:system-name	System name	skos:exactMatch	cdx:name	name	semapv:ManualMappingCuration	bom:component-name	Component name of the root AI system.	cdx:Component
+g7ai:system-components	System components	skos:closeMatch	cdx:components	components	semapv:ManualMappingCuration	bom:doc-primary-component	Child components of the AI system.	cdx:Component
+g7ai:system-producer	System producer	skos:exactMatch	cdx:supplier	supplier	semapv:ManualMappingCuration	bom:component-supplier	Supplier of the AI system.	cdx:Component
+g7ai:system-version	System version	skos:exactMatch	cdx:version	version	semapv:ManualMappingCuration	bom:component-version	Version of the AI system.	cdx:Component
+g7ai:system-timestamp	System timestamp	skos:closeMatch	cdx:timestamp	timestamp	semapv:ManualMappingCuration	bom:component-timestamp	Timestamp associated with system build or release.	cdx:Component
+g7ai:system-data-flow	System data flow	skos:closeMatch	cdx:inputs	inputs	semapv:ManualMappingCuration	bom:ai-data-flow	Inputs and outputs in machineLearningModel.	cdx:MachineLearningModel
+g7ai:system-data-usage	System data usage	skos:closeMatch	cdx:datasets	datasets	semapv:ManualMappingCuration	bom:ai-data-usage	Datasets in machineLearningModel.	cdx:MachineLearningModel
+g7ai:system-input-output-prop	System input/output property	skos:closeMatch	cdx:inputs	inputs	semapv:ManualMappingCuration	bom:ai-io-prop	Inputs and outputs metadata.	cdx:MachineLearningModel
+g7ai:system-intended-application-area	Intended application area	skos:closeMatch	cdx:considerations	considerations	semapv:ManualMappingCuration	bom:ai-application-domain	Considerations/useCases in machineLearningModel.	cdx:MachineLearningModel
+g7ai:model-name	Model name	skos:exactMatch	cdx:name	name	semapv:ManualMappingCuration	bom:component-name	Component name of AI model.	cdx:Component
+g7ai:model-identifier	Model identifier	skos:exactMatch	cdx:purl	purl	semapv:ManualMappingCuration	bom:component-identifier	PURL identifier for model package.	cdx:Component
+g7ai:model-identifier	Model identifier	skos:closeMatch	cdx:bom-ref	bom-ref	semapv:ManualMappingCuration	bom:component-identifier	Internal bom-ref identifier.	cdx:Component
+g7ai:model-version	Model version	skos:exactMatch	cdx:version	version	semapv:ManualMappingCuration	bom:component-version	Model version.	cdx:Component
+g7ai:model-timestamp	Model timestamp	skos:closeMatch	cdx:timestamp	timestamp	semapv:ManualMappingCuration	bom:component-timestamp	Model creation/build timestamp.	cdx:Component
+g7ai:model-producer	Model producer	skos:exactMatch	cdx:supplier	supplier	semapv:ManualMappingCuration	bom:component-supplier	Model supplier or manufacturer.	cdx:Component
+g7ai:model-description	Model description	skos:exactMatch	cdx:description	description	semapv:ManualMappingCuration	bom:component-description	Model description text.	cdx:Component
+g7ai:model-hash-value	Model hash value	skos:exactMatch	cdx:hashes	hashes	semapv:ManualMappingCuration	bom:component-hash	Model digest hash value.	cdx:Component
+g7ai:model-hash-algorithm	Model hash algorithm	skos:exactMatch	cdx:hashes	hashes	semapv:ManualMappingCuration	bom:component-hash	Model digest hash algorithm.	cdx:Component
+g7ai:model-prop	Model property	skos:closeMatch	cdx:machineLearningModel	machineLearningModel	semapv:ManualMappingCuration	bom:ai-model-prop	machineLearningModel element properties.	cdx:Component
+g7ai:model-input-output-prop	Model input/output property	skos:closeMatch	cdx:inputs	inputs	semapv:ManualMappingCuration	bom:ai-io-prop	Inputs/outputs specifications.	cdx:MachineLearningModel
+g7ai:model-training-prop	Model training property	skos:closeMatch	cdx:trainingData	trainingData	semapv:ManualMappingCuration	bom:ai-training-prop	Training data and methodology metadata.	cdx:MachineLearningModel
+g7ai:model-license	Model license	skos:exactMatch	cdx:licenses	licenses	semapv:ManualMappingCuration	bom:component-license	Model licensing information.	cdx:Component
+g7ai:model-external-ref	Model external reference	skos:exactMatch	cdx:externalReferences	externalReferences	semapv:ManualMappingCuration	bom:component-external-ref	External references to model cards, papers, repos.	cdx:Component
+g7ai:dataset-name	Dataset name	skos:exactMatch	cdx:name	name	semapv:ManualMappingCuration	bom:component-name	Dataset component name.	cdx:Data
+g7ai:dataset-description	Dataset description	skos:exactMatch	cdx:description	description	semapv:ManualMappingCuration	bom:component-description	Dataset description.	cdx:Data
+g7ai:dataset-content	Dataset content	skos:closeMatch	cdx:contents	contents	semapv:ManualMappingCuration	bom:dataset-type	Dataset content description.	cdx:Data
+g7ai:dataset-identifier	Dataset identifier	skos:exactMatch	cdx:purl	purl	semapv:ManualMappingCuration	bom:component-identifier	Dataset PURL.	cdx:Data
+g7ai:dataset-identifier	Dataset identifier	skos:closeMatch	cdx:bom-ref	bom-ref	semapv:ManualMappingCuration	bom:component-identifier	Dataset bom-ref.	cdx:Data
+g7ai:dataset-hash	Dataset hash	skos:exactMatch	cdx:hashes	hashes	semapv:ManualMappingCuration	bom:component-hash	Dataset integrity hashes.	cdx:Data
+g7ai:dataset-provenance	Dataset provenance	skos:closeMatch	cdx:governance	governance	semapv:ManualMappingCuration	bom:dataset-provenance	Dataset governance and provenance.	cdx:Data
+g7ai:dataset-statistical-prop	Dataset statistical property	skos:closeMatch	cdx:contents	contents	semapv:ManualMappingCuration	bom:dataset-statistical-prop	Dataset content statistics.	cdx:Data
+g7ai:dataset-sensitivity	Dataset sensitivity	skos:closeMatch	cdx:classification	classification	semapv:ManualMappingCuration	bom:dataset-sensitivity	Dataset classification and sensitivity.	cdx:Data
+g7ai:dataset-dependency-relationship	Dataset dependency relationship	skos:closeMatch	cdx:dependencies	dependencies	semapv:ManualMappingCuration	bom:component-relationship	Dataset dependency relationships.	cdx:Dependency
+g7ai:dataset-license	Dataset license	skos:exactMatch	cdx:licenses	licenses	semapv:ManualMappingCuration	bom:component-license	Dataset license information.	cdx:Data
+g7ai:infrastructure-software	Infrastructure software	skos:closeMatch	cdx:component	component	semapv:ManualMappingCuration	bom:infra-software	Software framework/container components.	cdx:Component
+g7ai:infrastructure-hardware	Infrastructure hardware	skos:exactMatch	cdx:component	component	semapv:ManualMappingCuration	bom:infra-hardware	Hardware device components.	cdx:Component
+g7ai:security-controls	Security controls	skos:closeMatch	cdx:declarations	declarations	semapv:ManualMappingCuration	bom:security-controls	Security declarations.	cdx:Declarations
+g7ai:security-compliance	Security compliance	skos:exactMatch	cdx:standards	standards	semapv:ManualMappingCuration	bom:security-compliance	Compliance standards.	cdx:Declarations
+g7ai:cybersecurity-policy	Cybersecurity policy information	skos:closeMatch	cdx:externalReferences	externalReferences	semapv:ManualMappingCuration	bom:security-policy	Security policy external references.	cdx:Component
+g7ai:vulnerability-referencing	Vulnerability referencing	skos:exactMatch	cdx:vulnerabilities	vulnerabilities	semapv:ManualMappingCuration	bom:security-vuln-ref	Vulnerabilities section.	cdx:Vulnerability
+g7ai:security-metric	Security metric	skos:exactMatch	cdx:performanceMetrics	performanceMetrics	semapv:ManualMappingCuration	bom:security-metric	Security evaluation metrics.	cdx:MachineLearningModel
+g7ai:operational-perf-kpi	Operational perf KPI	skos:exactMatch	cdx:performanceMetrics	performanceMetrics	semapv:ManualMappingCuration	bom:ai-perf-metric	Performance metrics.	cdx:MachineLearningModel

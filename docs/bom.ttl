@@ -286,7 +286,7 @@ bom:bom-security
     skos:inScheme bom:bridge ;
     skos:topConceptOf bom:bridge ;
     skos:prefLabel "Security"@en ;
-    skos:definition "Concepts describing security controls, compliance, disclosure policies, vulnerability references and performance metrics."@en .
+    skos:definition "Concepts describing security controls, compliance, disclosure policies, vulnerability references and security metrics."@en .
 
 
 # -- SBOM Document leaf concepts -----------------------------------------------
@@ -355,18 +355,26 @@ bom:doc-spec-version
     skos:prefLabel "Document spec version"@en ;
     skos:altLabel "Data format name"@en ;          # G7AI MD-03 label
     skos:altLabel "Data format version"@en ;       # G7AI MD-04 label
-    skos:definition "The name and/or version of the SBOM data format specification used (e.g. 'SPDX 3.1', 'CycloneDX 1.6')."@en ;
-    skos:scopeNote "G7 AI separates format name (MD-03) and format version (MD-04); they share this bridge concept because SPDX encodes both in specVersion."@en .
+    skos:definition "The name and/or version of the SBOM data format specification used (e.g. 'SPDX 3.1', 'CycloneDX 1.7')."@en ;
+    skos:scopeNote "G7 AI separates format name (MD-03) and format version (MD-04); they share this bridge concept because SPDX and CycloneDX encode both in specVersion."@en .
 
-bom:doc-tool
+bom:doc-tool-name
     a skos:Concept ;
     skos:inScheme bom:bridge ;
     skos:broader bom:bom-document ;
-    skos:prefLabel "Document tool"@en ;
+    skos:prefLabel "Document tool name"@en ;
     skos:altLabel "Tool name"@en ;
+    skos:definition "The name of the software tool used to generate the SBOM."@en ;
+    skos:scopeNote "Required by G7 SBOM for AI (2026). Recorded as Tool.name in SPDX 3.1 and component/tool name in CycloneDX."@en .
+
+bom:doc-tool-version
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-document ;
+    skos:prefLabel "Document tool version"@en ;
     skos:altLabel "Tool version"@en ;
-    skos:definition "The name and/or version of the software tool used to generate the SBOM."@en ;
-    skos:scopeNote "Required by G7 SBOM for AI (2026). Not explicitly required by NTIA or FSCT (3rd Ed.)."@en .
+    skos:definition "The version of the software tool used to generate the SBOM."@en ;
+    skos:scopeNote "Required by G7 SBOM for AI (2026). Recorded as Tool.version in SPDX 3.1-dev and component/tool version in CycloneDX."@en .
 
 bom:doc-integrity
     a skos:Concept ;
@@ -611,14 +619,20 @@ bom:ai-training-prop
     skos:relatedMatch ai:ModelTraining ;
     skos:scopeNote "MLDCAT-AP 3.1.0 uses MachineLearningModel.designSpecifications and trainingProcess for these concepts. See https://semiceu.github.io/MLDCAT-AP/releases/3.1.0/#MachineLearningModel. DPV AI ai:ModelTraining is the class representing the model training process. See https://w3c-cg.github.io/dpv/2.3/ai/."@en .
 
+bom:security-metric
+    a skos:Concept ;
+    skos:inScheme bom:bridge ;
+    skos:broader bom:bom-security ;
+    skos:prefLabel "Security metric"@en ;
+    skos:definition "Quantitative security evaluation metrics and decision thresholds (e.g. adversarial robustness scores, CVSS scores)."@en .
+
 bom:ai-perf-metric
     a skos:Concept ;
     skos:inScheme bom:bridge ;
     skos:broader bom:bom-ai ;
-    skos:prefLabel "Performance metric"@en ;
-    skos:altLabel "Security metric"@en ;
-    skos:altLabel "Operational performance KPI"@en ;
-    skos:definition "Quantitative security and operational performance metrics and their decision thresholds (e.g. adversarial robustness, accuracy, latency, energy consumption)."@en .
+    skos:prefLabel "Operational perf metric"@en ;
+    skos:altLabel "Operational perf KPI"@en ;
+    skos:definition "Operational and functional perf indicators for the AI system (e.g. accuracy, F1 score, latency, throughput, energy consumption)."@en .
 
 bom:ai-model-card
     a skos:Concept ;
