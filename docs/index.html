@@ -3,527 +3,724 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Baseline-information Obligations Mapping ontology</title>
+  <meta name="description" content="Baseline-information Obligations Mapping (BOM) ontology - A SKOS bridge ontology mapping software and AI baseline information obligations to exchange format metadata.">
+  <title>Baseline-information Obligations Mapping ontology (BOM)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
-    
     :root {
-      --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-      --text-primary: #f8fafc;
-      --text-secondary: #94a3b8;
-      --accent-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-      --card-bg: rgba(30, 41, 59, 0.7);
-      --card-border: rgba(255, 255, 255, 0.06);
-      --accent-color: #818cf8;
-      --glow-shadow: 0 8px 32px 0 rgba(99, 102, 241, 0.12);
+      /* Theme: Bright, Clean, Trustable Enterprise Slate & Indigo/Blue */
+      --bg-page: #f8fafc;
+      --bg-header: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-subtle: #f1f5f9;
+      --bg-table-header: #f8fafc;
+      --bg-table-hover: #f1f5f9;
+      
+      --text-main: #0f172a;        /* Contrast 15.8:1 on white (WCAG AAA) */
+      --text-muted: #334155;       /* Contrast 9.7:1 on white (WCAG AAA) */
+      --text-subtle: #475569;      /* Contrast 7.0:1 on white (WCAG AAA) */
+      --text-brand: #1e3a8a;       /* Contrast 12.3:1 on white (WCAG AAA) */
+      
+      --border-color: #cbd5e1;     /* High visibility border */
+      --border-subtle: #e2e8f0;
+      
+      --primary: #1d4ed8;          /* High contrast blue (WCAG AAA for large text / AA body) */
+      --primary-hover: #1e40af;
+      --primary-bg: #eff6ff;
+      --primary-border: #bfdbfe;
+      
+      --success-bg: #ecfdf5;
+      --success-text: #065f46;     /* Contrast 8.1:1 on emerald-50 (WCAG AAA) */
+      --success-border: #a7f3d0;
+      
+      --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.07), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
+      --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.04);
+      
+      --focus-ring: 3px solid #1d4ed8;
+      --focus-offset: 3px;
     }
-    
+
+    /* Reset & Base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: 'Outfit', sans-serif;
-      background: #0f172a;
-      background-image: var(--bg-gradient);
-      color: var(--text-primary);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
       margin: 0;
       padding: 0;
       line-height: 1.6;
+      font-size: 1rem;
       -webkit-font-smoothing: antialiased;
     }
-    
-    .container {
+
+    /* Accessibility Utility: Skip Link */
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 1rem;
+      background: var(--primary-hover);
+      color: #ffffff;
+      padding: 0.75rem 1.25rem;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 1rem;
+      z-index: 9999;
+      text-decoration: none;
+      box-shadow: var(--shadow-lg);
+      transition: top 0.2s ease-in-out;
+    }
+
+    .skip-link:focus {
+      top: 1rem;
+      outline: var(--focus-ring);
+      outline-offset: var(--focus-offset);
+    }
+
+    /* Accessibility Focus Styling */
+    :focus-visible {
+      outline: var(--focus-ring);
+      outline-offset: var(--focus-offset);
+      border-radius: 4px;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* Top Accent Line */
+    .top-bar {
+      height: 4px;
+      background: linear-gradient(90deg, #1d4ed8 0%, #0284c7 50%, #0d9488 100%);
+      width: 100%;
+    }
+
+    /* Header & Hero Section */
+    .header-banner {
+      background: var(--bg-header);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 3rem 1.5rem 2.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .header-content {
       max-width: 960px;
       margin: 0 auto;
-      padding: 3rem 1.5rem;
     }
-    
-    .header {
-      text-align: center;
-      margin-bottom: 4rem;
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
     }
-    
-    .logo-container {
+
+    .logo-badge {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 72px;
-      height: 72px;
-      border-radius: 20px;
-      background: var(--accent-gradient);
-      margin-bottom: 1.5rem;
-      box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--primary-bg);
+      border: 1px solid var(--primary-border);
+      color: var(--primary);
+      flex-shrink: 0;
     }
-    
-    .logo-icon {
-      font-size: 2rem;
-      color: white;
+
+    .site-tagline {
+      font-size: 0.875rem;
       font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--primary);
+      margin: 0;
     }
-    
+
     h1 {
-      font-size: 2.8rem;
-      font-weight: 700;
-      margin: 0 0 0.5rem 0;
-      background: var(--accent-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: -0.02em;
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.25;
+      margin: 0 0 1rem 0;
+      letter-spacing: -0.025em;
     }
-    
-    .namespace-badge {
+
+    .uri-badge-link {
       display: inline-flex;
       align-items: center;
-      background: rgba(99, 102, 241, 0.15);
-      border: 1px solid rgba(99, 102, 241, 0.3);
-      padding: 0.4rem 1rem;
-      border-radius: 12px;
-      font-family: monospace;
-      font-size: 0.95rem;
-      color: #a5b4fc;
+      gap: 0.5rem;
+      background: var(--primary-bg);
+      border: 1px solid var(--primary-border);
+      color: var(--primary-hover);
+      padding: 0.4rem 0.85rem;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      font-weight: 500;
       text-decoration: none;
-      transition: all 0.3s ease;
-      margin-bottom: 1.5rem;
+      transition: all 0.2s ease;
     }
-    
-    .namespace-badge:hover {
-      background: rgba(99, 102, 241, 0.25);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+
+    .uri-badge-link:hover {
+      background: #dbeafe;
+      border-color: #93c5fd;
+      color: #1e3a8a;
+      text-decoration: underline;
     }
-    
+
     .description {
-      font-size: 1.2rem;
-      color: var(--text-secondary);
-      max-width: 700px;
-      margin: 0 auto;
+      font-size: 1.125rem;
+      color: var(--text-muted);
+      max-width: 760px;
+      margin: 1.25rem 0 0 0;
+      line-height: 1.6;
     }
-    
+
+    /* Container & Layout */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+
     .section-title {
-      font-size: 1.6rem;
-      font-weight: 600;
-      margin: 3rem 0 1.5rem 0;
-      border-left: 4px solid #818cf8;
-      padding-left: 0.85rem;
+      font-size: 1.375rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 2.5rem 0 1.25rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      border-bottom: 2px solid var(--border-subtle);
+      padding-bottom: 0.5rem;
       letter-spacing: -0.01em;
     }
-    
+
+    .section-title::before {
+      content: "";
+      display: inline-block;
+      width: 4px;
+      height: 1.25rem;
+      background-color: var(--primary);
+      border-radius: 2px;
+    }
+
+    /* Cards */
     .card {
-      background: var(--card-bg);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 2rem;
-      box-shadow: var(--glow-shadow);
-      transition: all 0.3s ease;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.75rem;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
     }
-    
+
     .card:hover {
-      transform: translateY(-2px);
-      border-color: rgba(99, 102, 241, 0.25);
-      box-shadow: 0 12px 40px 0 rgba(99, 102, 241, 0.2);
+      box-shadow: var(--shadow-md);
+      border-color: #94a3b8;
     }
-    
-    .release-meta {
+
+    .release-card {
+      border-left: 4px solid var(--primary);
+    }
+
+    .release-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
     }
-    
+
     .release-tag {
-      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-      color: white;
-      padding: 0.25rem 0.75rem;
+      background: var(--success-bg);
+      color: var(--success-text);
+      border: 1px solid var(--success-border);
+      padding: 0.25rem 0.65rem;
       border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 600;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
     }
-    
+
     .release-date {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
+      color: var(--text-subtle);
+      font-size: 0.875rem;
+      font-weight: 500;
     }
-    
+
+    .card-heading {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin: 0 0 0.5rem 0;
+      color: var(--text-main);
+    }
+
+    .card-text {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin: 0 0 1.25rem 0;
+    }
+
+    /* Buttons */
     .btn-group {
       display: flex;
-      gap: 1rem;
-      margin-top: 1.5rem;
+      gap: 0.875rem;
       flex-wrap: wrap;
     }
-    
+
     .btn {
       display: inline-flex;
       align-items: center;
-      padding: 0.75rem 1.5rem;
-      border-radius: 12px;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.25rem;
+      border-radius: 8px;
       font-weight: 600;
+      font-size: 0.9375rem;
       text-decoration: none;
-      font-size: 0.95rem;
-      transition: all 0.3s ease;
+      min-height: 44px; /* WCAG 2.2 Target Size minimum */
+      transition: all 0.2s ease;
     }
-    
+
     .btn-primary {
-      background: var(--accent-gradient);
-      color: white;
-      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 2px 4px rgba(29, 78, 216, 0.2);
     }
-    
+
     .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+      background: var(--primary-hover);
+      box-shadow: 0 4px 8px rgba(29, 78, 216, 0.3);
+      text-decoration: underline;
     }
-    
+
     .btn-secondary {
-      background: rgba(255, 255, 255, 0.05);
-      color: var(--text-primary);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: var(--bg-card-subtle);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
     }
-    
+
     .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.1);
-      transform: translateY(-2px);
+      background: #e2e8f0;
+      border-color: #94a3b8;
+      text-decoration: underline;
     }
-    
+
+    /* Grid Layout for Requirements & Regulatory */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
+      gap: 1.25rem;
     }
-    
+
     .item-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 1.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.35rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: all 0.3s ease;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
     }
-    
+
     .item-card:hover {
-      transform: translateY(-3px);
-      border-color: rgba(99, 102, 241, 0.2);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      box-shadow: var(--shadow-md);
+      border-color: #94a3b8;
+      transform: translateY(-2px);
     }
-    
+
     .item-title {
-      font-size: 1.15rem;
-      font-weight: 600;
-      margin: 0 0 0.5rem 0;
+      font-size: 1.0625rem;
+      font-weight: 700;
+      margin: 0 0 0.4rem 0;
+      color: var(--text-main);
     }
-    
+
     .item-desc {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      margin-bottom: 1.5rem;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin: 0 0 1.25rem 0;
       flex-grow: 1;
+      line-height: 1.5;
     }
-    
+
     .item-meta {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 0.875rem;
+      border-top: 1px solid var(--border-subtle);
       padding-top: 0.75rem;
+      gap: 0.5rem;
     }
-    
-    .badge-ns {
-      background: rgba(255, 255, 255, 0.08);
-      padding: 0.15rem 0.4rem;
-      border-radius: 6px;
-      font-family: monospace;
-      color: #cbd5e1;
+
+    .item-links {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
     }
-    
+
     .link-item {
-      color: #818cf8;
+      color: var(--primary);
       text-decoration: none;
-      font-weight: 500;
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      min-height: 36px;
     }
-    
+
     .link-item:hover {
+      color: var(--primary-hover);
       text-decoration: underline;
     }
-    
+
+    .badge-ns {
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border-color);
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8125rem;
+      color: var(--text-subtle);
+      font-weight: 500;
+    }
+
+    /* Table Styling */
+    .table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      background: var(--bg-card);
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      margin-top: 1rem;
+    }
+
     table {
       width: 100%;
       border-collapse: collapse;
-      margin: 1.5rem 0;
-      font-size: 0.9rem;
-      background: var(--card-bg);
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid var(--card-border);
-    }
-    
-    th, td {
-      padding: 0.85rem 1rem;
       text-align: left;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 0.9375rem;
     }
-    
+
+    caption {
+      padding: 0.75rem 1rem;
+      font-size: 0.875rem;
+      color: var(--text-subtle);
+      text-align: left;
+      font-weight: 500;
+      border-bottom: 1px solid var(--border-subtle);
+      background: var(--bg-table-header);
+    }
+
     th {
-      background: rgba(255, 255, 255, 0.04);
-      font-weight: 600;
-      color: #cbd5e1;
+      background: var(--bg-table-header);
+      padding: 0.875rem 1.125rem;
+      font-weight: 700;
+      color: var(--text-main);
+      border-bottom: 2px solid var(--border-color);
+      white-space: nowrap;
     }
-    
+
+    td {
+      padding: 0.875rem 1.125rem;
+      border-bottom: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      vertical-align: middle;
+    }
+
     tr:last-child td {
       border-bottom: none;
     }
-    
+
+    tr:hover td {
+      background-color: var(--bg-table-hover);
+    }
+
+    /* Footer */
     footer {
-      margin-top: 5rem;
-      padding-top: 2rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      margin-top: 4rem;
+      padding: 2rem 0 1rem;
+      border-top: 1px solid var(--border-color);
       text-align: center;
-      font-size: 0.9rem;
-      color: var(--text-secondary);
+      font-size: 0.875rem;
+      color: var(--text-subtle);
+    }
+
+    footer p {
+      margin: 0.4rem 0;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 640px) {
+      h1 {
+        font-size: 1.75rem;
+      }
+      .header-banner {
+        padding: 2rem 1rem 1.75rem;
+      }
+      .container {
+        padding: 1.5rem 1rem 3rem;
+      }
+      .card {
+        padding: 1.25rem;
+      }
+      .release-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .item-card-row {
+        flex-direction: column;
+        align-items: flex-start !important;
+      }
+      .btn {
+        width: 100%;
+      }
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    
-    <div class="header">
-      <!-- <div class="logo-container">
-        <span class="logo-icon">&harr;</span>
-      </div> -->
+  <!-- Skip Navigation Link for Screen Readers and Keyboard Users -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="top-bar" aria-hidden="true"></div>
+
+  <header class="header-banner">
+    <div class="header-content">
+      <div class="brand-row">
+        <div class="logo-badge" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <p class="site-tagline">Vocabulary &amp; Crosswalk Specification</p>
+      </div>
+      
       <h1>Baseline-information Obligations Mapping ontology</h1>
-      <a href="https://w3id.org/bom/" class="namespace-badge">https://w3id.org/bom/</a>
+      
+      <div>
+        <a href="https://w3id.org/bom/" class="uri-badge-link" aria-label="Persistent URI: https://w3id.org/bom/">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+          </svg>
+          https://w3id.org/bom/
+        </a>
+      </div>
+      
       <p class="description">
-        A SKOS vocabulary mapping software information obligations to exchange format metadata.
+        A SKOS bridge ontology mapping software and AI baseline information requirements to standard exchange format metadata.
       </p>
     </div>
+  </header>
 
-    <h2 class="section-title">Main ontology</h2>
-    <div class="card">
-      <div class="release-meta">
-        <span class="release-tag">Latest stable</span>
-        <span class="release-date">Released: 24 July 2026</span>
+  <main id="main-content" class="container">
+    
+    <!-- Section: Main ontology -->
+    <section aria-labelledby="sec-main-ontology">
+      <h2 id="sec-main-ontology" class="section-title">Main ontology</h2>
+      <div class="card release-card">
+        <div class="release-header">
+          <span class="release-tag">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+            Latest stable release
+          </span>
+          <span class="release-date">Released: 24 July 2026</span>
+        </div>
+        <h3 class="card-heading">Baseline-information Obligations Mapping ontology v0.1.0</h3>
+        <p class="card-text">
+          The primary ontology specification defines structural metadata concepts, provision type vocabularies, 
+          and domain profiles harmonizing NTIA, CISA, G7, BSI, and MOF baseline information obligations.
+        </p>
+        <div class="btn-group">
+          <a href="releases/0.1.0/index.html" class="btn btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+              <polyline points="10 9 9 9 8 9"/>
+            </svg>
+            HTML Specification
+          </a>
+          <a href="releases/0.1.0/bom.ttl" class="btn btn-secondary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            RDF/Turtle Source (bom.ttl)
+          </a>
+        </div>
       </div>
-      <h3>Baseline-information Obligations Mapping ontology v0.1.0</h3>
-      <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
-        The primary ontology specification defines types, provision vocabularies, and categories 
-        harmonizing NTIA, CISA, G7, and MOF baseline information obligations.
-      </p>
-      <div class="btn-group">
-        <a href="releases/0.1.0/index.html" class="btn btn-primary">HTML</a>
-        <a href="releases/0.1.0/bom.ttl" class="btn btn-secondary">RDF/Turtle source (bom.ttl)</a>
-      </div>
-    </div>
+    </section>
 
-    <h2 class="section-title">Information requirement specs</h2>
-    <div class="grid">
-      <!--
-      <div class="item-card">
-        <div>
-          <h4 class="item-title">BSI TR-03183-2</h4>
-          <p class="item-desc">SBOM requirements defined in BSI Technical Guideline TR-03183-2 v2.1.0 (2025).</p>
-        </div>
-        <div class="item-meta">
-          <a href="req/bsi/bsi.ttl" class="link-item">bsi.ttl</a>
-          <span class="badge-ns">bsi:</span>
-        </div>
-      </div>
+    <!-- Section: Information requirement specs -->
+    <section aria-labelledby="sec-info-req">
+      <h2 id="sec-info-req" class="section-title">Information requirement specs</h2>
+      <div class="grid">
+        
+        <article class="item-card">
+          <div>
+            <h3 class="item-title">G7 SBOM for AI</h3>
+            <p class="item-desc">G7 SBOM for AI Minimum Elements for Artificial Intelligence systems and models (2026).</p>
+          </div>
+          <div class="item-meta">
+            <div class="item-links">
+              <a href="req/g7ai/index.html" class="link-item" aria-label="HTML spec for G7 SBOM for AI">HTML Spec</a>
+              <span aria-hidden="true">•</span>
+              <a href="req/g7ai/g7ai.ttl" class="link-item" aria-label="RDF Turtle for G7 SBOM for AI">g7ai.ttl</a>
+            </div>
+            <span class="badge-ns">g7ai:</span>
+          </div>
+        </article>
 
-      <div class="item-card">
-        <div>
-          <h4 class="item-title">CISA SBOM</h4>
-          <p class="item-desc">CISA SBOM Minimum Elements (Public Comment Draft) (2025)</p>
-        </div>
-        <div class="item-meta">
-          <a href="req/cisa/cisa.ttl" class="link-item">cisa.ttl</a>
-          <span class="badge-ns">cisa:</span>
-        </div>
-      </div>
+        <article class="item-card">
+          <div>
+            <h3 class="item-title">Model Openness Framework (MOF)</h3>
+            <p class="item-desc">Completeness assessment requirements defined by the Model Openness Framework (2024).</p>
+          </div>
+          <div class="item-meta">
+            <div class="item-links">
+              <a href="req/mof/index.html" class="link-item" aria-label="HTML spec for Model Openness Framework">HTML Spec</a>
+              <span aria-hidden="true">•</span>
+              <a href="req/mof/mof.ttl" class="link-item" aria-label="RDF Turtle for Model Openness Framework">mof.ttl</a>
+            </div>
+            <span class="badge-ns">mof:</span>
+          </div>
+        </article>
 
-      <div class="item-card">
-        <div>
-          <h4 class="item-title">CISA FSCT</h4>
-          <p class="item-desc">CISA Framing Software Component Transparency 3rd Edition (2024)</p>
-        </div>
-        <div class="item-meta">
-          <a href="req/fsct/fsct.ttl" class="link-item">fsct.ttl</a>
-          <span class="badge-ns">fsct:</span>
-        </div>
-      </div>
-    -->
-      <div class="item-card">
-        <div>
-          <h4 class="item-title">G7 SBOM for AI</h4>
-          <p class="item-desc">G7 SBOM for AI Minimum Elements (2026)</p>
-        </div>
-        <div class="item-meta">
-          <a href="req/g7ai/g7ai.ttl" class="link-item">g7ai.ttl</a>
-          <span class="badge-ns">g7ai:</span>
-        </div>
-      </div>
+        <article class="item-card">
+          <div>
+            <h3 class="item-title">NTIA Minimum Elements</h3>
+            <p class="item-desc">NTIA SBOM Minimum Elements for Software Transparency (2021).</p>
+          </div>
+          <div class="item-meta">
+            <div class="item-links">
+              <a href="req/ntia/index.html" class="link-item" aria-label="HTML spec for NTIA Minimum Elements">HTML Spec</a>
+              <span aria-hidden="true">•</span>
+              <a href="req/ntia/ntia.ttl" class="link-item" aria-label="RDF Turtle for NTIA Minimum Elements">ntia.ttl</a>
+            </div>
+            <span class="badge-ns">ntia:</span>
+          </div>
+        </article>
 
-      <div class="item-card">
-        <div>
-          <h4 class="item-title">MOF</h4>
-          <p class="item-desc">Model Openness Framework (2024)</p>
-        </div>
-        <div class="item-meta">
-          <a href="req/mof/mof.ttl" class="link-item">mof.ttl</a>
-          <span class="badge-ns">mof:</span>
-        </div>
       </div>
+    </section>
 
-      <!--
-      <div class="item-card">
-        <div>
-          <h4 class="item-title">India CERT-In</h4>
-          <p class="item-desc">CERT-In SBOM & AIBOM Guidelines v2.0 (2025)</p>
-        </div>
-        <div class="item-meta">
-          <a href="req/certin/certin.ttl" class="link-item">certin.ttl</a>
-          <span class="badge-ns">certin:</span>
-        </div>
+    <!-- Section: Regulatory specifications -->
+    <section aria-labelledby="sec-reg-specs">
+      <h2 id="sec-reg-specs" class="section-title">Regulatory specifications</h2>
+      <div class="grid" style="grid-template-columns: 1fr;">
+        <article class="item-card item-card-row" style="flex-direction: row; align-items: center; justify-content: space-between; gap: 1rem;">
+          <div style="max-width: 65%;">
+            <h3 class="item-title" style="margin: 0 0 0.25rem 0;">EU Artificial Intelligence Act</h3>
+            <p class="item-desc" style="margin: 0;">EU AI Act transparency and registration obligations (Art. 49 eligibility, Annex VIII Sec. A/B/C, Annex IX real-world testing).</p>
+          </div>
+          <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+            <a href="reg/euaiact/index.html" class="link-item" aria-label="HTML spec for EU AI Act">HTML Spec</a>
+            <span aria-hidden="true">•</span>
+            <a href="reg/euaiact/euaiact.ttl" class="link-item" aria-label="RDF Turtle for EU AI Act">euaiact.ttl</a>
+            <span class="badge-ns">euaiact:</span>
+          </div>
+        </article>
       </div>
-      -->
+    </section>
 
-      <div class="item-card">
-        <div>
-          <h4 class="item-title">NTIA</h4>
-          <p class="item-desc">NTIA SBOM Minimum Elements (2021)</p>
-        </div>
-        <div class="item-meta">
-          <a href="req/ntia/ntia.ttl" class="link-item">ntia.ttl</a>
-          <span class="badge-ns">ntia:</span>
-        </div>
+    <!-- Section: SSSOM Crosswalks -->
+    <section aria-labelledby="sec-sssom">
+      <h2 id="sec-sssom" class="section-title">SSSOM crosswalks (in development)</h2>
+      <div class="table-wrapper">
+        <table>
+          <caption>Crosswalk mappings formatted in Simple Standard for Sharing Ontological Mappings (SSSOM)</caption>
+          <thead>
+            <tr>
+              <th scope="col">Mapping File</th>
+              <th scope="col">Source Specification</th>
+              <th scope="col">Target Format</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <a href="mapping/bom-to-spdx31.sssom.tsv" class="link-item">
+                  bom-to-spdx31.sssom.tsv
+                </a>
+              </td>
+              <td>BOM ontology</td>
+              <td>SPDX 3.1-dev</td>
+            </tr>
+            <tr>
+              <td>
+                <a href="mapping/g7ai-to-spdx31.sssom.tsv" class="link-item">
+                  g7ai-to-spdx31.sssom.tsv
+                </a>
+              </td>
+              <td>G7 SBOM for AI Minimum Elements</td>
+              <td>SPDX 3.1-dev</td>
+            </tr>
+            <tr>
+              <td>
+                <a href="mapping/ntia-to-spdx31.sssom.tsv" class="link-item">
+                  ntia-to-spdx31.sssom.tsv
+                </a>
+              </td>
+              <td>NTIA SBOM Minimum Elements</td>
+              <td>SPDX 3.1-dev</td>
+            </tr>
+            <tr>
+              <td>
+                <a href="mapping/mof-to-spdx31.sssom.tsv" class="link-item">
+                  mof-to-spdx31.sssom.tsv
+                </a>
+              </td>
+              <td>Model Openness Framework</td>
+              <td>SPDX 3.1-dev</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </div>
+    </section>
 
-    <h2 class="section-title">Regulatory specifications</h2>
-    <div class="grid" style="grid-template-columns: 1fr;">
-      <div class="item-card" style="flex-direction: row; align-items: center; justify-content: space-between;">
-        <div style="max-width: 70%;">
-          <h4 class="item-title" style="margin: 0 0 0.25rem 0;">EU AI Act</h4>
-          <p class="item-desc" style="margin: 0;">EU Artificial Intelligence Act (Art. 49, Art. 60)</p>
-        </div>
-        <div style="display: flex; gap: 1.5rem; align-items: center;">
-          <a href="reg/euaiact/euaiact.ttl" class="link-item">euaiact.ttl</a>
-          <span class="badge-ns">euaiact:</span>
-        </div>
-      </div>
-    </div>
+  </main>
 
-    <h2 class="section-title">SSSOM crosswalks (in development)</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Mapping file</th>
-          <th>Source specification</th>
-          <th>Target format</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><a href="mapping/bom-to-spdx31.sssom.tsv" class="link-item">bom-to-spdx31.sssom.tsv</a></td>
-          <td>BOM ontology</td>
-          <td>SPDX 3.1-dev</td>
-        </tr>
-        <!--
-        <tr>
-          <td><a href="mapping/certin-to-spdx31.sssom.tsv" class="link-item">certin-to-spdx31.sssom.tsv</a></td>
-          <td>India CERT-In Guidelines</td>
-          <td>SPDX 3.1-dev</td>
-        </tr>
-        -->
-        <tr>
-          <td><a href="mapping/g7ai-to-spdx31.sssom.tsv" class="link-item">g7ai-to-spdx31.sssom.tsv</a></td>
-          <td>G7 SBOM for AI Minimum Elements</td>
-          <td>SPDX 3.1-dev</td>
-        </tr>
-        <tr>
-          <td><a href="mapping/ntia-to-spdx31.sssom.tsv" class="link-item">ntia-to-spdx31.sssom.tsv</a></td>
-          <td>NTIA SBOM Minimum Elements</td>
-          <td>SPDX 3.1-dev</td>
-        </tr>
-      <!--<tr>
-          <td><a href="mapping/bsi-to-spdx31.sssom.tsv" class="link-item">bsi-to-spdx31.sssom.tsv</a></td>
-          <td>BSI TR-03183-2</td>
-          <td>SPDX 3.1-dev</td>
-        </tr>
-      -->
-        <tr>
-          <td><a href="mapping/mof-to-spdx31.sssom.tsv" class="link-item">mof-to-spdx31.sssom.tsv</a></td>
-          <td>Model Openness Framework</td>
-          <td>SPDX 3.1-dev</td>
-        </tr>
-<!--        <tr>
-          <td><a href="mapping/euaiact-anx8-a-to-semic.sssom.tsv" class="link-item">euaiact-anx8-a-to-semic.sssom.tsv</a></td>
-          <td>EU AI Act Annex VIII Sec.A</td>
-          <td>SEMIC Vocabularies</td>
-        </tr>
-        <tr>
-          <td><a href="mapping/euaiact-anx8-b-to-semic.sssom.tsv" class="link-item">euaiact-anx8-b-to-semic.sssom.tsv</a></td>
-          <td>EU AI Act Annex VIII Sec.B</td>
-          <td>SEMIC Vocabularies</td>
-        </tr>
-        <tr>
-          <td><a href="mapping/euaiact-anx8-c-to-semic.sssom.tsv" class="link-item">euaiact-anx8-c-to-semic.sssom.tsv</a></td>
-          <td>EU AI Act Annex VIII Sec.C</td>
-          <td>SEMIC Vocabularies</td>
-        </tr>
-        <tr>
-          <td><a href="mapping/euaiact-anx9-to-semic.sssom.tsv" class="link-item">euaiact-anx9-to-semic.sssom.tsv</a></td>
-          <td>EU AI Act Annex IX</td>
-          <td>SEMIC Vocabularies</td>
-        </tr>
-        <tr>
-          <td><a href="mapping/ntia-to-semic.sssom.tsv" class="link-item">ntia-to-semic.sssom.tsv</a></td>
-          <td>NTIA Minimum Elements</td>
-          <td>SEMIC Vocabularies</td>
-        </tr>
-        <tr>
-          <td><a href="mapping/g7ai-to-semic.sssom.tsv" class="link-item">g7ai-to-semic.sssom.tsv</a></td>
-          <td>G7 AI Minimum Elements</td>
-          <td>SEMIC Vocabularies</td>
-        </tr>
-      -->
-      </tbody>
-    </table>
-
-    <!--
-    <h2 class="section-title">Developer Resources</h2>
-    <div class="grid" style="grid-template-columns: repeat(2, 1fr);">
-      <div class="item-card">
-        <div>
-          <h4 class="item-title">Design Decisions</h4>
-          <p class="item-desc">Read DESIGN.md for details about namespace layout, IRI scheme, and ontology design decisions.</p>
-        </div>
-        <div class="item-meta">
-          <a href="https://github.com/bact/bom/blob/main/DESIGN.md" class="link-item">View on GitHub</a>
-        </div>
-      </div>
-      <div class="item-card">
-        <div>
-          <h4 class="item-title">Agent Guidelines</h4>
-          <p class="item-desc">Read AGENTS.md for coding guidelines, verification commands, and validation checklists.</p>
-        </div>
-        <div class="item-meta">
-          <a href="https://github.com/bact/bom/blob/main/AGENTS.md" class="link-item">View on GitHub</a>
-        </div>
-      </div>
-    -->
-    </div>
-
-    <footer>
+  <footer role="contentinfo">
+    <div style="max-width: 960px; margin: 0 auto; padding: 0 1.5rem;">
       <p>
-        Licensed under <a href="https://creativecommons.org/publicdomain/zero/1.0/" class="link-item">CC0-1.0</a>. 
-        <!-- Maintained by <a href="https://orcid.org/0000-0002-9698-1899" class="link-item">Arthit Suriyawongkul</a>. -->
+        Licensed under <a href="https://creativecommons.org/publicdomain/zero/1.0/" class="link-item">CC0 1.0 Universal (Public Domain Dedication)</a>.
       </p>
-      <p style="font-size: 0.8rem; margin-top: 0.5rem; color: #64748b;">
-        Persistent URI: <a href="https://w3id.org/bom/" class="link-item">https://w3id.org/bom/</a>.
+      <p style="font-size: 0.8125rem; color: var(--text-subtle);">
+        Persistent Identifier: <a href="https://w3id.org/bom/" class="link-item">https://w3id.org/bom/</a> &nbsp;|&nbsp; 
+        Source Code: <a href="https://github.com/bact/bom" class="link-item">GitHub Repository</a>
       </p>
-    </footer>
-
-  </div>
+    </div>
+  </footer>
 
 </body>
 </html>
